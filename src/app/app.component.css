@@ -1,0 +1,59 @@
+.tabs {
+    display: inline-block;
+    background-color: #eee;
+    border-radius: 4px;
+    margin-top: 1em;
+}
+
+.active-link {
+    color: #F20B22;
+}
+
+a {
+    padding: 20px;
+}
+
+.active-link {
+    background-color: blue;;
+}
+
+
+
+.valign-center {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+a:hover,
+a:active {
+    color: lightgray;
+}
+
+
+#a {
+    display: inline;
+}
+
+#a li {
+    display: inline;
+}
+
+mat-icon {
+    vertical-align: middle;
+    padding: 10px;
+}
+
+mat-toolbar {
+    background-color: darkblue;
+}
+
+
+.text-align-center {
+    text-align: center;
+}

@@ -4,9 +4,9 @@
         <img src="./assets/logo.png" class="img-logo" alt="Golden State Sea Food Logo">
     </div>
 
-    <h2>Driver Information</h2>
+    <h2>Driver Information {{isProduction}}</h2>
 
-    <table mat-table [dataSource]="deliveryRoutes" class="mat-elevation-z8">
+    <table mat-table [dataSource]="$deliveryRoutes" class="mat-elevation-z8">
 
         <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
@@ -40,7 +40,8 @@
         <ng-container matColumnDef="has_arrived">
             <th mat-header-cell *matHeaderCellDef> Has Arrived </th>
 
-            <td mat-cell *matCellDef="let element; let i = index"> <mat-slide-toggle [checked]="element.has_arrived" (change)="hasArrived(i)">Has arrived</mat-slide-toggle> </td>
+            <td mat-cell *matCellDef="let element; let i = index"> <mat-slide-toggle [checked]="element.has_arrived" (change)="hasArrived(element)">Has arrived</mat-slide-toggle>
+            </td>
         </ng-container>
 
         <!-- Name Column -->

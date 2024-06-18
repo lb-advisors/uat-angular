@@ -1,12 +1,32 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { DeliveryRoute } from '../../models/delivery-route';
+import { DriverRouteService } from 'src/app/services/driver-route.service';
+import { Observable } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-driver-route',
   templateUrl: './driver-route.component.html',
   styleUrls: ['./driver-route.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent {
+  $deliveryRoutes: Observable<DeliveryRoute[]>;
+
+  isProduction: boolean;
+
+  constructor(private driverRouteService: DriverRouteService) {
+    console.log('constructor');
+
+    this.$deliveryRoutes = driverRouteService.getRoutes();
+
+    this.isProduction = environment.production;
+  }
+
+  ngOnInit() {
+    console.log('ngOnInit');
+  }
+
   displayedColumns: string[] = [
     'driver_name',
     'customer_name',
@@ -17,38 +37,19 @@ export class DriverRouteComponent {
     'delivery_time',
     'photo',
   ];
-  deliveryRoutes: DeliveryRoute[] = [
-    {
-      driver_name: 'Douglas  Pace',
-      customer_name: 'Customer A',
-      address: '123 Eml Street',
-      delivery_date: null,
-      has_arrived: false,
-      status: 'Not arrived ',
-      delivery_time: null,
-    },
-    {
-      driver_name: 'Douglas  Pace',
-      customer_name: 'Customer A',
-      address: '123 Eml Street',
-      delivery_date: new Date('2024-06-17'),
-      has_arrived: true,
-      status: 'Not arrived ',
-      delivery_time: new Date('2024-06-17 13:20:30'),
-    },
-  ];
 
-  hasArrived(rowNum: number) {
-    if (this.deliveryRoutes[rowNum].has_arrived) {
-      this.deliveryRoutes[rowNum].has_arrived = false;
-      this.deliveryRoutes[rowNum].status = 'Not arrived';
-      this.deliveryRoutes[rowNum].delivery_date = null;
-      this.deliveryRoutes[rowNum].delivery_time = null;
+  hasArrived(deliveryRoutes: DeliveryRoute) {
+    // TODO: write back to database
+    if (deliveryRoutes.has_arrived) {
+      deliveryRoutes.has_arrived = false;
+      deliveryRoutes.status = 'Not arrived';
+      deliveryRoutes.delivery_date = null;
+      deliveryRoutes.delivery_time = null;
     } else {
-      this.deliveryRoutes[rowNum].has_arrived = true;
-      this.deliveryRoutes[rowNum].status = 'Arrived';
-      this.deliveryRoutes[rowNum].delivery_date = new Date();
-      this.deliveryRoutes[rowNum].delivery_time = new Date();
+      deliveryRoutes.has_arrived = true;
+      deliveryRoutes.status = 'Arrived';
+      deliveryRoutes.delivery_date = new Date();
+      deliveryRoutes.delivery_time = new Date();
     }
   }
 }

@@ -4,7 +4,7 @@ h2 {
 }
 
 .container {
-    width: 90%;
+    width: fit-content;
     margin: 20px auto;
     padding: 20px;
     border: 1px solid #ccc;
