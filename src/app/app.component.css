@@ -49,8 +49,14 @@ mat-icon {
     padding: 10px;
 }
 
+
+.header {
+    background-color: darkblue;
+}
+
 mat-toolbar {
     background-color: darkblue;
+    width:fit-content;
 }
 
 

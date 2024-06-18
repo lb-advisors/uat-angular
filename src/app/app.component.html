@@ -21,58 +21,61 @@
     </mat-sidenav>
 
     <mat-sidenav-content>
-        <mat-toolbar color="primary">
+        <div class="header">
 
-            <button mat-icon-button (click)="sidenav.toggle()">
-                <mat-icon>menu</mat-icon>
-            </button>
+            <mat-toolbar color="primary" class="header">
+                <button mat-icon-button (click)="sidenav.toggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
 
-            <div>
-                <a routerLink="/">
-                    Pacific Fresh Fish Company
-                </a>
-            </div>
-            <div>
-                <ul class="navigation-items" id="a">
-                    <li>
-                        <a routerLink="/login">
-                            <mat-icon class="icon">input</mat-icon>
-                            <span class="label">Login</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/home">
-                            <mat-icon class="icon">home</mat-icon>
-                            <span class="label">Home</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/order">
-                            <mat-icon class="icon">receipt</mat-icon>
-                            <span class="label">Orders</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/driver">
-                            <mat-icon class="icon">directions_car</mat-icon>
-                            <span class="label">Routes</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a routerLink="/logout">
-                            <mat-icon class="icon">input</mat-icon>
-                            <span class="label">LogOut</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </mat-toolbar>
+                <div>
+                    <a routerLink="/">
+                        Pacific Fresh Fish Company
+                    </a>
+                </div>
+                <div>
+                    <ul class="navigation-items" id="a">
+                        <li>
+                            <a routerLink="/login">
+                                <mat-icon class="icon">input</mat-icon>
+                                <span class="label">Login</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/home">
+                                <mat-icon class="icon">home</mat-icon>
+                                <span class="label">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/order">
+                                <mat-icon class="icon">receipt</mat-icon>
+                                <span class="label">Orders</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/driver">
+                                <mat-icon class="icon">directions_car</mat-icon>
+                                <span class="label">Routes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/logout">
+                                <mat-icon class="icon">input</mat-icon>
+                                <span class="label">LogOut</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </mat-toolbar>
+        </div>
 
         <main>
             <router-outlet></router-outlet>
         </main>
 
     </mat-sidenav-content>
+
 </mat-sidenav-container>
 
 
