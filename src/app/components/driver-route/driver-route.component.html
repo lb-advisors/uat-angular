@@ -1,72 +1,78 @@
 <div class="container">
-
     <div class="image-container">
-        <img src="./assets/logo.png" class="img-logo" alt="Golden State Sea Food Logo">
+      <img src="./assets/logo.png" class="img-logo" alt="Golden State Sea Food Logo">
     </div>
-
-    <h2>Driver Information {{isProduction}}</h2>
-
-    <table mat-table [dataSource]="$deliveryRoutes" class="mat-elevation-z8">
-
-        <!--- Note that these columns can be defined in any order.
-        The actual rendered columns are set as a property on the row definition" -->
-
-        <!-- Position Column -->
-        <ng-container matColumnDef="driver_name">
-            <th mat-header-cell *matHeaderCellDef> Driver Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.driver_name}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="customer_name">
-            <th mat-header-cell *matHeaderCellDef> Customer Name </th>
-            <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="address">
-            <th mat-header-cell *matHeaderCellDef> Address </th>
-            <td mat-cell *matCellDef="let element"> {{element.address}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="delivery_date">
-            <th mat-header-cell *matHeaderCellDef> Delivery Date </th>
-            <td mat-cell *matCellDef="let element"> {{element.delivery_date| date:'longDate':'PDT'}} </td>
-        </ng-container>
-
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="has_arrived">
-            <th mat-header-cell *matHeaderCellDef> Has Arrived </th>
-
-            <td mat-cell *matCellDef="let element; let i = index"> <mat-slide-toggle [checked]="element.has_arrived" (change)="hasArrived(element)">Has arrived</mat-slide-toggle>
-            </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="status">
-            <th mat-header-cell *matHeaderCellDef> Status </th>
-            <td mat-cell *matCellDef="let element"> {{element.status}} </td>
-        </ng-container>
-
-        <!-- Name Column -->
-        <ng-container matColumnDef="delivery_time">
-            <th mat-header-cell *matHeaderCellDef> Delivery Time </th>
-            <td mat-cell *matCellDef="let element"> {{element.delivery_time | date:'shortTime':'PDT'}}
-            </td>
-        </ng-container>
-
-        <ng-container matColumnDef="photo">
-            <th mat-header-cell *matHeaderCellDef> Upload Photo </th>
-            <td mat-cell *matCellDef="let element"> <input type="file" accept="image/*" />
-
-            </td>
-        </ng-container>
-
-
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  
+    <h2>Driver Routes</h2>
+  
+    <div class="filters">
+      <label for="driver-filter">Select Driver:</label>
+      <select id="driver-filter" [(ngModel)]="selectedDriver" (change)="filterRoutes()">
+        <option *ngFor="let driver of drivers" [value]="driver">{{ driver }}</option>
+      </select>
+    </div>
+  
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+      <!-- Driver Name Column -->
+      <ng-container matColumnDef="driver_name">
+        <th mat-header-cell *matHeaderCellDef> Driver Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.driver_name}} </td>
+      </ng-container>
+  
+      <!-- Customer Name Column -->
+      <ng-container matColumnDef="customer_name">
+        <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
+      </ng-container>
+  
+      <!-- Address Column -->
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Address </th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+  
+      <!-- Delivery Date Column -->
+      <ng-container matColumnDef="delivery_date">
+        <th mat-header-cell *matHeaderCellDef> Delivery Date </th>
+        <td mat-cell *matCellDef="let element"> {{element.delivery_date | date:'longDate':'PDT'}} </td>
+      </ng-container>
+  
+      <!-- Has Arrived Column -->
+      <ng-container matColumnDef="has_arrived">
+        <th mat-header-cell *matHeaderCellDef> Has Arrived </th>
+        <td mat-cell *matCellDef="let element; let i = index"> 
+          <mat-slide-toggle 
+            [checked]="element.has_arrived" 
+            (change)="hasArrived(element)"
+            color="accent">
+            ✔️
+          </mat-slide-toggle>
+        </td>
+      </ng-container>
+  
+      <!-- Status Column -->
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Status </th>
+        <td mat-cell *matCellDef="let element"> {{element.status}} </td>
+      </ng-container>
+  
+      <!-- Delivery Time Column -->
+      <ng-container matColumnDef="delivery_time">
+        <th mat-header-cell *matHeaderCellDef> Delivery Time </th>
+        <td mat-cell *matCellDef="let element"> {{element.delivery_time | date:'shortTime':'PDT'}} </td>
+      </ng-container>
+  
+      <!-- Photo Column -->
+      <ng-container matColumnDef="photo">
+        <th mat-header-cell *matHeaderCellDef> Upload Photo </th>
+        <td mat-cell *matCellDef="let element"> 
+          <button mat-button color="primary">Upload Photo</button>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+        [ngClass]="{'arrived': row.has_arrived}"></tr>
     </table>
-
-</div>
+  </div>
+  
