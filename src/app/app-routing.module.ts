@@ -5,6 +5,7 @@ import { HomeComponent } from './components/home/home.component';
 import { OrderComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
+import { InventoryComponent } from './components/inventory/inventory.component'; // Import InventoryComponent
 
 const routes: Routes = [
   {
@@ -37,6 +38,11 @@ const routes: Routes = [
     path: 'logout',
     component: LogoutComponent,
     title: 'Logout',
+  },
+  {
+    path: 'inventory',
+    component: InventoryComponent,
+    title: 'Inventory', // Add Inventory route
   },
   {
     path: '**',

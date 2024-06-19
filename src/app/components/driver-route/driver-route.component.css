@@ -27,3 +27,38 @@ h2 {
     height: 100px;
     border-radius: 8px;
 }
+
+.filters {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.filters label {
+    font-size: 16px;
+}
+
+.filters select {
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.mat-header-cell {
+    background-color: #ddd; /* Slightly darker than EEEDEB */
+    font-size: 16px; /* Match the font size of the inventory headers */
+    font-weight: bold; /* Bold font for headers */
+    text-align: center;
+}
+
+.mat-cell {
+    font-size: 14px;
+}
+
+.arrived {
+    background-color: #EEEDEB;
+    font-weight: bold;
+}

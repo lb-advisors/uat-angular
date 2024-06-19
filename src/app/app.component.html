@@ -1,28 +1,39 @@
 <mat-sidenav-container color='primary'>
     <mat-sidenav #sidenav role="navigation" mode="push">
         <mat-nav-list>
-            <a mat-list-item routerLink="/login">
-                <mat-icon class="icon">input</mat-icon>
-                <span class="label">Login</span>
-            </a>
             <a mat-list-item routerLink="/home">
                 <mat-icon class="icon">home</mat-icon>
                 <span class="label">Home</span>
+            </a>
+            <a mat-list-item routerLink="/customer">
+                <mat-icon class="icon">person</mat-icon>
+                <span class="label">Customer</span>
+            </a>
+            <a mat-list-item routerLink="/inventory">
+                <mat-icon class="icon">inventory</mat-icon> <!-- Change here -->
+                <span class="label">Inventory</span>
+            </a>
+            <a mat-list-item routerLink="/driver">
+                <mat-icon class="icon">directions_car</mat-icon>
+                <span class="label">Routes</span>
             </a>
             <a mat-list-item routerLink="/order">
                 <mat-icon class="icon">receipt</mat-icon>
                 <span class="label">Orders</span>
             </a>
-            <a mat-list-item routerLink="/driver">
-                <mat-icon class="icon">directions_carx</mat-icon>
-                <span class="label">Routes</span>
+            <a mat-list-item routerLink="/login">
+                <mat-icon class="icon">input</mat-icon>
+                <span class="label">Login</span>
+            </a>
+            <a mat-list-item routerLink="/logout">
+                <mat-icon class="icon">input</mat-icon>
+                <span class="label">LogOut</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>
 
     <mat-sidenav-content>
         <div class="header">
-
             <mat-toolbar color="primary" class="header">
                 <button mat-icon-button (click)="sidenav.toggle()">
                     <mat-icon>menu</mat-icon>
@@ -36,15 +47,27 @@
                 <div>
                     <ul class="navigation-items" id="a">
                         <li>
-                            <a routerLink="/login">
-                                <mat-icon class="icon">input</mat-icon>
-                                <span class="label">Login</span>
-                            </a>
-                        </li>
-                        <li>
                             <a routerLink="/home">
                                 <mat-icon class="icon">home</mat-icon>
                                 <span class="label">Home</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/customer">
+                                <mat-icon class="icon">person</mat-icon>
+                                <span class="label">Customer</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/inventory">
+                                <mat-icon class="icon">inventory</mat-icon> <!-- Change here -->
+                                <span class="label">Inventory</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a routerLink="/driver">
+                                <mat-icon class="icon">directions_car</mat-icon>
+                                <span class="label">Routes</span>
                             </a>
                         </li>
                         <li>
@@ -54,9 +77,9 @@
                             </a>
                         </li>
                         <li>
-                            <a routerLink="/driver">
-                                <mat-icon class="icon">directions_car</mat-icon>
-                                <span class="label">Routes</span>
+                            <a routerLink="/login">
+                                <mat-icon class="icon">input</mat-icon>
+                                <span class="label">Login</span>
                             </a>
                         </li>
                         <li>
@@ -73,21 +96,14 @@
         <main>
             <router-outlet></router-outlet>
         </main>
-
     </mat-sidenav-content>
-
 </mat-sidenav-container>
-
-
-
-
-
 
 <!-- Footer with Navigation and Social Icons-->
 <footer class="mat-drawer-container">
     <div class="container">
         <div class="text-align-center">
-            © 2024 - Pacific Fresh Fish Company<span *ngIf="isDevMode"> - DEVEOPMENT MODE</span>
+            © 2024 - Pacific Fresh Fish Company<span *ngIf="isDevMode"> - DEVELOPMENT MODE</span>
         </div>
     </div>
 </footer>
