@@ -1,0 +1,39 @@
+<div class="content">
+    <div class="container">
+      <div class="image-container">
+        <img src="assets/logo.png" alt="Company Logo">
+      </div>
+      <h2>Inventory</h2>
+      <div class="filters">
+        <input type="text" [(ngModel)]="filters.CompItemID" placeholder="Filter by CompItemID">
+        <input type="text" [(ngModel)]="filters.Product" placeholder="Search Product">
+        <input type="text" [(ngModel)]="filters.UnitType" placeholder="Filter by UnitType">
+        <input type="text" [(ngModel)]="filters.PackSize" placeholder="Filter by PackSize">
+        <input type="text" [(ngModel)]="filters.Price" placeholder="Filter by Price">
+        <input type="text" [(ngModel)]="filters.Quantity" placeholder="Filter by Quantity">
+      </div>
+      <table class="inventory-grid">
+        <thead>
+          <tr>
+            <th>CompItemID</th>
+            <th>Product</th>
+            <th>UnitType</th>
+            <th>PackSize</th>
+            <th>Price</th>
+            <th>Quantity</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let item of filteredInventoryItems()">
+            <td>{{ item.CompItemID }}</td>
+            <td>{{ item.Product }}</td>
+            <td>{{ item.UnitType }}</td>
+            <td>{{ item.PackSize }}</td>
+            <td>{{ item.Price | currency:'USD':'symbol':'1.2-2' }}</td>
+            <td>{{ item.Quantity }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  

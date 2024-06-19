@@ -14,7 +14,7 @@ a {
 }
 
 .active-link {
-    background-color: blue;;
+    background-color: rgb(8, 20, 44) !important;
 }
 
 
@@ -51,11 +51,11 @@ mat-icon {
 
 
 .header {
-    background-color: darkblue;
+    background-color: rgb(8, 20, 44) !important;
 }
 
 mat-toolbar {
-    background-color: darkblue;
+    background-color: rgb(8, 20, 44) !important;
     width:fit-content;
 }
 
