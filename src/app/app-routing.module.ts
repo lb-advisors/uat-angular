@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
 import { HomeComponent } from './components/home/home.component';
-import { OrderComponent } from './components/order/order.component';
+import { OrderListComponent } from './components/order/order.component'; // Updated import
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Import InventoryComponent
@@ -26,7 +26,7 @@ const routes: Routes = [
   },
   {
     path: 'order',
-    component: OrderComponent,
+    component: OrderListComponent, // Updated to OrderListComponent
     title: 'Order',
   },
   {

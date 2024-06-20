@@ -18,7 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HomeComponent } from './components/home/home.component';
-import { OrderComponent } from './components/order/order.component';
+import { OrderListComponent } from './components/order/order.component'; // Update import
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
@@ -31,7 +31,7 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
     AppComponent,
     DriverRouteComponent,
     HomeComponent,
-    OrderComponent,
+    OrderListComponent, // Update declaration
     LoginComponent,
     LogoutComponent,
     InventoryComponent,

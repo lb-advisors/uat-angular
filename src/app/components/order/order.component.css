@@ -1,0 +1,69 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0; /* Light grey background for the body */
+    color: #000000; /* Black text color */
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the container */
+    color: #000000; /* Black text color for the container */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.image-container {
+    width: 97.3%;
+    background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.image-container img {
+    max-width: 100%;
+    height: 100px; /* Adjust the logo size as needed */
+    border-radius: 8px;
+}
+
+.filters {
+    margin: 20px 0;
+    display: flex;
+    justify-content: center; /* Center the filter section */
+    gap: 10px; /* Adds white space between each filter */
+    align-items: center;
+    font-size: 18px; /* Increase font size */
+}
+
+.order-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.order-grid th, .order-grid td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+}
+
+.order-grid th {
+    background-color: #f9f9f9;
+}
+
+.copy-link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
