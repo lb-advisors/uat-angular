@@ -10,7 +10,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/login',
+    redirectTo: 'login',
     pathMatch: 'full',
     title: 'Home',
   },
