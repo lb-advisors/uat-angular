@@ -40,7 +40,7 @@ body {
 .filters {
     margin: 20px 0;
     display: flex;
-    justify-content: space-between;
+    flex-wrap: wrap;
     gap: 10px; /* Adds white space between each filter */
 }
 
@@ -48,7 +48,8 @@ body {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: calc(100% / 5 - 10px); /* Adjust width to match column headers */
+    flex: 1 1 calc(50% - 20px); /* Adjust width to match column headers */
+    min-width: 120px;
 }
 
 .inventory-grid {
@@ -68,13 +69,27 @@ body {
     color: #ffffff; /* White text color for table headers */
 }
 
+.inventory-grid td.wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
 @media (max-width: 600px) {
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters input {
+        flex: 1 1 100%; /* Full width for inputs */
+        margin-bottom: 10px;
+    }
+
     .inventory-grid th, .inventory-grid td {
-      font-size: 14px;
+        font-size: 14px;
     }
 
     .container {
-      width: 95%;
-      margin: 5px;
+        width: 95%;
+        margin: 5px;
     }
 }

@@ -49,6 +49,7 @@ body {
     gap: 10px; /* Adds white space between each filter */
     align-items: center;
     font-size: 18px; /* Increase font size */
+    flex-wrap: wrap;
 }
 
 .filter-label {
@@ -71,6 +72,7 @@ body {
     border: 1px solid #ccc;
     padding: 10px;
     text-align: left;
+    word-wrap: break-word; /* Ensure text wraps within the table cells */
 }
 
 .order-grid th {
@@ -81,4 +83,24 @@ body {
     cursor: pointer;
     color: blue;
     text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 95%;
+        margin: 5px;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters label, .filters select {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .order-grid th, .order-grid td {
+        font-size: 14px;
+    }
 }

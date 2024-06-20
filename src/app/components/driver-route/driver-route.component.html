@@ -1,55 +1,53 @@
 <div class="container">
-    <!--  <div class="image-container">
-         <img src="./assets/logo.png" class="img-logo" alt="Golden State Sea Food Logo">
-     </div> -->
- 
-     <h2 class="driver-routes-title">Driver Routes</h2>
- 
-     <div class="filters">
-         <label for="driver-filter">Select Driver:</label>
-         <select id="driver-filter" [(ngModel)]="selectedDriver" (change)="filterRoutes()">
-             <option *ngFor="let driver of drivers" [value]="driver">{{ driver }}</option>
-         </select>
-     </div>
- 
-     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid">
-         <!-- Customer Name Column -->
-         <ng-container matColumnDef="customer_name">
-             <th mat-header-cell *matHeaderCellDef> Customer Name </th>
-             <td mat-cell *matCellDef="let element"> {{element.customer_name}} </td>
-         </ng-container>
- 
-         <!-- Address Column -->
-         <ng-container matColumnDef="address">
-             <th mat-header-cell *matHeaderCellDef> Address </th>
-             <td mat-cell *matCellDef="let element">
-                 <a [href]="'https://www.google.com/maps/search/?api=1&query=' + element.address" target="_blank">{{element.address}}</a>
-             </td>
-         </ng-container>
- 
-         <!-- Has Arrived Column -->
-         <ng-container matColumnDef="has_arrived">
-             <th mat-header-cell *matHeaderCellDef> Has Arrived </th>
-             <td mat-cell *matCellDef="let element; let i = index">
-                 <mat-slide-toggle
-                     color="accent"
-                     [checked]="element.has_arrived"
-                     (change)="hasArrived(element)">
-                 </mat-slide-toggle>
-             </td>
-         </ng-container>
- 
-         <!-- Photo Column -->
-         <ng-container matColumnDef="photo">
-             <th mat-header-cell *matHeaderCellDef> Upload Photo </th>
-             <td mat-cell *matCellDef="let element">
-                 <button mat-button color="primary">Upload Photo</button>
-             </td>
-         </ng-container>
- 
-         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-         <tr mat-row *matRowDef="let row; columns: displayedColumns;"
-             [ngClass]="{'arrived': row.has_arrived}"></tr>
-     </table>
- </div>
- 
+    <!-- <div class="image-container">
+        <img src="./assets/logo.png" class="img-logo" alt="Golden State Sea Food Logo">
+    </div> -->
+
+    <h2 class="driver-routes-title">Driver Routes</h2>
+
+    <div class="filters">
+        <label for="driver-filter">Select Driver:</label>
+        <select id="driver-filter" [(ngModel)]="selectedDriver" (change)="filterRoutes()">
+            <option *ngFor="let driver of drivers" [value]="driver">{{ driver }}</option>
+        </select>
+    </div>
+
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid">
+        <!-- Customer Name Column -->
+        <ng-container matColumnDef="customer_name">
+            <th mat-header-cell *matHeaderCellDef> Customer Name </th>
+            <td mat-cell *matCellDef="let element" class="wrap"> {{element.customer_name}} </td>
+        </ng-container>
+
+        <!-- Address Column -->
+        <ng-container matColumnDef="address">
+            <th mat-header-cell *matHeaderCellDef> Address </th>
+            <td mat-cell *matCellDef="let element" class="wrap">
+                <a [href]="'https://www.google.com/maps/search/?api=1&query=' + element.address" target="_blank">{{element.address}}</a>
+            </td>
+        </ng-container>
+
+        <!-- Has Arrived Column -->
+        <ng-container matColumnDef="has_arrived">
+            <th mat-header-cell *matHeaderCellDef> Has Arrived </th>
+            <td mat-cell *matCellDef="let element; let i = index">
+                <mat-slide-toggle
+                    color="accent"
+                    [checked]="element.has_arrived"
+                    (change)="hasArrived(element)">
+                </mat-slide-toggle>
+            </td>
+        </ng-container>
+
+        <!-- Photo Column -->
+        <ng-container matColumnDef="photo">
+            <th mat-header-cell *matHeaderCellDef> Upload Photo </th>
+            <td mat-cell *matCellDef="let element">
+                <button mat-button color="primary">Upload Photo</button>
+            </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'arrived': row.has_arrived}"></tr>
+    </table>
+</div>

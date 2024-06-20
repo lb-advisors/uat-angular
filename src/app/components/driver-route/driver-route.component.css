@@ -98,6 +98,11 @@ body {
     font-weight: bold; /* Bold font for headers */
 }
 
+.driver-routes-grid td.wrap {
+    white-space: normal;
+    word-wrap: break-word;
+}
+
 .arrived {
     background-color: #EEEDEB;
     font-weight: bold;
@@ -112,6 +117,15 @@ body {
     .container {
         width: 95%;
         margin: 5px;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filters label, .filters select {
+        width: 100%;
+        margin-bottom: 10px;
     }
 }
 
