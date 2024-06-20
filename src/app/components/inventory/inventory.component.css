@@ -31,25 +31,9 @@ body {
     text-align: center;
 }
 
-.image-container {
-    width: 97.3%;
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
-    padding: 10px;
-    border-radius: 8px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
-
-.image-container img {
-    max-width: 100%;
-    height: 100px; /* Adjust the logo size as needed */
-    border-radius: 8px;
-}
-
 .inventory-title {
-    margin-top: 20px;
-    font-size: 24px; /* Make the text a little bigger */
+    margin-top: 5px; /* Reduce the top margin */
+    font-size: 30px; /* Make the text a little bigger */
     text-decoration: underline; /* Underline the text */
 }
 
@@ -64,7 +48,7 @@ body {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    width: calc(100% / 6 - 10px); /* Adjust width to match column headers */
+    width: calc(100% / 5 - 10px); /* Adjust width to match column headers */
 }
 
 .inventory-grid {

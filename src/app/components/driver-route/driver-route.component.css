@@ -8,6 +8,12 @@ body {
     color: #000000; /* Black text color */
 }
 
+.driver-routes-title {
+    font-size: 30px; /* Set font size to 30px */
+    text-decoration: underline; /* Underline the text */
+    margin-top: 0; /* Adjust margin to reduce white space if needed */
+}
+
 .main-container {
     display: flex;
     width: 100%;
@@ -49,7 +55,7 @@ body {
 
 .inventory-title {
     margin-top: 20px;
-    font-size: 24px; /* Make the text a little bigger */
+    font-size: 30px; /* Make the text a little bigger */
     text-decoration: underline; /* Underline the text */
 }
 
