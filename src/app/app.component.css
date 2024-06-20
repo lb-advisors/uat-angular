@@ -46,9 +46,10 @@ mat-icon {
 .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     background-color: rgb(8, 20, 44) !important;
     width: 100%;
+    padding: 10px 0; /* Add some padding to the header */
 }
 
 mat-toolbar {
@@ -60,9 +61,15 @@ mat-toolbar {
     text-align: center;
 }
 
-.small-logo {
-    height: 65px; /* Set the height to 65px */
-    margin-right: 16px; /* Adjust the margin as needed */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.logo {
+    max-height: 50px; /* Ensure the logo fits within the bar */
 }
 
 .spacer {
