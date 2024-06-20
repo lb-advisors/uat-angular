@@ -37,6 +37,10 @@ body {
     border-radius: 8px;
 }
 
+.underlined {
+    text-decoration: underline;
+}
+
 .filters {
     margin: 20px 0;
     display: flex;
@@ -44,6 +48,16 @@ body {
     gap: 10px; /* Adds white space between each filter */
     align-items: center;
     font-size: 18px; /* Increase font size */
+}
+
+.filter-label {
+    font-size: 18px; /* Increase font size to match the select box */
+    font-family: Arial, sans-serif; /* Ensure same font */
+}
+
+.filters select {
+    font-size: 18px; /* Match the font size of the label */
+    font-family: Arial, sans-serif; /* Ensure same font */
 }
 
 .order-grid {
