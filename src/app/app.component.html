@@ -10,7 +10,7 @@
                 <span class="label">Customer</span>
             </a>
             <a mat-list-item routerLink="/inventory">
-                <mat-icon class="icon">inventory</mat-icon> <!-- Change here -->
+                <mat-icon class="icon">inventory</mat-icon>
                 <span class="label">Inventory</span>
             </a>
             <a mat-list-item routerLink="/driver">
@@ -20,14 +20,6 @@
             <a mat-list-item routerLink="/order">
                 <mat-icon class="icon">receipt</mat-icon>
                 <span class="label">Orders</span>
-            </a>
-            <a mat-list-item routerLink="/login">
-                <mat-icon class="icon">input</mat-icon>
-                <span class="label">Login</span>
-            </a>
-            <a mat-list-item routerLink="/logout">
-                <mat-icon class="icon">input</mat-icon>
-                <span class="label">LogOut</span>
             </a>
         </mat-nav-list>
     </mat-sidenav>
@@ -39,56 +31,10 @@
                     <mat-icon>menu</mat-icon>
                 </button>
 
+                <span class="spacer"></span> <!-- Spacer to push logo to the right -->
+
                 <div>
-                    <a routerLink="/">
-                        Pacific Fresh Fish Company
-                    </a>
-                </div>
-                <div>
-                    <ul class="navigation-items" id="a">
-                        <li>
-                            <a routerLink="/home">
-                                <mat-icon class="icon">home</mat-icon>
-                                <span class="label">Home</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/customer">
-                                <mat-icon class="icon">person</mat-icon>
-                                <span class="label">Customer</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/inventory">
-                                <mat-icon class="icon">inventory</mat-icon> <!-- Change here -->
-                                <span class="label">Inventory</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/driver">
-                                <mat-icon class="icon">directions_car</mat-icon>
-                                <span class="label">Routes</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/order">
-                                <mat-icon class="icon">receipt</mat-icon>
-                                <span class="label">Orders</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/login">
-                                <mat-icon class="icon">input</mat-icon>
-                                <span class="label">Login</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a routerLink="/logout">
-                                <mat-icon class="icon">input</mat-icon>
-                                <span class="label">LogOut</span>
-                            </a>
-                        </li>
-                    </ul>
+                    <img src="assets/smalllogo.png" alt="Small Logo" class="small-logo">
                 </div>
             </mat-toolbar>
         </div>

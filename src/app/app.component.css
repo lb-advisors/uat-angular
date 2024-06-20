@@ -11,21 +11,6 @@
 
 a {
     padding: 20px;
-}
-
-.active-link {
-    background-color: rgb(8, 20, 44) !important;
-}
-
-
-
-.valign-center {
-    display: inline-flex;
-    vertical-align: middle;
-    align-items: center;
-}
-
-a {
     text-decoration: none;
     color: white;
 }
@@ -35,6 +20,15 @@ a:active {
     color: lightgray;
 }
 
+a.active-link {
+    background-color: rgb(8, 20, 44) !important;
+}
+
+.valign-center {
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+}
 
 #a {
     display: inline;
@@ -49,17 +43,28 @@ mat-icon {
     padding: 10px;
 }
 
-
 .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     background-color: rgb(8, 20, 44) !important;
+    width: 100%;
 }
 
 mat-toolbar {
     background-color: rgb(8, 20, 44) !important;
-    width:fit-content;
+    width: 100%;
 }
-
 
 .text-align-center {
     text-align: center;
+}
+
+.small-logo {
+    height: 65px; /* Set the height to 65px */
+    margin-right: 16px; /* Adjust the margin as needed */
+}
+
+.spacer {
+    flex: 1;
 }
