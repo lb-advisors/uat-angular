@@ -43,4 +43,4 @@ jobs:
         - name: Deploy to github pages
           env:
             GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-          run: npm run ng -- deploy --base-href=/books-archive/ --name="${{ secrets.UNAME }}" --email=${{ secrets.EMAIL }}
+          run: npm run ng -- deploy --base-href="" --name="${{ secrets.UNAME }}" --email="${{ secrets.EMAIL }}"
