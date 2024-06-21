@@ -32,4 +32,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          publish_dir: ./uat-angular/dist  # Replace with your actual output directory
+          publish_dir: dist  # Replace with your actual output directory
