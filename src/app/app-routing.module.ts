@@ -10,7 +10,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: '/home',
     pathMatch: 'full',
     title: 'Home',
   },
@@ -46,7 +46,7 @@ const routes: Routes = [
   },
   {
     path: '**',
-    redirectTo: 'home',
+    redirectTo: '/home',
   },
 ];
 
