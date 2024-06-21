@@ -3,7 +3,7 @@ name: Build and Deploy Angular App
 on:
   push:
     branches:
-      - develop  # Change to your main branch name if different
+      - develop
       - master
       
   # Allows you to run this workflow manually from the Actions tab
