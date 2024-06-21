@@ -7,6 +7,10 @@ on:
       
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
+
+defaults:
+  run:
+    working-directory: olivier
   
 jobs:
   build-and-deploy:
@@ -26,6 +30,7 @@ jobs:
 
       - name: Build Angular app
         run: npm run ng build
+      - run: ls
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
