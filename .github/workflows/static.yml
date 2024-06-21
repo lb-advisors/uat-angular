@@ -1,0 +1,34 @@
+name: Build and Deploy Angular App
+
+on:
+  push:
+    branches:
+      - develop  # Change to your main branch name if different
+      
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'  # Use the Node.js version your project requires
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build Angular app
+        run: npm run ng build --base-href ""
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist/uat-angular  # Replace with your actual output directory
