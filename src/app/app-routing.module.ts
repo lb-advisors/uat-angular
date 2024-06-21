@@ -44,10 +44,7 @@ const routes: Routes = [
     component: InventoryComponent,
     title: 'Inventory', // Add Inventory route
   },
-  {
-    path: '**',
-    redirectTo: '/home',
-  },
+  { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];
 
 @NgModule({
