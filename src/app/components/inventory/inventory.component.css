@@ -74,6 +74,13 @@ body {
     word-wrap: break-word;
 }
 
+.shrinkable-header {
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+}
+
+
 @media (max-width: 600px) {
     .filters {
         flex-direction: column;
