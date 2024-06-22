@@ -2,22 +2,22 @@
     <div class="container">
         <h2 class="inventory-title">Inventory</h2>
         <div class="filters">
-            <input type="text" [(ngModel)]="filters.CompItemID" placeholder="Filter by CompItemID">
+            <input type="text" [(ngModel)]="filters.CompItemID" placeholder="Filter by Item ID">
             <input type="text" [(ngModel)]="filters.ProfileDescription" placeholder="Filter by Product">
-            <input type="text" [(ngModel)]="filters.UnitTypePD" placeholder="Filter by UnitType">
-            <input type="text" [(ngModel)]="filters.PackSizePD" placeholder="Filter by PackSize">
+            <input type="text" [(ngModel)]="filters.UnitTypePD" placeholder="Filter by Units">
+            <input type="text" [(ngModel)]="filters.PackSizePD" placeholder="Filter by Pack Size">
             <input type="text" [(ngModel)]="filters.SalesPrice" placeholder="Filter by Price">
-            <input type="text" [(ngModel)]="filters.Quantity" placeholder="Filter by Quantity">
+            <input type="text" [(ngModel)]="filters.Quantity" placeholder="Filter by Qty">
         </div>
         <table class="inventory-grid">
             <thead>
                 <tr>
-                    <th class="shrinkable-header">Comp<br>ItemID</th>
+                    <th class="shrinkable-header">Item<br>ID</th>
                     <th class="shrinkable-header">Product</th>
-                    <th class="shrinkable-header">Unit<br>Type</th>
+                    <th class="shrinkable-header">Units</th>
                     <th class="shrinkable-header">Pack<br>Size</th>
                     <th class="shrinkable-header">Price</th>
-                    <th class="shrinkable-header">Quantity</th>
+                    <th class="shrinkable-header">Qty</th>
                 </tr>
             </thead>
             <tbody>
