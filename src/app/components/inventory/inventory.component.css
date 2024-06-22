@@ -74,6 +74,23 @@ body {
     word-wrap: break-word;
 }
 
+.shrinkable-header {
+    white-space: normal;
+    word-break: break-word;
+    text-align: center;
+}
+
+.product-header {
+    width: 100px; /* Adjust this value as needed to make the column thinner */
+}
+
+.product-column {
+    white-space: normal;
+    word-break: break-word;
+}
+
+
+
 @media (max-width: 600px) {
     .filters {
         flex-direction: column;
