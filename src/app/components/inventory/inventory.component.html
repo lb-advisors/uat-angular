@@ -13,7 +13,7 @@
             <thead>
                 <tr>
                     <th class="shrinkable-header">Item<br>ID</th>
-                    <th class="shrinkable-header">Product</th>
+                    <th class="shrinkable-header product-header">Product</th>
                     <th class="shrinkable-header">Units</th>
                     <th class="shrinkable-header">Pack<br>Size</th>
                     <th class="shrinkable-header">Price</th>
@@ -23,7 +23,7 @@
             <tbody>
                 <tr *ngFor="let item of filteredInventoryItems()">
                     <td>{{ item.CompItemID }}</td>
-                    <td class="wrap">{{ item.ProfileDescription }}</td>
+                    <td class="wrap product-column">{{ item.ProfileDescription }}</td>
                     <td>{{ item.UnitTypePD }}</td>
                     <td>{{ item.PackSizePD }}</td>
                     <td>{{ item.SalesPrice | currency:'USD':'symbol':'1.2-2' }}</td>
