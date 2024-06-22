@@ -33,5 +33,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GH_TOKEN }}
-          external_repository: oleblond-lb/prod-angular # Target repository
+          external_repository: lb-advisors/prod-angular # Target repository
           publish_dir: ./dist
