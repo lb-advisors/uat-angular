@@ -23,7 +23,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/404.thml"
+              "src/404.html"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
@@ -93,7 +93,7 @@
             "assets": [
               "src/favicon.ico",
               "src/assets",
-              "src/404.thml"
+              "src/404.html"
             ],
             "styles": [
               "@angular/material/prebuilt-themes/deeppurple-amber.css",
