@@ -12,7 +12,7 @@ export class DriverRouteService {
   constructor(private http: HttpClient) {}
 
   getRoutes(driverName: string, deliveryDate: string): Observable<DeliveryRoute[]> {
-    let params = new HttpParams()
+    const params = new HttpParams()
       .set('driverName', driverName)
       .set('deliveryDate', deliveryDate);
 

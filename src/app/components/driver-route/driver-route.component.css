@@ -8,6 +8,11 @@ body {
     color: #000000; /* Black text color */
 }
 
+.arrived-row {
+    font-weight: bold;
+    background-color: #a9a9a9; /* Medium darkness grey */
+  }
+  
 .driver-routes-title {
     font-size: 30px; /* Set font size to 30px */
     text-decoration: underline; /* Underline the text */
