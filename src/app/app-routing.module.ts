@@ -2,10 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
 import { HomeComponent } from './components/home/home.component';
-import { OrderListComponent } from './components/order/order.component'; // Updated import
+import { OrderListComponent } from './components/order/order.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { InventoryComponent } from './components/inventory/inventory.component'; // Import InventoryComponent
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { OrderFormComponent } from './components/order-form/order-form.component'; // Adjusted import path
 
 const routes: Routes = [
   {
@@ -22,12 +23,12 @@ const routes: Routes = [
   {
     path: 'driver',
     component: DriverRouteComponent,
-    title: 'Driver route',
+    title: 'Driver Route',
   },
   {
     path: 'order',
-    component: OrderListComponent, // Updated to OrderListComponent
-    title: 'Order',
+    component: OrderListComponent,
+    title: 'Orders',
   },
   {
     path: 'login',
@@ -42,7 +43,12 @@ const routes: Routes = [
   {
     path: 'inventory',
     component: InventoryComponent,
-    title: 'Inventory', // Add Inventory route
+    title: 'Inventory',
+  },
+  { 
+    path: 'order-form',
+    component: OrderFormComponent,
+    title: 'Order Form',
   },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

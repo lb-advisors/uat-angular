@@ -22,6 +22,7 @@ import { OrderListComponent } from './components/order/order.component'; // Upda
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
+import { OrderFormComponent } from './components/order-form/order-form.component'; // Corrected import path
 
 import { HttpLoggingInterceptor } from './core/interceptors/http-logging.interceptor';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
@@ -35,6 +36,7 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
     LoginComponent,
     LogoutComponent,
     InventoryComponent,
+    OrderFormComponent, // Add OrderFormComponent here
   ],
   imports: [
     BrowserModule,
