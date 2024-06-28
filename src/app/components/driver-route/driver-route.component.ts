@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DriverRouteService } from '../../services/driver-route.service';
 import { DeliveryRoute } from '../../models/delivery-route.model';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router, ActivatedRoute } from '@angular/router';
 import { environment } from '../../../environments/environment';
 
 @Component({
@@ -13,37 +14,61 @@ import { environment } from '../../../environments/environment';
 export class DriverRouteComponent implements OnInit {
   dataSource = new MatTableDataSource<DeliveryRoute>();
   isProduction: boolean;
-  drivers: string[] = [];
   selectedDriver: string = '';
-  deliveryDate: Date = new Date();
+  deliveryDate: string = new Date().toISOString().split('T')[0]; // Default to today's date in YYYY-MM-DD format
+  errorMessage: string = '';
 
-  constructor(private driverRouteService: DriverRouteService) {
+  constructor(
+    private driverRouteService: DriverRouteService,
+    private router: Router,
+    private route: ActivatedRoute
+  ) {
     this.isProduction = environment.production;
   }
 
   ngOnInit() {
     console.log('ngOnInit');
-    this.loadDeliveryRoutes();
+
+    // Subscribe to route parameters
+    this.route.queryParams.subscribe(params => {
+      this.selectedDriver = params['driverName'] || '';
+      this.deliveryDate = params['deliveryDate'] || new Date().toISOString().split('T')[0];
+      this.loadDeliveryRoutes();
+    });
   }
 
   loadDeliveryRoutes() {
     const driver = this.selectedDriver;
-    const date = this.deliveryDate;
+    const date = this.formatDate(this.deliveryDate);
 
     if (driver) {
-      const dateStr = date.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
-      console.log(`Fetching routes for driver: ${driver} on date: ${dateStr}`);
+      console.log(`Fetching routes for driver: ${driver} on date: ${date}`);
       this.driverRouteService.getRoutes(driver, date).subscribe(
         (routes: DeliveryRoute[]) => {
           console.log('Fetched routes:', routes);
           this.dataSource.data = routes;
-          this.drivers = [...new Set(routes.map(route => route.driver_name))];
+          this.errorMessage = '';  // Clear error message if successful
         },
         (error) => {
           console.error('Error fetching routes:', error);
+          this.errorMessage = 'Error fetching data, please try again later';
         }
       );
     }
+  }
+
+  applyFilter() {
+    this.router.navigate(['/driver'], {
+      queryParams: {
+        driverName: this.selectedDriver,
+        deliveryDate: this.deliveryDate
+      }
+    });
+  }
+
+  formatDate(date: string): string {
+    // Ensure the date is in YYYY-MM-DD format
+    return new Date(date).toISOString().split('T')[0];
   }
 
   displayedColumns: string[] = [
@@ -67,6 +92,7 @@ export class DriverRouteComponent implements OnInit {
         console.log('Route updated:', updatedRoute);
       }, error => {
         console.error('Error updating route:', error);
+        this.errorMessage = 'Error updating route, please try again later';
       });
   }
 

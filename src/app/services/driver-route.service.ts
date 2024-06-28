@@ -11,13 +11,16 @@ export class DriverRouteService {
 
   constructor(private http: HttpClient) {}
 
-  getRoutes(driverName: string, deliveryDate: Date): Observable<DeliveryRoute[]> {
-    const dateStr = deliveryDate.toISOString().split('T')[0]; // Convert to YYYY-MM-DD format
+  getRoutes(driverName: string, deliveryDate: string): Observable<DeliveryRoute[]> {
     let params = new HttpParams()
       .set('driverName', driverName)
-      .set('deliveryDate', dateStr);
+      .set('deliveryDate', deliveryDate);
 
     return this.http.get<DeliveryRoute[]>(`${this.baseUrl}/delivery-stops`, { params });
+  }
+
+  getAllRoutes(): Observable<DeliveryRoute[]> {
+    return this.http.get<DeliveryRoute[]>(`${this.baseUrl}/delivery-stops`);
   }
 
   getRouteById(id: string): Observable<DeliveryRoute> {
