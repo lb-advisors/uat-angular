@@ -348,7 +348,7 @@ function DriverRouteComponent_td_16_Template(rf, ctx) {
   if (rf & 2) {
     const element_r21 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r21.driver_name, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r21.driverName, " ");
   }
 }
 function DriverRouteComponent_th_18_Template(rf, ctx) {
@@ -367,7 +367,7 @@ function DriverRouteComponent_td_19_Template(rf, ctx) {
   if (rf & 2) {
     const element_r22 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r22.invoice_number, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r22.invoiceNumber, " ");
   }
 }
 function DriverRouteComponent_th_21_Template(rf, ctx) {
@@ -386,7 +386,7 @@ function DriverRouteComponent_td_22_Template(rf, ctx) {
   if (rf & 2) {
     const element_r23 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r23.delivery_date, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r23.deliveryDate, " ");
   }
 }
 function DriverRouteComponent_th_24_Template(rf, ctx) {
@@ -424,7 +424,7 @@ function DriverRouteComponent_td_28_Template(rf, ctx) {
   if (rf & 2) {
     const element_r25 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r25.delivery_address_1, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r25.deliveryAddress1, " ");
   }
 }
 function DriverRouteComponent_th_30_Template(rf, ctx) {
@@ -443,7 +443,7 @@ function DriverRouteComponent_td_31_Template(rf, ctx) {
   if (rf & 2) {
     const element_r26 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r26.customer_phone, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r26.customerPhone, " ");
   }
 }
 function DriverRouteComponent_th_33_Template(rf, ctx) {
@@ -462,7 +462,7 @@ function DriverRouteComponent_td_34_Template(rf, ctx) {
   if (rf & 2) {
     const element_r27 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r27.planned_arrival_time, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r27.plannedArrivalTime, " ");
   }
 }
 function DriverRouteComponent_th_36_Template(rf, ctx) {
@@ -488,7 +488,7 @@ function DriverRouteComponent_td_37_Template(rf, ctx) {
   if (rf & 2) {
     const element_r28 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r28.actual_arrival_time ? "Arrived" : "Mark as Arrived", " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r28.actualArrivalTime ? "Arrived" : "Mark as Arrived", " ");
   }
 }
 function DriverRouteComponent_th_39_Template(rf, ctx) {
@@ -529,15 +529,15 @@ class DriverRouteComponent {
     this.selectedDriver = '';
     this.deliveryDate = new Date().toISOString().split('T')[0]; // Default to today's date in YYYY-MM-DD format
     this.errorMessage = '';
-    this.displayedColumns = ['driver_name', 'invoice_number', 'delivery_date', 'priority', 'delivery_address_1', 'customer_phone', 'planned_arrival_time', 'actual_arrival_time', 'comments'];
+    this.displayedColumns = ['driverName', 'invoiceNumber', 'deliveryDate', 'priority', 'deliveryAddress1', 'customerPhone', 'plannedArrivalTime', 'actualArrivalTime', 'comments'];
     this.isProduction = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.production;
   }
   ngOnInit() {
     console.log('ngOnInit');
-    // Subscribe to route parameters
     this.route.queryParams.subscribe(params => {
       this.selectedDriver = params['driverName'] || '';
       this.deliveryDate = params['deliveryDate'] || new Date().toISOString().split('T')[0];
+      console.log(`Received params: driverName=${this.selectedDriver}, deliveryDate=${this.deliveryDate}`);
       this.loadDeliveryRoutes();
     });
   }
@@ -554,9 +554,12 @@ class DriverRouteComponent {
         console.error('Error fetching routes:', error);
         this.errorMessage = 'Error fetching data, please try again later';
       });
+    } else {
+      console.log('Driver is not selected.');
     }
   }
   applyFilter() {
+    console.log(`Applying filter with driverName=${this.selectedDriver}, deliveryDate=${this.deliveryDate}`);
     this.router.navigate(['/driver'], {
       queryParams: {
         driverName: this.selectedDriver,
@@ -591,7 +594,7 @@ class DriverRouteComponent {
     selectors: [["app-driver-route"]],
     decls: 43,
     vars: 6,
-    consts: [[1, "container"], [1, "driver-routes-title"], [1, "filters"], ["for", "driver-filter"], ["id", "driver-filter", "type", "text", 3, "ngModel", "ngModelChange"], ["for", "date-filter"], ["id", "date-filter", "type", "date", 3, "ngModel", "ngModelChange"], [3, "click"], ["class", "error-message", 4, "ngIf"], ["mat-table", "", 1, "mat-elevation-z8", "driver-routes-grid", 3, "dataSource"], ["matColumnDef", "driver_name"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "invoice_number"], ["matColumnDef", "delivery_date"], ["matColumnDef", "priority"], ["matColumnDef", "delivery_address_1"], ["matColumnDef", "customer_phone"], ["matColumnDef", "planned_arrival_time"], ["matColumnDef", "actual_arrival_time"], ["matColumnDef", "comments"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 4, "matRowDef", "matRowDefColumns"], [1, "error-message"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-button", "", "color", "primary", 3, "click"], ["mat-header-row", ""], ["mat-row", ""]],
+    consts: [[1, "container"], [1, "driver-routes-title"], [1, "filters"], ["for", "driver-filter"], ["id", "driver-filter", "type", "text", 3, "ngModel", "ngModelChange"], ["for", "date-filter"], ["id", "date-filter", "type", "date", 3, "ngModel", "ngModelChange"], [3, "click"], ["class", "error-message", 4, "ngIf"], ["mat-table", "", 1, "mat-elevation-z8", "driver-routes-grid", 3, "dataSource"], ["matColumnDef", "driverName"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "invoiceNumber"], ["matColumnDef", "deliveryDate"], ["matColumnDef", "priority"], ["matColumnDef", "deliveryAddress1"], ["matColumnDef", "customerPhone"], ["matColumnDef", "plannedArrivalTime"], ["matColumnDef", "actualArrivalTime"], ["matColumnDef", "comments"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 4, "matRowDef", "matRowDefColumns"], [1, "error-message"], ["mat-header-cell", ""], ["mat-cell", ""], ["mat-button", "", "color", "primary", 3, "click"], ["mat-header-row", ""], ["mat-row", ""]],
     template: function DriverRouteComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "h2", 1);
