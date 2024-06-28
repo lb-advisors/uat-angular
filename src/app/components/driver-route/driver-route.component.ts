@@ -28,11 +28,10 @@ export class DriverRouteComponent implements OnInit {
 
   ngOnInit() {
     console.log('ngOnInit');
-
-    // Subscribe to route parameters
     this.route.queryParams.subscribe(params => {
       this.selectedDriver = params['driverName'] || '';
       this.deliveryDate = params['deliveryDate'] || new Date().toISOString().split('T')[0];
+      console.log(`Received params: driverName=${this.selectedDriver}, deliveryDate=${this.deliveryDate}`);
       this.loadDeliveryRoutes();
     });
   }
@@ -54,10 +53,13 @@ export class DriverRouteComponent implements OnInit {
           this.errorMessage = 'Error fetching data, please try again later';
         }
       );
+    } else {
+      console.log('Driver is not selected.');
     }
   }
 
   applyFilter() {
+    console.log(`Applying filter with driverName=${this.selectedDriver}, deliveryDate=${this.deliveryDate}`);
     this.router.navigate(['/driver'], {
       queryParams: {
         driverName: this.selectedDriver,
@@ -72,14 +74,14 @@ export class DriverRouteComponent implements OnInit {
   }
 
   displayedColumns: string[] = [
-    'driver_name',
-    'invoice_number',
-    'delivery_date',
+    'driverName',
+    'invoiceNumber',
+    'deliveryDate',
     'priority',
-    'delivery_address_1',
-    'customer_phone',
-    'planned_arrival_time',
-    'actual_arrival_time',
+    'deliveryAddress1',
+    'customerPhone',
+    'plannedArrivalTime',
+    'actualArrivalTime',
     'comments',
   ];
 

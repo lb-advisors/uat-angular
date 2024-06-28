@@ -17,21 +17,21 @@
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid">
     <!-- Driver Name Column -->
-    <ng-container matColumnDef="driver_name">
+    <ng-container matColumnDef="driverName">
       <th mat-header-cell *matHeaderCellDef> Driver Name </th>
-      <td mat-cell *matCellDef="let element"> {{element.driver_name}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.driverName}} </td>
     </ng-container>
 
     <!-- Invoice Number Column -->
-    <ng-container matColumnDef="invoice_number">
+    <ng-container matColumnDef="invoiceNumber">
       <th mat-header-cell *matHeaderCellDef> Invoice Number </th>
-      <td mat-cell *matCellDef="let element"> {{element.invoice_number}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.invoiceNumber}} </td>
     </ng-container>
 
     <!-- Delivery Date Column -->
-    <ng-container matColumnDef="delivery_date">
+    <ng-container matColumnDef="deliveryDate">
       <th mat-header-cell *matHeaderCellDef> Delivery Date </th>
-      <td mat-cell *matCellDef="let element"> {{element.delivery_date}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryDate}} </td>
     </ng-container>
 
     <!-- Priority Column -->
@@ -41,29 +41,29 @@
     </ng-container>
 
     <!-- Delivery Address Column -->
-    <ng-container matColumnDef="delivery_address_1">
+    <ng-container matColumnDef="deliveryAddress1">
       <th mat-header-cell *matHeaderCellDef> Delivery Address </th>
-      <td mat-cell *matCellDef="let element"> {{element.delivery_address_1}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryAddress1}} </td>
     </ng-container>
 
     <!-- Customer Phone Column -->
-    <ng-container matColumnDef="customer_phone">
+    <ng-container matColumnDef="customerPhone">
       <th mat-header-cell *matHeaderCellDef> Customer Phone </th>
-      <td mat-cell *matCellDef="let element"> {{element.customer_phone}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.customerPhone}} </td>
     </ng-container>
 
     <!-- Planned Arrival Time Column -->
-    <ng-container matColumnDef="planned_arrival_time">
+    <ng-container matColumnDef="plannedArrivalTime">
       <th mat-header-cell *matHeaderCellDef> Planned Arrival Time </th>
-      <td mat-cell *matCellDef="let element"> {{element.planned_arrival_time}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.plannedArrivalTime}} </td>
     </ng-container>
 
     <!-- Actual Arrival Time Column -->
-    <ng-container matColumnDef="actual_arrival_time">
+    <ng-container matColumnDef="actualArrivalTime">
       <th mat-header-cell *matHeaderCellDef> Actual Arrival Time </th>
       <td mat-cell *matCellDef="let element">
         <button mat-button color="primary" (click)="hasArrived(element)">
-          {{ element.actual_arrival_time ? 'Arrived' : 'Mark as Arrived' }}
+          {{ element.actualArrivalTime ? 'Arrived' : 'Mark as Arrived' }}
         </button>
       </td>
     </ng-container>
