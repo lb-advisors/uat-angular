@@ -16,17 +16,26 @@ export class OrderFormComponent implements OnInit {
   deliveryDate: string = '';
   customerPo: string = '';
   profiles: any[] = [];
+  customerId: string = '';
 
   constructor(private orderFormService: OrderFormService) {}
 
-  ngOnInit(): void {
-    const customerId = 123; // Replace with actual customer ID
-    this.orderFormService.getCustomerInfo(customerId).subscribe(data => {
-      this.orderData = data;
-      this.products = data.products;
-      this.orders = data.orders || [];
-      this.profiles = data.profiles || [];
-    });
+  ngOnInit(): void {}
+
+  fetchCustomerData(): void {
+    const customerIdNumber = Number(this.customerId);
+    if (!isNaN(customerIdNumber) && this.customerId.trim() !== '') {
+      this.orderFormService.getCustomerInfo(customerIdNumber).subscribe(data => {
+        this.orderData = data;
+        this.products = data.products;
+        this.orders = data.orders || [];
+        this.profiles = data.profiles || [];
+      }, error => {
+        console.error('Error fetching customer data:', error);
+      });
+    } else {
+      console.error('Invalid customer ID:', this.customerId);
+    }
   }
 
   goBack(): void {
