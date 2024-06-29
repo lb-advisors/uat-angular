@@ -2,13 +2,11 @@
   <h2 class="driver-routes-title">Driver Routes</h2>
 
   <div class="filters">
-    <label for="driver-filter">Driver Name:</label>
-    <select id="driver-filter" [(ngModel)]="selectedDriver" (change)="onDriverChange($event)">
-      <option *ngFor="let driver of drivers" [value]="driver">{{ driver }}</option>
-    </select>
+    <label for="driver-name">Driver Name:</label>
+    <input id="driver-name" type="text" [(ngModel)]="selectedDriver" placeholder="Enter driver name" />
 
-    <label for="date-filter">Select Date:</label>
-    <input id="date-filter" type="date" [(ngModel)]="deliveryDate" />
+    <label for="delivery-date">Delivery Date:</label>
+    <input id="delivery-date" type="date" [(ngModel)]="deliveryDate" />
 
     <button (click)="applyFilter()">Submit</button>
   </div>
@@ -18,16 +16,34 @@
   </div>
 
   <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid" matSort>
-    <!-- Priority Column -->
-    <ng-container matColumnDef="priority">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
-      <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
 
-    <!-- Delivery Address Column -->
+    <!-- Driver Name Column -->
+    <ng-container matColumnDef="driverName">
+      <th mat-header-cell *matHeaderCellDef> Driver Name </th>
+      <td mat-cell *matCellDef="let element"> {{element.driverName}} </td>
+    </ng-container>
+
+    <!-- Delivery Address 1 Column -->
     <ng-container matColumnDef="deliveryAddress1">
-      <th mat-header-cell *matHeaderCellDef> Delivery Address </th>
+      <th mat-header-cell *matHeaderCellDef> Delivery Address 1 </th>
       <td mat-cell *matCellDef="let element"> {{element.deliveryAddress1}} </td>
+    </ng-container>
+
+    <!-- Delivery Address 2 Column -->
+    <ng-container matColumnDef="deliveryAddress2">
+      <th mat-header-cell *matHeaderCellDef> Delivery Address 2 </th>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryAddress2}} </td>
+    </ng-container>
+
+    <!-- Delivery Address 3 Column -->
+    <ng-container matColumnDef="deliveryAddress3">
+      <th mat-header-cell *matHeaderCellDef> Delivery Address 3 </th>
+      <td mat-cell *matCellDef="let element"> {{element.deliveryAddress3}} </td>
     </ng-container>
 
     <!-- Customer Phone Column -->
@@ -37,25 +53,25 @@
     </ng-container>
 
     <!-- Planned Arrival Time Column -->
-    <ng-container matColumnDef="planned_arrival_time">
+    <ng-container matColumnDef="plannedArrivalTime">
       <th mat-header-cell *matHeaderCellDef> Planned Arrival Time </th>
-      <td mat-cell *matCellDef="let element"> {{element.planned_arrival_time}} </td>
-    </ng-container>
-
-    <!-- Planned Arrival Time in Minutes Column -->
-    <ng-container matColumnDef="planned_arrival_time_minutes">
-      <th mat-header-cell *matHeaderCellDef> Planned Arrival Time (Minutes) </th>
-      <td mat-cell *matCellDef="let element"> {{element.planned_arrival_time_minutes}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.plannedArrivalTime}} </td>
     </ng-container>
 
     <!-- Actual Arrival Time Column -->
-    <ng-container matColumnDef="actual_arrival_time">
+    <ng-container matColumnDef="actualArrivalTime">
       <th mat-header-cell *matHeaderCellDef> Actual Arrival Time </th>
       <td mat-cell *matCellDef="let element">
-        <mat-slide-toggle [(ngModel)]="element.actual_arrival_time" (change)="hasArrived(element)">
-          <mat-icon *ngIf="element.actual_arrival_time">check</mat-icon>
+        <mat-slide-toggle [(ngModel)]="element.actualArrivalTime" (change)="hasArrived(element)">
+          <mat-icon *ngIf="element.actualArrivalTime">check</mat-icon>
         </mat-slide-toggle>
       </td>
+    </ng-container>
+
+    <!-- Priority Column -->
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+      <td mat-cell *matCellDef="let element"> {{element.priority}} </td>
     </ng-container>
 
     <!-- Time Difference Column -->
@@ -67,6 +83,6 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'arrived-row': row.actual_arrival_time}"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'arrived-row': row.actualArrivalTime}"></tr>
   </table>
 </div>
