@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { Observable, catchError, throwError } from 'rxjs';
+import { EMPTY, Observable, catchError, throwError } from 'rxjs';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Injectable()
@@ -36,7 +36,9 @@ export class HttpLoggingInterceptor implements HttpInterceptor {
         }
 
         // Re-throw the error to propagate it further
-        return throwError(() => err);
+        //return throwError(() => err);
+        // stop propagating error
+        return EMPTY;
       }),
     );
   }
