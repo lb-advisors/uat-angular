@@ -9,12 +9,13 @@ import { Order } from '../../models/order.model';
   styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
-  orders: Order[] = []; // Initialize as an empty array
+  orders: Order[] = [];
   orderData: any = {};
   products: any[] = [];
   selectedShipto: string = '';
   deliveryDate: string = '';
   customerPo: string = '';
+  profiles: any[] = [];
 
   constructor(private orderFormService: OrderFormService) {}
 
@@ -23,7 +24,8 @@ export class OrderFormComponent implements OnInit {
     this.orderFormService.getCustomerInfo(customerId).subscribe(data => {
       this.orderData = data;
       this.products = data.products;
-      this.orders = data.orders || []; // Ensure orders is set to an empty array if undefined
+      this.orders = data.orders || [];
+      this.profiles = data.profiles || [];
     });
   }
 
@@ -150,7 +152,7 @@ export class OrderFormComponent implements OnInit {
       order_id: '', // Set this on the backend
       customer_po: this.customerPo,
       shipto_id: this.selectedShipto,
-      shipto_name: '', // Set this based on the selected shipto
+      shipto_name: this.getShiptoNameById(this.selectedShipto),
       products: this.products
     };
 
@@ -173,6 +175,12 @@ export class OrderFormComponent implements OnInit {
     const shiptoSelect = document.getElementById('shipto-name') as HTMLSelectElement;
     const selectedOption = shiptoSelect.options[shiptoSelect.selectedIndex];
     const shiptoIdInput = document.getElementById('shipto-id') as HTMLInputElement;
-    shiptoIdInput.value = selectedOption.getAttribute('data-id')!;
+    this.selectedShipto = selectedOption.getAttribute('data-id')!;
+    shiptoIdInput.value = this.selectedShipto;
+  }
+
+  getShiptoNameById(id: string): string {
+    const shipto = this.profiles.find(profile => profile.id === id);
+    return shipto ? shipto.name : '';
   }
 }
