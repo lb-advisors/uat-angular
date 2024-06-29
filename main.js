@@ -326,20 +326,20 @@ __webpack_require__.r(__webpack_exports__);
 
 function DriverRouteComponent_option_7_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "option", 22);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "option", 23);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const driver_r16 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("value", driver_r16);
+    const driver_r18 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("value", driver_r18);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](driver_r16);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](driver_r18);
   }
 }
 function DriverRouteComponent_div_13_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 23);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 24);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
@@ -351,142 +351,161 @@ function DriverRouteComponent_div_13_Template(rf, ctx) {
 }
 function DriverRouteComponent_th_16_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 24);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Priority ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
 function DriverRouteComponent_td_17_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 25);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const element_r17 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r17.priority, " ");
-  }
-}
-function DriverRouteComponent_th_19_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Delivery Address ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-  }
-}
-function DriverRouteComponent_td_20_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 25);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const element_r18 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r18.deliveryAddress1, " ");
-  }
-}
-function DriverRouteComponent_th_22_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Customer Phone ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
-  }
-}
-function DriverRouteComponent_td_23_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const element_r19 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r19.customerPhone, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r19.priority, " ");
   }
 }
-function DriverRouteComponent_th_25_Template(rf, ctx) {
+function DriverRouteComponent_th_19_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Planned Arrival Time ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Delivery Address ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function DriverRouteComponent_td_26_Template(rf, ctx) {
+function DriverRouteComponent_td_20_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
     const element_r20 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r20.planned_arrival_time, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r20.deliveryAddress1, " ");
+  }
+}
+function DriverRouteComponent_th_22_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Customer Phone ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function DriverRouteComponent_td_23_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const element_r21 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r21.customerPhone, " ");
+  }
+}
+function DriverRouteComponent_th_25_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Planned Arrival Time ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function DriverRouteComponent_td_26_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const element_r22 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r22.planned_arrival_time, " ");
   }
 }
 function DriverRouteComponent_th_28_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 27);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Planned Arrival Time (Minutes) ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function DriverRouteComponent_td_29_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+  if (rf & 2) {
+    const element_r23 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", element_r23.planned_arrival_time_minutes, " ");
+  }
+}
+function DriverRouteComponent_th_31_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 27);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Actual Arrival Time ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function DriverRouteComponent_td_29_mat_icon_2_Template(rf, ctx) {
+function DriverRouteComponent_td_32_mat_icon_2_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "mat-icon");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "check");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function DriverRouteComponent_td_29_Template(rf, ctx) {
+function DriverRouteComponent_td_32_Template(rf, ctx) {
   if (rf & 1) {
-    const _r24 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 25)(1, "mat-slide-toggle", 27);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("ngModelChange", function DriverRouteComponent_td_29_Template_mat_slide_toggle_ngModelChange_1_listener($event) {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r24);
-      const element_r21 = restoredCtx.$implicit;
-      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](element_r21.actual_arrival_time = $event);
-    })("change", function DriverRouteComponent_td_29_Template_mat_slide_toggle_change_1_listener() {
-      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r24);
-      const element_r21 = restoredCtx.$implicit;
-      const ctx_r25 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r25.hasArrived(element_r21));
+    const _r27 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26)(1, "mat-slide-toggle", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("ngModelChange", function DriverRouteComponent_td_32_Template_mat_slide_toggle_ngModelChange_1_listener($event) {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r27);
+      const element_r24 = restoredCtx.$implicit;
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](element_r24.actual_arrival_time = $event);
+    })("change", function DriverRouteComponent_td_32_Template_mat_slide_toggle_change_1_listener() {
+      const restoredCtx = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r27);
+      const element_r24 = restoredCtx.$implicit;
+      const ctx_r28 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r28.hasArrived(element_r24));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, DriverRouteComponent_td_29_mat_icon_2_Template, 2, 0, "mat-icon", 28);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, DriverRouteComponent_td_32_mat_icon_2_Template, 2, 0, "mat-icon", 29);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
-    const element_r21 = ctx.$implicit;
+    const element_r24 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngModel", element_r21.actual_arrival_time);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngModel", element_r24.actual_arrival_time);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", element_r21.actual_arrival_time);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", element_r24.actual_arrival_time);
   }
 }
-function DriverRouteComponent_th_31_Template(rf, ctx) {
+function DriverRouteComponent_th_34_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 26);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "th", 27);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, " Time Difference ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
 }
-function DriverRouteComponent_td_32_Template(rf, ctx) {
+function DriverRouteComponent_td_35_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 25);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "td", 26);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const i_r27 = ctx.index;
-    const ctx_r13 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+    const i_r30 = ctx.index;
+    const ctx_r15 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", i_r27 > 0 ? ctx_r13.calculateTimeDifference(ctx_r13.dataSource.filteredData)[i_r27 - 1] : "", " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", i_r30 > 0 ? ctx_r15.calculateTimeDifference(ctx_r15.dataSource.filteredData)[i_r30 - 1] : "", " ");
   }
 }
-function DriverRouteComponent_tr_33_Template(rf, ctx) {
+function DriverRouteComponent_tr_36_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](0, "tr", 29);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](0, "tr", 30);
   }
 }
 const _c0 = function (a0) {
@@ -494,13 +513,13 @@ const _c0 = function (a0) {
     "arrived-row": a0
   };
 };
-function DriverRouteComponent_tr_34_Template(rf, ctx) {
+function DriverRouteComponent_tr_37_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](0, "tr", 30);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](0, "tr", 31);
   }
   if (rf & 2) {
-    const row_r28 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpureFunction1"](1, _c0, row_r28.actual_arrival_time));
+    const row_r31 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngClass", _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpureFunction1"](1, _c0, row_r31.actual_arrival_time));
   }
 }
 class DriverRouteComponent {
@@ -511,7 +530,166 @@ class DriverRouteComponent {
     this.selectedDriver = 'Adan';
     this.deliveryDate = '2024-06-17'; // Default value
     this.errorMessage = '';
-    this.displayedColumns = ['deliveryAddress1', 'customerPhone', 'plannedArrivalTime', 'actualArrivalTime', 'priority', 'timeDifference'];
+    // Map for planned arrival times
+    this.arrivalTimes = {
+      351: '09:46:13',
+      346: '11:30:58',
+      455: '09:48:37',
+      370: '09:19:49',
+      394: '09:11:25',
+      448: '12:39:52',
+      396: '09:29:25',
+      350: '09:13:13',
+      438: '09:13:39',
+      382: '08:49:13',
+      314: '16:44:00',
+      341: '09:26:58',
+      378: '11:26:49',
+      386: '09:48:13',
+      431: '12:00:28',
+      426: '09:36:28',
+      322: '11:13:49',
+      450: '08:00:37',
+      424: '09:15:28',
+      406: '10:13:52',
+      364: '10:32:43',
+      433: '12:21:28',
+      405: '09:51:52',
+      389: '10:28:13',
+      462: '12:13:37',
+      330: '09:05:51',
+      345: '11:14:58',
+      309: '10:11:39',
+      436: '08:48:39',
+      451: '08:10:37',
+      323: '11:47:49',
+      379: '11:47:49',
+      320: '09:53:49',
+      337: '11:05:51',
+      348: '12:21:58',
+      375: '10:49:49',
+      437: '09:02:39',
+      415: '12:14:30',
+      399: '10:29:25',
+      408: '09:33:30',
+      417: '12:54:30',
+      454: '09:05:37',
+      452: '08:20:37',
+      390: '10:49:13',
+      329: '08:50:51',
+      311: '15:23:00',
+      401: '11:02:25',
+      420: '08:57:07',
+      461: '12:04:37',
+      376: '11:02:49',
+      328: '12:58:49',
+      338: '11:17:51',
+      419: '08:17:07',
+      358: '08:00:43',
+      412: '11:10:30',
+      440: '09:44:39',
+      447: '12:21:52',
+      349: '12:44:58',
+      457: '10:04:37',
+      409: '09:41:30',
+      324: '11:59:49',
+      310: '10:24:39',
+      357: '13:35:13',
+      331: '09:22:51',
+      404: '09:38:52',
+      398: '10:01:25',
+      353: '11:04:13',
+      315: '16:51:00',
+      456: '09:57:37',
+      366: '11:19:43',
+      388: '10:19:13',
+      397: '09:38:25',
+      427: '09:50:28',
+      347: '11:42:58',
+      418: '07:37:07',
+      321: '10:18:49',
+      361: '09:41:43',
+      407: '09:00:30',
+      333: '09:55:51',
+      325: '12:16:49',
+      402: '11:19:25',
+      395: '09:20:25',
+      444: '11:27:52',
+      443: '11:12:52',
+      387: '10:01:13',
+      446: '12:00:52',
+      445: '11:48:52',
+      334: '10:15:51',
+      400: '10:46:25',
+      373: '10:10:49',
+      352: '10:30:13',
+      363: '10:12:43',
+      343: '10:31:58',
+      393: '08:59:25',
+      362: '09:56:43',
+      327: '12:48:49',
+      430: '11:31:28',
+      312: '15:53:00',
+      340: '11:47:51',
+      356: '13:03:13',
+      460: '11:41:37',
+      391: '11:00:13',
+      317: '08:56:49',
+      416: '12:22:30',
+      342: '10:12:58',
+      414: '11:43:30',
+      458: '10:32:37',
+      459: '11:34:37',
+      368: '08:58:49',
+      372: '09:52:49',
+      369: '09:08:49',
+      441: '10:28:52',
+      339: '11:27:51',
+      326: '12:37:49',
+      360: '09:15:43',
+      344: '10:43:58',
+      385: '09:38:13',
+      463: '12:28:37',
+      371: '09:33:49',
+      367: '11:48:43',
+      374: '10:41:49',
+      335: '10:48:51',
+      410: '10:05:30',
+      439: '09:36:39',
+      365: '10:46:43',
+      428: '10:25:28',
+      355: '12:13:13',
+      383: '09:11:13',
+      318: '09:11:49',
+      336: '10:56:51',
+      413: '11:25:30',
+      308: '09:55:39',
+      423: '09:03:28',
+      381: '08:30:13',
+      313: '16:00:00',
+      359: '08:35:43',
+      442: '10:46:52',
+      354: '11:37:13',
+      421: '09:21:07',
+      377: '11:12:49',
+      411: '10:34:30',
+      392: '08:49:25',
+      429: '11:04:28',
+      453: '08:56:37',
+      425: '09:27:28',
+      432: '12:09:28',
+      434: '12:47:28',
+      316: '08:40:49',
+      403: '09:04:52',
+      332: '09:31:51',
+      319: '09:39:49',
+      422: '08:54:28',
+      449: '12:42:52',
+      380: '11:00:00',
+      435: '08:39:39',
+      384: '09:30:13'
+    };
+    this.displayedColumns = ['deliveryAddress1', 'customerPhone', 'planned_arrival_time', 'planned_arrival_time_minutes', 'actual_arrival_time', 'priority', 'timeDifference'];
     this.isProduction = _environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.production;
   }
   ngOnInit() {
@@ -544,6 +722,10 @@ class DriverRouteComponent {
       this.driverRouteService.getRoutes(driver, date).subscribe(routes => {
         console.log('Fetched routes:', routes);
         routes.forEach(route => {
+          // Set planned_arrival_time if it exists in the arrivalTimes map
+          if (this.arrivalTimes[route.id]) {
+            route.planned_arrival_time = this.arrivalTimes[route.id];
+          }
           if (route.planned_arrival_time) {
             console.log('Before conversion:', route.planned_arrival_time);
             route.planned_arrival_time_minutes = this.convertToMinutes(route.planned_arrival_time);
@@ -566,12 +748,7 @@ class DriverRouteComponent {
   }
   convertToMinutes(time) {
     if (!time) return 0;
-    const timePart = time.split('T')[1]; // Extract the time part
-    if (!timePart) {
-      console.error('Time part extraction failed for:', time);
-      return 0;
-    }
-    const [hours, minutes, seconds] = timePart.split(':').map(Number);
+    const [hours, minutes, seconds] = time.split(':').map(Number);
     return hours * 60 + minutes + seconds / 60;
   }
   calculateTimeDifference(routes) {
@@ -628,9 +805,9 @@ class DriverRouteComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵqueryRefresh"](_t = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵloadQuery"]()) && (ctx.sort = _t.first);
       }
     },
-    decls: 35,
+    decls: 38,
     vars: 7,
-    consts: [[1, "container"], [1, "driver-routes-title"], [1, "filters"], ["for", "driver-filter"], ["id", "driver-filter", 3, "ngModel", "ngModelChange", "change"], [3, "value", 4, "ngFor", "ngForOf"], ["for", "date-filter"], ["id", "date-filter", "type", "date", 3, "ngModel", "ngModelChange"], [3, "click"], ["class", "error-message", 4, "ngIf"], ["mat-table", "", "matSort", "", 1, "mat-elevation-z8", "driver-routes-grid", 3, "dataSource"], ["matColumnDef", "priority"], ["mat-header-cell", "", "mat-sort-header", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "deliveryAddress1"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["matColumnDef", "customerPhone"], ["matColumnDef", "plannedArrivalTime"], ["matColumnDef", "actualArrivalTime"], ["matColumnDef", "timeDifference"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 3, "ngClass", 4, "matRowDef", "matRowDefColumns"], [3, "value"], [1, "error-message"], ["mat-header-cell", "", "mat-sort-header", ""], ["mat-cell", ""], ["mat-header-cell", ""], [3, "ngModel", "ngModelChange", "change"], [4, "ngIf"], ["mat-header-row", ""], ["mat-row", "", 3, "ngClass"]],
+    consts: [[1, "container"], [1, "driver-routes-title"], [1, "filters"], ["for", "driver-filter"], ["id", "driver-filter", 3, "ngModel", "ngModelChange", "change"], [3, "value", 4, "ngFor", "ngForOf"], ["for", "date-filter"], ["id", "date-filter", "type", "date", 3, "ngModel", "ngModelChange"], [3, "click"], ["class", "error-message", 4, "ngIf"], ["mat-table", "", "matSort", "", 1, "mat-elevation-z8", "driver-routes-grid", 3, "dataSource"], ["matColumnDef", "priority"], ["mat-header-cell", "", "mat-sort-header", "", 4, "matHeaderCellDef"], ["mat-cell", "", 4, "matCellDef"], ["matColumnDef", "deliveryAddress1"], ["mat-header-cell", "", 4, "matHeaderCellDef"], ["matColumnDef", "customerPhone"], ["matColumnDef", "planned_arrival_time"], ["matColumnDef", "planned_arrival_time_minutes"], ["matColumnDef", "actual_arrival_time"], ["matColumnDef", "timeDifference"], ["mat-header-row", "", 4, "matHeaderRowDef"], ["mat-row", "", 3, "ngClass", 4, "matRowDef", "matRowDefColumns"], [3, "value"], [1, "error-message"], ["mat-header-cell", "", "mat-sort-header", ""], ["mat-cell", ""], ["mat-header-cell", ""], [3, "ngModel", "ngModelChange", "change"], [4, "ngIf"], ["mat-header-row", ""], ["mat-row", "", 3, "ngClass"]],
     template: function DriverRouteComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "h2", 1);
@@ -681,14 +858,18 @@ class DriverRouteComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerStart"](27, 18);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](28, DriverRouteComponent_th_28_Template, 2, 0, "th", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](29, DriverRouteComponent_td_29_Template, 3, 2, "td", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](29, DriverRouteComponent_td_29_Template, 2, 1, "td", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerStart"](30, 19);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](31, DriverRouteComponent_th_31_Template, 2, 0, "th", 15);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](32, DriverRouteComponent_td_32_Template, 2, 1, "td", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](32, DriverRouteComponent_td_32_Template, 3, 2, "td", 13);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](33, DriverRouteComponent_tr_33_Template, 1, 0, "tr", 20);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](34, DriverRouteComponent_tr_34_Template, 1, 3, "tr", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerStart"](33, 20);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](34, DriverRouteComponent_th_34_Template, 2, 0, "th", 15);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](35, DriverRouteComponent_td_35_Template, 2, 1, "td", 13);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementContainerEnd"]();
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](36, DriverRouteComponent_tr_36_Template, 1, 0, "tr", 21);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](37, DriverRouteComponent_tr_37_Template, 1, 3, "tr", 22);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
       }
       if (rf & 2) {
@@ -702,7 +883,7 @@ class DriverRouteComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.errorMessage);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("dataSource", ctx.dataSource);
-        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](19);
+        _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](22);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("matHeaderRowDef", ctx.displayedColumns);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](1);
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("matRowDefColumns", ctx.displayedColumns);
@@ -1750,11 +1931,11 @@ function OrderFormComponent_form_6_div_15_option_4_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
   }
   if (rf & 2) {
-    const shipto_r10 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", shipto_r10[1]);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("data-id", shipto_r10[0]);
+    const profile_r10 = ctx.$implicit;
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", profile_r10.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("data-id", profile_r10.id);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](shipto_r10[1]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](profile_r10.name);
   }
 }
 function OrderFormComponent_form_6_div_15_Template(rf, ctx) {
@@ -1788,7 +1969,7 @@ function OrderFormComponent_form_6_div_15_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r7.selectedShipto);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r7.orderData.shipto_data);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r7.profiles);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx_r7.selectedShipto);
   }
@@ -2031,7 +2212,7 @@ function OrderFormComponent_form_6_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](ctx_r1.orderData.sales_rep_phone);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.orderData.shipto_data);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx_r1.profiles.length > 0);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](17);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", ctx_r1.products);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
@@ -2057,22 +2238,23 @@ function OrderFormComponent_form_6_Template(rf, ctx) {
 class OrderFormComponent {
   constructor(orderFormService) {
     this.orderFormService = orderFormService;
-    this.orders = []; // Initialize as an empty array
+    this.orders = [];
     this.orderData = {};
     this.products = [];
     this.selectedShipto = '';
     this.deliveryDate = '';
     this.customerPo = '';
+    this.profiles = [];
   }
   ngOnInit() {
     const customerId = 123; // Replace with actual customer ID
     this.orderFormService.getCustomerInfo(customerId).subscribe(data => {
       this.orderData = data;
       this.products = data.products;
-      this.orders = data.orders || []; // Ensure orders is set to an empty array if undefined
+      this.orders = data.orders || [];
+      this.profiles = data.profiles || [];
     });
   }
-
   goBack() {
     window.history.back();
   }
@@ -2180,7 +2362,7 @@ class OrderFormComponent {
       order_id: '',
       customer_po: this.customerPo,
       shipto_id: this.selectedShipto,
-      shipto_name: '',
+      shipto_name: this.getShiptoNameById(this.selectedShipto),
       products: this.products
     };
     this.orderFormService.placeOrder(orderData).subscribe(response => {
@@ -2200,7 +2382,12 @@ class OrderFormComponent {
     const shiptoSelect = document.getElementById('shipto-name');
     const selectedOption = shiptoSelect.options[shiptoSelect.selectedIndex];
     const shiptoIdInput = document.getElementById('shipto-id');
-    shiptoIdInput.value = selectedOption.getAttribute('data-id');
+    this.selectedShipto = selectedOption.getAttribute('data-id');
+    shiptoIdInput.value = this.selectedShipto;
+  }
+  getShiptoNameById(id) {
+    const shipto = this.profiles.find(profile => profile.id === id);
+    return shipto ? shipto.name : '';
   }
   static #_ = this.ɵfac = function OrderFormComponent_Factory(t) {
     return new (t || OrderFormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_order_form_service__WEBPACK_IMPORTED_MODULE_0__.OrderFormService));
