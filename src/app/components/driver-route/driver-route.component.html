@@ -3,12 +3,14 @@
 
   <div class="filters">
     <label for="driver-name">Driver Name:</label>
-    <input id="driver-name" type="text" placeholder="Enter driver name" #driverName />
+    <select id="driver-name" #driverName>
+      <option *ngFor="let name of driverNames" [value]="name">{{name}}</option>
+    </select>
 
     <label for="delivery-date">Delivery Date:</label>
-    <input id="delivery-date" type="date" #deliveryDate2 />
+    <span>{{ todayDate }}</span>
 
-    <button (click)="refreshDeliverRoute(driverName.value, deliveryDate2.value)">Submit</button>
+    <button (click)="refreshDeliverRoute(driverName.value, todayDate)">Submit</button>
   </div>
 
   <table mat-table *ngIf="deliveryRoute$ | async as dataSource" [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid" matSort>
