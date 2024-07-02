@@ -13,8 +13,6 @@ export class DriverRouteComponent implements OnInit {
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
   todayDate: string;
   displayedColumns: string[] = [
-    'id',
-    'driverName',
     'deliveryAddress1',
     'deliveryAddress2',
     'deliveryAddress3',

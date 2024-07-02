@@ -140,3 +140,8 @@ body {
 .underlined {
     text-decoration: underline;
 }
+
+.hidden-column {
+    display: none;
+  }
+  
