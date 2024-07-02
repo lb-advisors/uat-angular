@@ -1,19 +1,17 @@
-import { ChangeDetectionStrategy, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { DriverRouteService } from '../../services/driver-route.service';
 import { Observable } from 'rxjs';
-import { SnackbarService } from 'src/app/services/snackbar.service';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 
 @Component({
   selector: 'app-driver-route',
   templateUrl: './driver-route.component.html',
   styleUrls: ['./driver-route.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent implements OnInit {
-  @ViewChild('driverName', { static: true }) driverName!: ElementRef;
+  driverNames$: Observable<string[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
-  driverNames: string[] = [];
+  todayDate: string;
   displayedColumns: string[] = [
     'id',
     'driverName',
@@ -24,41 +22,31 @@ export class DriverRouteComponent implements OnInit {
     'plannedArrivalTime',
     'actualArrivalTime',
     'priority',
-    'timeDifference',
+    'timeDifference'
   ];
-  todayDate: string;
 
-  constructor(
-    private driverRouteService: DriverRouteService,
-    private snackbarService: SnackbarService,
-  ) {
+  constructor(private driverRouteService: DriverRouteService) {
     const today = new Date();
     this.todayDate = today.toISOString().split('T')[0];
+    this.driverNames$ = this.driverRouteService.getDrivers();
   }
 
   ngOnInit(): void {
-    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute();
-    this.loadDrivers();
+    this.driverRouteService.refreshDrivers();
   }
 
-  loadDrivers(): void {
-    this.driverRouteService.getDrivers().subscribe(
-      (drivers) => {
-        this.driverNames = drivers;
-        console.log('Drivers loaded:', drivers); // Debugging line
+  refreshDeliverRoute(driverName: string, deliveryDate: string): void {
+    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, deliveryDate);
+  }
+
+  hasArrived(deliveryRoute: DeliveryStop): void {
+    this.driverRouteService.hasArrived(deliveryRoute.id.toString()).subscribe(
+      () => {
+        console.log('Delivery marked as arrived');
       },
       (error) => {
-        this.snackbarService.showSnackBar('Error loading driver names');
+        console.error('Error marking delivery as arrived', error);
       }
     );
-    this.driverRouteService.refreshDrivers(); // Fetch the drivers
-  }
-
-  refreshDeliverRoute(driverName: string, deliveryDate: string) {
-    this.driverRouteService.refreshDeliverRoute(driverName, deliveryDate);
-  }
-
-  hasArrived(deliveryRoute: DeliveryStop) {
-    this.driverRouteService.hasArrived(deliveryRoute.id.toString()).subscribe();
   }
 }

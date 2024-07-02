@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, Subject, catchError, map, switchMap, throwError } from 'rxjs';
+import { Observable, BehaviorSubject, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { DeliveryStop } from '../models/delivery-stop.model';
 import { environment } from 'src/environments/environment';
 
@@ -14,56 +15,10 @@ interface SearchParams {
 })
 export class DriverRouteService {
   private apiUrl = environment.apiUrl;
-  private urlSubject = new Subject<SearchParams>();
-  private driversSubject = new Subject<string[]>();
+  private driversSubject = new BehaviorSubject<string[]>([]);
+  private deliveryStopsSubject = new BehaviorSubject<DeliveryStop[]>([]);
 
   constructor(private http: HttpClient) {}
-
-  getDeliveryRoute(): Observable<DeliveryStop[]> {
-    return this.urlSubject.asObservable().pipe(
-      switchMap((searchParams: SearchParams) => {
-        const params = new HttpParams()
-          .set('driverName', searchParams.driverName)
-          .set('deliveryDate', searchParams.deliveryDate);
-        return this.http
-          .get<DeliveryStop[]>(`${this.apiUrl}/delivery-stops`, { params })
-          .pipe(
-            map((deliveryStops) => {
-              return this.calculateTimeDifferences(deliveryStops);
-            }),
-            catchError(() => {
-              return throwError(() => new Error('Error fetching delivery stops'));
-            }),
-          );
-      }),
-    );
-  }
-
-  private calculateTimeDifferences(deliveryStops: DeliveryStop[]): DeliveryStop[] {
-    return deliveryStops.map((row, index) => {
-      if (index === 0) {
-        return { ...row };
-      } else {
-        const endDate = new Date(row.plannedArrivalTime);
-        const startDate = new Date(deliveryStops[index - 1].plannedArrivalTime);
-        const differenceInMilliseconds = endDate.getTime() - startDate.getTime();
-        const differenceInMinutes = Math.floor(differenceInMilliseconds / 1000 / 60);
-        const hours = Math.floor(differenceInMinutes / 60);
-        const minutes = (differenceInMinutes % 60).toString().padStart(2, '0');
-        row.plannedTravelTime = hours + ':' + minutes;
-
-        return { ...row };
-      }
-    });
-  }
-
-  refreshDeliverRoute(driverName: string, deliveryDate: string) {
-    this.urlSubject.next({ driverName, deliveryDate });
-  }
-
-  hasArrived(id: string): Observable<DeliveryStop> {
-    return this.http.patch<DeliveryStop>(`${this.apiUrl}/delivery-stops/${id}`, {});
-  }
 
   getDrivers(): Observable<string[]> {
     return this.driversSubject.asObservable();
@@ -78,5 +33,26 @@ export class DriverRouteService {
     ).subscribe((drivers) => {
       this.driversSubject.next(drivers);
     });
+  }
+
+  getDeliveryRoute(driverName: string, deliveryDate: string): Observable<DeliveryStop[]> {
+    const params = new HttpParams()
+      .set('driverName', driverName)
+      .set('deliveryDate', deliveryDate);
+    return this.http.get<DeliveryStop[]>(`${this.apiUrl}/delivery-stops`, { params }).pipe(
+      catchError((error) => {
+        console.error('Error fetching delivery stops:', error);
+        return throwError(() => new Error('Error fetching delivery stops'));
+      })
+    );
+  }
+
+  hasArrived(id: string): Observable<DeliveryStop> {
+    return this.http.patch<DeliveryStop>(`${this.apiUrl}/delivery-stops/${id}`, {}).pipe(
+      catchError((error) => {
+        console.error('Error marking delivery as arrived:', error);
+        return throwError(() => new Error('Error marking delivery as arrived'));
+      })
+    );
   }
 }

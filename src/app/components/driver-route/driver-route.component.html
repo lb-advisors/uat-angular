@@ -4,11 +4,11 @@
   <div class="filters">
     <label for="driver-name">Driver Name:</label>
     <select id="driver-name" #driverName>
-      <option *ngFor="let name of driverNames" [value]="name">{{name}}</option>
+      <option *ngFor="let name of (driverNames$ | async)" [value]="name">{{name}}</option>
     </select>
 
     <label for="delivery-date">Delivery Date:</label>
-    <span>{{ todayDate }}</span>
+    <input type="text" id="delivery-date" [value]="todayDate" readonly>
 
     <button (click)="refreshDeliverRoute(driverName.value, todayDate)">Submit</button>
   </div>
@@ -47,7 +47,7 @@
     <!-- Customer Phone Column -->
     <ng-container matColumnDef="customerPhone">
       <th mat-header-cell *matHeaderCellDef> Customer Phone </th>
-      <td mat-cell *matCellDef="let element"> TBD </td>
+      <td mat-cell *matCellDef="let element"> {{element.customerPhone}} </td>
     </ng-container>
 
     <!-- Planned Arrival Time Column -->
