@@ -3,6 +3,7 @@ import { DriverRouteService } from '../../services/driver-route.service';
 import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-driver-route',
@@ -36,7 +37,9 @@ export class DriverRouteComponent implements OnInit {
   }
 
   refreshDeliverRoute(driverName: string, deliveryDate: string): void {
-    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, deliveryDate);
+    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, deliveryDate).pipe(
+      map(deliveryStops => this.calculateTimeDifferences(deliveryStops))
+    );
   }
 
   hasArrived(deliveryRoute: DeliveryStop): void {
@@ -54,4 +57,24 @@ export class DriverRouteComponent implements OnInit {
     const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address2 + ' ' + address3)}`;
     return this.sanitizer.bypassSecurityTrustUrl(url);
   }
+
+  private calculateTimeDifferences(deliveryStops: DeliveryStop[]): DeliveryStop[] {
+    for (let i = deliveryStops.length - 1; i > 0; i--) {
+      const currentStop = deliveryStops[i];
+      const previousStop = deliveryStops[i - 1];
+  
+      const currentTime = new Date(currentStop.plannedArrivalTime).getTime();
+      const previousTime = new Date(previousStop.plannedArrivalTime).getTime();
+  
+      const timeDifferenceInMinutes = Math.round((currentTime - previousTime) / 60000);
+      currentStop.timeDifference = timeDifferenceInMinutes;
+    }
+  
+    if (deliveryStops.length > 0) {
+      deliveryStops[0].timeDifference = undefined; // First row will have no time difference
+    }
+  
+    return deliveryStops;
+  }
+  
 }

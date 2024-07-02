@@ -4,9 +4,10 @@ export interface DeliveryStop {
   deliveryAddress1: string;
   deliveryAddress2: string;
   deliveryAddress3: string;
-  //customerPhone: string;
+  customerPhone: string;
   plannedArrivalTime: string;
-  actualArrivalTime: string | null;
+  actualArrivalTime: boolean;
   priority: number;
-  plannedTravelTime: string | null;
+  plannedTravelTime: string;
+  timeDifference?: number; // Added timeDifference property
 }
