@@ -32,8 +32,7 @@
       <td mat-cell *matCellDef="let element" class="no-bottom-border">
         {{element.deliveryAddress1}}
         <div *ngIf="element !== dataSource[dataSource.length - 1]" class="arrow-container">
-          <div class="arrow"></div>
-          <div class="arrow-tail"></div>
+          <i class="fas fa-arrow-down"></i>
           <div class="time-difference-arrow">
             {{element.timeDifference !== undefined ? element.timeDifference + ' m' : ''}}
           </div>

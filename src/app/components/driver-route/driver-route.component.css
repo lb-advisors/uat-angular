@@ -150,37 +150,19 @@ body {
 .arrow-container {
     display: flex;
     align-items: center;
-    flex-direction: row;
+    flex-direction: column;
     justify-content: center;
-    height: 30px;
-    margin-top: -15px;
+    height: 40px;
+    margin-top: -5px; /* Adjusted to move down the entire arrow container */
 }
 
-.arrow-container::before {
-    content: '';
-    width: 2px;
-    height: 10px;
-    background-color: black;
-}
-
-.arrow {
-    width: 0;
-    height: 0;
-    border-left: 5px solid transparent;
-    border-right: 5px solid transparent;
-    border-top: 10px solid black;
-    margin-bottom: -5px;
-}
-
-.arrow-tail {
-    width: 2px;
-    height: 20px;
-    background-color: black;
-    margin-top: -10px;
+.arrow-container i {
+    font-size: 24px; /* Font Awesome icon size */
+    margin-bottom: -5px; /* Adjust to align with the text */
 }
 
 .time-difference-arrow {
-    margin-left: 10px;
+    margin-top: 5px;
     font-size: 12px;
     color: black;
 }
