@@ -143,9 +143,11 @@ body {
     display: none;
 }
 
+/*
 .no-bottom-border {
     border-bottom: none !important;
 }
+*/
 
 .arrow-container {
     display: flex;
