@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
 import { DriverRouteService } from '../../services/driver-route.service';
 import { Observable, combineLatest } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
@@ -11,7 +11,7 @@ import { format } from 'date-fns';
   templateUrl: './driver-route.component.html',
   styleUrls: ['./driver-route.component.css'],
 })
-export class DriverRouteComponent implements OnInit {
+export class DriverRouteComponent implements OnInit, AfterViewChecked {
   driverNames$: Observable<string[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
   deliveryDate: string = ''; // Provide a default value
@@ -26,7 +26,8 @@ export class DriverRouteComponent implements OnInit {
 
   constructor(
     private driverRouteService: DriverRouteService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef
   ) {
     this.setInitialDate();
     this.driverNames$ = this.driverRouteService.getDrivers();
@@ -41,6 +42,10 @@ export class DriverRouteComponent implements OnInit {
       }),
       map(deliveryStops => this.calculateTimeDifferences(deliveryStops))
     );
+  }
+
+  ngAfterViewChecked(): void {
+    this.cdr.detectChanges();
   }
 
   setInitialDate(): void {
