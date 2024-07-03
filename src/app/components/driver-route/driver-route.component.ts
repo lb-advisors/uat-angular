@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DriverRouteService } from '../../services/driver-route.service';
-import { Observable } from 'rxjs';
+import { Observable, combineLatest } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { format } from 'date-fns';
 
 @Component({
@@ -15,14 +15,13 @@ export class DriverRouteComponent implements OnInit {
   driverNames$: Observable<string[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
   deliveryDate: string = ''; // Provide a default value
+  selectedDriverName: string = '';
 
   displayedColumns: string[] = [
     'deliveryAddress1',
     'address',
     'customerPhone',
-    'plannedArrivalTime',
     'actualArrivalTime',
-    'timeDifference'
   ];
 
   constructor(
@@ -35,6 +34,13 @@ export class DriverRouteComponent implements OnInit {
 
   ngOnInit(): void {
     this.driverRouteService.refreshDrivers();
+    this.deliveryRoute$ = combineLatest([this.driverNames$]).pipe(
+      switchMap(([driverNames]) => {
+        this.selectedDriverName = driverNames[0] || ''; // Select the first driver by default
+        return this.driverRouteService.getDeliveryRoute(this.selectedDriverName, this.deliveryDate);
+      }),
+      map(deliveryStops => this.calculateTimeDifferences(deliveryStops))
+    );
   }
 
   setInitialDate(): void {
