@@ -8,9 +8,9 @@
     </select>
 
     <label for="delivery-date">Delivery Date:</label>
-    <input type="text" id="delivery-date" [value]="todayDate" readonly>
+    <input type="text" id="delivery-date" [value]="deliveryDate" readonly>
 
-    <button (click)="refreshDeliverRoute(driverName.value, todayDate)">Submit</button>
+    <button (click)="refreshDeliverRoute(driverName.value, deliveryDate)">Submit</button>
   </div>
 
   <table mat-table *ngIf="deliveryRoute$ | async as dataSource" [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid" matSort>
@@ -74,7 +74,7 @@
     <ng-container matColumnDef="timeDifference">
       <th mat-header-cell *matHeaderCellDef> Time Difference </th>
       <td mat-cell *matCellDef="let element">
-        {{element.timeDifference !== undefined ? element.timeDifference + ' min' : ''}}
+        {{element.timeDifference !== undefined ? element.timeDifference + ' m' : ''}}
       </td>
     </ng-container>
 

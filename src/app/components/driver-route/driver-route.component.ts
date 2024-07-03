@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
+import { format } from 'date-fns';
 
 @Component({
   selector: 'app-driver-route',
@@ -13,7 +14,8 @@ import { map } from 'rxjs/operators';
 export class DriverRouteComponent implements OnInit {
   driverNames$: Observable<string[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
-  todayDate: string;
+  deliveryDate: string = ''; // Provide a default value
+
   displayedColumns: string[] = [
     'deliveryAddress1',
     'address',
@@ -27,8 +29,7 @@ export class DriverRouteComponent implements OnInit {
     private driverRouteService: DriverRouteService,
     private sanitizer: DomSanitizer
   ) {
-    const today = new Date();
-    this.todayDate = today.toISOString().split('T')[0];
+    this.setInitialDate();
     this.driverNames$ = this.driverRouteService.getDrivers();
   }
 
@@ -36,8 +37,14 @@ export class DriverRouteComponent implements OnInit {
     this.driverRouteService.refreshDrivers();
   }
 
+  setInitialDate(): void {
+    const today = new Date();
+    this.deliveryDate = format(today, 'yyyy-MM-dd');
+  }
+
   refreshDeliverRoute(driverName: string, deliveryDate: string): void {
-    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, deliveryDate).pipe(
+    const formattedDate = new Date(deliveryDate).toISOString().split('T')[0]; // Ensure date is formatted as YYYY-MM-DD
+    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, formattedDate).pipe(
       map(deliveryStops => this.calculateTimeDifferences(deliveryStops))
     );
   }
@@ -62,19 +69,18 @@ export class DriverRouteComponent implements OnInit {
     for (let i = deliveryStops.length - 1; i > 0; i--) {
       const currentStop = deliveryStops[i];
       const previousStop = deliveryStops[i - 1];
-  
+
       const currentTime = new Date(currentStop.plannedArrivalTime).getTime();
       const previousTime = new Date(previousStop.plannedArrivalTime).getTime();
-  
+
       const timeDifferenceInMinutes = Math.round((currentTime - previousTime) / 60000);
       currentStop.timeDifference = timeDifferenceInMinutes;
     }
-  
+
     if (deliveryStops.length > 0) {
       deliveryStops[0].timeDifference = undefined; // First row will have no time difference
     }
-  
+
     return deliveryStops;
   }
-  
 }
