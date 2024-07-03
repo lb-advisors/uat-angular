@@ -143,11 +143,9 @@ body {
     display: none;
 }
 
-/*
 .no-bottom-border {
     border-bottom: none !important;
 }
-*/
 
 .arrow-container {
     display: flex;
@@ -163,6 +161,8 @@ body {
 }
 
 .time-difference-arrow {
-    font-size: 12px;
-    color: black;
+    font-size: 14px;
+    color: darkgreen;
+    font-weight: bold;
+    margin-left: 5px;
 }
