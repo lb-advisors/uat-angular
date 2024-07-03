@@ -508,9 +508,10 @@ function DriverRouteComponent_table_12_Template(rf, ctx) {
   }
 }
 class DriverRouteComponent {
-  constructor(driverRouteService, sanitizer) {
+  constructor(driverRouteService, sanitizer, cdr) {
     this.driverRouteService = driverRouteService;
     this.sanitizer = sanitizer;
+    this.cdr = cdr;
     this.deliveryDate = ''; // Provide a default value
     this.selectedDriverName = '';
     this.displayedColumns = ['deliveryAddress1', 'address', 'customerPhone', 'actualArrivalTime'];
@@ -523,6 +524,9 @@ class DriverRouteComponent {
       this.selectedDriverName = driverNames[0] || ''; // Select the first driver by default
       return this.driverRouteService.getDeliveryRoute(this.selectedDriverName, this.deliveryDate);
     }), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(deliveryStops => this.calculateTimeDifferences(deliveryStops)));
+  }
+  ngAfterViewChecked() {
+    this.cdr.detectChanges();
   }
   setInitialDate() {
     const today = new Date();
@@ -559,7 +563,7 @@ class DriverRouteComponent {
     return deliveryStops;
   }
   static #_ = this.ɵfac = function DriverRouteComponent_Factory(t) {
-    return new (t || DriverRouteComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_driver_route_service__WEBPACK_IMPORTED_MODULE_0__.DriverRouteService), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.DomSanitizer));
+    return new (t || DriverRouteComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_driver_route_service__WEBPACK_IMPORTED_MODULE_0__.DriverRouteService), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_platform_browser__WEBPACK_IMPORTED_MODULE_6__.DomSanitizer), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.ChangeDetectorRef));
   };
   static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
     type: DriverRouteComponent,
