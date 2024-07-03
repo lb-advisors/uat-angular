@@ -34,6 +34,9 @@
         <div *ngIf="element !== dataSource[dataSource.length - 1]" class="arrow-container">
           <div class="arrow"></div>
           <div class="arrow-tail"></div>
+          <div class="time-difference-arrow">
+            {{element.timeDifference !== undefined ? element.timeDifference + ' m' : ''}}
+          </div>
         </div>
       </td>
     </ng-container>
