@@ -9,8 +9,6 @@
 
     <label for="delivery-date">Delivery Date:</label>
     <input type="text" id="delivery-date" [value]="deliveryDate" readonly>
-
-    <button (click)="refreshDeliverRoute(selectedDriverName, deliveryDate)">Submit</button>
   </div>
 
   <table mat-table *ngIf="deliveryRoute$ | async as dataSource" [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid" matSort>
