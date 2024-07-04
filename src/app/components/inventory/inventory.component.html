@@ -2,12 +2,12 @@
     <div class="container">
         <h2 class="inventory-title">Inventory</h2>
         <div class="filters">
-            <input type="text" [(ngModel)]="filters.CompItemID" placeholder="Filter by Item ID">
-            <input type="text" [(ngModel)]="filters.ProfileDescription" placeholder="Filter by Product">
-            <input type="text" [(ngModel)]="filters.UnitTypePD" placeholder="Filter by Units">
-            <input type="text" [(ngModel)]="filters.PackSizePD" placeholder="Filter by Pack Size">
-            <input type="text" [(ngModel)]="filters.SalesPrice" placeholder="Filter by Price">
-            <input type="text" [(ngModel)]="filters.Quantity" placeholder="Filter by Qty">
+            <input type="text" [(ngModel)]="filters.ItemID" placeholder="Filter by Item ID">
+            <input type="text" [(ngModel)]="filters.Product" placeholder="Filter by Product">
+            <input type="text" [(ngModel)]="filters.UnitType" placeholder="Filter by Units">
+            <input type="text" [(ngModel)]="filters.PackSize" placeholder="Filter by Pack Size">
+            <input type="text" [(ngModel)]="filters.Price" placeholder="Filter by Price">
+            <input type="text" [(ngModel)]="filters.WOH" placeholder="Filter by WOH">
         </div>
         <table class="inventory-grid">
             <thead>
@@ -17,20 +17,19 @@
                     <th class="shrinkable-header">Units</th>
                     <th class="shrinkable-header">Pack<br>Size</th>
                     <th class="shrinkable-header">Price</th>
-                    <th class="shrinkable-header">Qty</th>
+                    <th class="shrinkable-header">WOH</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of filteredInventoryItems()">
-                    <td>{{ item.CompItemID }}</td>
-                    <td class="wrap product-column">{{ item.ProfileDescription }}</td>
-                    <td>{{ item.UnitTypePD }}</td>
-                    <td>{{ item.PackSizePD }}</td>
-                    <td>{{ item.SalesPrice | currency:'USD':'symbol':'1.2-2' }}</td>
-                    <td>{{ item.Quantity }}</td>
+                <tr *ngFor="let item of filteredInventoryItems((inventoryItems$ | async) || [])">
+                    <td>{{ item.id }}</td>
+                    <td class="wrap product-column">{{ item.compDescription }}</td>
+                    <td>{{ item.unitType }}</td>
+                    <td>{{ item.packSize }}</td>
+                    <td>{{ item.activePrice | currency:'USD':'symbol':'1.2-2' }}</td>
+                    <td>{{ item.woh }}</td>
                 </tr>
             </tbody>
         </table>
     </div>
-  </div>
-  
+</div>
