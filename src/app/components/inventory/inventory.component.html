@@ -2,12 +2,12 @@
     <div class="container">
         <h2 class="inventory-title">Inventory</h2>
         <div class="filters">
-            <input type="text" [(ngModel)]="filters.ItemID" placeholder="Filter by Item ID">
-            <input type="text" [(ngModel)]="filters.Product" placeholder="Filter by Product">
-            <input type="text" [(ngModel)]="filters.UnitType" placeholder="Filter by Units">
-            <input type="text" [(ngModel)]="filters.PackSize" placeholder="Filter by Pack Size">
-            <input type="text" [(ngModel)]="filters.Price" placeholder="Filter by Price">
-            <input type="text" [(ngModel)]="filters.WOH" placeholder="Filter by WOH">
+            <input type="text" [(ngModel)]="filters.ItemID" placeholder="Filter by Item ID" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="filters.Product" placeholder="Filter by Product" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="filters.UnitType" placeholder="Filter by Units" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="filters.PackSize" placeholder="Filter by Pack Size" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="filters.Price" placeholder="Filter by Price" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="filters.WOH" placeholder="Filter by WOH" (ngModelChange)="applyFilters()">
         </div>
         <table class="inventory-grid">
             <thead>
@@ -21,7 +21,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of filteredInventoryItems((inventoryItems$ | async) || [])">
+                <tr *ngFor="let item of (displayedInventoryItems$ | async)">
                     <td>{{ item.id }}</td>
                     <td class="wrap product-column">{{ item.compDescription }}</td>
                     <td>{{ item.unitType }}</td>
