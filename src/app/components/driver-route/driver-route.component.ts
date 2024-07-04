@@ -35,13 +35,10 @@ export class DriverRouteComponent implements OnInit, AfterViewChecked {
 
   ngOnInit(): void {
     this.driverRouteService.refreshDrivers();
-    this.deliveryRoute$ = combineLatest([this.driverNames$]).pipe(
-      switchMap(([driverNames]) => {
-        this.selectedDriverName = driverNames[0] || ''; // Select the first driver by default
-        return this.driverRouteService.getDeliveryRoute(this.selectedDriverName, this.deliveryDate);
-      }),
-      map(deliveryStops => this.calculateTimeDifferences(deliveryStops))
-    );
+    this.driverNames$.subscribe((driverNames) => {
+      this.selectedDriverName = driverNames[0] || ''; // Select the first driver by default
+      this.refreshDeliverRoute(this.selectedDriverName, this.deliveryDate);
+    });
   }
 
   ngAfterViewChecked(): void {

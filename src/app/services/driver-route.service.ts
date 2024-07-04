@@ -5,9 +5,8 @@ import { catchError, map } from 'rxjs/operators';
 import { DeliveryStop } from '../models/delivery-stop.model';
 import { environment } from 'src/environments/environment';
 
-interface SearchParams {
-  driverName: string;
-  deliveryDate: string;
+interface Driver {
+  name: string;
 }
 
 @Injectable({
@@ -25,13 +24,14 @@ export class DriverRouteService {
   }
 
   refreshDrivers(): void {
-    this.http.get<string[]>(`${this.apiUrl}/drivers`).pipe(
+    this.http.get<Driver[]>(`${this.apiUrl}/drivers`).pipe(
+      map((drivers) => drivers.map(driver => driver.name)),
       catchError((error) => {
         console.error('Error fetching drivers:', error);
         return throwError(() => new Error('Error fetching drivers'));
       })
-    ).subscribe((drivers) => {
-      this.driversSubject.next(drivers);
+    ).subscribe((driverNames) => {
+      this.driversSubject.next(driverNames);
     });
   }
 
