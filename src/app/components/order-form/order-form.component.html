@@ -18,6 +18,42 @@
       <span id="sales-rep">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
     </div>
   </div>
+
+  <!-- Specials Grid -->
+  <div *ngIf="specialsProducts && specialsProducts.length > 0">
+    <h3>Specials</h3>
+    <table class="order-grid">
+      <thead>
+        <tr>
+          <th>Description</th>
+          <th>Quantity</th>
+          <th>Unit Type</th>
+          <th>Pack Size</th>
+          <th>Price</th>
+          <th class='totalCol'>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of specialsProducts; let i = index">
+          <td>{{ product.profileDescription }}</td>
+          <td>
+            <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
+              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+            <input type="hidden" name="description_special_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
+            <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
+            <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
+            <input type="hidden" name="price_special_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
+          </td>
+          <td>{{ product.unitTypePd }}</td>
+          <td>{{ product.packSizePd }}</td>
+          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
+          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Normal Grid -->
   <div *ngIf="orders && orders.length > 0">
     <div class="error-message" style="color: red;">
       We already have an order for you submitted today. Please contact your sales rep if you like to change this order.
@@ -62,6 +98,7 @@
     </table>
     <button (click)="goBack()">Back</button>
   </div>
+
   <form *ngIf="orders && orders.length === 0" #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
     <table class="order-grid">
       <thead>

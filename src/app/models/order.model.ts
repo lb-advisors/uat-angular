@@ -4,5 +4,8 @@ export interface Profile {
   packSizePd: number;
   salesPrice: number;
   id: number;
-  quantity?: number; // This will be added dynamically
+  quantity?: number;
+  customer_id?: number;  // Add this line
+  deliveryDate?: string;  // Add this line
+  customerPo?: string;    // Add this line
 }

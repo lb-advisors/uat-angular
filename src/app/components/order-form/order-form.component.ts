@@ -12,6 +12,7 @@ export class OrderFormComponent implements OnInit {
   orders: any[] = [];
   orderData: any = {};
   products: Profile[] = [];
+  specialsProducts: Profile[] = [];
   deliveryDate: string = '';
   customerPo: string = '';
   customerId: string = '';
@@ -27,9 +28,22 @@ export class OrderFormComponent implements OnInit {
           customer_name: data.customerName,
           sales_rep: data.salesRepName,
           sales_rep_phone: data.salesRepPhone,
-          customer_email: data.customerEmail
+          customer_email: data.customerEmail,
+          deliveryDate: this.deliveryDate,  // Initialize deliveryDate
+          customerPo: this.customerPo       // Initialize customerPo
         };
-        this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: 0 })) || [];
+
+        this.products = [];
+        this.specialsProducts = [];
+
+        data.profiles.forEach((profile: Profile) => {
+          if (profile.customer_id === 1) {
+            this.specialsProducts.push({ ...profile, quantity: 0, deliveryDate: this.deliveryDate, customerPo: this.customerPo });
+          } else {
+            this.products.push({ ...profile, quantity: 0, deliveryDate: this.deliveryDate, customerPo: this.customerPo });
+          }
+        });
+
         this.orders = data.orders || [];
         this.updateTotal(); // Initialize the total
       }, error => {
@@ -58,7 +72,12 @@ export class OrderFormComponent implements OnInit {
 
     const productIndex = row.getAttribute('data-index');
     if (productIndex !== null) {
-      this.products[productIndex].quantity = quantity;
+      const isSpecial = row.getAttribute('data-special') === 'true';
+      if (isSpecial) {
+        this.specialsProducts[productIndex].quantity = quantity;
+      } else {
+        this.products[productIndex].quantity = quantity;
+      }
     }
 
     this.updateTotal();
@@ -146,11 +165,11 @@ export class OrderFormComponent implements OnInit {
       return 'We are closed on Sundays.';
     }
 
-    if (!this.orderFormService.hasValidQuantities(this.products)) {
+    if (!this.orderFormService.hasValidQuantities(this.products.concat(this.specialsProducts))) {
       return 'Please put in a quantity to submit your order.';
     }
 
-    const totalPrice = this.orderFormService.calculateTotal(this.products);
+    const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
     if (totalPrice > 10000) {
       return 'The total amount has to be less than $10,000.';
     }
@@ -173,10 +192,10 @@ export class OrderFormComponent implements OnInit {
       sales_rep_phone: this.orderData.sales_rep_phone,
       total_price: totalPrice,
       delivery_date: this.deliveryDate,
+      customer_po: this.customerPo,
       submitter_ip: '', // Set this on the backend
       order_id: '', // Set this on the backend
-      customer_po: this.customerPo,
-      products: this.products
+      products: this.products.concat(this.specialsProducts) // Combine both products and specials
     };
   }
 }
