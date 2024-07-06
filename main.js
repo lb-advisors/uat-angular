@@ -937,12 +937,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function InventoryComponent_tr_31_Template(rf, ctx) {
+function InventoryComponent_tr_26_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "tr")(1, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "td", 14);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "td", 9);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "td");
@@ -978,15 +978,7 @@ function InventoryComponent_tr_31_Template(rf, ctx) {
 class InventoryComponent {
   constructor(inventoryService) {
     this.inventoryService = inventoryService;
-    this.filters = {
-      ItemID: '',
-      Product: '',
-      UnitType: '',
-      PackSize: '',
-      Price: '',
-      WOH: ''
-    };
-    this.allInventoryItems = [];
+    this.searchQuery = '';
     this.displayedInventoryItems$ = new rxjs__WEBPACK_IMPORTED_MODULE_2__.BehaviorSubject([]);
     this.isLoading = false;
   }
@@ -996,14 +988,16 @@ class InventoryComponent {
   loadAllData() {
     this.isLoading = true;
     this.inventoryService.getInventoryItems().pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.tap)(items => {
-      this.allInventoryItems = items.sort((a, b) => a.id - b.id); // Sort items by ID in ascending order
-      this.displayedInventoryItems$.next(this.allInventoryItems); // Display all items initially
+      this.displayedInventoryItems$.next(items); // Display all items initially
       this.isLoading = false;
     })).subscribe();
   }
   applyFilters() {
-    const filteredItems = this.allInventoryItems.filter(item => (!this.filters.ItemID || item.id.toString().includes(this.filters.ItemID)) && (!this.filters.Product || item.compDescription.toLowerCase().includes(this.filters.Product.toLowerCase())) && (!this.filters.UnitType || item.unitType.toLowerCase().includes(this.filters.UnitType.toLowerCase())) && (!this.filters.PackSize || item.packSize.toString().includes(this.filters.PackSize)) && (!this.filters.Price || item.activePrice.toString().includes(this.filters.Price)) && (!this.filters.WOH || item.woh !== null && item.woh.toString().includes(this.filters.WOH)));
-    this.displayedInventoryItems$.next(filteredItems);
+    this.isLoading = true;
+    this.inventoryService.searchInventoryItems(this.searchQuery).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.tap)(items => {
+      this.displayedInventoryItems$.next(items);
+      this.isLoading = false;
+    })).subscribe();
   }
   static #_ = this.ɵfac = function InventoryComponent_Factory(t) {
     return new (t || InventoryComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_inventory_service__WEBPACK_IMPORTED_MODULE_0__.InventoryService));
@@ -1011,9 +1005,9 @@ class InventoryComponent {
   static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
     type: InventoryComponent,
     selectors: [["app-inventory"]],
-    decls: 33,
-    vars: 9,
-    consts: [[1, "content"], [1, "container"], [1, "inventory-title"], [1, "filters"], ["type", "text", "placeholder", "Filter by Item ID", 3, "ngModel", "ngModelChange"], ["type", "text", "placeholder", "Filter by Product", 3, "ngModel", "ngModelChange"], ["type", "text", "placeholder", "Filter by Units", 3, "ngModel", "ngModelChange"], ["type", "text", "placeholder", "Filter by Pack Size", 3, "ngModel", "ngModelChange"], ["type", "text", "placeholder", "Filter by Price", 3, "ngModel", "ngModelChange"], ["type", "text", "placeholder", "Filter by WOH", 3, "ngModel", "ngModelChange"], [1, "inventory-grid"], [1, "shrinkable-header"], [1, "shrinkable-header", "product-header"], [4, "ngFor", "ngForOf"], [1, "wrap", "product-column"]],
+    decls: 28,
+    vars: 4,
+    consts: [[1, "content"], [1, "container"], [1, "inventory-title"], [1, "filters"], ["type", "text", "placeholder", "Search Inventory", 3, "ngModel", "ngModelChange"], [1, "inventory-grid"], [1, "shrinkable-header"], [1, "shrinkable-header", "product-header"], [4, "ngFor", "ngForOf"], [1, "wrap", "product-column"]],
     template: function InventoryComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "h2", 2);
@@ -1021,88 +1015,43 @@ class InventoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "div", 3)(5, "input", 4);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function InventoryComponent_Template_input_ngModelChange_5_listener($event) {
-          return ctx.filters.ItemID = $event;
+          return ctx.searchQuery = $event;
         })("ngModelChange", function InventoryComponent_Template_input_ngModelChange_5_listener() {
           return ctx.applyFilters();
         });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "input", 5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function InventoryComponent_Template_input_ngModelChange_6_listener($event) {
-          return ctx.filters.Product = $event;
-        })("ngModelChange", function InventoryComponent_Template_input_ngModelChange_6_listener() {
-          return ctx.applyFilters();
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "input", 6);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function InventoryComponent_Template_input_ngModelChange_7_listener($event) {
-          return ctx.filters.UnitType = $event;
-        })("ngModelChange", function InventoryComponent_Template_input_ngModelChange_7_listener() {
-          return ctx.applyFilters();
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "input", 7);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function InventoryComponent_Template_input_ngModelChange_8_listener($event) {
-          return ctx.filters.PackSize = $event;
-        })("ngModelChange", function InventoryComponent_Template_input_ngModelChange_8_listener() {
-          return ctx.applyFilters();
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "input", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function InventoryComponent_Template_input_ngModelChange_9_listener($event) {
-          return ctx.filters.Price = $event;
-        })("ngModelChange", function InventoryComponent_Template_input_ngModelChange_9_listener() {
-          return ctx.applyFilters();
-        });
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "input", 9);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngModelChange", function InventoryComponent_Template_input_ngModelChange_10_listener($event) {
-          return ctx.filters.WOH = $event;
-        })("ngModelChange", function InventoryComponent_Template_input_ngModelChange_10_listener() {
-          return ctx.applyFilters();
-        });
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "table", 10)(12, "thead")(13, "tr")(14, "th", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](15, "Item");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](16, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17, "ID");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "table", 5)(7, "thead")(8, "tr")(9, "th", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Item");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](11, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "ID");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "th", 12);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "Product");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "th", 7);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, "Product");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "th", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21, "Units");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](15, "th", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, "Units");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "th", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](23, "Pack");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](24, "br");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](25, "Size");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "th", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](18, "Pack");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](19, "br");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](20, "Size");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](26, "th", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](27, "Price");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](21, "th", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](22, "Price");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](28, "th", 11);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](29, "WOH");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](23, "th", 6);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](24, "WOH");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](30, "tbody");
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](31, InventoryComponent_tr_31_Template, 14, 11, "tr", 13);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](32, "async");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](25, "tbody");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](26, InventoryComponent_tr_26_Template, 14, 11, "tr", 8);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](27, "async");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
       }
       if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](5);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.filters.ItemID);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.filters.Product);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.filters.UnitType);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.filters.PackSize);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.filters.Price);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.filters.WOH);
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngModel", ctx.searchQuery);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](21);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](32, 7, ctx.displayedInventoryItems$));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](27, 2, ctx.displayedInventoryItems$));
       }
     },
     dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgModel, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe, _angular_common__WEBPACK_IMPORTED_MODULE_4__.CurrencyPipe],
@@ -2449,6 +2398,15 @@ class InventoryService {
     }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(response => response.content), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(error => {
       console.error('Error fetching inventory items:', error);
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.throwError)(() => new Error('Error fetching inventory items'));
+    }));
+  }
+  searchInventoryItems(query, page = 0, size = 50) {
+    let params = new _angular_common_http__WEBPACK_IMPORTED_MODULE_1__.HttpParams().set('page', page.toString()).set('size', size.toString()).set('search', query);
+    return this.http.get(`${this.apiUrl}/inventory`, {
+      params
+    }).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_2__.map)(response => response.content), (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_3__.catchError)(error => {
+      console.error('Error searching inventory items:', error);
+      return (0,rxjs__WEBPACK_IMPORTED_MODULE_4__.throwError)(() => new Error('Error searching inventory items'));
     }));
   }
   static #_ = this.ɵfac = function InventoryService_Factory(t) {
