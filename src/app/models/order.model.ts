@@ -1,17 +1,8 @@
-export interface Order {
-    id: number;
-    customer_name: string;
-    sales_rep: string;
-    product_description: string;
-    unit_type: string;
-    pack_size: number;
-    price: number;
-    quantity: number;
-    total_price: number;
-    delivery_date: string;
-    customer_email: string;
-    sales_rep_phone: string;
-    order_timestamp: string;
-    customer_po: string;
-  }
-  
+export interface Profile {
+  profileDescription: string;
+  unitTypePd: string;
+  packSizePd: number;
+  salesPrice: number;
+  id: number;
+  quantity?: number; // This will be added dynamically
+}

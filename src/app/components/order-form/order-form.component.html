@@ -8,6 +8,16 @@
     <input id="customer-id" type="text" [(ngModel)]="customerId" placeholder="Enter customer ID" />
     <button (click)="fetchCustomerData()">Submit</button>
   </div>
+  <div class="customer-info" *ngIf="orderData.customer_name">
+    <div>
+      <label for="customer-name">Customer Name:</label>
+      <span id="customer-name">{{ orderData.customer_name }}</span>
+    </div>
+    <div>
+      <label for="sales-rep">&nbsp;&nbsp;Sales Rep:</label>
+      <span id="sales-rep">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
+    </div>
+  </div>
   <div *ngIf="orders && orders.length > 0">
     <div class="error-message" style="color: red;">
       We already have an order for you submitted today. Please contact your sales rep if you like to change this order.
@@ -53,26 +63,6 @@
     <button (click)="goBack()">Back</button>
   </div>
   <form *ngIf="orders && orders.length === 0" #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
-    <div class="customer-info">
-      <div>
-        <label for="customer-name">Customer Name:</label>
-        <span id="customer-name">{{ orderData.customer_name }}</span>
-      </div>
-      <div>
-        <label for="sales-rep">&nbsp;&nbsp;Sales Rep:</label>
-        <span id="sales-rep">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
-      </div>
-    </div>
-
-    <!-- Shipto dropdown -->
-    <div class="shipto-container" *ngIf="profiles.length > 0">
-      <label for="shipto-name">Ship To:</label>
-      <select id="shipto-name" name="shipto_name" [(ngModel)]="selectedShipto" (change)="updateShiptoId()" class="custom-dropdown" required>
-        <option *ngFor="let profile of profiles" [value]="profile.id" [attr.data-id]="profile.id">{{ profile.name }}</option>
-      </select>
-      <input type="hidden" id="shipto-id" name="shipto_id" [(ngModel)]="selectedShipto">
-    </div>
-
     <table class="order-grid">
       <thead>
         <tr>
@@ -86,19 +76,19 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products; let i = index">
-          <td>{{ product.description }}</td>
+          <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
-              [attr.data-price]="product.price" [attr.data-pack-size]="product.pack_size" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
-            <input type="hidden" name="description_{{ i }}" [value]="product.description" [(ngModel)]="product.description">
-            <input type="hidden" name="unit_type_{{ i }}" [value]="product.unit_type" [(ngModel)]="product.unit_type">
-            <input type="hidden" name="pack_size_{{ i }}" [value]="product.pack_size" [(ngModel)]="product.pack_size">
-            <input type="hidden" name="price_{{ i }}" [value]="product.price | number:'1.2-2'" [(ngModel)]="product.price">
+              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+            <input type="hidden" name="description_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
+            <input type="hidden" name="unit_type_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
+            <input type="hidden" name="pack_size_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
+            <input type="hidden" name="price_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
           </td>
-          <td>{{ product.unit_type }}</td>
-          <td>{{ product.pack_size }}</td>
-          <td>${{ product.price | number:'1.2-2' }}</td>
-          <td class="total-per-item">${{ (product.quantity * product.pack_size * product.price) | number:'1.2-2' }}</td>
+          <td>{{ product.unitTypePd }}</td>
+          <td>{{ product.packSizePd }}</td>
+          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
+          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
