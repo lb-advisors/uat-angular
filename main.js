@@ -1924,17 +1924,14 @@ class OrderFormComponent {
   prepareOrderData() {
     const totalPrice = parseFloat(document.getElementById('total_price').value);
     return {
-      customer_id: this.orderData.customer_id,
-      customer_name: this.orderData.customer_name,
-      sales_rep: this.orderData.sales_rep,
-      customer_email: this.orderData.customer_email,
-      sales_rep_phone: this.orderData.sales_rep_phone,
-      total_price: totalPrice,
-      delivery_date: this.deliveryDate,
-      customer_po: this.customerPo,
-      submitter_ip: '',
-      order_id: '',
-      products: this.products.concat(this.specialsProducts) // Combine both products and specials
+      customerId: this.customerId,
+      deliveryDate: this.deliveryDate,
+      shipToId: 0,
+      totalPrice: totalPrice,
+      orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
+        profileDid: product.profileDid,
+        quantity: product.quantity
+      }))
     };
   }
   static #_ = this.ɵfac = function OrderFormComponent_Factory(t) {
@@ -2569,7 +2566,7 @@ class OrderFormService {
     return this.http.get(`${this.apiUrl}/${customerId}/profiles`);
   }
   placeOrder(customerId, orderData) {
-    return this.http.post(`${this.apiUrl}/${customerId}/profiles`, orderData);
+    return this.http.post(`${this.apiUrl}/${customerId}/orders`, orderData);
   }
   calculateTotal(products) {
     let total = 0;
