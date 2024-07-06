@@ -19,7 +19,10 @@ export class OrderFormComponent implements OnInit {
 
   constructor(private orderFormService: OrderFormService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Fetch specials data on initialization
+    this.fetchSpecialsData();
+  }
 
   fetchCustomerData(): void {
     if (this.isValidCustomerId(this.customerId)) {
@@ -29,21 +32,11 @@ export class OrderFormComponent implements OnInit {
           sales_rep: data.salesRepName,
           sales_rep_phone: data.salesRepPhone,
           customer_email: data.customerEmail,
-          deliveryDate: this.deliveryDate,  // Initialize deliveryDate
-          customerPo: this.customerPo       // Initialize customerPo
+          deliveryDate: this.deliveryDate,
+          customerPo: this.customerPo
         };
 
-        this.products = [];
-        this.specialsProducts = [];
-
-        data.profiles.forEach((profile: Profile) => {
-          if (profile.customer_id === 1) {
-            this.specialsProducts.push({ ...profile, quantity: 0, deliveryDate: this.deliveryDate, customerPo: this.customerPo });
-          } else {
-            this.products.push({ ...profile, quantity: 0, deliveryDate: this.deliveryDate, customerPo: this.customerPo });
-          }
-        });
-
+        this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: 0 })) || [];
         this.orders = data.orders || [];
         this.updateTotal(); // Initialize the total
       }, error => {
@@ -52,6 +45,16 @@ export class OrderFormComponent implements OnInit {
     } else {
       console.error('Invalid customer ID:', this.customerId);
     }
+  }
+
+  fetchSpecialsData(): void {
+    const specialsCustomerId = '1'; // ID for specials
+    this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
+      this.specialsProducts = data.profiles.map((profile: Profile) => ({ ...profile, quantity: 0 })) || [];
+      this.updateTotal(); // Initialize the total for specials
+    }, error => {
+      console.error('Error fetching specials data:', error);
+    });
   }
 
   goBack(): void {

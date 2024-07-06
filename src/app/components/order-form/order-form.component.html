@@ -34,7 +34,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of specialsProducts; let i = index">
+        <tr *ngFor="let product of specialsProducts; let i = index" [attr.data-special]="true" [attr.data-index]="i">
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
@@ -112,7 +112,7 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let product of products; let i = index">
+        <tr *ngFor="let product of products; let i = index" [attr.data-index]="i">
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
