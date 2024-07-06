@@ -21,10 +21,10 @@ export class InventoryService {
 
   constructor(private http: HttpClient) {}
 
-  getInventoryItems(page: number, size: number): Observable<InventoryItem[]> {
+  getInventoryItems(): Observable<InventoryItem[]> {
     let params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString());
+      .set('page', '1')
+      .set('size', '2000'); // Adjust size to fetch all items
 
     return this.http.get<{ content: InventoryItem[] }>(`${this.apiUrl}/inventory`, { params }).pipe(
       map(response => response.content),

@@ -44,6 +44,12 @@ body {
     gap: 10px; /* Adds white space between each filter */
 }
 
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
 .filters input {
     padding: 5px;
     border: 1px solid #ccc;
@@ -88,8 +94,6 @@ body {
     white-space: normal;
     word-break: break-word;
 }
-
-
 
 @media (max-width: 600px) {
     .filters {

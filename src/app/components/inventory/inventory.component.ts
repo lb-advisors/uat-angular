@@ -39,26 +39,25 @@ export class InventoryComponent implements OnInit {
 
   loadAllData(): void {
     this.isLoading = true;
-    this.inventoryService.getInventoryItems(1, 2000)
+    this.inventoryService.getInventoryItems()
       .pipe(
         tap(items => {
-          this.allInventoryItems = items;
-          this.applyFilters();
-        }),
-        tap(() => this.isLoading = false)
+          this.allInventoryItems = items.sort((a, b) => a.id - b.id); // Sort items by ID in ascending order
+          this.displayedInventoryItems$.next(this.allInventoryItems); // Display all items initially
+          this.isLoading = false;
+        })
       ).subscribe();
   }
 
   applyFilters(): void {
-    const filteredItems = this.allInventoryItems
-      .filter(item => {
-        return (!this.filters.ItemID || item.id.toString().includes(this.filters.ItemID)) &&
-               (!this.filters.Product || item.compDescription.toLowerCase().includes(this.filters.Product.toLowerCase())) &&
-               (!this.filters.UnitType || item.unitType.toLowerCase().includes(this.filters.UnitType.toLowerCase())) &&
-               (!this.filters.PackSize || item.packSize.toString().includes(this.filters.PackSize)) &&
-               (!this.filters.Price || item.activePrice.toString().includes(this.filters.Price)) &&
-               (!this.filters.WOH || (item.woh && item.woh.toString().includes(this.filters.WOH)));
-    });
+    const filteredItems = this.allInventoryItems.filter(item => 
+      (!this.filters.ItemID || item.id.toString().includes(this.filters.ItemID)) &&
+      (!this.filters.Product || item.compDescription.toLowerCase().includes(this.filters.Product.toLowerCase())) &&
+      (!this.filters.UnitType || item.unitType.toLowerCase().includes(this.filters.UnitType.toLowerCase())) &&
+      (!this.filters.PackSize || item.packSize.toString().includes(this.filters.PackSize)) &&
+      (!this.filters.Price || item.activePrice.toString().includes(this.filters.Price)) &&
+      (!this.filters.WOH || (item.woh !== null && item.woh.toString().includes(this.filters.WOH)))
+    );
     this.displayedInventoryItems$.next(filteredItems);
   }
 }
