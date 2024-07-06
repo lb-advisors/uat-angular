@@ -1867,7 +1867,7 @@ class OrderFormComponent {
       return;
     }
     const orderData = this.prepareOrderData();
-    this.orderFormService.placeOrder(orderData).subscribe(response => {
+    this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
       alert('Order submitted successfully');
       // Redirect or update UI as needed
     }, error => {
@@ -2568,8 +2568,8 @@ class OrderFormService {
   fetchCustomerData(customerId) {
     return this.http.get(`${this.apiUrl}/${customerId}/profiles`);
   }
-  placeOrder(orderData) {
-    return this.http.post(`${this.apiUrl}/placeOrder`, orderData);
+  placeOrder(customerId, orderData) {
+    return this.http.post(`${this.apiUrl}/${customerId}/profiles`, orderData);
   }
   calculateTotal(products) {
     let total = 0;
