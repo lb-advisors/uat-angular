@@ -123,7 +123,7 @@ export class OrderFormComponent implements OnInit {
     }
 
     const orderData = this.prepareOrderData();
-    this.orderFormService.placeOrder(orderData).subscribe(response => {
+    this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
       alert('Order submitted successfully');
       // Redirect or update UI as needed
     }, error => {

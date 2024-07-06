@@ -16,8 +16,8 @@ export class OrderFormService {
     return this.http.get<any>(`${this.apiUrl}/${customerId}/profiles`);
   }
 
-  placeOrder(orderData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/placeOrder`, orderData);
+  placeOrder(customerId: string, orderData: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/${customerId}/profiles`, orderData);
   }
 
   calculateTotal(products: Profile[]): number {
