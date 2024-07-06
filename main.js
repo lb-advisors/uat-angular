@@ -2000,9 +2000,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   OrderListComponent: () => (/* binding */ OrderListComponent)
 /* harmony export */ });
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 4300);
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs/operators */ 9736);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 1699);
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/common */ 6575);
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ 8849);
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 4860);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 6575);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 8849);
+
+
+
 
 
 
@@ -2048,198 +2054,113 @@ function OrderListComponent_tr_18_Template(rf, ctx) {
   }
 }
 class OrderListComponent {
-  constructor() {
-    this.orders = [{
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4355,
-      CustomerName: 'SAVORE CUISINE & EVENTS'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4490,
-      CustomerName: 'THE LONELY OYSTER'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4199,
-      CustomerName: 'GOURMET FOOD SOLUTIONS'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4154,
-      CustomerName: 'DE LA NONNA'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4339,
-      CustomerName: 'AMANTE'
-    }, {
-      SalesName: 'Merhy',
-      CellNumber: '8184145485',
-      CustomerID: 3679,
-      CustomerName: 'CAROUSEL RESTAURANT'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4484,
-      CustomerName: 'PHORAGE'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 751,
-      CustomerName: 'CHARCOAL RESTAURANT-VENICE'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4253,
-      CustomerName: 'DACSU LLC'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4713,
-      CustomerName: 'FENNEL KITCHEN & BAR'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4681,
-      CustomerName: 'TOPANGA SOCIAL'
-    }, {
-      SalesName: 'Merhy',
-      CellNumber: '8184145485',
-      CustomerID: 2030,
-      CustomerName: 'CAROUSEL / NAIRI'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4729,
-      CustomerName: 'MARINA - PASADENA'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4892,
-      CustomerName: 'THE COPPER KEY'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4226,
-      CustomerName: 'RAPPAHANNOCK OYSTER BAR'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4896,
-      CustomerName: 'KAKKOI SUSHI'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4287,
-      CustomerName: 'GO TRUCKS CATERING'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4617,
-      CustomerName: 'ZA ZA ZA'
-    }, {
-      SalesName: 'Merhy',
-      CellNumber: '8184145485',
-      CustomerID: 4700,
-      CustomerName: 'BUI SUSHI'
-    }, {
-      SalesName: 'Merhy',
-      CellNumber: '8184145485',
-      CustomerID: 907,
-      CustomerName: 'D&K FOODS'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 846,
-      CustomerName: 'REPUBLIQUE BAKERY'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4839,
-      CustomerName: 'SHORT STORIES HOTEL'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4540,
-      CustomerName: 'TRUFFLE BROTHERS'
-    }, {
-      SalesName: 'Marcelo',
-      CellNumber: '2132764132',
-      CustomerID: 4985,
-      CustomerName: '21 OCEAN FRONT - NEWPORT BEACH'
-    }, {
-      SalesName: 'Marcelo',
-      CellNumber: '2132764132',
-      CustomerID: 4986,
-      CustomerName: '401K SINNERS & SAINTS - VENICE'
-    }, {
-      SalesName: 'Marcelo',
-      CellNumber: '2132764132',
-      CustomerID: 5031,
-      CustomerName: 'FRIDA CANTINA - BEVERLY HILLS'
-    }, {
-      SalesName: 'Marcelo',
-      CellNumber: '2132764132',
-      CustomerID: 5036,
-      CustomerName: 'GUILLERMOS RESTAURANT - PALM DESERT'
-    }, {
-      SalesName: 'Merhy',
-      CellNumber: '8184145485',
-      CustomerID: 3681,
-      CustomerName: 'ALCOVE CAFÉ'
-    }, {
-      SalesName: 'Merhy',
-      CellNumber: '8184145485',
-      CustomerID: 4210,
-      CustomerName: 'FAIRMONT MIRAMAR- HOTEL & BUNGALOWS'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4178,
-      CustomerName: 'POKE BAR - DOWNTOWN LA'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4336,
-      CustomerName: 'SALT & OLIVE - GLENDALE'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 3735,
-      CustomerName: 'LA CHA CHA CHA'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4353,
-      CustomerName: 'THE BUTTERED RADISH'
-    }, {
-      SalesName: 'John',
-      CellNumber: '2139220173',
-      CustomerID: 4815,
-      CustomerName: 'PHO ALLEY'
-    }
-    // Add more order data here
-    ];
-
+  constructor(http) {
+    this.http = http;
+    this.orders = [];
     this.salespeople = [];
-    this.selectedSalesperson = null; // Initialize with null
+    this.selectedSalesperson = 'John'; // Default to John
     this.filteredOrders = [];
+    this.hardcodedOrders = [{
+      customer_id: 4713,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 2030,
+      sales_rep_name: 'Merhy'
+    }, {
+      customer_id: 4287,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 9998,
+      sales_rep_name: 'SalesRep2'
+    }, {
+      customer_id: 4154,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 1,
+      sales_rep_name: 'Your Sales Rep Name'
+    }, {
+      customer_id: 4226,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4729,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4892,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4896,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4490,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4681,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 751,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4339,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4484,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4355,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4199,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 3679,
+      sales_rep_name: 'Merhy'
+    }, {
+      customer_id: 846,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 4253,
+      sales_rep_name: 'John'
+    }, {
+      customer_id: 9999,
+      sales_rep_name: 'SalesRep1'
+    }];
   }
   ngOnInit() {
-    this.salespeople = Array.from(new Map(this.orders.map(order => [order.SalesName, {
-      name: order.SalesName,
-      cell: order.CellNumber
-    }])).values());
-    this.filteredOrders = this.orders;
-    this.sortFilteredOrders();
+    this.fetchSalespeople();
+  }
+  fetchSalespeople() {
+    this.http.get('https://uat-pffc.onrender.com/api/sales-reps').subscribe(data => {
+      this.salespeople = data;
+      this.fetchCustomerNames();
+    }, error => {
+      console.error('Error fetching salespeople:', error);
+    });
+  }
+  fetchCustomerNames() {
+    const uniqueCustomerIDs = Array.from(new Set(this.hardcodedOrders.map(order => order.customer_id)));
+    const customerRequests = uniqueCustomerIDs.map(customer_id => this.http.get(`https://uat-pffc.onrender.com/api/customers/${customer_id}/profiles`).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.map)(customerData => ({
+      customer_id: customerData.customerId,
+      customer_name: customerData.customerName
+    }))));
+    (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.forkJoin)(customerRequests).subscribe(results => {
+      this.orders = this.hardcodedOrders.map(order => {
+        const customer = results.find(result => result.customer_id === order.customer_id);
+        return {
+          SalesName: order.sales_rep_name,
+          CustomerID: order.customer_id,
+          CustomerName: customer ? customer.customer_name : `Customer ${order.customer_id}`
+        };
+      });
+      this.filterOrders(); // Apply filter immediately to show default salesperson's customers
+    }, error => {
+      console.error('Error fetching customer names:', error);
+    });
   }
   filterOrders() {
     if (this.selectedSalesperson) {
       this.filteredOrders = this.orders.filter(order => order.SalesName === this.selectedSalesperson);
     } else {
-      this.filteredOrders = this.orders;
+      this.filteredOrders = [];
     }
     this.sortFilteredOrders();
   }
@@ -2247,9 +2168,8 @@ class OrderListComponent {
     this.filteredOrders.sort((a, b) => a.CustomerName.localeCompare(b.CustomerName));
   }
   getOrderLink(customerID) {
-    return `http://example.com/order/${customerID}`; // Adjust the URL as necessary
+    return `https://lb-advisors.github.io/uat-angular/order-form?customerID=${customerID}`;
   }
-
   copyLink(link) {
     navigator.clipboard.writeText(link).then(() => {
       alert('Link copied to clipboard!');
@@ -2258,7 +2178,7 @@ class OrderListComponent {
     });
   }
   static #_ = this.ɵfac = function OrderListComponent_Factory(t) {
-    return new (t || OrderListComponent)();
+    return new (t || OrderListComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_common_http__WEBPACK_IMPORTED_MODULE_3__.HttpClient));
   };
   static #_2 = this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
     type: OrderListComponent,
@@ -2304,7 +2224,7 @@ class OrderListComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.filteredOrders);
       }
     },
-    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_1__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_2__.NgSelectOption, _angular_forms__WEBPACK_IMPORTED_MODULE_2__["ɵNgSelectMultipleOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_2__.SelectControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_2__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_2__.NgModel],
+    dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgSelectOption, _angular_forms__WEBPACK_IMPORTED_MODULE_5__["ɵNgSelectMultipleOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_5__.SelectControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgModel],
     styles: ["body[_ngcontent-%COMP%] {\n    font-family: Arial, sans-serif;\n    margin: 0;\n    padding: 0;\n    display: flex;\n    justify-content: center;\n    background-color: #f0f0f0; \n\n    color: #000000; \n\n}\n\n.container[_ngcontent-%COMP%] {\n    width: 90%;\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #ffffff; \n\n    color: #000000; \n\n    border: 1px solid #ccc;\n    border-radius: 8px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    text-align: center;\n}\n\n.image-container[_ngcontent-%COMP%] {\n    width: 97.3%;\n    background-color: rgba(0, 16, 46, 1); \n\n    padding: 10px;\n    border-radius: 8px;\n    display: flex;\n    justify-content: center;\n    align-items: center;\n}\n\n.image-container[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n    max-width: 100%;\n    height: 100px; \n\n    border-radius: 8px;\n}\n\n.underlined[_ngcontent-%COMP%] {\n    text-decoration: underline;\n    font-size: 30px;\n}\n\n.filters[_ngcontent-%COMP%] {\n    margin: 20px 0;\n    display: flex;\n    justify-content: center; \n\n    gap: 10px; \n\n    align-items: center;\n    font-size: 18px; \n\n    flex-wrap: wrap;\n}\n\n.filter-label[_ngcontent-%COMP%] {\n    font-size: 18px; \n\n    font-family: Arial, sans-serif; \n\n}\n\n.filters[_ngcontent-%COMP%]   select[_ngcontent-%COMP%] {\n    font-size: 18px; \n\n    font-family: Arial, sans-serif; \n\n}\n\n.order-grid[_ngcontent-%COMP%] {\n    width: 100%;\n    border-collapse: collapse;\n    margin: 20px 0;\n}\n\n.order-grid[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], .order-grid[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n    border: 1px solid #ccc;\n    padding: 10px;\n    text-align: left;\n    word-wrap: break-word; \n\n}\n\n.order-grid[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    background-color: #f9f9f9;\n}\n\n.copy-link[_ngcontent-%COMP%] {\n    cursor: pointer;\n    color: blue;\n    text-decoration: underline;\n}\n\n@media (max-width: 600px) {\n    .container[_ngcontent-%COMP%] {\n        width: 95%;\n        margin: 5px;\n    }\n\n    .filters[_ngcontent-%COMP%] {\n        flex-direction: column;\n    }\n\n    .filters[_ngcontent-%COMP%]   label[_ngcontent-%COMP%], .filters[_ngcontent-%COMP%]   select[_ngcontent-%COMP%] {\n        width: 100%;\n        margin-bottom: 10px;\n    }\n\n    .order-grid[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], .order-grid[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n        font-size: 14px;\n    }\n}\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9vcmRlci9vcmRlci5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksOEJBQThCO0lBQzlCLFNBQVM7SUFDVCxVQUFVO0lBQ1YsYUFBYTtJQUNiLHVCQUF1QjtJQUN2Qix5QkFBeUIsRUFBRSx1Q0FBdUM7SUFDbEUsY0FBYyxFQUFFLHFCQUFxQjtBQUN6Qzs7QUFFQTtJQUNJLFVBQVU7SUFDVixnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLGFBQWE7SUFDYix5QkFBeUIsRUFBRSx1Q0FBdUM7SUFDbEUsY0FBYyxFQUFFLHVDQUF1QztJQUN2RCxzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLHVDQUF1QztJQUN2QyxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxZQUFZO0lBQ1osb0NBQW9DLEVBQUUsaURBQWlEO0lBQ3ZGLGFBQWE7SUFDYixrQkFBa0I7SUFDbEIsYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxlQUFlO0lBQ2YsYUFBYSxFQUFFLG1DQUFtQztJQUNsRCxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSwwQkFBMEI7SUFDMUIsZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGNBQWM7SUFDZCxhQUFhO0lBQ2IsdUJBQXVCLEVBQUUsOEJBQThCO0lBQ3ZELFNBQVMsRUFBRSx5Q0FBeUM7SUFDcEQsbUJBQW1CO0lBQ25CLGVBQWUsRUFBRSx1QkFBdUI7SUFDeEMsZUFBZTtBQUNuQjs7QUFFQTtJQUNJLGVBQWUsRUFBRSwrQ0FBK0M7SUFDaEUsOEJBQThCLEVBQUUscUJBQXFCO0FBQ3pEOztBQUVBO0lBQ0ksZUFBZSxFQUFFLHFDQUFxQztJQUN0RCw4QkFBOEIsRUFBRSxxQkFBcUI7QUFDekQ7O0FBRUE7SUFDSSxXQUFXO0lBQ1gseUJBQXlCO0lBQ3pCLGNBQWM7QUFDbEI7O0FBRUE7SUFDSSxzQkFBc0I7SUFDdEIsYUFBYTtJQUNiLGdCQUFnQjtJQUNoQixxQkFBcUIsRUFBRSw2Q0FBNkM7QUFDeEU7O0FBRUE7SUFDSSx5QkFBeUI7QUFDN0I7O0FBRUE7SUFDSSxlQUFlO0lBQ2YsV0FBVztJQUNYLDBCQUEwQjtBQUM5Qjs7QUFFQTtJQUNJO1FBQ0ksVUFBVTtRQUNWLFdBQVc7SUFDZjs7SUFFQTtRQUNJLHNCQUFzQjtJQUMxQjs7SUFFQTtRQUNJLFdBQVc7UUFDWCxtQkFBbUI7SUFDdkI7O0lBRUE7UUFDSSxlQUFlO0lBQ25CO0FBQ0oiLCJzb3VyY2VzQ29udGVudCI6WyJib2R5IHtcbiAgICBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7XG4gICAgbWFyZ2luOiAwO1xuICAgIHBhZGRpbmc6IDA7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjBmMGYwOyAvKiBMaWdodCBncmV5IGJhY2tncm91bmQgZm9yIHRoZSBib2R5ICovXG4gICAgY29sb3I6ICMwMDAwMDA7IC8qIEJsYWNrIHRleHQgY29sb3IgKi9cbn1cblxuLmNvbnRhaW5lciB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBtYXgtd2lkdGg6IDgwMHB4O1xuICAgIG1hcmdpbjogMjBweCBhdXRvO1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZmZmZjsgLyogV2hpdGUgYmFja2dyb3VuZCBmb3IgdGhlIGNvbnRhaW5lciAqL1xuICAgIGNvbG9yOiAjMDAwMDAwOyAvKiBCbGFjayB0ZXh0IGNvbG9yIGZvciB0aGUgY29udGFpbmVyICovXG4gICAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgYm94LXNoYWRvdzogMCAwIDEwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmltYWdlLWNvbnRhaW5lciB7XG4gICAgd2lkdGg6IDk3LjMlO1xuICAgIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMTYsIDQ2LCAxKTsgLyogRGFyayBibHVlIGJhY2tncm91bmQgZm9yIHRoZSBpbWFnZSBjb250YWluZXIgKi9cbiAgICBwYWRkaW5nOiAxMHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5pbWFnZS1jb250YWluZXIgaW1nIHtcbiAgICBtYXgtd2lkdGg6IDEwMCU7XG4gICAgaGVpZ2h0OiAxMDBweDsgLyogQWRqdXN0IHRoZSBsb2dvIHNpemUgYXMgbmVlZGVkICovXG4gICAgYm9yZGVyLXJhZGl1czogOHB4O1xufVxuXG4udW5kZXJsaW5lZCB7XG4gICAgdGV4dC1kZWNvcmF0aW9uOiB1bmRlcmxpbmU7XG4gICAgZm9udC1zaXplOiAzMHB4O1xufVxuXG4uZmlsdGVycyB7XG4gICAgbWFyZ2luOiAyMHB4IDA7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjsgLyogQ2VudGVyIHRoZSBmaWx0ZXIgc2VjdGlvbiAqL1xuICAgIGdhcDogMTBweDsgLyogQWRkcyB3aGl0ZSBzcGFjZSBiZXR3ZWVuIGVhY2ggZmlsdGVyICovXG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgICBmb250LXNpemU6IDE4cHg7IC8qIEluY3JlYXNlIGZvbnQgc2l6ZSAqL1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbn1cblxuLmZpbHRlci1sYWJlbCB7XG4gICAgZm9udC1zaXplOiAxOHB4OyAvKiBJbmNyZWFzZSBmb250IHNpemUgdG8gbWF0Y2ggdGhlIHNlbGVjdCBib3ggKi9cbiAgICBmb250LWZhbWlseTogQXJpYWwsIHNhbnMtc2VyaWY7IC8qIEVuc3VyZSBzYW1lIGZvbnQgKi9cbn1cblxuLmZpbHRlcnMgc2VsZWN0IHtcbiAgICBmb250LXNpemU6IDE4cHg7IC8qIE1hdGNoIHRoZSBmb250IHNpemUgb2YgdGhlIGxhYmVsICovXG4gICAgZm9udC1mYW1pbHk6IEFyaWFsLCBzYW5zLXNlcmlmOyAvKiBFbnN1cmUgc2FtZSBmb250ICovXG59XG5cbi5vcmRlci1ncmlkIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIG1hcmdpbjogMjBweCAwO1xufVxuXG4ub3JkZXItZ3JpZCB0aCwgLm9yZGVyLWdyaWQgdGQge1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICB0ZXh0LWFsaWduOiBsZWZ0O1xuICAgIHdvcmQtd3JhcDogYnJlYWstd29yZDsgLyogRW5zdXJlIHRleHQgd3JhcHMgd2l0aGluIHRoZSB0YWJsZSBjZWxscyAqL1xufVxuXG4ub3JkZXItZ3JpZCB0aCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcbn1cblxuLmNvcHktbGluayB7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGNvbG9yOiBibHVlO1xuICAgIHRleHQtZGVjb3JhdGlvbjogdW5kZXJsaW5lO1xufVxuXG5AbWVkaWEgKG1heC13aWR0aDogNjAwcHgpIHtcbiAgICAuY29udGFpbmVyIHtcbiAgICAgICAgd2lkdGg6IDk1JTtcbiAgICAgICAgbWFyZ2luOiA1cHg7XG4gICAgfVxuXG4gICAgLmZpbHRlcnMge1xuICAgICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIH1cblxuICAgIC5maWx0ZXJzIGxhYmVsLCAuZmlsdGVycyBzZWxlY3Qge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgbWFyZ2luLWJvdHRvbTogMTBweDtcbiAgICB9XG5cbiAgICAub3JkZXItZ3JpZCB0aCwgLm9yZGVyLWdyaWQgdGQge1xuICAgICAgICBmb250LXNpemU6IDE0cHg7XG4gICAgfVxufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */"]
   });
 }
