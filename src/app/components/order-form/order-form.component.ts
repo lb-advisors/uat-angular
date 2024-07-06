@@ -4,206 +4,207 @@ import { NgForm } from '@angular/forms';
 import { Profile } from '../../models/order.model';
 
 @Component({
-	selector: 'app-order-form',
-	templateUrl: './order-form.component.html',
-	styleUrls: ['./order-form.component.css']
+  selector: 'app-order-form',
+  templateUrl: './order-form.component.html',
+  styleUrls: ['./order-form.component.css']
 })
 export class OrderFormComponent implements OnInit {
-	orders: any[] = [];
-	orderData: any = {};
-	products: Profile[] = [];
-	specialsProducts: Profile[] = [];
-	deliveryDate: string = '';
-	customerPo: string = '';
-	customerId: string = '';
+  orders: any[] = [];
+  orderData: any = {};
+  products: Profile[] = [];
+  specialsProducts: Profile[] = [];
+  deliveryDate: string = '';
+  customerPo: string = '';
+  customerId: string = '';
 
-	constructor(private orderFormService: OrderFormService) { }
+  constructor(private orderFormService: OrderFormService) {}
 
-	ngOnInit(): void {
-		// Fetch specials data on initialization
-		this.fetchSpecialsData();
-	}
+  ngOnInit(): void {
+    // Fetch specials data on initialization
+    this.fetchSpecialsData();
+  }
 
-	fetchCustomerData(): void {
-		if (this.isValidCustomerId(this.customerId)) {
-			this.orderFormService.fetchCustomerData(this.customerId).subscribe(data => {
-				this.orderData = {
-					customer_name: data.customerName,
-					sales_rep: data.salesRepName,
-					sales_rep_phone: data.salesRepPhone,
-					customer_email: data.customerEmail,
-					deliveryDate: this.deliveryDate,
-					customerPo: this.customerPo
-				};
+  fetchCustomerData(): void {
+    if (this.isValidCustomerId(this.customerId)) {
+      this.orderFormService.fetchCustomerData(this.customerId).subscribe(data => {
+        this.orderData = {
+          customer_name: data.customerName,
+          sales_rep: data.salesRepName,
+          sales_rep_phone: data.salesRepPhone,
+          customer_email: data.customerEmail,
+          deliveryDate: this.deliveryDate,
+          customerPo: this.customerPo
+        };
 
-				this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: 0 })) || [];
-				this.orders = data.orders || [];
-				this.updateTotal(); // Initialize the total
-			}, error => {
-				console.error('Error fetching customer data:', error);
-			});
-		} else {
-			console.error('Invalid customer ID:', this.customerId);
-		}
-	}
+        this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
+        this.orders = data.orders || [];
+        this.updateTotal(); // Initialize the total
+      }, error => {
+        console.error('Error fetching customer data:', error);
+      });
+    } else {
+      console.error('Invalid customer ID:', this.customerId);
+    }
+  }
 
-	fetchSpecialsData(): void {
-		const specialsCustomerId = '1'; // ID for specials
-		this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
-			this.specialsProducts = data.profiles.map((profile: Profile) => ({ ...profile, quantity: 0 })) || [];
-			this.updateTotal(); // Initialize the total for specials
-		}, error => {
-			console.error('Error fetching specials data:', error);
-		});
-	}
+  fetchSpecialsData(): void {
+    const specialsCustomerId = '1'; // ID for specials
+    this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
+      this.specialsProducts = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
+      this.updateTotal(); // Initialize the total for specials
+    }, error => {
+      console.error('Error fetching specials data:', error);
+    });
+  }
 
-	goBack(): void {
-		window.history.back();
-	}
+  goBack(): void {
+    window.history.back();
+  }
 
-	updateRowStyle(event: any): void {
-		const input = event.target;
-		input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4);
-		const row = input.closest('tr');
-		const quantity = parseFloat(input.value) || 0; // Default to 0 if empty or invalid
+  updateRowStyle(event: any): void {
+    const input = event.target;
+    input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4);
+    const row = input.closest('tr');
+    const quantity = parseFloat(input.value) || 0; // Default to 0 if empty or invalid
 
-		if (quantity > 0) {
-			row.classList.add('bold-row');
-		} else {
-			row.classList.remove('bold-row');
-		}
+    if (quantity > 0) {
+      row.classList.add('bold-row');
+    } else {
+      row.classList.remove('bold-row');
+    }
 
-		const productIndex = row.getAttribute('data-index');
-		if (productIndex !== null) {
-			const isSpecial = row.getAttribute('data-special') === 'true';
-			if (isSpecial) {
-				this.specialsProducts[productIndex].quantity = quantity;
-				if (quantity > 0) {
-					row.classList.add('special-bold-row');
-				} else {
-					row.classList.remove('special-bold-row');
-				}
-			} else {
-				this.products[productIndex].quantity = quantity;
-			}
-		}
+    const productIndex = row.getAttribute('data-index');
+    if (productIndex !== null) {
+      const isSpecial = row.getAttribute('data-special') === 'true';
+      if (isSpecial) {
+        this.specialsProducts[productIndex].quantity = quantity;
+        if (quantity > 0) {
+          row.classList.add('special-bold-row');
+        } else {
+          row.classList.remove('special-bold-row');
+        }
+      } else {
+        this.products[productIndex].quantity = quantity;
+      }
+    }
 
-		this.updateTotal();
-	}
+    this.updateTotal();
+  }
 
-	checkEmptyInput(event: any): void {
-		const input = event.target;
-		if (input.value === '') {
-			input.value = '0';
-		}
-		this.updateRowStyle(event);
-	}
+  checkEmptyInput(event: any): void {
+    const input = event.target;
+    if (input.value === '') {
+      input.value = '0';
+    }
+    this.updateRowStyle(event);
+  }
 
-	updateTotal(): void {
-		let total = 0;
-		const totalElements = document.querySelectorAll('.total-per-item');
+  updateTotal(): void {
+    let total = 0;
+    const totalElements = document.querySelectorAll('.total-per-item');
 
-		totalElements.forEach(element => {
-			const subtotal = parseFloat(element.textContent?.replace(/[^0-9.-]+/g, '') || '0');
-			total += isNaN(subtotal) ? 0 : subtotal;
-		});
+    totalElements.forEach(element => {
+      const subtotal = parseFloat(element.textContent?.replace(/[^0-9.-]+/g, '') || '0');
+      total += isNaN(subtotal) ? 0 : subtotal;
+    });
 
-		const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
-		totalAmountSpan.textContent = total.toLocaleString('en-US', { style: 'currency', currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
+    totalAmountSpan.textContent = total.toLocaleString('en-US', { style: 'currency', currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-		const totalPriceInput = document.getElementById('total_price') as HTMLInputElement;
-		totalPriceInput.value = total.toFixed(2);
-	}
+    const totalPriceInput = document.getElementById('total_price') as HTMLInputElement;
+    totalPriceInput.value = total.toFixed(2);
+  }
 
-	submitOrder(form: NgForm): void {
-		const errorMessage = this.validateForm(form);
-		if (errorMessage) {
-			this.displayErrorMessage(errorMessage);
-			return;
-		}
+  submitOrder(form: NgForm): void {
+    const errorMessage = this.validateForm();
+    if (errorMessage) {
+      this.displayErrorMessage(errorMessage);
+      return;
+    }
 
-		const orderData = this.prepareOrderData();
-		this.orderFormService.placeOrder(orderData).subscribe(response => {
-			alert('Order submitted successfully');
-			// Redirect or update UI as needed
-		}, error => {
-			this.displayErrorMessage('Failed to submit order. Please try again later.');
-		});
-	}
+    const orderData = this.prepareOrderData();
+    this.orderFormService.placeOrder(orderData).subscribe(response => {
+      alert('Order submitted successfully');
+      // Redirect or update UI as needed
+    }, error => {
+      this.displayErrorMessage('Failed to submit order. Please try again later.');
+    });
+  }
 
-	restrictInput(event: any, maxLength: number): void {
-		const input = event.target;
-		if (input.value.length > maxLength) {
-			input.value = input.value.slice(0, maxLength);
-		}
-	}
+  restrictInput(event: any, maxLength: number): void {
+    const input = event.target;
+    if (input.value.length > maxLength) {
+      input.value = input.value.slice(0, maxLength);
+    }
+  }
 
-	private isValidCustomerId(customerId: string): boolean {
-		const customerIdNumber = Number(customerId);
-		return !isNaN(customerIdNumber) && customerId.trim() !== '';
-	}
+  private isValidCustomerId(customerId: string): boolean {
+    const customerIdNumber = Number(customerId);
+    return !isNaN(customerIdNumber) && customerId.trim() !== '';
+  }
 
-	private validateForm(form: NgForm): string | null {
-		const today = new Date();
-		today.setHours(0, 0, 0, 0);
+  private validateForm(): string | null {
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
 
-		const deliveryDate = new Date(this.deliveryDate);
-		deliveryDate.setHours(0, 0, 0, 0);
+    if (!this.deliveryDate) {
+      return 'Please select a delivery date';
+    }
 
-		if (!form.valid) {
-			return 'Please fill out the form correctly.';
-		}
+    const deliveryDate = new Date(this.deliveryDate);
+    deliveryDate.setHours(0, 0, 0, 0);
 
-		if (deliveryDate < today) {
-			return 'Please select a date which is not in the past.';
-		}
+    if (deliveryDate < today) {
+      return 'Please select a date which is not in the past.';
+    }
 
-		if (deliveryDate.getTime() === today.getTime()) {
-			return 'Please order at least one day in advance.';
-		}
+    if (deliveryDate.getTime() === today.getTime()) {
+      return 'Please order at least one day in advance.';
+    }
 
-		const maxDeliveryDate = new Date(today);
-		maxDeliveryDate.setMonth(maxDeliveryDate.getMonth() + 3);
+    const maxDeliveryDate = new Date(today);
+    maxDeliveryDate.setMonth(maxDeliveryDate.getMonth() + 3);
 
-		if (deliveryDate > maxDeliveryDate) {
-			return 'Please only submit orders delivered within the next 3 months.';
-		}
+    if (deliveryDate > maxDeliveryDate) {
+      return 'Please only submit orders delivered within the next 3 months.';
+    }
 
-		if (deliveryDate.getDay() === 0) { // 0 means Sunday
-			return 'We are closed on Sundays.';
-		}
+    if (deliveryDate.getDay() === 0) { // 0 means Sunday
+      return 'We are closed on Sundays.';
+    }
 
-		if (!this.orderFormService.hasValidQuantities(this.products.concat(this.specialsProducts))) {
-			return 'Please put in a quantity to submit your order.';
-		}
+    const hasQuantity = this.products.concat(this.specialsProducts).some(product => product.quantity && product.quantity > 0);
+    if (!hasQuantity) {
+      return 'Please select a quantity which is not 0';
+    }
 
-		const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
-		if (totalPrice > 10000) {
-			return 'The total amount has to be less than $10,000.';
-		}
+    const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
+    if (totalPrice > 10000) {
+      return 'The total amount has to be less than $10,000.';
+    }
 
-		return null;
-	}
+    return null;
+  }
 
-	private displayErrorMessage(message: string): void {
-		const errorMessageDiv = document.querySelector('.error-message') as HTMLDivElement;
-		errorMessageDiv.textContent = message;
-	}
+  private displayErrorMessage(message: string): void {
+    const errorMessageDiv = document.querySelector('.error-message') as HTMLDivElement;
+    errorMessageDiv.textContent = message;
+  }
 
-	private prepareOrderData(): any {
-		const totalPrice = parseFloat((document.getElementById('total_price') as HTMLInputElement).value);
-		return {
-			customer_id: this.orderData.customer_id,
-			customer_name: this.orderData.customer_name,
-			sales_rep: this.orderData.sales_rep,
-			customer_email: this.orderData.customer_email,
-			sales_rep_phone: this.orderData.sales_rep_phone,
-			total_price: totalPrice,
-			delivery_date: this.deliveryDate,
-			customer_po: this.customerPo,
-			submitter_ip: '', // Set this on the backend
-			order_id: '', // Set this on the backend
-			products: this.products.concat(this.specialsProducts) // Combine both products and specials
-		};
-	}
+  private prepareOrderData(): any {
+    const totalPrice = parseFloat((document.getElementById('total_price') as HTMLInputElement).value);
+    return {
+      customer_id: this.orderData.customer_id,
+      customer_name: this.orderData.customer_name,
+      sales_rep: this.orderData.sales_rep,
+      customer_email: this.orderData.customer_email,
+      sales_rep_phone: this.orderData.sales_rep_phone,
+      total_price: totalPrice,
+      delivery_date: this.deliveryDate,
+      customer_po: this.customerPo,
+      submitter_ip: '', // Set this on the backend
+      order_id: '', // Set this on the backend
+      products: this.products.concat(this.specialsProducts) // Combine both products and specials
+    };
+  }
 }
