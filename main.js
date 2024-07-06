@@ -1644,6 +1644,7 @@ class OrderFormComponent {
           quantity: 0
         })) || [];
         this.orders = data.orders || [];
+        this.updateTotal(); // Initialize the total
       }, error => {
         console.error('Error fetching customer data:', error);
       });
@@ -1658,11 +1659,15 @@ class OrderFormComponent {
     const input = event.target;
     input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4);
     const row = input.closest('tr');
-    const quantity = parseFloat(input.value);
+    const quantity = parseFloat(input.value) || 0; // Default to 0 if empty or invalid
     if (quantity > 0) {
       row.classList.add('bold-row');
     } else {
       row.classList.remove('bold-row');
+    }
+    const productIndex = row.getAttribute('data-index');
+    if (productIndex !== null) {
+      this.products[productIndex].quantity = quantity;
     }
     this.updateTotal();
   }
@@ -1674,7 +1679,21 @@ class OrderFormComponent {
     this.updateRowStyle(event);
   }
   updateTotal() {
-    this.orderFormService.calculateTotal(this.products);
+    let total = 0;
+    const totalElements = document.querySelectorAll('.total-per-item');
+    totalElements.forEach(element => {
+      const subtotal = parseFloat(element.textContent?.replace(/[^0-9.-]+/g, '') || '0');
+      total += isNaN(subtotal) ? 0 : subtotal;
+    });
+    const totalAmountSpan = document.getElementById('total-amount');
+    totalAmountSpan.textContent = total.toLocaleString('en-US', {
+      style: 'currency',
+      currency: "USD",
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    });
+    const totalPriceInput = document.getElementById('total_price');
+    totalPriceInput.value = total.toFixed(2);
   }
   submitOrder(form) {
     const errorMessage = this.validateForm(form);
@@ -2390,7 +2409,9 @@ class OrderFormService {
     let total = 0;
     products.forEach(product => {
       const quantity = product.quantity !== undefined ? parseFloat(product.quantity.toString()) : 0;
-      const lineTotal = quantity * product.packSizePd * product.salesPrice;
+      const price = product.salesPrice !== undefined ? parseFloat(product.salesPrice.toString()) : 0;
+      const packSize = product.packSizePd !== undefined ? parseFloat(product.packSizePd.toString()) : 1;
+      const lineTotal = quantity * packSize * price;
       total += lineTotal;
     });
     const totalAmountSpan = document.getElementById('total-amount');
