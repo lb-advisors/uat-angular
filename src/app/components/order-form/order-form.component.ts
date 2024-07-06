@@ -194,17 +194,14 @@ export class OrderFormComponent implements OnInit {
   private prepareOrderData(): any {
     const totalPrice = parseFloat((document.getElementById('total_price') as HTMLInputElement).value);
     return {
-      customer_id: this.orderData.customer_id,
-      customer_name: this.orderData.customer_name,
-      sales_rep: this.orderData.sales_rep,
-      customer_email: this.orderData.customer_email,
-      sales_rep_phone: this.orderData.sales_rep_phone,
-      total_price: totalPrice,
-      delivery_date: this.deliveryDate,
-      customer_po: this.customerPo,
-      submitter_ip: '', // Set this on the backend
-      order_id: '', // Set this on the backend
-      products: this.products.concat(this.specialsProducts) // Combine both products and specials
+      customerId: this.customerId,
+      deliveryDate: this.deliveryDate,
+      shipToId: 0, // Update this if you have a specific shipToId
+      totalPrice: totalPrice,
+      orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
+        profileDid: product.profileDid, // Ensure profileDid is part of the Profile model
+        quantity: product.quantity
+      }))
     };
   }
 }

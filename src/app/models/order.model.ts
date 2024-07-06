@@ -1,4 +1,5 @@
 export interface Profile {
+  profileDid: number;
   profileDescription: string;
   unitTypePd: string;
   packSizePd: number;
