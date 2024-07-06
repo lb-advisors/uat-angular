@@ -1,10 +1,16 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { forkJoin } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 interface Order {
   SalesName: string;
-  CellNumber: string;
   CustomerID: number;
   CustomerName: string;
+}
+
+interface Salesperson {
+  name: string;
 }
 
 @Component({
@@ -13,62 +19,84 @@ interface Order {
   styleUrls: ['./order.component.css']
 })
 export class OrderListComponent implements OnInit {
-  orders: Order[] = [
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4355, CustomerName: 'SAVORE CUISINE & EVENTS' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4490, CustomerName: 'THE LONELY OYSTER' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4199, CustomerName: 'GOURMET FOOD SOLUTIONS' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4154, CustomerName: 'DE LA NONNA' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4339, CustomerName: 'AMANTE' },
-    { SalesName: 'Merhy', CellNumber: '8184145485', CustomerID: 3679, CustomerName: 'CAROUSEL RESTAURANT' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4484, CustomerName: 'PHORAGE' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 751, CustomerName: 'CHARCOAL RESTAURANT-VENICE' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4253, CustomerName: 'DACSU LLC' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4713, CustomerName: 'FENNEL KITCHEN & BAR' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4681, CustomerName: 'TOPANGA SOCIAL' },
-    { SalesName: 'Merhy', CellNumber: '8184145485', CustomerID: 2030, CustomerName: 'CAROUSEL / NAIRI' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4729, CustomerName: 'MARINA - PASADENA' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4892, CustomerName: 'THE COPPER KEY' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4226, CustomerName: 'RAPPAHANNOCK OYSTER BAR' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4896, CustomerName: 'KAKKOI SUSHI' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4287, CustomerName: 'GO TRUCKS CATERING' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4617, CustomerName: 'ZA ZA ZA' },
-    { SalesName: 'Merhy', CellNumber: '8184145485', CustomerID: 4700, CustomerName: 'BUI SUSHI' },
-    { SalesName: 'Merhy', CellNumber: '8184145485', CustomerID: 907, CustomerName: 'D&K FOODS' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 846, CustomerName: 'REPUBLIQUE BAKERY' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4839, CustomerName: 'SHORT STORIES HOTEL' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4540, CustomerName: 'TRUFFLE BROTHERS' },
-    { SalesName: 'Marcelo', CellNumber: '2132764132', CustomerID: 4985, CustomerName: '21 OCEAN FRONT - NEWPORT BEACH' },
-    { SalesName: 'Marcelo', CellNumber: '2132764132', CustomerID: 4986, CustomerName: '401K SINNERS & SAINTS - VENICE' },
-    { SalesName: 'Marcelo', CellNumber: '2132764132', CustomerID: 5031, CustomerName: 'FRIDA CANTINA - BEVERLY HILLS' },
-    { SalesName: 'Marcelo', CellNumber: '2132764132', CustomerID: 5036, CustomerName: 'GUILLERMOS RESTAURANT - PALM DESERT' },
-    { SalesName: 'Merhy', CellNumber: '8184145485', CustomerID: 3681, CustomerName: 'ALCOVE CAFÉ' },
-    { SalesName: 'Merhy', CellNumber: '8184145485', CustomerID: 4210, CustomerName: 'FAIRMONT MIRAMAR- HOTEL & BUNGALOWS' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4178, CustomerName: 'POKE BAR - DOWNTOWN LA' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4336, CustomerName: 'SALT & OLIVE - GLENDALE' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 3735, CustomerName: 'LA CHA CHA CHA' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4353, CustomerName: 'THE BUTTERED RADISH' },
-    { SalesName: 'John', CellNumber: '2139220173', CustomerID: 4815, CustomerName: 'PHO ALLEY' },
-    // Add more order data here
-  ];
-
-  salespeople: { name: string, cell: string }[] = [];
-  selectedSalesperson: string | null = null; // Initialize with null
+  orders: Order[] = [];
+  salespeople: Salesperson[] = [];
+  selectedSalesperson: string | null = 'John'; // Default to John
   filteredOrders: Order[] = [];
 
+  hardcodedOrders: { customer_id: number, sales_rep_name: string }[] = [
+    { customer_id: 4713, sales_rep_name: 'John' },
+    { customer_id: 2030, sales_rep_name: 'Merhy' },
+    { customer_id: 4287, sales_rep_name: 'John' },
+    { customer_id: 9998, sales_rep_name: 'SalesRep2' },
+    { customer_id: 4154, sales_rep_name: 'John' },
+    { customer_id: 1, sales_rep_name: 'Your Sales Rep Name' },
+    { customer_id: 4226, sales_rep_name: 'John' },
+    { customer_id: 4729, sales_rep_name: 'John' },
+    { customer_id: 4892, sales_rep_name: 'John' },
+    { customer_id: 4896, sales_rep_name: 'John' },
+    { customer_id: 4490, sales_rep_name: 'John' },
+    { customer_id: 4681, sales_rep_name: 'John' },
+    { customer_id: 751, sales_rep_name: 'John' },
+    { customer_id: 4339, sales_rep_name: 'John' },
+    { customer_id: 4484, sales_rep_name: 'John' },
+    { customer_id: 4355, sales_rep_name: 'John' },
+    { customer_id: 4199, sales_rep_name: 'John' },
+    { customer_id: 3679, sales_rep_name: 'Merhy' },
+    { customer_id: 846, sales_rep_name: 'John' },
+    { customer_id: 4253, sales_rep_name: 'John' },
+    { customer_id: 9999, sales_rep_name: 'SalesRep1' }
+  ];
+
+  constructor(private http: HttpClient) {}
+
   ngOnInit(): void {
-    this.salespeople = Array.from(
-      new Map(this.orders.map(order => [order.SalesName, { name: order.SalesName, cell: order.CellNumber }])).values()
+    this.fetchSalespeople();
+  }
+
+  fetchSalespeople(): void {
+    this.http.get<Salesperson[]>('https://uat-pffc.onrender.com/api/sales-reps')
+      .subscribe(data => {
+        this.salespeople = data;
+        this.fetchCustomerNames();
+      }, error => {
+        console.error('Error fetching salespeople:', error);
+      });
+  }
+
+  fetchCustomerNames(): void {
+    const uniqueCustomerIDs = Array.from(new Set(this.hardcodedOrders.map(order => order.customer_id)));
+
+    const customerRequests = uniqueCustomerIDs.map(customer_id =>
+      this.http.get<any>(`https://uat-pffc.onrender.com/api/customers/${customer_id}/profiles`)
+        .pipe(
+          map(customerData => ({
+            customer_id: customerData.customerId,
+            customer_name: customerData.customerName
+          }))
+        )
     );
 
-    this.filteredOrders = this.orders;
-    this.sortFilteredOrders();
+    forkJoin(customerRequests).subscribe(results => {
+      this.orders = this.hardcodedOrders.map(order => {
+        const customer = results.find(result => result.customer_id === order.customer_id);
+        return {
+          SalesName: order.sales_rep_name,
+          CustomerID: order.customer_id,
+          CustomerName: customer ? customer.customer_name : `Customer ${order.customer_id}`
+        };
+      });
+      this.filterOrders(); // Apply filter immediately to show default salesperson's customers
+    }, error => {
+      console.error('Error fetching customer names:', error);
+    });
   }
 
   filterOrders(): void {
     if (this.selectedSalesperson) {
       this.filteredOrders = this.orders.filter(order => order.SalesName === this.selectedSalesperson);
     } else {
-      this.filteredOrders = this.orders;
+      this.filteredOrders = [];
     }
     this.sortFilteredOrders();
   }
@@ -78,7 +106,7 @@ export class OrderListComponent implements OnInit {
   }
 
   getOrderLink(customerID: number): string {
-    return `http://example.com/order/${customerID}`; // Adjust the URL as necessary
+    return `https://lb-advisors.github.io/uat-angular/order-form?customerID=${customerID}`;
   }
 
   copyLink(link: string): void {
