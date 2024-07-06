@@ -1,8 +1,5 @@
 <div class="container">
-  <div class="image-container">
-    <img src="assets/logo.png" alt="Golden State Sea Food Logo">
-  </div>
-  <h2>Place Order</h2>
+  <h2 class="page-title">Place Order</h2>
   <div class="customer-id-input">
     <label for="customer-id">Customer ID:</label>
     <input id="customer-id" type="text" [(ngModel)]="customerId" placeholder="Enter customer ID" />
@@ -11,17 +8,17 @@
   <div class="customer-info" *ngIf="orderData.customer_name">
     <div>
       <label for="customer-name">Customer Name:</label>
-      <span id="customer-name">{{ orderData.customer_name }}</span>
+      <span id="customer-name" class="info">{{ orderData.customer_name }}</span>
     </div>
     <div>
       <label for="sales-rep">&nbsp;&nbsp;Sales Rep:</label>
-      <span id="sales-rep">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
+      <span id="sales-rep" class="info">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
     </div>
   </div>
 
   <!-- Specials Grid -->
   <div *ngIf="specialsProducts && specialsProducts.length > 0">
-    <h3>Specials</h3>
+    <h3 class="grid-title">Specials</h3>
     <table class="order-grid">
       <thead>
         <tr>
@@ -55,6 +52,7 @@
 
   <!-- Normal Grid -->
   <div *ngIf="orders && orders.length > 0">
+    <h3 class="grid-title">Products</h3>
     <div class="error-message" style="color: red;">
       We already have an order for you submitted today. Please contact your sales rep if you like to change this order.
     </div>
@@ -100,6 +98,7 @@
   </div>
 
   <form *ngIf="orders && orders.length === 0" #orderForm="ngForm" (ngSubmit)="submitOrder(orderForm)">
+    <h3 class="grid-title">Products</h3>
     <table class="order-grid">
       <thead>
         <tr>
@@ -131,7 +130,6 @@
     </table>
     <div class="total">Total: <span id="total-amount">$0.00</span></div>
     <input type="hidden" name="total_price" id="total_price" value="0.00" [(ngModel)]="orderData.total_price">
-
     <div class="delivery-date">
       <label for="delivery-date">Delivery Date:</label>
       <input type="date" id="delivery-date" class="calendar" name="delivery_date" [(ngModel)]="deliveryDate" required>
@@ -150,3 +148,4 @@
     <input type="hidden" name="customer_id" [value]="orderData.customer_id" [(ngModel)]="orderData.customer_id">
   </form>
 </div>
+
