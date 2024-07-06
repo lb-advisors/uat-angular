@@ -34,4 +34,19 @@ export class InventoryService {
       })
     );
   }
+
+  searchInventoryItems(query: string, page: number = 0, size: number = 50): Observable<InventoryItem[]> {
+    let params = new HttpParams()
+      .set('page', page.toString())
+      .set('size', size.toString())
+      .set('search', query);
+
+    return this.http.get<{ content: InventoryItem[] }>(`${this.apiUrl}/inventory`, { params }).pipe(
+      map(response => response.content),
+      catchError((error) => {
+        console.error('Error searching inventory items:', error);
+        return throwError(() => new Error('Error searching inventory items'));
+      })
+    );
+  }
 }

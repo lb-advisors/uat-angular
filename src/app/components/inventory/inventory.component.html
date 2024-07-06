@@ -2,12 +2,7 @@
     <div class="container">
         <h2 class="inventory-title">Inventory</h2>
         <div class="filters">
-            <input type="text" [(ngModel)]="filters.ItemID" placeholder="Filter by Item ID" (ngModelChange)="applyFilters()">
-            <input type="text" [(ngModel)]="filters.Product" placeholder="Filter by Product" (ngModelChange)="applyFilters()">
-            <input type="text" [(ngModel)]="filters.UnitType" placeholder="Filter by Units" (ngModelChange)="applyFilters()">
-            <input type="text" [(ngModel)]="filters.PackSize" placeholder="Filter by Pack Size" (ngModelChange)="applyFilters()">
-            <input type="text" [(ngModel)]="filters.Price" placeholder="Filter by Price" (ngModelChange)="applyFilters()">
-            <input type="text" [(ngModel)]="filters.WOH" placeholder="Filter by WOH" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Search Inventory" (ngModelChange)="applyFilters()">
         </div>
         <table class="inventory-grid">
             <thead>

@@ -18,16 +18,7 @@ interface InventoryItem {
   styleUrls: ['./inventory.component.css']
 })
 export class InventoryComponent implements OnInit {
-  filters = {
-    ItemID: '',
-    Product: '',
-    UnitType: '',
-    PackSize: '',
-    Price: '',
-    WOH: ''
-  };
-
-  allInventoryItems: InventoryItem[] = [];
+  searchQuery: string = '';
   displayedInventoryItems$: BehaviorSubject<InventoryItem[]> = new BehaviorSubject<InventoryItem[]>([]);
   isLoading = false;
 
@@ -42,22 +33,20 @@ export class InventoryComponent implements OnInit {
     this.inventoryService.getInventoryItems()
       .pipe(
         tap(items => {
-          this.allInventoryItems = items.sort((a, b) => a.id - b.id); // Sort items by ID in ascending order
-          this.displayedInventoryItems$.next(this.allInventoryItems); // Display all items initially
+          this.displayedInventoryItems$.next(items); // Display all items initially
           this.isLoading = false;
         })
       ).subscribe();
   }
 
   applyFilters(): void {
-    const filteredItems = this.allInventoryItems.filter(item => 
-      (!this.filters.ItemID || item.id.toString().includes(this.filters.ItemID)) &&
-      (!this.filters.Product || item.compDescription.toLowerCase().includes(this.filters.Product.toLowerCase())) &&
-      (!this.filters.UnitType || item.unitType.toLowerCase().includes(this.filters.UnitType.toLowerCase())) &&
-      (!this.filters.PackSize || item.packSize.toString().includes(this.filters.PackSize)) &&
-      (!this.filters.Price || item.activePrice.toString().includes(this.filters.Price)) &&
-      (!this.filters.WOH || (item.woh !== null && item.woh.toString().includes(this.filters.WOH)))
-    );
-    this.displayedInventoryItems$.next(filteredItems);
+    this.isLoading = true;
+    this.inventoryService.searchInventoryItems(this.searchQuery)
+      .pipe(
+        tap(items => {
+          this.displayedInventoryItems$.next(items);
+          this.isLoading = false;
+        })
+      ).subscribe();
   }
 }
