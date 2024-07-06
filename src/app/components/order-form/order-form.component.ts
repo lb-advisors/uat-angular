@@ -197,7 +197,7 @@ export class OrderFormComponent implements OnInit {
     return {
       customerId: this.customerId,
       deliveryDate: this.deliveryDate,
-      shipToId: 0, // Update this if you have a specific shipToId
+      shipToId: 0, // Ensure you have a valid shipToId here
       totalPrice: totalPrice,
       orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
         profileDid: product.profileDid, // Ensure profileDid is part of the Profile model
