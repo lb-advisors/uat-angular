@@ -2,7 +2,7 @@
     <div class="container">
         <h2 class="inventory-title">Inventory</h2>
         <div class="filters">
-            <input type="text" [(ngModel)]="searchQuery" placeholder="Search Inventory" (ngModelChange)="applyFilters()">
+            <input type="text" [(ngModel)]="searchQuery" placeholder="Search Inventory" (ngModelChange)="onSearchChange($event)">
         </div>
         <table class="inventory-grid">
             <thead>

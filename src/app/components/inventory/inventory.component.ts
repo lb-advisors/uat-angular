@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { InventoryService } from '../../services/inventory.service';
-import { BehaviorSubject } from 'rxjs';
-import { tap } from 'rxjs/operators';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { tap, debounceTime, switchMap } from 'rxjs/operators';
 
 interface InventoryItem {
   id: number;
@@ -19,6 +19,7 @@ interface InventoryItem {
 })
 export class InventoryComponent implements OnInit {
   searchQuery: string = '';
+  searchSubject: Subject<string> = new Subject<string>();
   displayedInventoryItems$: BehaviorSubject<InventoryItem[]> = new BehaviorSubject<InventoryItem[]>([]);
   isLoading = false;
 
@@ -26,6 +27,7 @@ export class InventoryComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadAllData();
+    this.setupSearchSubscription();
   }
 
   loadAllData(): void {
@@ -39,14 +41,22 @@ export class InventoryComponent implements OnInit {
       ).subscribe();
   }
 
-  applyFilters(): void {
-    this.isLoading = true;
-    this.inventoryService.searchInventoryItems(this.searchQuery)
-      .pipe(
-        tap(items => {
-          this.displayedInventoryItems$.next(items);
-          this.isLoading = false;
-        })
-      ).subscribe();
+  setupSearchSubscription(): void {
+    this.searchSubject.pipe(
+      debounceTime(100), // Wait for 100ms pause in events
+      switchMap(query => {
+        this.isLoading = true;
+        return this.inventoryService.searchInventoryItems(query).pipe(
+          tap(items => {
+            this.displayedInventoryItems$.next(items);
+            this.isLoading = false;
+          })
+        );
+      })
+    ).subscribe();
+  }
+
+  onSearchChange(query: string): void {
+    this.searchSubject.next(query);
   }
 }
