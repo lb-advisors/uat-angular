@@ -24,7 +24,9 @@ export class OrderFormService {
     let total = 0;
     products.forEach(product => {
       const quantity = product.quantity !== undefined ? parseFloat(product.quantity.toString()) : 0;
-      const lineTotal = quantity * product.packSizePd * product.salesPrice;
+      const price = product.salesPrice !== undefined ? parseFloat(product.salesPrice.toString()) : 0;
+      const packSize = product.packSizePd !== undefined ? parseFloat(product.packSizePd.toString()) : 1;
+      const lineTotal = quantity * packSize * price;
       total += lineTotal;
     });
 
