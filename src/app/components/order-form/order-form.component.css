@@ -3,25 +3,8 @@ body {
     margin: 0;
     padding: 0;
     display: flex;
-    justify-content: center;
-    background-color: #f0f0f0; /* Light grey background for the body */
-    color: #000000; /* Black text color */
-}
-
-.driver-routes-title {
-    font-size: 30px; /* Set font size to 30px */
-    text-decoration: underline; /* Underline the text */
-    margin-top: 0; /* Adjust margin to reduce white space if needed */
-}
-
-.main-container {
-    display: flex;
-    width: 100%;
-}
-
-.content {
-    flex-grow: 1;
-    padding: 20px;
+    flex-direction: column;
+    align-items: center;
 }
 
 .container {
@@ -29,17 +12,14 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff; /* White background for the container */
-    color: #000000; /* Black text color for the container */
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
 }
 
 .image-container {
     width: 97.3%;
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
+    background-color: rgba(0, 16, 46, 1);
     padding: 10px;
     border-radius: 8px;
     display: flex;
@@ -47,71 +27,157 @@ body {
     align-items: center;
 }
 
-.image-container img {
+img {
     max-width: 100%;
-    height: 100px; /* Adjust the logo size as needed */
+    height: 100px;
     border-radius: 8px;
 }
 
-.inventory-title {
+.specials_grid td {
+    background-color: #DAF2D0;
+}
+
+.shipto-container {
+    margin-bottom: 20px; /* Add space between dropdown and grid */
+}
+
+.custom-dropdown {
+    font-size: 16px; /* Change this to your desired font size */
+}
+
+h2 {
+    text-align: center;
     margin-top: 20px;
-    font-size: 30px; /* Make the text a little bigger */
-    text-decoration: underline; /* Underline the text */
 }
 
-.filters {
-    margin: 20px 0;
+.customer-info {
     display: flex;
-    justify-content: center; /* Center the filter section */
-    gap: 10px; /* Adds white space between each filter */
+    justify-content: space-between;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.customer-info div {
+    flex: 1 1 48%;
+    display: flex;
     align-items: center;
-    font-size: 18px; /* Increase font size */
 }
 
-.filters label, .filters select {
-    font-size: 18px; /* Increase font size */
+.customer-info div label {
+    font-weight: bold;
+    margin-right: 5px;
 }
 
-.filters select {
-    padding: 5px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-}
-
-.inventory-grid, .driver-routes-grid {
+.order-grid {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
+    table-layout: fixed; /* Fixed table layout */
 }
 
-.inventory-grid th, .inventory-grid td,
-.driver-routes-grid th, .driver-routes-grid td {
+.order-grid th,
+.order-grid td {
+    border: 1px solid #ccc;
     padding: 8px;
-    text-align: center; /* Center the text in headers and cells */
-    border-bottom: 1px solid #ccc; /* Horizontal lines */
+    text-align: center;
+    word-wrap: break-word; /* Ensure content wraps */
 }
 
-.inventory-grid th,
-.driver-routes-grid th {
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background for table headers */
-    color: #ffffff; /* White text color for table headers */
-    font-weight: bold; /* Bold font for headers */
+.order-grid th {
+    background-color: #f9f9f9;
 }
 
-.driver-routes-grid td.wrap {
-    white-space: normal;
-    word-wrap: break-word;
+/* Set specific column widths */
+.order-grid th:nth-child(1),
+.order-grid td:nth-child(1) {
+    width: 65%; /* Description */
 }
 
-.arrived {
-    background-color: #EEEDEB;
+.order-grid th:nth-child(2),
+.order-grid td:nth-child(2),
+.order-grid th:nth-child(3),
+.order-grid td:nth-child(3),
+.order-grid th:nth-child(4),
+.order-grid td:nth-child(4),
+.order-grid th:nth-child(5),
+.order-grid td:nth-child(5),
+.order-grid th:nth-child(6),
+.order-grid td:nth-child(6) {
+    width: 25%; /* Other columns */
+}
+
+.order-grid td input[type="number"] {
+    width: 70px;
+}
+
+.total {
+    font-weight: bold;
+    text-align: right;
+    margin-bottom: 20px;
+}
+
+.delivery-date {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.delivery-date label {
+    margin-right: 10px;
     font-weight: bold;
 }
 
+.delivery-date input[type="date"],
+.delivery-date input[type="text"] {
+    margin-right: 20px;
+    flex: 1;
+}
+
+.submit-btn {
+    width: 100%;
+    font-size: large;
+}
+
+.input_quantity {
+    width: 70px;
+}
+
+.totalCol {
+    width: 80px;
+}
+
+.calendar {
+    font-size: larger;
+}
+
 @media (max-width: 600px) {
-    .inventory-grid th, .inventory-grid td,
-    .driver-routes-grid th, .driver-routes-grid td {
+    .customer-info div {
+        flex: 1 1 100%;
+        margin-bottom: 10px;
+    }
+
+    .order-grid th,
+    .order-grid td {
         font-size: 14px;
+        word-wrap: break-word;
+    }
+
+    .delivery-date {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .delivery-date label {
+        margin-bottom: 5px;
+    }
+
+    .delivery-date input[type="date"],
+    .delivery-date input[type="text"] {
+        margin-right: 0;
+        margin-bottom: 10px;
+        width: 100%;
     }
 
     .container {
@@ -119,17 +185,15 @@ body {
         margin: 5px;
     }
 
-    .filters {
-        flex-direction: column;
-    }
-
-    .filters label, .filters select {
+    /* Adjust the width of the quantity input for smaller screens */
+    .order-grid td input[type="number"],
+    .input_quantity {
         width: 100%;
-        margin-bottom: 10px;
     }
 }
 
-/* Underlined text for Driver Routes */
-.underlined {
-    text-decoration: underline;
+/* Additional styles for bold and lighter grey background */
+.order-grid tr.bold-row {
+    font-weight: bold;
+    background-color: #dedede;
 }
