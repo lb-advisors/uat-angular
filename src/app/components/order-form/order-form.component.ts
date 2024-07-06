@@ -32,6 +32,7 @@ export class OrderFormComponent implements OnInit {
           sales_rep: data.salesRepName,
           sales_rep_phone: data.salesRepPhone,
           customer_email: data.customerEmail,
+          customer_id: this.customerId,
           deliveryDate: this.deliveryDate,
           customerPo: this.customerPo
         };
