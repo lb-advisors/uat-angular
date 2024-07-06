@@ -186,3 +186,19 @@ body {
     font-weight: bold;
     background-color: #dedede;
 }
+
+
+
+/* Styles specific to the specials grid */
+.specials-grid td {
+	background-color: #DAF2D0;
+}
+
+
+
+/* Styles for the product grid headers */
+.order-grid th {
+	background-color: rgba(0, 16, 46, 1);
+	color: white;
+	font-weight: bold;
+}
