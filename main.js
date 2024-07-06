@@ -1784,7 +1784,7 @@ class OrderFormComponent {
         };
         this.products = data.profiles.map(profile => ({
           ...profile,
-          quantity: 0
+          quantity: profile.quantity || 0
         })) || [];
         this.orders = data.orders || [];
         this.updateTotal(); // Initialize the total
@@ -1800,7 +1800,7 @@ class OrderFormComponent {
     this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
       this.specialsProducts = data.profiles.map(profile => ({
         ...profile,
-        quantity: 0
+        quantity: profile.quantity || 0
       })) || [];
       this.updateTotal(); // Initialize the total for specials
     }, error => {
@@ -1861,7 +1861,7 @@ class OrderFormComponent {
     totalPriceInput.value = total.toFixed(2);
   }
   submitOrder(form) {
-    const errorMessage = this.validateForm(form);
+    const errorMessage = this.validateForm();
     if (errorMessage) {
       this.displayErrorMessage(errorMessage);
       return;
@@ -1884,14 +1884,14 @@ class OrderFormComponent {
     const customerIdNumber = Number(customerId);
     return !isNaN(customerIdNumber) && customerId.trim() !== '';
   }
-  validateForm(form) {
+  validateForm() {
     const today = new Date();
     today.setHours(0, 0, 0, 0);
+    if (!this.deliveryDate) {
+      return 'Please select a delivery date';
+    }
     const deliveryDate = new Date(this.deliveryDate);
     deliveryDate.setHours(0, 0, 0, 0);
-    if (!form.valid) {
-      return 'Please fill out the form correctly.';
-    }
     if (deliveryDate < today) {
       return 'Please select a date which is not in the past.';
     }
@@ -1907,8 +1907,9 @@ class OrderFormComponent {
       // 0 means Sunday
       return 'We are closed on Sundays.';
     }
-    if (!this.orderFormService.hasValidQuantities(this.products.concat(this.specialsProducts))) {
-      return 'Please put in a quantity to submit your order.';
+    const hasQuantity = this.products.concat(this.specialsProducts).some(product => product.quantity && product.quantity > 0);
+    if (!hasQuantity) {
+      return 'Please select a quantity which is not 0';
     }
     const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
     if (totalPrice > 10000) {
