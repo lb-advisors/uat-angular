@@ -1306,6 +1306,7 @@ function OrderFormComponent_div_12_tr_19_Template(rf, ctx) {
   if (rf & 2) {
     const product_r5 = ctx.$implicit;
     const i_r6 = ctx.index;
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("data-special", true)("data-index", i_r6);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](product_r5.profileDescription);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
@@ -1323,15 +1324,15 @@ function OrderFormComponent_div_12_tr_19_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", product_r5.packSizePd)("ngModel", product_r5.packSizePd);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("name", "price_special_", i_r6, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](9, 21, product_r5.salesPrice, "1.2-2"))("ngModel", product_r5.salesPrice);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](9, 23, product_r5.salesPrice, "1.2-2"))("ngModel", product_r5.salesPrice);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](product_r5.unitTypePd);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](product_r5.packSizePd);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](16, 24, product_r5.salesPrice, "1.2-2"), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](16, 26, product_r5.salesPrice, "1.2-2"), "");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](19, 27, (product_r5.quantity || 0) * product_r5.packSizePd * product_r5.salesPrice, "1.2-2"), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](19, 29, (product_r5.quantity || 0) * product_r5.packSizePd * product_r5.salesPrice, "1.2-2"), "");
   }
 }
 function OrderFormComponent_div_12_Template(rf, ctx) {
@@ -1358,7 +1359,7 @@ function OrderFormComponent_div_12_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17, "Total");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "tbody");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](19, OrderFormComponent_div_12_tr_19_Template, 20, 30, "tr", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](19, OrderFormComponent_div_12_tr_19_Template, 20, 32, "tr", 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
@@ -1580,6 +1581,7 @@ function OrderFormComponent_form_14_tr_18_Template(rf, ctx) {
   if (rf & 2) {
     const product_r21 = ctx.$implicit;
     const i_r22 = ctx.index;
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵattribute"]("data-index", i_r22);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](product_r21.profileDescription);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
@@ -1597,15 +1599,15 @@ function OrderFormComponent_form_14_tr_18_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", product_r21.packSizePd)("ngModel", product_r21.packSizePd);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpropertyInterpolate1"]("name", "price_", i_r22, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](9, 21, product_r21.salesPrice, "1.2-2"))("ngModel", product_r21.salesPrice);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("value", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](9, 22, product_r21.salesPrice, "1.2-2"))("ngModel", product_r21.salesPrice);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](product_r21.unitTypePd);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate"](product_r21.packSizePd);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](16, 24, product_r21.salesPrice, "1.2-2"), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](16, 25, product_r21.salesPrice, "1.2-2"), "");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](19, 27, (product_r21.quantity || 0) * product_r21.packSizePd * product_r21.salesPrice, "1.2-2"), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"]("$", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind2"](19, 28, (product_r21.quantity || 0) * product_r21.packSizePd * product_r21.salesPrice, "1.2-2"), "");
   }
 }
 function OrderFormComponent_form_14_Template(rf, ctx) {
@@ -1637,7 +1639,7 @@ function OrderFormComponent_form_14_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, "Total");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "tbody");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](18, OrderFormComponent_form_14_tr_18_Template, 20, 30, "tr", 18);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](18, OrderFormComponent_form_14_tr_18_Template, 20, 31, "tr", 18);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "div", 25);
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](20, "Total: ");
@@ -1759,7 +1761,10 @@ class OrderFormComponent {
     this.customerPo = '';
     this.customerId = '';
   }
-  ngOnInit() {}
+  ngOnInit() {
+    // Fetch specials data on initialization
+    this.fetchSpecialsData();
+  }
   fetchCustomerData() {
     if (this.isValidCustomerId(this.customerId)) {
       this.orderFormService.fetchCustomerData(this.customerId).subscribe(data => {
@@ -1769,28 +1774,12 @@ class OrderFormComponent {
           sales_rep_phone: data.salesRepPhone,
           customer_email: data.customerEmail,
           deliveryDate: this.deliveryDate,
-          customerPo: this.customerPo // Initialize customerPo
+          customerPo: this.customerPo
         };
-
-        this.products = [];
-        this.specialsProducts = [];
-        data.profiles.forEach(profile => {
-          if (profile.customer_id === 1) {
-            this.specialsProducts.push({
-              ...profile,
-              quantity: 0,
-              deliveryDate: this.deliveryDate,
-              customerPo: this.customerPo
-            });
-          } else {
-            this.products.push({
-              ...profile,
-              quantity: 0,
-              deliveryDate: this.deliveryDate,
-              customerPo: this.customerPo
-            });
-          }
-        });
+        this.products = data.profiles.map(profile => ({
+          ...profile,
+          quantity: 0
+        })) || [];
         this.orders = data.orders || [];
         this.updateTotal(); // Initialize the total
       }, error => {
@@ -1799,6 +1788,18 @@ class OrderFormComponent {
     } else {
       console.error('Invalid customer ID:', this.customerId);
     }
+  }
+  fetchSpecialsData() {
+    const specialsCustomerId = '1'; // ID for specials
+    this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
+      this.specialsProducts = data.profiles.map(profile => ({
+        ...profile,
+        quantity: 0
+      })) || [];
+      this.updateTotal(); // Initialize the total for specials
+    }, error => {
+      console.error('Error fetching specials data:', error);
+    });
   }
   goBack() {
     window.history.back();
