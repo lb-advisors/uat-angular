@@ -21,7 +21,11 @@ interface Salesperson {
 export class OrderListComponent implements OnInit {
   orders: Order[] = [];
   salespeople: Salesperson[] = [];
+  companies: string[] = ['PFF', 'FOG-RIVER'];
+  selectedCompany: string = 'PFF'; // Default to PFF
   selectedSalesperson: string | null = 'John'; // Default to John
+  customerSearch: string = ''; // Search term for customer names
+  filteredSalespeople: Salesperson[] = [];
   filteredOrders: Order[] = [];
 
   hardcodedOrders: { customer_id: number, sales_rep_name: string }[] = [
@@ -48,6 +52,11 @@ export class OrderListComponent implements OnInit {
     { customer_id: 9999, sales_rep_name: 'SalesRep1' }
   ];
 
+  companySalesRepMapping: { [key: string]: string[] } = {
+    'PFF': ['Merhy', 'John'],
+    'FOG-RIVER': ['SalesRep1', 'SalesRep2']
+  };
+
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
@@ -58,6 +67,7 @@ export class OrderListComponent implements OnInit {
     this.http.get<Salesperson[]>('https://uat-pffc.onrender.com/api/sales-reps')
       .subscribe(data => {
         this.salespeople = data;
+        this.filterSalesReps();
         this.fetchCustomerNames();
       }, error => {
         console.error('Error fetching salespeople:', error);
@@ -92,12 +102,24 @@ export class OrderListComponent implements OnInit {
     });
   }
 
-  filterOrders(): void {
-    if (this.selectedSalesperson) {
-      this.filteredOrders = this.orders.filter(order => order.SalesName === this.selectedSalesperson);
-    } else {
-      this.filteredOrders = [];
+  filterSalesReps(): void {
+    this.filteredSalespeople = this.salespeople.filter(salesperson =>
+      this.companySalesRepMapping[this.selectedCompany].includes(salesperson.name)
+    );
+    if (!this.filteredSalespeople.find(salesperson => salesperson.name === this.selectedSalesperson)) {
+      this.selectedSalesperson = this.filteredSalespeople.length > 0 ? this.filteredSalespeople[0].name : null;
     }
+    this.filterOrders();
+  }
+
+  filterOrders(): void {
+    let filtered = this.orders.filter(order => order.SalesName === this.selectedSalesperson);
+    if (this.customerSearch) {
+      filtered = filtered.filter(order =>
+        order.CustomerName.toLowerCase().includes(this.customerSearch.toLowerCase())
+      );
+    }
+    this.filteredOrders = filtered;
     this.sortFilteredOrders();
   }
 

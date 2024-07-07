@@ -2,10 +2,17 @@
   <h2 class="underlined">Customers</h2>
 
   <div class="filters">
+    <label for="company-filter" class="filter-label">Company:</label>
+    <select id="company-filter" [(ngModel)]="selectedCompany" (change)="filterSalesReps()">
+      <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
+    </select>
+
     <label for="salesname-filter" class="filter-label">Salesperson:</label>
     <select id="salesname-filter" [(ngModel)]="selectedSalesperson" (change)="filterOrders()">
-      <option *ngFor="let salesperson of salespeople" [value]="salesperson.name">{{ salesperson.name }}</option>
+      <option *ngFor="let salesperson of filteredSalespeople" [value]="salesperson.name">{{ salesperson.name }}</option>
     </select>
+
+    <input type="text" id="customer-search" placeholder="Search Customer" [(ngModel)]="customerSearch" (input)="filterOrders()"/>
   </div>
 
   <table class="order-grid">
