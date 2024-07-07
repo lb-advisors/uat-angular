@@ -65,16 +65,25 @@ body {
     gap: 10px; /* Adds white space between each filter */
     align-items: center;
     font-size: 18px; /* Increase font size */
+    position: relative; /* Add positioning for delivery date alignment */
 }
 
-.filters label, .filters select {
-    font-size: 18px; /* Increase font size */
+.filters label, .filters select, .filters input {
+    font-size: 18px; /* Increase font size to match the driver name */
 }
 
 .filters select {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
+}
+
+.filters input {
+    border: none;
+    background: none;
+    font-size: 18px; /* Match font size of other elements */
+    position: absolute;
+    right: 0; /* Align to the right */
 }
 
 .driver-routes-grid {
@@ -86,13 +95,18 @@ body {
 .driver-routes-grid th, .driver-routes-grid td {
     padding: 8px;
     text-align: center; /* Center the text in headers and cells */
-    border-bottom: 1px solid #ccc; /* Horizontal lines */
+    border-bottom: 1px solid #000; /* Black horizontal lines */
 }
 
 .driver-routes-grid th {
-    background-color: #d3d3d3; /* Light grey background for table headers */
-    color: #333; /* Dark grey text color for table headers */
+    background-color: #4f4f4f; /* Slightly lighter dark grey background for table headers */
+    color: #fff; /* White text color for table headers */
     font-weight: bold; /* Bold font for headers */
+}
+
+.driver-routes-grid th.wrap {
+    white-space: normal;
+    word-wrap: break-word;
 }
 
 .driver-routes-grid td.wrap {
@@ -119,9 +133,10 @@ body {
         flex-direction: column;
     }
 
-    .filters label, .filters select {
+    .filters label, .filters select, .filters input {
         width: 100%;
         margin-bottom: 10px;
+        position: static; /* Reset positioning for mobile */
     }
 }
 
