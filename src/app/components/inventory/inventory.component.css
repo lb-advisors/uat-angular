@@ -47,7 +47,7 @@ body {
     border-radius: 8px;
 }
 
-.prices-title {
+.inventory-title {
     margin-top: 20px; /* Add some margin above the title */
     font-size: 30px; /* Make the text a little bigger */
     text-decoration: none; /* Remove the underline */

@@ -50,10 +50,10 @@ mat-icon {
 .header {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: center; /* Center the nav links */
     background-color: #ffffff !important; /* White background */
     width: 100%;
-    padding: 10px 0; /* Add some padding to the header */
+    padding: 5px 0; /* Reduce padding to make the nav bar less tall */
 }
 
 mat-toolbar {
@@ -66,15 +66,25 @@ mat-toolbar {
     text-align: center;
 }
 
-.nav-links {
+.nav-links-center {
     display: flex;
-    justify-content: center;
+    justify-content: center; /* Center the links horizontally */
+    align-items: center; /* Center the links vertically */
     width: 100%;
 }
 
 .gs-logo {
-    height: 50px; /* Adjust as needed */
-    margin-left: auto; /* Push to the right end */
+    height: 50px; /* Increase the size */
+}
+
+.gs-logo-link {
+    position: absolute;
+    right: 10px;
+}
+
+.underline {
+    border-bottom: 2px solid black; /* Thinner black line underlining the nav bar */
+    margin-bottom: 0; /* Reduce space between the nav bar and the page below */
 }
 
 mat-sidenav-container {

@@ -41,9 +41,9 @@ const routes: Routes = [
     title: 'Logout',
   },
   {
-    path: 'prices',
+    path: 'inventory',
     component: InventoryComponent,
-    title: 'Prices',
+    title: 'Inventory',
   },
   { 
     path: 'order-form',

@@ -1,26 +1,24 @@
 <mat-toolbar color="primary" class="header">
-    <nav class="nav-links">
-        <a mat-button routerLink="/home" routerLinkActive="active-link" class="home-link" style="display: none;">
-            <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
-        </a>
-        <a mat-button routerLink="/prices" routerLinkActive="active-link">
+    <div class="nav-links-center">
+        <a mat-button routerLink="/inventory" routerLinkActive="active-link">
             <mat-icon>inventory</mat-icon>
-            Prices
-        </a>
-        <a mat-button routerLink="/driver" routerLinkActive="active-link">
-            <mat-icon>directions_car</mat-icon>
-            Routes
+            Inventory
         </a>
         <a mat-button routerLink="/order" routerLinkActive="active-link">
-            <mat-icon>receipt</mat-icon>
+            <mat-icon>description</mat-icon> <!-- Change the icon to match Order Form -->
             Order
         </a>
-    </nav>
-    <div class="spacer"></div>
+        <a mat-button routerLink="/driver" routerLinkActive="active-link">
+            <mat-icon>local_shipping</mat-icon> <!-- Truck profile view icon facing the other direction -->
+            Routes
+        </a>
+    </div>
     <a routerLink="/home" class="gs-logo-link">
         <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
     </a>
 </mat-toolbar>
+
+<div class="underline"></div> <!-- Thinner black line underlining the nav bar -->
 
 <main>
     <router-outlet></router-outlet>
