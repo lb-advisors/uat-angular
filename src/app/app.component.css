@@ -75,6 +75,7 @@ mat-toolbar {
 
 .gs-logo {
     height: 50px; /* Increase the size */
+    border-radius: 20%;
 }
 
 .gs-logo-link {
@@ -96,4 +97,5 @@ mat-sidenav-container {
     width: 24px;
     height: 24px;
     margin-right: 5px; /* Space between icon and text */
+    
 }

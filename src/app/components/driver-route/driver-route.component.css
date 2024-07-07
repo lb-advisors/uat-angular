@@ -42,14 +42,13 @@ body {
 }
 
 .image-container {
-    width: 97%;
+    width: 97.3%;
     background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
     padding: 10px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px; /* Add space below the image */
 }
 
 .image-container img {
@@ -61,33 +60,35 @@ body {
 .filters {
     margin: 20px 0;
     display: flex;
-    justify-content: space-between; /* Space out the filter sections */
+    justify-content: space-between; /* Space between for filters */
     align-items: center;
     font-size: 18px; /* Increase font size */
-    position: relative; /* Add positioning for delivery date alignment */
-}
-
-.filters .driver-filter,
-.filters .delivery-date-filter {
-    display: flex;
-    align-items: center;
-    gap: 10px; /* Add gap between label and select/input */
 }
 
 .filters .driver-filter {
-    justify-content: flex-start; /* Align driver filter to the left */
+    display: flex;
+    align-items: center;
 }
 
 .filters .delivery-date-filter {
-    justify-content: flex-end; /* Align delivery date filter to the right */
+    display: flex;
+    align-items: center;
+}
+
+.filters label {
+    margin-right: 5px; /* Space between label and select/input */
 }
 
 .filters select,
 .filters input {
+    font-size: 18px; /* Match font size */
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    font-size: 18px; /* Match font size of other elements */
+}
+
+.filters input {
+    width: auto; /* Adjust the width of the input */
 }
 
 .driver-routes-grid {
@@ -103,14 +104,9 @@ body {
 }
 
 .driver-routes-grid th {
-    background-color: #4f4f4f; /* Slightly lighter dark grey background for table headers */
-    color: #fff; /* White text color for table headers */
+    background-color: #5A5A5A; /* Slightly lighter dark grey */
+    color: #ffffff; /* White text color for table headers */
     font-weight: bold; /* Bold font for headers */
-}
-
-.driver-routes-grid th.wrap {
-    white-space: normal;
-    word-wrap: break-word;
 }
 
 .driver-routes-grid td.wrap {
@@ -137,10 +133,9 @@ body {
         flex-direction: column;
     }
 
-    .filters label, .filters select, .filters input {
+    .filters .driver-filter, .filters .delivery-date-filter {
         width: 100%;
         margin-bottom: 10px;
-        position: static; /* Reset positioning for mobile */
     }
 }
 

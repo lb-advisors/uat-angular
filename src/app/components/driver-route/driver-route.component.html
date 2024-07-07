@@ -6,13 +6,17 @@
   <h2 class="driver-routes-title">Driver Routes</h2>
 
   <div class="filters">
-    <label for="driver-name">Driver Name:</label>
-    <select id="driver-name" [(ngModel)]="selectedDriverName" (ngModelChange)="refreshDeliverRoute(selectedDriverName, deliveryDate)">
-      <option *ngFor="let name of (driverNames$ | async)" [value]="name">{{name}}</option>
-    </select>
+    <div class="driver-filter">
+      <label for="driver-name">Driver Name:</label>
+      <select id="driver-name" [(ngModel)]="selectedDriverName" (ngModelChange)="refreshDeliverRoute(selectedDriverName, deliveryDate)">
+        <option *ngFor="let name of (driverNames$ | async)" [value]="name">{{name}}</option>
+      </select>
+    </div>
 
-    <label for="delivery-date">Delivery Date:</label>
-    <input type="text" id="delivery-date" [value]="deliveryDate" readonly>
+    <div class="delivery-date-filter">
+      <label for="delivery-date">Delivery Date:</label>
+      <input type="text" id="delivery-date" [value]="deliveryDate" readonly>
+    </div>
   </div>
 
   <table mat-table *ngIf="deliveryRoute$ | async as dataSource" [dataSource]="dataSource" class="mat-elevation-z8 driver-routes-grid" matSort>
