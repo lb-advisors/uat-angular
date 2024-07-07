@@ -21,6 +21,9 @@ jobs:
         with:
           node-version: "20" # Use the Node.js version your project requires
 
+      - name: clean
+        run: npm cache clean --force
+
       - name: Install dependencies
         run: npm install
 
