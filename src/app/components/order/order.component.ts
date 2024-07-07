@@ -118,7 +118,7 @@ export class OrderListComponent implements OnInit {
   updateImageAndBackground(): void {
     if (this.selectedCompany === 'FOG-RIVER') {
       this.imageSrc = 'assets/fogriver.png';
-      this.imageBackgroundColor = '#FFFFFF'; // White background
+      this.imageBackgroundColor = '#000000'; // Black background
     } else if (this.selectedCompany === 'PFF') {
       this.imageSrc = 'assets/logo.png';
       this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background

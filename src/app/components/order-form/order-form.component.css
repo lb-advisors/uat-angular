@@ -214,6 +214,6 @@ body {
 
 .image-container img {
     max-width: 100%;
-    height: auto;
+    height: 100px; /* Adjust height to match the order page */
     border-radius: 8px;
 }
