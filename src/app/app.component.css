@@ -75,7 +75,7 @@ mat-toolbar {
 
 .gs-logo {
     height: 50px; /* Increase the size */
-    border-radius: 20%;
+    border-radius: 10%;
 }
 
 .gs-logo-link {

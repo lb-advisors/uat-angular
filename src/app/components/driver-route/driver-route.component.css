@@ -89,6 +89,7 @@ body {
 
 .filters input {
     width: auto; /* Adjust the width of the input */
+    min-width: 80px; /* Minimum width for the delivery date input */
 }
 
 .driver-routes-grid {
@@ -165,4 +166,9 @@ body {
     color: darkgreen;
     font-weight: bold;
     margin-left: 5px;
+}
+
+#delivery-date {
+    width: 120px; /* Ensures the width is only as wide as the content */
+    text-align: center; /* Centers the text inside the text box */
 }
