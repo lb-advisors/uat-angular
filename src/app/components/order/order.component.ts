@@ -106,7 +106,7 @@ export class OrderListComponent implements OnInit {
   }
 
   getOrderLink(customerID: number): string {
-    return `https://lb-advisors.github.io/uat-angular/order-form?customerID=${customerID}`;
+    return `/order-form?customerID=${customerID}`;
   }
 
   copyLink(link: string): void {

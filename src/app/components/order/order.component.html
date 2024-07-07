@@ -1,28 +1,27 @@
 <div class="container">
-    <h2 class="underlined">Customers</h2>
-  
-    <div class="filters">
-      <label for="salesname-filter" class="filter-label">Salesperson:</label>
-      <select id="salesname-filter" [(ngModel)]="selectedSalesperson" (change)="filterOrders()">
-        <option *ngFor="let salesperson of salespeople" [value]="salesperson.name">{{ salesperson.name }}</option>
-      </select>
-    </div>
-  
-    <table class="order-grid">
-      <thead>
-        <tr>
-          <th>Customer Name</th>
-          <th>Order Form Link</th>
-          <th>Copy Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of filteredOrders">
-          <td>{{ order.CustomerName }}</td>
-          <td><a [href]="getOrderLink(order.CustomerID)" target="_blank">Order Form</a></td>
-          <td><span class="copy-link" (click)="copyLink(getOrderLink(order.CustomerID))">Copy Link</span></td>
-        </tr>
-      </tbody>
-    </table>
+  <h2 class="underlined">Customers</h2>
+
+  <div class="filters">
+    <label for="salesname-filter" class="filter-label">Salesperson:</label>
+    <select id="salesname-filter" [(ngModel)]="selectedSalesperson" (change)="filterOrders()">
+      <option *ngFor="let salesperson of salespeople" [value]="salesperson.name">{{ salesperson.name }}</option>
+    </select>
   </div>
-  
+
+  <table class="order-grid">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Order Form Link</th>
+        <th>Copy Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of filteredOrders">
+        <td>{{ order.CustomerName }}</td>
+        <td><a [href]="getOrderLink(order.CustomerID)" target="_blank">Order Form</a></td>
+        <td><span class="copy-link" (click)="copyLink(getOrderLink(order.CustomerID))">Copy Link</span></td>
+      </tr>
+    </tbody>
+  </table>
+</div>

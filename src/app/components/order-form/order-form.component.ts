@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { OrderFormService } from '../../services/order-form.service';
 import { NgForm } from '@angular/forms';
 import { Profile } from '../../models/order.model';
@@ -17,9 +18,19 @@ export class OrderFormComponent implements OnInit {
   customerPo: string = '';
   customerId: string = '';
 
-  constructor(private orderFormService: OrderFormService) {}
+  constructor(
+    private orderFormService: OrderFormService,
+    private route: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      this.customerId = params['customerID'] || '';
+      if (this.customerId) {
+        this.fetchCustomerData();
+      }
+    });
+
     // Fetch specials data on initialization
     this.fetchSpecialsData();
   }
