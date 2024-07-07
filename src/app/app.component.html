@@ -1,6 +1,6 @@
 <mat-toolbar color="primary" class="header">
     <nav class="nav-links">
-        <a mat-button routerLink="/home" routerLinkActive="active-link" class="home-link">
+        <a mat-button routerLink="/home" routerLinkActive="active-link" class="home-link" style="display: none;">
             <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
         </a>
         <a mat-button routerLink="/prices" routerLinkActive="active-link">
@@ -16,6 +16,10 @@
             Order
         </a>
     </nav>
+    <div class="spacer"></div>
+    <a routerLink="/home" class="gs-logo-link">
+        <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
+    </a>
 </mat-toolbar>
 
 <main>

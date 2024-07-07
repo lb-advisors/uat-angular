@@ -31,10 +31,26 @@ body {
     text-align: center;
 }
 
-.inventory-title {
-    margin-top: 5px; /* Reduce the top margin */
+.image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    border-radius: 8px;
+    background-color: rgba(0, 16, 46, 1); /* Dark blue background */
+}
+
+.image-container img {
+    max-width: 100%;
+    height: 100px; /* Adjust height as needed */
+    border-radius: 8px;
+}
+
+.prices-title {
+    margin-top: 20px; /* Add some margin above the title */
     font-size: 30px; /* Make the text a little bigger */
-    text-decoration: underline; /* Underline the text */
+    text-decoration: none; /* Remove the underline */
 }
 
 .filters {
@@ -71,8 +87,8 @@ body {
 }
 
 .inventory-grid th {
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background for table headers */
-    color: #ffffff; /* White text color for table headers */
+    background-color: #d3d3d3; /* Light grey background for table headers */
+    color: #333; /* Dark grey text color for table headers */
 }
 
 .inventory-grid td.wrap {
@@ -87,7 +103,7 @@ body {
 }
 
 .product-header {
-    width: 100px; /* Adjust this value as needed to make the column thinner */
+    width: 375px; /* Make the product column wider */
 }
 
 .product-column {

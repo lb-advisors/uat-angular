@@ -1,6 +1,9 @@
 <div class="content">
     <div class="container">
-        <h2 class="inventory-title">Inventory</h2>
+        <div class="image-container">
+            <img src="assets/logo.png" alt="Company Logo">
+        </div>
+        <h2 class="prices-title">Inventory</h2>
         <div class="filters">
             <input type="text" [(ngModel)]="searchQuery" placeholder="Search Inventory" (ngModelChange)="onSearchChange($event)">
         </div>
