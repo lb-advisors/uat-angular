@@ -82,10 +82,7 @@ mat-toolbar {
     right: 10px;
 }
 
-.underline {
-    border-bottom: 2px solid black; /* Thinner black line underlining the nav bar */
-    margin-bottom: 0; /* Reduce space between the nav bar and the page below */
-}
+
 
 mat-sidenav-container {
     min-height: 95%;

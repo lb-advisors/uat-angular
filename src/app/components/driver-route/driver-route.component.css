@@ -42,13 +42,14 @@ body {
 }
 
 .image-container {
-    width: 97.3%;
+    width: 97%;
     background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
     padding: 10px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 20px; /* Add space below the image */
 }
 
 .image-container img {
@@ -89,8 +90,8 @@ body {
 }
 
 .driver-routes-grid th {
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background for table headers */
-    color: #ffffff; /* White text color for table headers */
+    background-color: #d3d3d3; /* Light grey background for table headers */
+    color: #333; /* Dark grey text color for table headers */
     font-weight: bold; /* Bold font for headers */
 }
 
