@@ -3,18 +3,18 @@
     <img [src]="imageSrc" alt="Company Logo">
   </div>
 
-  <h2 class="page-title" style="margin-top: 20px;">Place Order</h2>
+  <h2 class="page-title">Order Form</h2>
   <div class="customer-id-input hidden">
     <label for="customer-id">Customer ID:</label>
     <input id="customer-id" type="text" [(ngModel)]="customerId" placeholder="Enter customer ID" />
     <button (click)="fetchCustomerData()">Submit</button>
   </div>
   <div class="customer-info" *ngIf="orderData.customer_name">
-    <div>
+    <div class="label-left">
       <label for="customer-name" class="info-label">Customer:</label>
       <span id="customer-name" class="info">{{ orderData.customer_name }}</span>
     </div>
-    <div>
+    <div class="label-right">
       <label for="sales-rep" class="info-label">Sales Rep:</label>
       <span id="sales-rep" class="info">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
     </div>
@@ -23,7 +23,7 @@
   <!-- Specials Grid -->
   <div *ngIf="specialsProducts && specialsProducts.length > 0">
     <h3 class="grid-title">Specials</h3>
-    <table class="order-grid">
+    <table class="order-grid specials-grid">
       <thead>
         <tr>
           <th>Description</th>

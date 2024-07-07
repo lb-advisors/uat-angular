@@ -18,10 +18,10 @@ body {
 }
 
 .page-title {
-    font-size: 24px; /* Increase font size */
+    font-size: 28px; /* Slightly smaller font size */
     text-align: center;
-    margin-top: 20px; /* Add space between image and title */
-    margin-bottom: 20px;
+    margin: 10px 0; /* Equal space above and below the title */
+    text-decoration: none; /* Remove underline */
 }
 
 .customer-id-input {
@@ -42,7 +42,6 @@ body {
 }
 
 .customer-info div label {
-    font-weight: bold;
     margin-right: 5px;
     font-size: 18px; /* Match font size of dynamic text */
 }
@@ -51,12 +50,19 @@ body {
     font-size: 18px; /* Match font size of dynamic text */
 }
 
+.customer-info div.label-left {
+    justify-content: flex-start;
+}
+
+.customer-info div.label-right {
+    justify-content: flex-end;
+}
+
 .grid-title {
     font-size: 20px; /* Increase font size */
-    font-weight: bold;
-    text-decoration: underline;
     margin-top: 20px;
     margin-bottom: 10px;
+    text-decoration: none; /* Remove underline */
 }
 
 .order-grid {
@@ -75,7 +81,14 @@ body {
 }
 
 .order-grid th {
-    background-color: #f9f9f9;
+    background-color: #d3d3d3; /* Light grey background for table headers */
+    color: #333; /* Dark grey text color for table headers */
+    font-weight: bold;
+    font-size: 14px; /* Match the inventory grid font size */
+}
+
+.order-grid td {
+    font-size: 14px; /* Match the inventory grid font size */
 }
 
 /* Set specific column widths */
@@ -190,24 +203,20 @@ body {
 }
 
 /* Styles specific to the specials grid */
-.specials-grid td {
-    background-color: #DAF2D0;
+.specials-grid th {
+    background-color: #d3d3d3; /* Light grey background for table headers */
+    color: #333; /* Dark grey text color for table headers */
 }
 
-/* Styles for the product grid headers */
-.order-grid th {
-    background-color: rgba(0, 16, 46, 1);
-    color: white;
-    font-weight: bold;
-}
 
 .image-container {
-    width: 100%;
+    width: 97%;
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 10px;
     border-radius: 8px;
+    background-color: rgba(0, 16, 46, 1); /* Dark blue background */
 }
 
 .image-container img {
