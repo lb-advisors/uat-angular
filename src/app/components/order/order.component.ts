@@ -140,11 +140,12 @@ export class OrderListComponent implements OnInit {
     this.filteredOrders.sort((a, b) => a.CustomerName.localeCompare(b.CustomerName));
   }
 
-  getOrderLink(customerID: number): string {
-    return `/order-form?customerID=${customerID}`;
+  getOrderLink(customerID: number, company: string): string {
+    return `/order-form?customerID=${customerID}&company=${company}`;
   }
 
-  copyLink(link: string): void {
+  copyLink(customerID: number, company: string): void {
+    const link = this.getOrderLink(customerID, company);
     navigator.clipboard.writeText(link).then(() => {
       alert('Link copied to clipboard!');
     }).catch(err => {

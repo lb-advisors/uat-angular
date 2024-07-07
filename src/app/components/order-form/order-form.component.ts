@@ -17,6 +17,9 @@ export class OrderFormComponent implements OnInit {
   deliveryDate: string = '';
   customerPo: string = '';
   customerId: string = '';
+  company: string = '';
+  imageSrc: string = 'assets/logo.png'; // Default image source
+  imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
   constructor(
     private orderFormService: OrderFormService,
@@ -26,6 +29,8 @@ export class OrderFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.customerId = params['customerID'] || '';
+      this.company = params['company'] || 'PFF'; // Default to PFF if not provided
+      this.updateImageAndBackground();
       if (this.customerId) {
         this.fetchCustomerData();
       }
@@ -33,6 +38,16 @@ export class OrderFormComponent implements OnInit {
 
     // Fetch specials data on initialization
     this.fetchSpecialsData();
+  }
+
+  updateImageAndBackground(): void {
+    if (this.company === 'FOG-RIVER') {
+      this.imageSrc = 'assets/fogriver.png';
+      this.imageBackgroundColor = '#FFFFFF'; // White background
+    } else if (this.company === 'PFF') {
+      this.imageSrc = 'assets/logo.png';
+      this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background
+    }
   }
 
   fetchCustomerData(): void {
