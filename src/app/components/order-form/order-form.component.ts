@@ -20,6 +20,8 @@ export class OrderFormComponent implements OnInit {
   company: string = '';
   imageSrc: string = 'assets/logo.png'; // Default image source
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
+  shiptoNames: { id: string, name: string }[] = []; // Array for shipto names and ids
+  selectedShiptoID: string = '';
 
   constructor(
     private orderFormService: OrderFormService,
@@ -39,6 +41,7 @@ export class OrderFormComponent implements OnInit {
     // Fetch specials data on initialization
     this.fetchSpecialsData();
   }
+
   updateImageAndBackground(): void {
     if (this.company === 'FOG-RIVER') {
       this.imageSrc = 'assets/fogriver.png';
@@ -48,6 +51,7 @@ export class OrderFormComponent implements OnInit {
       this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background
     }
   }
+
   fetchCustomerData(): void {
     if (this.isValidCustomerId(this.customerId)) {
       this.orderFormService.fetchCustomerData(this.customerId).subscribe(data => {
@@ -63,6 +67,8 @@ export class OrderFormComponent implements OnInit {
 
         this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
         this.orders = data.orders || [];
+        this.shiptoNames = data.shiptoNames || [];
+        this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
         this.updateTotal(); // Initialize the total
       }, error => {
         console.error('Error fetching customer data:', error);
@@ -221,7 +227,7 @@ export class OrderFormComponent implements OnInit {
     return {
       customerId: this.customerId,
       deliveryDate: this.deliveryDate,
-      shipToId: 0, // Ensure you have a valid shipToId here
+      shipToId: this.selectedShiptoID,
       totalPrice: totalPrice,
       orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
         profileDid: product.profileDid, // Ensure profileDid is part of the Profile model

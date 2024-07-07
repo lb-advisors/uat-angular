@@ -19,6 +19,12 @@
       <span id="sales-rep" class="info">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
     </div>
   </div>
+  <div *ngIf="shiptoNames && shiptoNames.length > 0" class="shipto-dropdown">
+    <label for="shipto-select">Ship To:</label>
+    <select id="shipto-select" [(ngModel)]="selectedShiptoID">
+      <option *ngFor="let shipto of shiptoNames" [value]="shipto.id">{{ shipto.name }}</option>
+    </select>
+  </div>
 
   <!-- Specials Grid -->
   <div *ngIf="specialsProducts && specialsProducts.length > 0">
@@ -150,5 +156,6 @@
     <input type="hidden" name="customer_email" [value]="orderData.customer_email" [(ngModel)]="orderData.customer_email">
     <input type="hidden" name="sales_rep_phone" [value]="orderData.sales_rep_phone" [(ngModel)]="orderData.sales_rep_phone">
     <input type="hidden" name="customer_id" [value]="orderData.customer_id" [(ngModel)]="orderData.customer_id">
+    <input type="hidden" name="shipto_id" [value]="selectedShiptoID" [(ngModel)]="selectedShiptoID">
   </form>
 </div>

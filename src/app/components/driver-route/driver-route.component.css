@@ -10,13 +10,12 @@ body {
 
 .arrived-row {
     font-weight: bold;
-    background-color: #a9a9a9; /* Medium darkness grey */
+    background-color: #d3d3d3; /* Lighter grey for arrived rows */
 }
 
 .driver-routes-title {
     font-size: 30px; /* Set font size to 30px */
-    text-decoration: underline; /* Underline the text */
-    margin-top: 0; /* Adjust margin to reduce white space if needed */
+    margin: 20px 0; /* Add equal margin to top and bottom */
 }
 
 .main-container {
@@ -58,12 +57,6 @@ body {
     border-radius: 8px;
 }
 
-.inventory-title {
-    margin-top: 20px;
-    font-size: 30px; /* Make the text a little bigger */
-    text-decoration: underline; /* Underline the text */
-}
-
 .filters {
     margin: 20px 0;
     display: flex;
@@ -83,20 +76,18 @@ body {
     border-radius: 4px;
 }
 
-.inventory-grid, .driver-routes-grid {
+.driver-routes-grid {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.inventory-grid th, .inventory-grid td,
 .driver-routes-grid th, .driver-routes-grid td {
     padding: 8px;
     text-align: center; /* Center the text in headers and cells */
     border-bottom: 1px solid #ccc; /* Horizontal lines */
 }
 
-.inventory-grid th,
 .driver-routes-grid th {
     background-color: rgba(0, 16, 46, 1); /* Dark blue background for table headers */
     color: #ffffff; /* White text color for table headers */
@@ -114,7 +105,6 @@ body {
 }
 
 @media (max-width: 600px) {
-    .inventory-grid th, .inventory-grid td,
     .driver-routes-grid th, .driver-routes-grid td {
         font-size: 14px;
     }
@@ -132,11 +122,6 @@ body {
         width: 100%;
         margin-bottom: 10px;
     }
-}
-
-/* Underlined text for Driver Routes */
-.underlined {
-    text-decoration: underline;
 }
 
 .hidden-column {

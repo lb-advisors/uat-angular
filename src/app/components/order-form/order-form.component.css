@@ -208,7 +208,6 @@ body {
     color: #333; /* Dark grey text color for table headers */
 }
 
-
 .image-container {
     width: 97%;
     display: flex;
@@ -227,4 +226,8 @@ body {
 
 .hidden {
     display: none;
+}
+
+.shipto-dropdown {
+    margin-top: 10px;
 }
