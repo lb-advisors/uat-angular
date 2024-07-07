@@ -94,3 +94,9 @@ mat-sidenav-container {
 .home-link {
     display: none; /* Hide original Home link */
 }
+
+.nav-icon {
+    width: 24px;
+    height: 24px;
+    margin-right: 5px; /* Space between icon and text */
+}

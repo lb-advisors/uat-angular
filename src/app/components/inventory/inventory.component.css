@@ -16,6 +16,7 @@ body {
 .content {
     flex-grow: 1;
     padding: 20px;
+    margin-top: -10px; /* Reduce space between the container and the nav bar */
 }
 
 .container {
@@ -32,7 +33,7 @@ body {
 }
 
 .image-container {
-    width: 100%;
+    width: 97%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -48,8 +49,9 @@ body {
 }
 
 .inventory-title {
-    margin-top: 20px; /* Add some margin above the title */
-    font-size: 30px; /* Make the text a little bigger */
+    margin-top: 10px; /* Adjust margin to ensure equal white space */
+    margin-bottom: 10px; /* Adjust margin to ensure equal white space */
+    font-size: 32px; /* Make the text bigger */
     text-decoration: none; /* Remove the underline */
 }
 
