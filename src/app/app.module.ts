@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HttpClientModule } from '@angular/common/http';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
@@ -27,6 +26,9 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { HttpLoggingInterceptor } from './core/interceptors/http-logging.interceptor';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
 
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+
+import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
 
 @NgModule({
   declarations: [
@@ -42,7 +44,6 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule, // Add FormsModule here
     MatSlideToggleModule,
@@ -53,6 +54,8 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
     MatListModule,
     MatMenuModule,
     MatSnackBarModule,
+    InfiniteScrollDirective,
+    HttpClientModule, // TODO: deprecated
   ],
   providers: [
     {

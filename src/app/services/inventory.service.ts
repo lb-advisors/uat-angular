@@ -1,17 +1,9 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-
-interface InventoryItem {
-  id: number;
-  compDescription: string;
-  unitType: string;
-  packSize: string;
-  activePrice: number;
-  woh: number | null;
-}
+import { InventoryItem } from '../models/inventoty-item.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,32 +13,19 @@ export class InventoryService {
 
   constructor(private http: HttpClient) {}
 
-  getInventoryItems(): Observable<InventoryItem[]> {
-    let params = new HttpParams()
-      .set('page', '1')
-      .set('size', '2000'); // Adjust size to fetch all items
-
-    return this.http.get<{ content: InventoryItem[] }>(`${this.apiUrl}/inventory`, { params }).pipe(
-      map(response => response.content),
-      catchError((error) => {
-        console.error('Error fetching inventory items:', error);
-        return throwError(() => new Error('Error fetching inventory items'));
-      })
-    );
-  }
-
-  searchInventoryItems(query: string, page: number = 0, size: number = 50): Observable<InventoryItem[]> {
-    let params = new HttpParams()
+  getInventoryItems(
+    page: number,
+    size: number,
+    searchTerm: string,
+  ): Observable<InventoryItem[]> {
+    const params = new HttpParams()
       .set('page', page.toString())
       .set('size', size.toString())
-      .set('search', query);
-
-    return this.http.get<{ content: InventoryItem[] }>(`${this.apiUrl}/inventory`, { params }).pipe(
-      map(response => response.content),
-      catchError((error) => {
-        console.error('Error searching inventory items:', error);
-        return throwError(() => new Error('Error searching inventory items'));
+      .set('search', searchTerm);
+    return this.http
+      .get<{ content: InventoryItem[] }>(`${this.apiUrl}/inventory`, {
+        params,
       })
-    );
+      .pipe(map((response) => response.content));
   }
 }
