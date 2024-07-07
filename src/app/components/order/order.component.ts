@@ -27,6 +27,8 @@ export class OrderListComponent implements OnInit {
   customerSearch: string = ''; // Search term for customer names
   filteredSalespeople: Salesperson[] = [];
   filteredOrders: Order[] = [];
+  imageSrc: string = 'assets/logo.png'; // Default image source
+  imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
   hardcodedOrders: { customer_id: number, sales_rep_name: string }[] = [
     { customer_id: 4713, sales_rep_name: 'John' },
@@ -53,7 +55,7 @@ export class OrderListComponent implements OnInit {
   ];
 
   companySalesRepMapping: { [key: string]: string[] } = {
-    'PFF': ['Merhy', 'John'],
+    'PFF': ['Merhy', 'Your Sales Rep Name', 'John'],
     'FOG-RIVER': ['SalesRep1', 'SalesRep2']
   };
 
@@ -109,7 +111,18 @@ export class OrderListComponent implements OnInit {
     if (!this.filteredSalespeople.find(salesperson => salesperson.name === this.selectedSalesperson)) {
       this.selectedSalesperson = this.filteredSalespeople.length > 0 ? this.filteredSalespeople[0].name : null;
     }
+    this.updateImageAndBackground();
     this.filterOrders();
+  }
+
+  updateImageAndBackground(): void {
+    if (this.selectedCompany === 'FOG-RIVER') {
+      this.imageSrc = 'assets/fogriver.png';
+      this.imageBackgroundColor = '#FFFFFF'; // White background
+    } else if (this.selectedCompany === 'PFF') {
+      this.imageSrc = 'assets/logo.png';
+      this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background
+    }
   }
 
   filterOrders(): void {
