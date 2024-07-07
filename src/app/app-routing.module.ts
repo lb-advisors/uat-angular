@@ -28,7 +28,7 @@ const routes: Routes = [
   {
     path: 'order',
     component: OrderListComponent,
-    title: 'Orders',
+    title: 'Order',
   },
   {
     path: 'login',
@@ -41,9 +41,9 @@ const routes: Routes = [
     title: 'Logout',
   },
   {
-    path: 'inventory',
+    path: 'prices',
     component: InventoryComponent,
-    title: 'Inventory',
+    title: 'Prices',
   },
   { 
     path: 'order-form',
