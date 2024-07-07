@@ -61,29 +61,33 @@ body {
 .filters {
     margin: 20px 0;
     display: flex;
-    justify-content: center; /* Center the filter section */
-    gap: 10px; /* Adds white space between each filter */
+    justify-content: space-between; /* Space out the filter sections */
     align-items: center;
     font-size: 18px; /* Increase font size */
     position: relative; /* Add positioning for delivery date alignment */
 }
 
-.filters label, .filters select, .filters input {
-    font-size: 18px; /* Increase font size to match the driver name */
+.filters .driver-filter,
+.filters .delivery-date-filter {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Add gap between label and select/input */
 }
 
-.filters select {
+.filters .driver-filter {
+    justify-content: flex-start; /* Align driver filter to the left */
+}
+
+.filters .delivery-date-filter {
+    justify-content: flex-end; /* Align delivery date filter to the right */
+}
+
+.filters select,
+.filters input {
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-}
-
-.filters input {
-    border: none;
-    background: none;
     font-size: 18px; /* Match font size of other elements */
-    position: absolute;
-    right: 0; /* Align to the right */
 }
 
 .driver-routes-grid {
