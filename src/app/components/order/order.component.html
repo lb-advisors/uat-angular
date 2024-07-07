@@ -6,24 +6,31 @@
   <h2 class="underlined">Customers</h2>
 
   <div class="filters">
-    <label for="company-filter" class="filter-label">Company:</label>
-    <select id="company-filter" [(ngModel)]="selectedCompany" (change)="filterSalesReps()">
-      <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
-    </select>
+    <div class="filter-group">
+      <label for="company-filter" class="filter-label">Company:</label>
+      <select id="company-filter" [(ngModel)]="selectedCompany" (change)="filterSalesReps()">
+        <option *ngFor="let company of companies" [value]="company">{{ company }}</option>
+      </select>
+    </div>
 
-    <label for="salesname-filter" class="filter-label">Salesperson:</label>
-    <select id="salesname-filter" [(ngModel)]="selectedSalesperson" (change)="filterOrders()">
-      <option *ngFor="let salesperson of filteredSalespeople" [value]="salesperson.name">{{ salesperson.name }}</option>
-    </select>
+    <div class="filter-group">
+      <label for="salesname-filter" class="filter-label">Sales Rep:</label>
+      <select id="salesname-filter" [(ngModel)]="selectedSalesperson" (change)="filterOrders()">
+        <option *ngFor="let salesperson of filteredSalespeople" [value]="salesperson.name">{{ salesperson.name }}</option>
+      </select>
+    </div>
 
-    <input type="text" id="customer-search" placeholder="Search Customer" [(ngModel)]="customerSearch" (input)="filterOrders()"/>
+    <div class="filter-group">
+      <label for="customer-search" class="filter-label">Customer:</label>
+      <input type="text" id="customer-search" placeholder="Search Customer" [(ngModel)]="customerSearch" (input)="filterOrders()"/>
+    </div>
   </div>
 
   <table class="order-grid">
     <thead>
       <tr>
         <th>Customer Name</th>
-        <th>Order Form Link</th>
+        <th>Order Form</th>
         <th>Copy Link</th>
       </tr>
     </thead>

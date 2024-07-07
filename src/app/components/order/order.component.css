@@ -22,7 +22,7 @@ body {
 }
 
 .image-container {
-    width: 100%;
+    width: 97%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -38,8 +38,10 @@ body {
 }
 
 .underlined {
-    text-decoration: underline;
-    font-size: 30px;
+    font-size: 28px;
+    margin-top: 20px; /* Adjust this value as needed */
+    margin-bottom: 20px; /* Adjust this value as needed */
+    text-decoration: none; /* Remove underline */
 }
 
 .filters {
@@ -49,17 +51,30 @@ body {
     gap: 10px; /* Adds white space between each filter */
     align-items: center;
     font-size: 18px; /* Increase font size */
-    flex-wrap: wrap;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
 }
 
 .filter-label {
     font-size: 18px; /* Increase font size to match the select box */
     font-family: Arial, sans-serif; /* Ensure same font */
+    margin-left: 10px; /* Add margin for better spacing */
+    margin-right: 10px; /* Add margin for better spacing */
 }
 
-.filters select {
+.filters select,
+.filters input {
     font-size: 18px; /* Match the font size of the label */
     font-family: Arial, sans-serif; /* Ensure same font */
+    padding: 5px;
+}
+
+.filters input {
+    width: 200px; /* Adjust width as needed */
 }
 
 .order-grid {
@@ -68,15 +83,19 @@ body {
     margin: 20px 0;
 }
 
-.order-grid th, .order-grid td {
+.order-grid th,
+.order-grid td {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 12px; /* Increase padding */
     text-align: left;
     word-wrap: break-word; /* Ensure text wraps within the table cells */
+    font-size: 16px; /* Increase font size */
 }
 
 .order-grid th {
-    background-color: #f9f9f9;
+    background-color: #d3d3d3; /* Light grey background for table headers */
+    color: #333; /* Dark grey text color for table headers */
+    font-weight: bold;
 }
 
 .copy-link {
@@ -95,34 +114,15 @@ body {
         flex-direction: column;
     }
 
-    .filters label, .filters select {
+    .filters label,
+    .filters select,
+    .filters input {
         width: 100%;
         margin-bottom: 10px;
     }
 
-    .order-grid th, .order-grid td {
+    .order-grid th,
+    .order-grid td {
         font-size: 14px;
     }
-}
-
-.filters {
-    margin: 20px 0;
-    display: flex;
-    justify-content: center; /* Center the filter section */
-    gap: 10px; /* Adds white space between each filter */
-    align-items: center;
-    font-size: 18px; /* Increase font size */
-    flex-wrap: wrap;
-}
-
-.filter-label {
-    font-size: 18px; /* Increase font size to match the select box */
-    font-family: Arial, sans-serif; /* Ensure same font */
-}
-
-.filters select, .filters input {
-    font-size: 18px; /* Match the font size of the label */
-    font-family: Arial, sans-serif; /* Ensure same font */
-    padding: 5px;
-    margin-left: 10px; /* Add margin for better spacing */
 }
