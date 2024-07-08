@@ -87,6 +87,9 @@ export class OrderListComponent implements OnInit {
   }
 
   filterOrders(): void {
+    if (this.selectedSalesperson) {
+      this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
+    }
     let filtered = this.orders;
     if (this.customerSearch) {
       filtered = filtered.filter(order =>
