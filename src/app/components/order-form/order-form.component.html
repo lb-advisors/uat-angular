@@ -9,16 +9,12 @@
     <input id="customer-id" type="text" [(ngModel)]="customerId" placeholder="Enter customer ID" />
     <button (click)="fetchCustomerData()">Submit</button>
   </div>
-  <div class="customer-info" *ngIf="orderData.customer_name">
-    <div class="label-left">
-      <label for="customer-name" class="info-label">Customer:</label>
-      <span id="customer-name" class="info">{{ orderData.customer_name }}</span>
-    </div>
-    <div class="label-right">
-      <label for="sales-rep" class="info-label">Sales Rep:</label>
-      <span id="sales-rep" class="info">{{ orderData.sales_rep }} <a href="tel:{{ orderData.sales_rep_phone }}">{{ orderData.sales_rep_phone }}</a></span>
-    </div>
+  
+  <div *ngIf="orderData.customerName && orderData.salesRepName" class="customer-sales-info">
+    <p>Customer: {{ orderData.customerName }}</p>
+    <p>Sales Rep: {{ orderData.salesRepName }} {{ orderData.salesRepPhone }}</p>
   </div>
+  
   <div *ngIf="shiptoNames && shiptoNames.length > 0" class="shipto-dropdown">
     <label for="shipto-select">Ship To:</label>
     <select id="shipto-select" [(ngModel)]="selectedShiptoID">
@@ -32,6 +28,8 @@
     <table class="order-grid specials-grid">
       <thead>
         <tr>
+          <th>Profile ID</th>
+          <th>Customer ID</th>
           <th>Description</th>
           <th>Quantity</th>
           <th>Unit Type</th>
@@ -42,6 +40,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of specialsProducts; let i = index" [attr.data-special]="true" [attr.data-index]="i">
+          <td>{{ product.profileDid }}</td>
+          <td>{{ orderData.customerId }}</td>
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
@@ -69,6 +69,8 @@
     <table class="order-grid">
       <thead>
         <tr>
+          <th>Profile ID</th>
+          <th>Customer ID</th>
           <th>Order ID</th>
           <th>Customer Name</th>
           <th>Sales Rep</th>
@@ -87,6 +89,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let order of orders">
+          <td>{{ order.profileDid }}</td>
+          <td>{{ order.customerId }}</td>
           <td>{{ order.id }}</td>
           <td>{{ order.customer_name }}</td>
           <td>{{ order.sales_rep }}</td>
@@ -112,6 +116,8 @@
     <table class="order-grid">
       <thead>
         <tr>
+          <th>Profile ID</th>
+          <th>Customer ID</th>
           <th>Description</th>
           <th>Quantity</th>
           <th>Unit Type</th>
@@ -122,6 +128,8 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products; let i = index" [attr.data-index]="i">
+          <td>{{ product.profileDid }}</td> <!-- Ensure this field is displayed -->
+          <td>{{ orderData.customerId }}</td>
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
@@ -130,6 +138,7 @@
             <input type="hidden" name="unit_type_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
             <input type="hidden" name="pack_size_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
             <input type="hidden" name="price_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
+            <input type="hidden" name="profile_id_{{ i }}" [value]="product.profileDid" [(ngModel)]="product.profileDid"> <!-- Ensure this field is bound -->
           </td>
           <td>{{ product.unitTypePd }}</td>
           <td>{{ product.packSizePd }}</td>
@@ -151,11 +160,11 @@
     <button type="submit" class="submit-btn">Submit your order</button>
 
     <input type="hidden" name="nb_products" [value]="products.length" [(ngModel)]="products.length">
-    <input type="hidden" name="customer_name" [value]="orderData.customer_name" [(ngModel)]="orderData.customer_name">
-    <input type="hidden" name="sales_rep" [value]="orderData.sales_rep" [(ngModel)]="orderData.sales_rep">
-    <input type="hidden" name="customer_email" [value]="orderData.customer_email" [(ngModel)]="orderData.customer_email">
-    <input type="hidden" name="sales_rep_phone" [value]="orderData.sales_rep_phone" [(ngModel)]="orderData.sales_rep_phone">
-    <input type="hidden" name="customer_id" [value]="orderData.customer_id" [(ngModel)]="orderData.customer_id">
+    <input type="hidden" name="customer_name" [value]="orderData.customerName" [(ngModel)]="orderData.customerName">
+    <input type="hidden" name="sales_rep" [value]="orderData.salesRepName" [(ngModel)]="orderData.salesRepName">
+    <input type="hidden" name="customer_email" [value]="orderData.customerEmail" [(ngModel)]="orderData.customerEmail">
+    <input type="hidden" name="sales_rep_phone" [value]="orderData.salesRepPhone" [(ngModel)]="orderData.salesRepPhone">
+    <input type="hidden" name="customer_id" [value]="orderData.customerId" [(ngModel)]="orderData.customerId">
     <input type="hidden" name="shipto_id" [value]="selectedShiptoID" [(ngModel)]="selectedShiptoID">
   </form>
 </div>
