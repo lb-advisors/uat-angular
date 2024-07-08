@@ -31,31 +31,39 @@ export class OrderListComponent implements OnInit {
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
   hardcodedOrders: { customer_id: number, sales_rep_name: string }[] = [
-    { customer_id: 4713, sales_rep_name: 'John' },
-    { customer_id: 2030, sales_rep_name: 'Merhy' },
-    { customer_id: 4287, sales_rep_name: 'John' },
     { customer_id: 9998, sales_rep_name: 'SalesRep2' },
-    { customer_id: 4154, sales_rep_name: 'John' },
-    { customer_id: 1, sales_rep_name: 'Your Sales Rep Name' },
+    { customer_id: 4881, sales_rep_name: 'John' },
     { customer_id: 4226, sales_rep_name: 'John' },
-    { customer_id: 4729, sales_rep_name: 'John' },
+    { customer_id: 5020, sales_rep_name: 'John' },
     { customer_id: 4892, sales_rep_name: 'John' },
-    { customer_id: 4896, sales_rep_name: 'John' },
-    { customer_id: 4490, sales_rep_name: 'John' },
+    { customer_id: 4815, sales_rep_name: 'John' },
     { customer_id: 4681, sales_rep_name: 'John' },
-    { customer_id: 751, sales_rep_name: 'John' },
-    { customer_id: 4339, sales_rep_name: 'John' },
+    { customer_id: 5040, sales_rep_name: 'John' },
+    { customer_id: 1, sales_rep_name: 'Specials' },
     { customer_id: 4484, sales_rep_name: 'John' },
     { customer_id: 4355, sales_rep_name: 'John' },
+    { customer_id: 4253, sales_rep_name: 'John' },
+    { customer_id: 9999, sales_rep_name: 'SalesRep1' },
+    { customer_id: 5003, sales_rep_name: 'John' },
+    { customer_id: 4713, sales_rep_name: 'John' },
+    { customer_id: 2030, sales_rep_name: 'Merhy' },
+    { customer_id: 4850, sales_rep_name: 'John' },
+    { customer_id: 4287, sales_rep_name: 'John' },
+    { customer_id: 4154, sales_rep_name: 'John' },
+    { customer_id: 4729, sales_rep_name: 'John' },
+    { customer_id: 4535, sales_rep_name: 'John' },
+    { customer_id: 4896, sales_rep_name: 'John' },
+    { customer_id: 4490, sales_rep_name: 'John' },
+    { customer_id: 751, sales_rep_name: 'John' },
+    { customer_id: 4339, sales_rep_name: 'John' },
     { customer_id: 4199, sales_rep_name: 'John' },
     { customer_id: 3679, sales_rep_name: 'Merhy' },
     { customer_id: 846, sales_rep_name: 'John' },
-    { customer_id: 4253, sales_rep_name: 'John' },
-    { customer_id: 9999, sales_rep_name: 'SalesRep1' }
   ];
+  
 
   companySalesRepMapping: { [key: string]: string[] } = {
-    'PFF': ['Merhy', 'Your Sales Rep Name', 'John'],
+    'PFF': ['Merhy', 'John'],
     'FOG-RIVER': ['SalesRep1', 'SalesRep2']
   };
 
