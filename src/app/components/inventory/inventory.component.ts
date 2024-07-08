@@ -1,13 +1,19 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnDestroy,
+  OnInit,
+} from '@angular/core';
 import { InventoryService } from '../../services/inventory.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { InventoryItem } from 'src/app/models/inventoty-item.model';
-import { Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-inventory',
   templateUrl: './inventory.component.html',
   styleUrls: ['./inventory.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent implements OnInit, OnDestroy {
   data: InventoryItem[] = [];
@@ -17,6 +23,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
   searchTerm = '';
   private searchSubject: Subject<string> = new Subject<string>();
   private searchSubscription!: Subscription;
+  private dataSubject = new BehaviorSubject<InventoryItem[]>([]);
+  data$: Observable<InventoryItem[]> = this.dataSubject.asObservable();
 
   constructor(private inventoryService: InventoryService) {}
 
@@ -35,13 +43,11 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    this.inventoryService
-      .getInventoryItems(this.page, this.size, this.searchTerm)
-      .subscribe({
-        next: (snventoryItems: InventoryItem[]) => {
-          this.data = this.data.concat(snventoryItems);
-        },
-      });
+    this.data$ = this.inventoryService.getInventoryItems(
+      this.page,
+      this.size,
+      this.searchTerm,
+    );
   }
 
   onScroll(): void {

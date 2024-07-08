@@ -8,14 +8,14 @@
   <div class="filters">
     <div class="driver-filter">
       <label for="driver-name">Driver Name:</label>
-      <select id="driver-name" [(ngModel)]="selectedDriverName" (ngModelChange)="refreshDeliverRoute(selectedDriverName, deliveryDate)">
-        <option *ngFor="let name of (driverNames$ | async)" [value]="name">{{name}}</option>
+      <select id="driver-name" #driverName (change)="refreshDeliverRoute(driverName.value, deliveryDate2.value)">
+        <option *ngFor="let driverNames of (driverNames$ | async); let i = index" [value]="driverNames.name" [selected]="i === 0">{{driverNames.name}} </option>
       </select>
     </div>
 
     <div class="delivery-date-filter">
       <label for="delivery-date">Delivery Date:</label>
-      <input type="text" id="delivery-date" [value]="deliveryDate" readonly class="delivery-date-input">
+      <input type="text" id="delivery-date" #deliveryDate2 [value]="today" readonly class="delivery-date-input">
     </div>
   </div>
 
@@ -28,7 +28,7 @@
         <div *ngIf="element !== dataSource[dataSource.length - 1]" class="arrow-container">
           <i class="fas fa-arrow-down"></i>
           <span class="time-difference-arrow">
-            +{{dataSource[dataSource.indexOf(element) + 1]?.timeDifference !== undefined ? dataSource[dataSource.indexOf(element) + 1].timeDifference + ' m' : ''}}
+            +{{ dataSource[dataSource.indexOf(element) + 1].timeDifference + ' m'}}
           </span>
         </div>
       </td>
@@ -38,7 +38,7 @@
     <ng-container matColumnDef="address">
       <th mat-header-cell *matHeaderCellDef> Address </th>
       <td mat-cell *matCellDef="let element">
-        <a [href]="getGoogleMapsUrl(element.deliveryAddress2, element.deliveryAddress3)" target="_blank">
+        <a [href]="getGoogleMapsUrl(element.deliveryAddress2, element.deliveryAddress3)">
           {{element.deliveryAddress2}} {{element.deliveryAddress3}}
         </a>
       </td>

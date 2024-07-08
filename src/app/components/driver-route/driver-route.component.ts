@@ -1,20 +1,30 @@
-import { Component, OnInit, AfterViewChecked, ChangeDetectorRef } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  OnInit,
+  SecurityContext,
+} from '@angular/core';
 import { DriverRouteService } from '../../services/driver-route.service';
-import { Observable, combineLatest } from 'rxjs';
+import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { map, switchMap } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { format } from 'date-fns';
+
+interface Driver {
+  name: string;
+}
 
 @Component({
   selector: 'app-driver-route',
   templateUrl: './driver-route.component.html',
   styleUrls: ['./driver-route.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class DriverRouteComponent implements OnInit, AfterViewChecked {
-  driverNames$: Observable<string[]>;
+export class DriverRouteComponent implements OnInit {
+  driverNames$!: Observable<Driver[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
-  deliveryDate: string = ''; // Provide a default value
+  today = format(new Date(), 'yyyy-MM-dd');
   selectedDriverName: string = '';
 
   displayedColumns: string[] = [
@@ -27,34 +37,26 @@ export class DriverRouteComponent implements OnInit, AfterViewChecked {
   constructor(
     private driverRouteService: DriverRouteService,
     private sanitizer: DomSanitizer,
-    private cdr: ChangeDetectorRef
-  ) {
-    this.setInitialDate();
-    this.driverNames$ = this.driverRouteService.getDrivers();
-  }
+  ) {}
 
   ngOnInit(): void {
-    this.driverRouteService.refreshDrivers();
-    this.driverNames$.subscribe((driverNames) => {
-      this.selectedDriverName = driverNames[0] || ''; // Select the first driver by default
-      this.refreshDeliverRoute(this.selectedDriverName, this.deliveryDate);
-    });
-  }
-
-  ngAfterViewChecked(): void {
-    this.cdr.detectChanges();
-  }
-
-  setInitialDate(): void {
-    const today = new Date();
-    this.deliveryDate = format(today, 'yyyy-MM-dd');
+    this.driverNames$ = this.driverRouteService.getDrivers().pipe(
+      map((data) => {
+        if (data && data.length > 0) {
+          this.refreshDeliverRoute(data[0].name, this.today);
+        }
+        return data; // Return original array for async pipe
+      }),
+    );
   }
 
   refreshDeliverRoute(driverName: string, deliveryDate: string): void {
     const formattedDate = new Date(deliveryDate).toISOString().split('T')[0]; // Ensure date is formatted as YYYY-MM-DD
-    this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, formattedDate).pipe(
-      map(deliveryStops => this.calculateTimeDifferences(deliveryStops))
-    );
+    this.deliveryRoute$ = this.driverRouteService
+      .getDeliveryRoute(driverName, formattedDate)
+      .pipe(
+        map((deliveryStops) => this.calculateTimeDifferences(deliveryStops)),
+      );
   }
 
   hasArrived(deliveryRoute: DeliveryStop): void {
@@ -64,16 +66,26 @@ export class DriverRouteComponent implements OnInit, AfterViewChecked {
       },
       (error) => {
         console.error('Error marking delivery as arrived', error);
-      }
+      },
     );
   }
 
   getGoogleMapsUrl(address2: string, address3: string): SafeUrl {
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address2 + ' ' + address3)}`;
-    return this.sanitizer.bypassSecurityTrustUrl(url);
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      address2 + ' ' + address3,
+    )}`;
+
+    const sanitizedUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
+    if (sanitizedUrl) {
+      return this.sanitizer.bypassSecurityTrustUrl(sanitizedUrl);
+    } else {
+      return '';
+    }
   }
 
-  private calculateTimeDifferences(deliveryStops: DeliveryStop[]): DeliveryStop[] {
+  private calculateTimeDifferences(
+    deliveryStops: DeliveryStop[],
+  ): DeliveryStop[] {
     for (let i = deliveryStops.length - 1; i > 0; i--) {
       const currentStop = deliveryStops[i];
       const previousStop = deliveryStops[i - 1];
@@ -81,14 +93,15 @@ export class DriverRouteComponent implements OnInit, AfterViewChecked {
       const currentTime = new Date(currentStop.plannedArrivalTime).getTime();
       const previousTime = new Date(previousStop.plannedArrivalTime).getTime();
 
-      const timeDifferenceInMinutes = Math.round((currentTime - previousTime) / 60000);
+      const timeDifferenceInMinutes = Math.round(
+        (currentTime - previousTime) / 60000,
+      );
       currentStop.timeDifference = timeDifferenceInMinutes;
     }
 
     if (deliveryStops.length > 0) {
       deliveryStops[0].timeDifference = undefined; // First row will have no time difference
     }
-
     return deliveryStops;
   }
 }
