@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { forkJoin } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 interface Order {
   SalesName: string;
@@ -30,38 +28,6 @@ export class OrderListComponent implements OnInit {
   imageSrc: string = 'assets/logo.png'; // Default image source
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
-  hardcodedOrders: { customer_id: number, sales_rep_name: string }[] = [
-    { customer_id: 9998, sales_rep_name: 'SalesRep2' },
-    { customer_id: 4881, sales_rep_name: 'John' },
-    { customer_id: 4226, sales_rep_name: 'John' },
-    { customer_id: 5020, sales_rep_name: 'John' },
-    { customer_id: 4892, sales_rep_name: 'John' },
-    { customer_id: 4815, sales_rep_name: 'John' },
-    { customer_id: 4681, sales_rep_name: 'John' },
-    { customer_id: 5040, sales_rep_name: 'John' },
-    { customer_id: 1, sales_rep_name: 'Specials' },
-    { customer_id: 4484, sales_rep_name: 'John' },
-    { customer_id: 4355, sales_rep_name: 'John' },
-    { customer_id: 4253, sales_rep_name: 'John' },
-    { customer_id: 9999, sales_rep_name: 'SalesRep1' },
-    { customer_id: 5003, sales_rep_name: 'John' },
-    { customer_id: 4713, sales_rep_name: 'John' },
-    { customer_id: 2030, sales_rep_name: 'Merhy' },
-    { customer_id: 4850, sales_rep_name: 'John' },
-    { customer_id: 4287, sales_rep_name: 'John' },
-    { customer_id: 4154, sales_rep_name: 'John' },
-    { customer_id: 4729, sales_rep_name: 'John' },
-    { customer_id: 4535, sales_rep_name: 'John' },
-    { customer_id: 4896, sales_rep_name: 'John' },
-    { customer_id: 4490, sales_rep_name: 'John' },
-    { customer_id: 751, sales_rep_name: 'John' },
-    { customer_id: 4339, sales_rep_name: 'John' },
-    { customer_id: 4199, sales_rep_name: 'John' },
-    { customer_id: 3679, sales_rep_name: 'Merhy' },
-    { customer_id: 846, sales_rep_name: 'John' },
-  ];
-  
-
   companySalesRepMapping: { [key: string]: string[] } = {
     'PFF': ['Merhy', 'John'],
     'FOG-RIVER': ['SalesRep1', 'SalesRep2']
@@ -78,38 +44,25 @@ export class OrderListComponent implements OnInit {
       .subscribe(data => {
         this.salespeople = data;
         this.filterSalesReps();
-        this.fetchCustomerNames();
       }, error => {
         console.error('Error fetching salespeople:', error);
       });
   }
 
   fetchCustomerNames(): void {
-    const uniqueCustomerIDs = Array.from(new Set(this.hardcodedOrders.map(order => order.customer_id)));
-
-    const customerRequests = uniqueCustomerIDs.map(customer_id =>
-      this.http.get<any>(`https://uat-pffc.onrender.com/api/customers/${customer_id}/profiles`)
-        .pipe(
-          map(customerData => ({
-            customer_id: customerData.customerId,
-            customer_name: customerData.customerName
-          }))
-        )
-    );
-
-    forkJoin(customerRequests).subscribe(results => {
-      this.orders = this.hardcodedOrders.map(order => {
-        const customer = results.find(result => result.customer_id === order.customer_id);
-        return {
-          SalesName: order.sales_rep_name,
-          CustomerID: order.customer_id,
-          CustomerName: customer ? customer.customer_name : `Customer ${order.customer_id}`
-        };
-      });
-      this.filterOrders(); // Apply filter immediately to show default salesperson's customers
-    }, error => {
-      console.error('Error fetching customer names:', error);
-    });
+    if (this.selectedSalesperson) {
+      this.http.get<any[]>(`https://uat-pffc.onrender.com/api/sales-reps/${this.selectedSalesperson}/customers`)
+        .subscribe(data => {
+          this.orders = data.map(customer => ({
+            SalesName: this.selectedSalesperson!,
+            CustomerID: customer.id, // Use 'id' instead of 'customerId' as per the provided response
+            CustomerName: customer.name // Use 'name' instead of 'customerName' as per the provided response
+          }));
+          this.filterOrders(); // Apply filter immediately to show default salesperson's customers
+        }, error => {
+          console.error('Error fetching customer names:', error);
+        });
+    }
   }
 
   filterSalesReps(): void {
@@ -120,7 +73,7 @@ export class OrderListComponent implements OnInit {
       this.selectedSalesperson = this.filteredSalespeople.length > 0 ? this.filteredSalespeople[0].name : null;
     }
     this.updateImageAndBackground();
-    this.filterOrders();
+    this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
   }
 
   updateImageAndBackground(): void {
@@ -134,7 +87,7 @@ export class OrderListComponent implements OnInit {
   }
 
   filterOrders(): void {
-    let filtered = this.orders.filter(order => order.SalesName === this.selectedSalesperson);
+    let filtered = this.orders;
     if (this.customerSearch) {
       filtered = filtered.filter(order =>
         order.CustomerName.toLowerCase().includes(this.customerSearch.toLowerCase())
@@ -145,7 +98,7 @@ export class OrderListComponent implements OnInit {
   }
 
   sortFilteredOrders(): void {
-    this.filteredOrders.sort((a, b) => a.CustomerName.localeCompare(b.CustomerName));
+    this.filteredOrders.sort((a, b) => (a.CustomerName || '').localeCompare(b.CustomerName || ''));
   }
 
   getOrderLink(customerID: number, company: string): string {
