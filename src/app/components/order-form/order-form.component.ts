@@ -18,9 +18,9 @@ export class OrderFormComponent implements OnInit {
   customerPo: string = '';
   customerId: string = '';
   company: string = '';
-  imageSrc: string = 'assets/logo.png'; // Default image source
-  imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
-  shiptoNames: { id: string, name: string }[] = []; // Array for shipto names and ids
+  imageSrc: string = 'assets/logo.png';
+  imageBackgroundColor: string = 'rgba(0, 16, 46, 1)';
+  shiptoNames: { id: string, name: string }[] = [];
   selectedShiptoID: string = '';
 
   constructor(
@@ -31,24 +31,23 @@ export class OrderFormComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.customerId = params['customerID'] || '';
-      this.company = params['company'] || 'PFF'; // Default to PFF if not provided
+      this.company = params['company'] || 'PFF';
       this.updateImageAndBackground();
       if (this.customerId) {
         this.fetchCustomerData();
       }
     });
 
-    // Fetch specials data on initialization
     this.fetchSpecialsData();
   }
 
   updateImageAndBackground(): void {
     if (this.company === 'FOG-RIVER') {
       this.imageSrc = 'assets/fogriver.png';
-      this.imageBackgroundColor = '#000000'; // Black background
+      this.imageBackgroundColor = '#000000';
     } else if (this.company === 'PFF') {
       this.imageSrc = 'assets/logo.png';
-      this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background
+      this.imageBackgroundColor = 'rgba(0, 16, 46, 1)';
     }
   }
 
@@ -65,8 +64,15 @@ export class OrderFormComponent implements OnInit {
           shipToId: this.selectedShiptoID,
           shipToName: this.shiptoNames.find(shipto => shipto.id === this.selectedShiptoID)?.name || ''
         };
-  
-        this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
+
+        this.products = data.profiles.map((profile: Profile) => ({
+          profileDid: profile.id, // Ensure the profile ID is mapped correctly
+          profileDescription: profile.profileDescription,
+          unitTypePd: profile.unitTypePd,
+          packSizePd: profile.packSizePd,
+          salesPrice: profile.salesPrice,
+          quantity: profile.quantity || 0
+        })) || [];
         this.orders = data.orders || [];
         this.shiptoNames = data.shipTos.map((shipto: any) => ({ id: shipto.id, name: shipto.shipToName })) || [];
         this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
@@ -80,7 +86,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   fetchSpecialsData(): void {
-    const specialsCustomerId = '1'; // ID for specials
+    const specialsCustomerId = '1';
     this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
       this.specialsProducts = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
       this.updateTotal(); // Initialize the total for specials
@@ -97,7 +103,7 @@ export class OrderFormComponent implements OnInit {
     const input = event.target;
     input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4);
     const row = input.closest('tr');
-    const quantity = parseFloat(input.value) || 0; // Default to 0 if empty or invalid
+    const quantity = parseFloat(input.value) || 0;
 
     if (quantity > 0) {
       row.classList.add('bold-row');
@@ -153,28 +159,29 @@ export class OrderFormComponent implements OnInit {
       this.displayErrorMessage(errorMessage);
       return;
     }
-
-    const profilesToSubmit = this.prepareOrderData();
-
-    profilesToSubmit.forEach(profile => {
-      const orderData = {
-        id: profile.profileDid, // Use profileDid as id
-        ...this.orderData,
-        profiles: [profile],
-        deliveryDate: this.deliveryDate, // Ensure deliveryDate is included
-      };
-
-      this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
-        console.log('Order submitted successfully for profile', profile);
-      }, error => {
-        this.displayErrorMessage('Failed to submit order for profile. Please try again later.');
-      });
+  
+    const orderProfiles = this.prepareOrderData();
+  
+    const orderData = {
+      customerId: this.customerId,
+      deliveryDate: this.deliveryDate,
+      //totalPrice: this.orderFormService.calculateTotal(orderProfiles),
+      orderProfiles: orderProfiles.map(profile => ({
+        profileDid: profile.profileDid,
+        quantity: profile.quantity
+      }))
+    };
+  
+    this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
+      console.log('Order submitted successfully', response);
+      alert('Order submitted successfully');
+    }, error => {
+      this.displayErrorMessage('Failed to submit order. Please try again later.');
     });
-
-    alert('Order(s) submitted successfully');
-    // Redirect or update UI as needed
   }
-
+  
+  
+  
   restrictInput(event: any, maxLength: number): void {
     const input = event.target;
     if (input.value.length > maxLength) {
@@ -213,7 +220,7 @@ export class OrderFormComponent implements OnInit {
       return 'Please only submit orders delivered within the next 3 months.';
     }
 
-    if (deliveryDate.getDay() === 0) { // 0 means Sunday
+    if (deliveryDate.getDay() === 0) {
       return 'We are closed on Sundays.';
     }
 
@@ -243,4 +250,5 @@ export class OrderFormComponent implements OnInit {
         quantity: product.quantity
       }));
   }
+  
 }
