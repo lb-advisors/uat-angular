@@ -930,13 +930,12 @@ function InventoryComponent_tr_28_Template(rf, ctx) {
 class InventoryComponent {
   constructor(inventoryService) {
     this.inventoryService = inventoryService;
-    this.data = [];
     this.page = 0;
     this.size = 50;
     this.searchTerm = '';
     this.searchSubject = new rxjs__WEBPACK_IMPORTED_MODULE_2__.Subject();
-    this.dataSubject = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject([]);
-    this.data$ = this.dataSubject.asObservable();
+    this.inventoryItemsSubject = new rxjs__WEBPACK_IMPORTED_MODULE_3__.BehaviorSubject([]);
+    this.inventoryItems$ = this.inventoryItemsSubject.asObservable();
   }
   ngOnInit() {
     this.loadData();
@@ -948,7 +947,12 @@ class InventoryComponent {
     });
   }
   loadData() {
-    this.data$ = this.inventoryService.getInventoryItems(this.page, this.size, this.searchTerm);
+    this.inventoryService.getInventoryItems(this.page, this.size, this.searchTerm).subscribe({
+      next: inventoryItems => {
+        const currentData = this.inventoryItemsSubject.value;
+        this.inventoryItemsSubject.next([...currentData, ...inventoryItems]);
+      }
+    });
   }
   onScroll() {
     this.page++;
@@ -958,7 +962,7 @@ class InventoryComponent {
     const searchTerm = event.target.value;
     if (searchTerm.length > 1) {
       this.page = 0; // Reset page when searching
-      this.data = [];
+      this.inventoryItemsSubject.next([]);
       this.searchSubject.next(searchTerm);
     }
   }
@@ -1023,7 +1027,7 @@ class InventoryComponent {
       if (rf & 2) {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("infiniteScrollDistance", 2)("infiniteScrollThrottle", 50);
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](28);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](29, 3, ctx.data$));
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](29, 3, ctx.inventoryItems$));
       }
     },
     dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.NgForOf, ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_7__.InfiniteScrollDirective, _angular_common__WEBPACK_IMPORTED_MODULE_6__.AsyncPipe, _angular_common__WEBPACK_IMPORTED_MODULE_6__.CurrencyPipe],
