@@ -473,7 +473,7 @@ class DriverRouteComponent {
       if (data && data.length > 0) {
         this.refreshDeliverRoute(data[0].name, this.today);
       }
-      return data; // Return original array for async pipe
+      return data.sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name in ascending order
     }));
   }
   refreshDeliverRoute(driverName, deliveryDate) {
@@ -1968,23 +1968,23 @@ class OrderFormComponent {
       return;
     }
     const orderProfiles = this.prepareOrderData();
-    orderProfiles.forEach(profile => {
-      const orderData = {
-        customerId: this.customerId,
-        deliveryDate: this.deliveryDate,
-        // totalPrice: this.orderFormService.calculateTotal([profile]),
-        orderProfiles: [{
-          profileDid: profile.profileDid,
-          quantity: profile.quantity
-        }]
-      };
-      this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
-        console.log('Order submitted successfully for profile', profile);
-      }, error => {
-        this.displayErrorMessage('Failed to submit order for profile. Please try again later.');
-      });
+    const orderProfilesArray = orderProfiles.map(profile => ({
+      profileDid: profile.profileDid,
+      quantity: profile.quantity
+    }));
+    const orderData = {
+      customerId: this.customerId,
+      deliveryDate: this.deliveryDate,
+      shipToId: this.selectedShiptoID || null,
+      // totalPrice: this.orderFormService.calculateTotal(orderProfiles),
+      orderProfiles: orderProfilesArray
+    };
+    this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
+      console.log('Order submitted successfully', response);
+      alert('Order submitted successfully');
+    }, error => {
+      this.displayErrorMessage('Failed to submit order. Please try again later.');
     });
-    alert('Order(s) submitted successfully');
   }
   restrictInput(event, maxLength) {
     const input = event.target;
