@@ -64,10 +64,10 @@ export class OrderFormComponent implements OnInit {
           deliveryDate: this.deliveryDate,
           customerPo: this.customerPo
         };
-
+  
         this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
         this.orders = data.orders || [];
-        this.shiptoNames = data.shiptoNames || [];
+        this.shiptoNames = data.shipTos.map((shipto: any) => ({ id: shipto.id, name: shipto.shipToName })) || [];
         this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
         this.updateTotal(); // Initialize the total
       }, error => {
@@ -77,6 +77,9 @@ export class OrderFormComponent implements OnInit {
       console.error('Invalid customer ID:', this.customerId);
     }
   }
+  
+  
+  
 
   fetchSpecialsData(): void {
     const specialsCustomerId = '1'; // ID for specials
@@ -222,17 +225,19 @@ export class OrderFormComponent implements OnInit {
     errorMessageDiv.textContent = message;
   }
 
-  private prepareOrderData(): any {
-    const totalPrice = parseFloat((document.getElementById('total_price') as HTMLInputElement).value);
-    return {
-      customerId: this.customerId,
-      deliveryDate: this.deliveryDate,
-      shipToId: this.selectedShiptoID,
-      totalPrice: totalPrice,
-      orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
-        profileDid: product.profileDid, // Ensure profileDid is part of the Profile model
-        quantity: product.quantity
-      }))
-    };
-  }
+ private prepareOrderData(): any {
+  const totalPrice = parseFloat((document.getElementById('total_price') as HTMLInputElement).value);
+  return {
+    customerId: this.customerId,
+    deliveryDate: this.deliveryDate,
+    shipToId: this.selectedShiptoID, // Include selectedShiptoID
+    totalPrice: totalPrice,
+    orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
+      profileDid: product.profileDid, // Ensure profileDid is part of the Profile model
+      quantity: product.quantity
+    }))
+  };
+}
+
+  
 }
