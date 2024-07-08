@@ -56,13 +56,14 @@ export class OrderFormComponent implements OnInit {
     if (this.isValidCustomerId(this.customerId)) {
       this.orderFormService.fetchCustomerData(this.customerId).subscribe(data => {
         this.orderData = {
-          customer_name: data.customerName,
-          sales_rep: data.salesRepName,
-          sales_rep_phone: data.salesRepPhone,
-          customer_email: data.customerEmail,
-          customer_id: this.customerId,
+          customerId: this.customerId,
+          customerName: data.customerName,
+          salesRepName: data.salesRepName,
+          salesRepPhone: data.salesRepPhone,
+          customerEmail: data.customerEmail,
           deliveryDate: this.deliveryDate,
-          customerPo: this.customerPo
+          shipToId: this.selectedShiptoID,
+          shipToName: this.shiptoNames.find(shipto => shipto.id === this.selectedShiptoID)?.name || ''
         };
   
         this.products = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
@@ -77,9 +78,6 @@ export class OrderFormComponent implements OnInit {
       console.error('Invalid customer ID:', this.customerId);
     }
   }
-  
-  
-  
 
   fetchSpecialsData(): void {
     const specialsCustomerId = '1'; // ID for specials
@@ -156,13 +154,25 @@ export class OrderFormComponent implements OnInit {
       return;
     }
 
-    const orderData = this.prepareOrderData();
-    this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
-      alert('Order submitted successfully');
-      // Redirect or update UI as needed
-    }, error => {
-      this.displayErrorMessage('Failed to submit order. Please try again later.');
+    const profilesToSubmit = this.prepareOrderData();
+
+    profilesToSubmit.forEach(profile => {
+      const orderData = {
+        id: profile.profileDid, // Use profileDid as id
+        ...this.orderData,
+        profiles: [profile],
+        deliveryDate: this.deliveryDate, // Ensure deliveryDate is included
+      };
+
+      this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
+        console.log('Order submitted successfully for profile', profile);
+      }, error => {
+        this.displayErrorMessage('Failed to submit order for profile. Please try again later.');
+      });
     });
+
+    alert('Order(s) submitted successfully');
+    // Redirect or update UI as needed
   }
 
   restrictInput(event: any, maxLength: number): void {
@@ -225,19 +235,12 @@ export class OrderFormComponent implements OnInit {
     errorMessageDiv.textContent = message;
   }
 
- private prepareOrderData(): any {
-  const totalPrice = parseFloat((document.getElementById('total_price') as HTMLInputElement).value);
-  return {
-    customerId: this.customerId,
-    deliveryDate: this.deliveryDate,
-    shipToId: this.selectedShiptoID, // Include selectedShiptoID
-    totalPrice: totalPrice,
-    orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
-      profileDid: product.profileDid, // Ensure profileDid is part of the Profile model
-      quantity: product.quantity
-    }))
-  };
-}
-
-  
+  private prepareOrderData(): any[] {
+    return this.products.concat(this.specialsProducts)
+      .filter(product => product.quantity && product.quantity > 0)
+      .map(product => ({
+        profileDid: product.profileDid,
+        quantity: product.quantity
+      }));
+  }
 }
