@@ -28,6 +28,9 @@ export class OrderListComponent implements OnInit {
   imageSrc: string = 'assets/logo.png'; // Default image source
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
+  previousSalesperson: string | null = null; // Track previous salesperson to detect changes
+  previousCompany: string | null = null; // Track previous company to detect changes
+
   companySalesRepMapping: { [key: string]: string[] } = {
     'PFF': ['Merhy', 'John'],
     'FOG-RIVER': ['SalesRep1', 'SalesRep2']
@@ -50,7 +53,8 @@ export class OrderListComponent implements OnInit {
   }
 
   fetchCustomerNames(): void {
-    if (this.selectedSalesperson) {
+    if (this.selectedSalesperson && this.selectedSalesperson !== this.previousSalesperson) {
+      this.previousSalesperson = this.selectedSalesperson;
       this.http.get<any[]>(`https://uat-pffc.onrender.com/api/sales-reps/${this.selectedSalesperson}/customers`)
         .subscribe(data => {
           this.orders = data.map(customer => ({
@@ -66,14 +70,17 @@ export class OrderListComponent implements OnInit {
   }
 
   filterSalesReps(): void {
-    this.filteredSalespeople = this.salespeople.filter(salesperson =>
-      this.companySalesRepMapping[this.selectedCompany].includes(salesperson.name)
-    );
-    if (!this.filteredSalespeople.find(salesperson => salesperson.name === this.selectedSalesperson)) {
-      this.selectedSalesperson = this.filteredSalespeople.length > 0 ? this.filteredSalespeople[0].name : null;
+    if (this.selectedCompany !== this.previousCompany) {
+      this.previousCompany = this.selectedCompany;
+      this.filteredSalespeople = this.salespeople.filter(salesperson =>
+        this.companySalesRepMapping[this.selectedCompany].includes(salesperson.name)
+      );
+      if (!this.filteredSalespeople.find(salesperson => salesperson.name === this.selectedSalesperson)) {
+        this.selectedSalesperson = this.filteredSalespeople.length > 0 ? this.filteredSalespeople[0].name : null;
+      }
+      this.updateImageAndBackground();
+      this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
     }
-    this.updateImageAndBackground();
-    this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
   }
 
   updateImageAndBackground(): void {
@@ -87,7 +94,7 @@ export class OrderListComponent implements OnInit {
   }
 
   filterOrders(): void {
-    if (this.selectedSalesperson) {
+    if (this.selectedSalesperson !== this.previousSalesperson) {
       this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
     }
     let filtered = this.orders;
