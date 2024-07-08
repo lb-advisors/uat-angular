@@ -20,7 +20,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let item of data$ | async">
+                <tr *ngFor="let item of inventoryItems$ | async">
                     <td>{{ item.id }}</td>
                     <td class="wrap product-column">{{ item.compDescription }}</td>
                     <td>{{ item.unitType }}</td>

@@ -7,7 +7,7 @@ import {
 import { InventoryService } from '../../services/inventory.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { InventoryItem } from 'src/app/models/inventoty-item.model';
-import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
+import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-inventory',
@@ -16,15 +16,14 @@ import { BehaviorSubject, Observable, Subject, Subscription } from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent implements OnInit, OnDestroy {
-  data: InventoryItem[] = [];
-
   page = 0;
   size = 50;
   searchTerm = '';
   private searchSubject: Subject<string> = new Subject<string>();
   private searchSubscription!: Subscription;
-  private dataSubject = new BehaviorSubject<InventoryItem[]>([]);
-  data$: Observable<InventoryItem[]> = this.dataSubject.asObservable();
+
+  private inventoryItemsSubject = new BehaviorSubject<InventoryItem[]>([]);
+  inventoryItems$ = this.inventoryItemsSubject.asObservable();
 
   constructor(private inventoryService: InventoryService) {}
 
@@ -43,11 +42,14 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    this.data$ = this.inventoryService.getInventoryItems(
-      this.page,
-      this.size,
-      this.searchTerm,
-    );
+    this.inventoryService
+      .getInventoryItems(this.page, this.size, this.searchTerm)
+      .subscribe({
+        next: (inventoryItems: InventoryItem[]) => {
+          const currentData = this.inventoryItemsSubject.value;
+          this.inventoryItemsSubject.next([...currentData, ...inventoryItems]);
+        },
+      });
   }
 
   onScroll(): void {
@@ -59,7 +61,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
     const searchTerm = (event.target as HTMLInputElement).value;
     if (searchTerm.length > 1) {
       this.page = 0; // Reset page when searching
-      this.data = [];
+      this.inventoryItemsSubject.next([]);
       this.searchSubject.next(searchTerm);
     }
   }
