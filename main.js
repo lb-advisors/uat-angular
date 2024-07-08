@@ -1812,7 +1812,10 @@ class OrderFormComponent {
           quantity: profile.quantity || 0
         })) || [];
         this.orders = data.orders || [];
-        this.shiptoNames = data.shiptoNames || [];
+        this.shiptoNames = data.shipTos.map(shipto => ({
+          id: shipto.id,
+          name: shipto.shipToName
+        })) || [];
         this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
         this.updateTotal(); // Initialize the total
       }, error => {
@@ -1954,6 +1957,7 @@ class OrderFormComponent {
       customerId: this.customerId,
       deliveryDate: this.deliveryDate,
       shipToId: this.selectedShiptoID,
+      // Include selectedShiptoID
       totalPrice: totalPrice,
       orderProfiles: this.products.concat(this.specialsProducts).map(product => ({
         profileDid: product.profileDid,
