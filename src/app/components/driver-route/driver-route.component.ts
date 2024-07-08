@@ -45,7 +45,7 @@ export class DriverRouteComponent implements OnInit {
         if (data && data.length > 0) {
           this.refreshDeliverRoute(data[0].name, this.today);
         }
-        return data; // Return original array for async pipe
+        return data.sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name in ascending order
       }),
     );
   }
