@@ -93,7 +93,7 @@ body {
 }
 
 .driver-routes-grid {
-    width: 100%;
+    width: fit-content;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
@@ -147,6 +147,9 @@ body {
         word-wrap: break-word;
         word-break: break-all;
     }
+        .nowrap {
+            white-space: normal;
+        }
 }
 
 .hidden-column {
