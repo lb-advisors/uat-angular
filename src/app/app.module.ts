@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
@@ -28,7 +28,10 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
 
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
-import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+//import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -40,6 +43,7 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
     LogoutComponent,
     InventoryComponent,
     OrderFormComponent, // Add OrderFormComponent here
+    ImageThumbnailComponent,
   ],
   imports: [
     BrowserModule,
@@ -55,7 +59,8 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
     MatMenuModule,
     MatSnackBarModule,
     InfiniteScrollDirective,
-    HttpClientModule, // TODO: deprecated
+    //HttpClientModule, // TODO: deprecated
+    ModalModule.forRoot(),
   ],
   providers: [
     {
@@ -64,6 +69,7 @@ import { HttpClientModule } from '@angular/common/http'; // Import HttpClientMod
       multi: true,
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })

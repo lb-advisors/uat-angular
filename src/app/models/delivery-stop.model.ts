@@ -6,7 +6,7 @@ export interface DeliveryStop {
   deliveryAddress3: string;
   customerPhone: string;
   plannedArrivalTime: string;
-  actualArrivalTime: boolean;
+  actualArrivalTime: string;
   priority: number;
   plannedTravelTime: string;
   timeDifference?: number; // Added timeDifference property

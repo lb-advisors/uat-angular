@@ -1,0 +1,13 @@
+.thumbnail {
+    cursor: pointer;;
+    height: 50px;
+}
+
+.full-image {
+    width: -webkit-fill-available;
+}
+
+.modal-title {
+    width: 100%;
+}
+
