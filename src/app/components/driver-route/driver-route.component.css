@@ -142,6 +142,11 @@ body {
         width: 100%;
         margin-bottom: 10px;
     }
+    .customerPhone {
+        white-space: normal;
+        word-wrap: break-word;
+        word-break: break-all;
+    }
 }
 
 .hidden-column {
