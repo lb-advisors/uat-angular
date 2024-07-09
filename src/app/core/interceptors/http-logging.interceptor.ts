@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpErrorResponse,
 } from '@angular/common/http';
-import { EMPTY, Observable, catchError, throwError } from 'rxjs';
+import { Observable, catchError, throwError } from 'rxjs';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 
 @Injectable()
@@ -38,12 +38,13 @@ export class HttpLoggingInterceptor implements HttpInterceptor {
         // Re-throw the error to propagate it further
         //return throwError(() => err);
         // stop propagating error
-        return EMPTY;
+        return throwError(() => err); //EMPTY;
       }),
     );
   }
 
   private handleServerSideError(error: HttpErrorResponse) {
+    console.error(error.error.message);
     switch (error.status) {
       case 400: //  means the request could not be understood by the server.
         this.snackBarService.showSnackBar(
@@ -59,6 +60,7 @@ export class HttpLoggingInterceptor implements HttpInterceptor {
         this.snackBarService.showSnackBar('Forbidden access is denied');
         break;
       case 500: // means there's an issue or temporary glitch with the application's programming
+        console.log(error);
         this.snackBarService.showSnackBar(
           'Internal server error, please try again later.',
         );

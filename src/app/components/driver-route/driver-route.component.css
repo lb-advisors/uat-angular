@@ -120,6 +120,10 @@ body {
     font-weight: bold;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 @media (max-width: 600px) {
     .driver-routes-grid th, .driver-routes-grid td {
         font-size: 14px;
@@ -171,4 +175,25 @@ body {
 #delivery-date {
     width: 120px; /* Ensures the width is only as wide as the content */
     text-align: center; /* Centers the text inside the text box */
+}
+
+.custom-file-input {
+    display: flex;
+    align-items: center;
+}
+
+.custom-file-input button {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.custom-file-input button:hover {
+    background-color: #0056b3;
+}
+
+.custom-file-input span {
+    margin-left: 10px;
 }

@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnInit,
   SecurityContext,
@@ -10,6 +11,8 @@ import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
 import { format } from 'date-fns';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { HttpEventType } from '@angular/common/http';
 
 interface Driver {
   name: string;
@@ -22,10 +25,12 @@ interface Driver {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent implements OnInit {
+  readonly maxFileSize = 5 * 1024 * 1024; // 5 MB
+
   driverNames$!: Observable<Driver[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
   today = format(new Date(), 'yyyy-MM-dd');
-  selectedDriverName: string = '';
+  selectedFile: File | null = null;
 
   displayedColumns: string[] = [
     'deliveryAddress1',
@@ -36,6 +41,7 @@ export class DriverRouteComponent implements OnInit {
 
   constructor(
     private driverRouteService: DriverRouteService,
+    private snackBarService: SnackbarService,
     private sanitizer: DomSanitizer,
   ) {}
 
@@ -68,6 +74,51 @@ export class DriverRouteComponent implements OnInit {
         console.error('Error marking delivery as arrived', error);
       },
     );
+  }
+
+  onFileSelected(deliveryRoute: DeliveryStop, event: Event) {
+    this.test(deliveryRoute);
+
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      if (file && file.type.startsWith('image/')) {
+        if (file.size <= this.maxFileSize) {
+          this.selectedFile = file;
+          this.uploadFile(deliveryRoute, file);
+        } else {
+          this.snackBarService.showSnackBar('File size exceeds 5 MB.');
+        }
+      } else {
+        this.snackBarService.showSnackBar('Please select an image file');
+        this.selectedFile = null;
+      }
+    }
+  }
+
+  test(deliveryRoute: DeliveryStop) {
+    deliveryRoute.actualArrivalTime = '2030-01-01';
+  }
+
+  uploadFile(deliveryRoute: DeliveryStop, file: File) {
+    this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
+      next: (event) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            if (event.total) {
+              const progress = Math.round((100 * event.loaded) / event.total);
+              console.log(`Upload Progress: ${progress}%`);
+            }
+            break;
+          case HttpEventType.Response: {
+            console.log('Upload successful', event.body);
+            const updatedDeliveryStop = event.body as DeliveryStop;
+            deliveryRoute = updatedDeliveryStop;
+            break;
+          }
+        }
+      },
+    });
   }
 
   getGoogleMapsUrl(address2: string, address3: string): SafeUrl {

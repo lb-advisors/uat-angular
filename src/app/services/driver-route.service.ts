@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DeliveryStop } from '../models/delivery-stop.model';
@@ -43,5 +43,22 @@ export class DriverRouteService {
       //);
       //}),
       ();
+  }
+
+  uploadPhoto(
+    deliveryStopId: number,
+    file: File,
+  ): Observable<HttpEvent<DeliveryStop>> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<DeliveryStop>(
+      `${this.apiUrl}/delivery-stops/${deliveryStopId}/photos`,
+      formData,
+      {
+        reportProgress: true,
+        observe: 'events',
+      },
+    );
   }
 }
