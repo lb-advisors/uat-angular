@@ -11,6 +11,11 @@ interface Salesperson {
   name: string;
 }
 
+interface Company {
+  id: number;
+  name: string;
+}
+
 @Component({
   selector: 'app-order-list',
   templateUrl: './order.component.html',
@@ -19,8 +24,8 @@ interface Salesperson {
 export class OrderListComponent implements OnInit {
   orders: Order[] = [];
   salespeople: Salesperson[] = [];
-  companies: string[] = ['PFF', 'FOG-RIVER'];
-  selectedCompany: string = 'PFF'; // Default to PFF
+  companies: Company[] = [];
+  selectedCompany: Company | null = null; // Changed to hold Company object
   selectedSalesperson: string | null = 'John'; // Default to John
   customerSearch: string = ''; // Search term for customer names
   filteredSalespeople: Salesperson[] = [];
@@ -29,21 +34,29 @@ export class OrderListComponent implements OnInit {
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
   previousSalesperson: string | null = null; // Track previous salesperson to detect changes
-  previousCompany: string | null = null; // Track previous company to detect changes
-
-  companySalesRepMapping: { [key: string]: string[] } = {
-    'PFF': ['Merhy', 'John'],
-    'FOG-RIVER': ['SalesRep1', 'SalesRep2']
-  };
+  previousCompany: Company | null = null; // Track previous company to detect changes
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.fetchSalespeople();
+    this.fetchCompanies();
   }
 
-  fetchSalespeople(): void {
-    this.http.get<Salesperson[]>('https://uat-pffc.onrender.com/api/sales-reps')
+  fetchCompanies(): void {
+    this.http.get<Company[]>('https://uat-pffc.onrender.com/api/companies')
+      .subscribe(data => {
+        this.companies = data;
+        if (this.companies.length > 0) {
+          this.selectedCompany = this.companies[0];
+          this.filterSalesReps();
+        }
+      }, error => {
+        console.error('Error fetching companies:', error);
+      });
+  }
+
+  fetchSalespeople(companyId: number): void {
+    this.http.get<Salesperson[]>(`https://uat-pffc.onrender.com/api/companies/${companyId}/sales-reps`)
       .subscribe(data => {
         this.salespeople = data;
         this.filterSalesReps();
@@ -52,42 +65,41 @@ export class OrderListComponent implements OnInit {
       });
   }
 
-  fetchCustomerNames(): void {
-    if (this.selectedSalesperson && this.selectedSalesperson !== this.previousSalesperson) {
-      this.previousSalesperson = this.selectedSalesperson;
-      this.http.get<any[]>(`https://uat-pffc.onrender.com/api/sales-reps/${this.selectedSalesperson}/customers`)
-        .subscribe(data => {
-          this.orders = data.map(customer => ({
-            SalesName: this.selectedSalesperson!,
-            CustomerID: customer.id, // Use 'id' instead of 'customerId' as per the provided response
-            CustomerName: customer.name // Use 'name' instead of 'customerName' as per the provided response
-          }));
-          this.filterOrders(); // Apply filter immediately to show default salesperson's customers
-        }, error => {
-          console.error('Error fetching customer names:', error);
-        });
-    }
+  fetchCustomerNames(companyId: number, salesRepName: string): void {
+    this.http.get<any[]>(`https://uat-pffc.onrender.com/api/companies/${companyId}/sales-reps/${salesRepName}/customers`)
+      .subscribe(data => {
+        this.orders = data.map(customer => ({
+          SalesName: salesRepName,
+          CustomerID: customer.id, // Use 'id' instead of 'customerId' as per the provided response
+          CustomerName: customer.name // Use 'name' instead of 'customerName' as per the provided response
+        }));
+        this.filterOrders(); // Apply filter immediately to show default salesperson's customers
+      }, error => {
+        console.error('Error fetching customer names:', error);
+      });
   }
 
   filterSalesReps(): void {
-    if (this.selectedCompany !== this.previousCompany) {
+    if (this.selectedCompany && this.selectedCompany !== this.previousCompany) {
       this.previousCompany = this.selectedCompany;
+      this.fetchSalespeople(this.selectedCompany.id); // Fetch salespeople for the selected company
+    } else {
       this.filteredSalespeople = this.salespeople.filter(salesperson =>
-        this.companySalesRepMapping[this.selectedCompany].includes(salesperson.name)
+        this.salespeople.includes(salesperson)
       );
       if (!this.filteredSalespeople.find(salesperson => salesperson.name === this.selectedSalesperson)) {
         this.selectedSalesperson = this.filteredSalespeople.length > 0 ? this.filteredSalespeople[0].name : null;
       }
       this.updateImageAndBackground();
-      this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
+      this.fetchCustomerNames(this.selectedCompany!.id, this.selectedSalesperson!); // Fetch customer names whenever the salesperson changes
     }
   }
 
   updateImageAndBackground(): void {
-    if (this.selectedCompany === 'FOG-RIVER') {
+    if (this.selectedCompany?.name === 'FOG-RIVER') {
       this.imageSrc = 'assets/fogriver.png';
       this.imageBackgroundColor = '#000000'; // Black background
-    } else if (this.selectedCompany === 'PFF') {
+    } else if (this.selectedCompany?.name === 'PFF') {
       this.imageSrc = 'assets/logo.png';
       this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background
     }
@@ -95,7 +107,7 @@ export class OrderListComponent implements OnInit {
 
   filterOrders(): void {
     if (this.selectedSalesperson !== this.previousSalesperson) {
-      this.fetchCustomerNames(); // Fetch customer names whenever the salesperson changes
+      this.fetchCustomerNames(this.selectedCompany!.id, this.selectedSalesperson!); // Fetch customer names whenever the salesperson changes
     }
     let filtered = this.orders;
     if (this.customerSearch) {
