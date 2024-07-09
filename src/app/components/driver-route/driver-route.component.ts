@@ -25,7 +25,7 @@ interface Driver {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent implements OnInit {
-  readonly maxFileSize = 5 * 1024 * 1024; // 5 MB
+  readonly maxFileSize = 4 * 1024 * 1024; // 4 MB
 
   driverNames$!: Observable<Driver[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
@@ -43,6 +43,7 @@ export class DriverRouteComponent implements OnInit {
     private driverRouteService: DriverRouteService,
     private snackBarService: SnackbarService,
     private sanitizer: DomSanitizer,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -77,8 +78,6 @@ export class DriverRouteComponent implements OnInit {
   }
 
   onFileSelected(deliveryRoute: DeliveryStop, event: Event) {
-    this.test(deliveryRoute);
-
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
@@ -87,7 +86,7 @@ export class DriverRouteComponent implements OnInit {
           this.selectedFile = file;
           this.uploadFile(deliveryRoute, file);
         } else {
-          this.snackBarService.showSnackBar('File size exceeds 5 MB.');
+          this.snackBarService.showSnackBar('File size exceeds 4 MB.');
         }
       } else {
         this.snackBarService.showSnackBar('Please select an image file');
@@ -96,25 +95,20 @@ export class DriverRouteComponent implements OnInit {
     }
   }
 
-  test(deliveryRoute: DeliveryStop) {
-    deliveryRoute.actualArrivalTime = '2030-01-01';
-  }
-
   uploadFile(deliveryRoute: DeliveryStop, file: File) {
     this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
       next: (event) => {
         switch (event.type) {
-          case HttpEventType.UploadProgress:
-            if (event.total) {
-              const progress = Math.round((100 * event.loaded) / event.total);
-              console.log(`Upload Progress: ${progress}%`);
-            }
-            break;
+          //case HttpEventType.UploadProgress:
+          //  if (event.total) {
+          //    const progress = Math.round((100 * event.loaded) / event.total);
+          //    console.log(`Upload Progress: ${progress}%`);
+          //  }
+          //  break;
           case HttpEventType.Response: {
-            console.log('Upload successful', event.body);
             const updatedDeliveryStop = event.body as DeliveryStop;
-            deliveryRoute = updatedDeliveryStop;
-            break;
+            Object.assign(deliveryRoute, updatedDeliveryStop);
+            this.cdr.detectChanges();
           }
         }
       },
