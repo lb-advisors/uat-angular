@@ -1,44 +1,28 @@
-<mat-sidenav-container color='primary'>
-    <mat-sidenav #sidenav role="navigation" mode="push">
-        <mat-nav-list>
-            <a mat-list-item routerLink="/home">
-                <mat-icon class="icon">home</mat-icon>
-                <span class="label">Home</span>
-            </a>
-            <a mat-list-item routerLink="/inventory">
-                <mat-icon class="icon">inventory</mat-icon>
-                <span class="label">Inventory</span>
-            </a>
-            <a mat-list-item routerLink="/driver">
-                <mat-icon class="icon">directions_car</mat-icon>
-                <span class="label">Routes</span>
-            </a>
-            <a mat-list-item routerLink="/order">
-                <mat-icon class="icon">receipt</mat-icon>
-                <span class="label">Orders</span>
-            </a>
-        </mat-nav-list>
-    </mat-sidenav>
+<mat-toolbar color="primary" class="header">
+    <div class="nav-links-center">
+        <a mat-button routerLink="/inventory" routerLinkActive="active-link">
+            <mat-icon>inventory</mat-icon>
+            Inventory
+        </a>
+        <a mat-button routerLink="/order" routerLinkActive="active-link">
+            <mat-icon>description</mat-icon> <!-- Change the icon to match Order Form -->
+            Order
+        </a>
+        <a mat-button routerLink="/driver" routerLinkActive="active-link">
+            <mat-icon>local_shipping</mat-icon> <!-- Truck profile view icon facing the other direction -->
+            Routes
+        </a>
+    </div>
+    <a routerLink="/home" class="gs-logo-link">
+        <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
+    </a>
+</mat-toolbar>
 
-    <mat-sidenav-content>
-        <div class="header">
-            <mat-toolbar color="primary" class="header">
-                <button mat-icon-button (click)="sidenav.toggle()">
-                    <mat-icon>menu</mat-icon>
-                </button>
+<div class="underline"></div> <!-- Thinner black line underlining the nav bar -->
 
-                <div class="logo-container">
-                    <img src="assets/logo.png" alt="Company Logo" class="logo">
-                </div>
-                <span *ngIf="isDevMode"><small>UAT environment&nbsp;&nbsp;</small></span>
-            </mat-toolbar>
-        </div>
-
-        <main>
-            <router-outlet></router-outlet>
-        </main>
-    </mat-sidenav-content>
-</mat-sidenav-container>
+<main>
+    <router-outlet></router-outlet>
+</main>
 
 <!-- Footer with Navigation and Social Icons-->
 <footer class="mat-drawer-container">

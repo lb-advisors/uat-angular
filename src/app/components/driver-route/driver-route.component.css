@@ -8,10 +8,14 @@ body {
     color: #000000; /* Black text color */
 }
 
+.arrived-row {
+    font-weight: bold;
+    background-color: #d3d3d3; /* Lighter grey for arrived rows */
+}
+
 .driver-routes-title {
     font-size: 30px; /* Set font size to 30px */
-    text-decoration: underline; /* Underline the text */
-    margin-top: 0; /* Adjust margin to reduce white space if needed */
+    margin: 20px 0; /* Add equal margin to top and bottom */
 }
 
 .main-container {
@@ -53,47 +57,55 @@ body {
     border-radius: 8px;
 }
 
-.inventory-title {
-    margin-top: 20px;
-    font-size: 30px; /* Make the text a little bigger */
-    text-decoration: underline; /* Underline the text */
-}
-
 .filters {
     margin: 20px 0;
     display: flex;
-    justify-content: center; /* Center the filter section */
-    gap: 10px; /* Adds white space between each filter */
+    justify-content: space-between; /* Space between for filters */
     align-items: center;
     font-size: 18px; /* Increase font size */
 }
 
-.filters label, .filters select {
-    font-size: 18px; /* Increase font size */
+.filters .driver-filter {
+    display: flex;
+    align-items: center;
 }
 
-.filters select {
+.filters .delivery-date-filter {
+    display: flex;
+    align-items: center;
+}
+
+.filters label {
+    margin-right: 5px; /* Space between label and select/input */
+}
+
+.filters select,
+.filters input {
+    font-size: 18px; /* Match font size */
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
 }
 
-.inventory-grid, .driver-routes-grid {
+.filters input {
+    width: auto; /* Adjust the width of the input */
+    min-width: 80px; /* Minimum width for the delivery date input */
+}
+
+.driver-routes-grid {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.inventory-grid th, .inventory-grid td,
 .driver-routes-grid th, .driver-routes-grid td {
     padding: 8px;
     text-align: center; /* Center the text in headers and cells */
-    border-bottom: 1px solid #ccc; /* Horizontal lines */
+    border-bottom: 1px solid #000; /* Black horizontal lines */
 }
 
-.inventory-grid th,
 .driver-routes-grid th {
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background for table headers */
+    background-color: #5A5A5A; /* Slightly lighter dark grey */
     color: #ffffff; /* White text color for table headers */
     font-weight: bold; /* Bold font for headers */
 }
@@ -108,8 +120,11 @@ body {
     font-weight: bold;
 }
 
+.nowrap {
+    white-space: nowrap;
+}
+
 @media (max-width: 600px) {
-    .inventory-grid th, .inventory-grid td,
     .driver-routes-grid th, .driver-routes-grid td {
         font-size: 14px;
     }
@@ -123,13 +138,62 @@ body {
         flex-direction: column;
     }
 
-    .filters label, .filters select {
+    .filters .driver-filter, .filters .delivery-date-filter {
         width: 100%;
         margin-bottom: 10px;
     }
 }
 
-/* Underlined text for Driver Routes */
-.underlined {
-    text-decoration: underline;
+.hidden-column {
+    display: none;
+}
+
+.no-bottom-border {
+    border-bottom: none !important;
+}
+
+.arrow-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin-top: 10px; /* Move down the entire arrow container */
+}
+
+.arrow-container i {
+    font-size: 24px; /* Font Awesome icon size */
+    margin-right: 10px; /* Add space to the right of the arrow */
+}
+
+.time-difference-arrow {
+    font-size: 14px;
+    color: darkgreen;
+    font-weight: bold;
+    margin-left: 5px;
+}
+
+#delivery-date {
+    width: 120px; /* Ensures the width is only as wide as the content */
+    text-align: center; /* Centers the text inside the text box */
+}
+
+.custom-file-input {
+    display: flex;
+    align-items: center;
+}
+
+.custom-file-input button {
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.custom-file-input button:hover {
+    background-color: #0056b3;
+}
+
+.custom-file-input span {
+    margin-left: 10px;
 }

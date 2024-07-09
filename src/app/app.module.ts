@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HttpClientModule } from '@angular/common/http';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
@@ -22,9 +21,17 @@ import { OrderListComponent } from './components/order/order.component'; // Upda
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
+import { OrderFormComponent } from './components/order-form/order-form.component'; // Corrected import path
 
 import { HttpLoggingInterceptor } from './core/interceptors/http-logging.interceptor';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
+
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+
+//import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
+
+import { ModalModule } from 'ngx-bootstrap/modal';
+import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
 
 @NgModule({
   declarations: [
@@ -35,11 +42,12 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
     LoginComponent,
     LogoutComponent,
     InventoryComponent,
+    OrderFormComponent, // Add OrderFormComponent here
+    ImageThumbnailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule,
     BrowserAnimationsModule,
     FormsModule, // Add FormsModule here
     MatSlideToggleModule,
@@ -50,6 +58,9 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
     MatListModule,
     MatMenuModule,
     MatSnackBarModule,
+    InfiniteScrollDirective,
+    //HttpClientModule, // TODO: deprecated
+    ModalModule.forRoot(),
   ],
   providers: [
     {
@@ -58,6 +69,7 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
       multi: true,
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })

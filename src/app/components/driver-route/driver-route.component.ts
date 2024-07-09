@@ -1,8 +1,22 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { DeliveryRoute } from '../../models/delivery-route';
-import { Observable, of } from 'rxjs';
-import { environment } from '../../../environments/environment';
-import { MatTableDataSource } from '@angular/material/table';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+  SecurityContext,
+} from '@angular/core';
+import { DriverRouteService } from '../../services/driver-route.service';
+import { Observable } from 'rxjs';
+import { DeliveryStop } from 'src/app/models/delivery-stop.model';
+import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
+import { map } from 'rxjs/operators';
+import { format } from 'date-fns';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { HttpEventType } from '@angular/common/http';
+
+interface Driver {
+  name: string;
+}
 
 @Component({
   selector: 'app-driver-route',
@@ -11,102 +25,134 @@ import { MatTableDataSource } from '@angular/material/table';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent implements OnInit {
-  dataSource = new MatTableDataSource<DeliveryRoute>();
-  isProduction: boolean;
-  drivers: string[] = ['Armen', 'Narek', 'Tigran', 'Aram', 'Garen'];
-  selectedDriver: string = '';
+  readonly maxFileSize = 5 * 1024 * 1024; // 5 MB
 
-  constructor() {
-    console.log('constructor');
-
-    this.isProduction = environment.production;
-  }
-
-  ngOnInit() {
-    console.log('ngOnInit');
-
-    // Dummy data for delivery routes
-    const deliveryRoutes = [
-      { driver_name: 'Armen', customer_name: 'SAVORE CUISINE & EVENTS', address: '601 E 4th St, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: true, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Armen', customer_name: 'THE LONELY OYSTER', address: '5100 York Blvd, Los Angeles, CA 90042', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Armen', customer_name: 'GOURMET FOOD SOLUTIONS', address: '821 Traction Ave, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Armen', customer_name: 'DE LA NONNA', address: '2100 E 7th Pl, Los Angeles, CA 90021', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Armen', customer_name: 'AMANTE', address: '2100 Sunset Blvd, Los Angeles, CA 90026', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Narek', customer_name: 'CAROUSEL RESTAURANT', address: '5112 Hollywood Blvd, Los Angeles, CA 90027', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Narek', customer_name: 'PHORAGE', address: '3300 Overland Ave, Los Angeles, CA 90034', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Narek', customer_name: 'CHARCOAL RESTAURANT-VENICE', address: '425 Washington Blvd, Venice, CA 90291', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Narek', customer_name: 'DACSU LLC', address: '655 S Main St, Los Angeles, CA 90014', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Narek', customer_name: 'FENNEL KITCHEN & BAR', address: '1046 S Fairfax Ave, Los Angeles, CA 90019', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Tigran', customer_name: 'TOPANGA SOCIAL', address: '6600 Topanga Canyon Blvd, Canoga Park, CA 91303', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Tigran', customer_name: 'GOURMET FOOD SOLUTIONS', address: '821 Traction Ave, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Tigran', customer_name: 'CAROUSEL / NAIRI', address: '5112 Hollywood Blvd, Los Angeles, CA 90027', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Tigran', customer_name: 'MARINA - PASADENA', address: '1286 E Colorado Blvd, Pasadena, CA 91106', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Tigran', customer_name: 'THE COPPER KEY', address: '6363 Wilshire Blvd, Los Angeles, CA 90048', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Aram', customer_name: 'SAVORE CUISINE & EVENTS', address: '601 E 4th St, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Aram', customer_name: 'CAROUSEL / NAIRI', address: '5112 Hollywood Blvd, Los Angeles, CA 90027', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Aram', customer_name: 'DACSU LLC', address: '655 S Main St, Los Angeles, CA 90014', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Aram', customer_name: 'RAPPAHANNOCK OYSTER BAR', address: '1318 E 7th St, Los Angeles, CA 90021', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Aram', customer_name: 'THE LONELY OYSTER', address: '5100 York Blvd, Los Angeles, CA 90042', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Garen', customer_name: 'CHARCOAL RESTAURANT-VENICE', address: '425 Washington Blvd, Venice, CA 90291', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Garen', customer_name: 'KAKKOI SUSHI', address: '152 S Western Ave, Los Angeles, CA 90004', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Garen', customer_name: 'GO TRUCKS CATERING', address: '221 S Grand Ave, Los Angeles, CA 90012', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Garen', customer_name: 'THE LONELY OYSTER', address: '5100 York Blvd, Los Angeles, CA 90042', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Garen', customer_name: 'CHARCOAL RESTAURANT-VENICE', address: '425 Washington Blvd, Venice, CA 90291', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-    ];
-
-    this.dataSource.data = deliveryRoutes;
-  }
+  driverNames$!: Observable<Driver[]>;
+  deliveryRoute$: Observable<DeliveryStop[]> | undefined;
+  today = format(new Date(), 'yyyy-MM-dd');
+  selectedFile: File | null = null;
 
   displayedColumns: string[] = [
-    'customer_name',
+    'deliveryAddress1',
     'address',
-    'has_arrived',
-    'photo',
+    'customerPhone',
+    'actualArrivalTime',
   ];
 
-  hasArrived(deliveryRoute: DeliveryRoute) {
-    // Toggle arrival status and update row properties
-    deliveryRoute.has_arrived = !deliveryRoute.has_arrived;
-    deliveryRoute.status = deliveryRoute.has_arrived ? 'Arrived' : 'Not arrived';
-    deliveryRoute.delivery_date = deliveryRoute.has_arrived ? new Date() : null;
-    deliveryRoute.delivery_time = deliveryRoute.has_arrived ? new Date() : null;
+  constructor(
+    private driverRouteService: DriverRouteService,
+    private snackBarService: SnackbarService,
+    private sanitizer: DomSanitizer,
+  ) {}
+
+  ngOnInit(): void {
+    this.driverNames$ = this.driverRouteService.getDrivers().pipe(
+      map((data) => {
+        if (data && data.length > 0) {
+          this.refreshDeliverRoute(data[0].name, this.today);
+        }
+        return data.sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name in ascending order
+      }),
+    );
   }
 
-  filterRoutes() {
-    const deliveryRoutes = [
-      { driver_name: 'Armen', customer_name: 'SAVORE CUISINE & EVENTS', address: '601 E 4th St, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: true, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Armen', customer_name: 'THE LONELY OYSTER', address: '5100 York Blvd, Los Angeles, CA 90042', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Armen', customer_name: 'GOURMET FOOD SOLUTIONS', address: '821 Traction Ave, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Armen', customer_name: 'DE LA NONNA', address: '2100 E 7th Pl, Los Angeles, CA 90021', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Armen', customer_name: 'AMANTE', address: '2100 Sunset Blvd, Los Angeles, CA 90026', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Narek', customer_name: 'CAROUSEL RESTAURANT', address: '5112 Hollywood Blvd, Los Angeles, CA 90027', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Narek', customer_name: 'PHORAGE', address: '3300 Overland Ave, Los Angeles, CA 90034', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Narek', customer_name: 'CHARCOAL RESTAURANT-VENICE', address: '425 Washington Blvd, Venice, CA 90291', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Narek', customer_name: 'DACSU LLC', address: '655 S Main St, Los Angeles, CA 90014', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Narek', customer_name: 'FENNEL KITCHEN & BAR', address: '1046 S Fairfax Ave, Los Angeles, CA 90019', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Tigran', customer_name: 'TOPANGA SOCIAL', address: '6600 Topanga Canyon Blvd, Canoga Park, CA 91303', delivery_date: new Date(), has_arrived: true, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Tigran', customer_name: 'GOURMET FOOD SOLUTIONS', address: '821 Traction Ave, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Tigran', customer_name: 'CAROUSEL / NAIRI', address: '5112 Hollywood Blvd, Los Angeles, CA 90027', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Tigran', customer_name: 'MARINA - PASADENA', address: '1286 E Colorado Blvd, Pasadena, CA 91106', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Tigran', customer_name: 'THE COPPER KEY', address: '6363 Wilshire Blvd, Los Angeles, CA 90048', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Aram', customer_name: 'SAVORE CUISINE & EVENTS', address: '601 E 4th St, Los Angeles, CA 90013', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Aram', customer_name: 'CAROUSEL / NAIRI', address: '5112 Hollywood Blvd, Los Angeles, CA 90027', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Aram', customer_name: 'DACSU LLC', address: '655 S Main St, Los Angeles, CA 90014', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Aram', customer_name: 'RAPPAHANNOCK OYSTER BAR', address: '1318 E 7th St, Los Angeles, CA 90021', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Aram', customer_name: 'THE LONELY OYSTER', address: '5100 York Blvd, Los Angeles, CA 90042', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Garen', customer_name: 'CHARCOAL RESTAURANT-VENICE', address: '425 Washington Blvd, Venice, CA 90291', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Garen', customer_name: 'KAKKOI SUSHI', address: '152 S Western Ave, Los Angeles, CA 90004', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Garen', customer_name: 'GO TRUCKS CATERING', address: '221 S Grand Ave, Los Angeles, CA 90012', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-      { driver_name: 'Garen', customer_name: 'THE LONELY OYSTER', address: '5100 York Blvd, Los Angeles, CA 90042', delivery_date: new Date(), has_arrived: false, status: 'Not arrived', delivery_time: null, photo: '' },
-      { driver_name: 'Garen', customer_name: 'CHARCOAL RESTAURANT-VENICE', address: '425 Washington Blvd, Venice, CA 90291', delivery_date: new Date(), has_arrived: false, status: 'Arrived', delivery_time: new Date(), photo: '' },
-    ];
+  refreshDeliverRoute(driverName: string, deliveryDate: string): void {
+    const formattedDate = new Date(deliveryDate).toISOString().split('T')[0]; // Ensure date is formatted as YYYY-MM-DD
+    this.deliveryRoute$ = this.driverRouteService
+      .getDeliveryRoute(driverName, formattedDate)
+      .pipe(
+        map((deliveryStops) => this.calculateTimeDifferences(deliveryStops)),
+      );
+  }
 
-    if (this.selectedDriver) {
-      this.dataSource.data = deliveryRoutes.filter(route => route.driver_name === this.selectedDriver);
+  hasArrived(deliveryRoute: DeliveryStop): void {
+    this.driverRouteService.hasArrived(deliveryRoute.id.toString()).subscribe(
+      () => {
+        console.log('Delivery marked as arrived');
+      },
+      (error) => {
+        console.error('Error marking delivery as arrived', error);
+      },
+    );
+  }
+
+  onFileSelected(deliveryRoute: DeliveryStop, event: Event) {
+    this.test(deliveryRoute);
+
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files.length > 0) {
+      const file = input.files[0];
+      if (file && file.type.startsWith('image/')) {
+        if (file.size <= this.maxFileSize) {
+          this.selectedFile = file;
+          this.uploadFile(deliveryRoute, file);
+        } else {
+          this.snackBarService.showSnackBar('File size exceeds 5 MB.');
+        }
+      } else {
+        this.snackBarService.showSnackBar('Please select an image file');
+        this.selectedFile = null;
+      }
+    }
+  }
+
+  test(deliveryRoute: DeliveryStop) {
+    deliveryRoute.actualArrivalTime = '2030-01-01';
+  }
+
+  uploadFile(deliveryRoute: DeliveryStop, file: File) {
+    this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
+      next: (event) => {
+        switch (event.type) {
+          case HttpEventType.UploadProgress:
+            if (event.total) {
+              const progress = Math.round((100 * event.loaded) / event.total);
+              console.log(`Upload Progress: ${progress}%`);
+            }
+            break;
+          case HttpEventType.Response: {
+            console.log('Upload successful', event.body);
+            const updatedDeliveryStop = event.body as DeliveryStop;
+            deliveryRoute = updatedDeliveryStop;
+            break;
+          }
+        }
+      },
+    });
+  }
+
+  getGoogleMapsUrl(address2: string, address3: string): SafeUrl {
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
+      address2 + ' ' + address3,
+    )}`;
+
+    const sanitizedUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
+    if (sanitizedUrl) {
+      return this.sanitizer.bypassSecurityTrustUrl(sanitizedUrl);
     } else {
-      this.dataSource.data = deliveryRoutes;
+      return '';
     }
+  }
+
+  private calculateTimeDifferences(
+    deliveryStops: DeliveryStop[],
+  ): DeliveryStop[] {
+    for (let i = deliveryStops.length - 1; i > 0; i--) {
+      const currentStop = deliveryStops[i];
+      const previousStop = deliveryStops[i - 1];
+
+      const currentTime = new Date(currentStop.plannedArrivalTime).getTime();
+      const previousTime = new Date(previousStop.plannedArrivalTime).getTime();
+
+      const timeDifferenceInMinutes = Math.round(
+        (currentTime - previousTime) / 60000,
+      );
+      currentStop.timeDifference = timeDifferenceInMinutes;
     }
-    
- 
+
+    if (deliveryStops.length > 0) {
+      deliveryStops[0].timeDifference = undefined; // First row will have no time difference
     }
+    return deliveryStops;
+  }
+}

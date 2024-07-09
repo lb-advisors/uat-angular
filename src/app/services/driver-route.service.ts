@@ -1,48 +1,64 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpEvent, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { DeliveryRoute } from '../models/delivery-route';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
+import { DeliveryStop } from '../models/delivery-stop.model';
+import { environment } from 'src/environments/environment';
+
+interface Driver {
+  name: string;
+}
 
 @Injectable({
   providedIn: 'root',
 })
 export class DriverRouteService {
+  private apiUrl = environment.apiUrl;
+
   constructor(private http: HttpClient) {}
 
-  getRoutes(): Observable<DeliveryRoute[]> {
-    const deliveryRoutes = [
-      {
-        driver_name: 'Douglas  Pace',
-        customer_name: 'Customer A1',
-        address: '123 Eml Street',
-        delivery_date: null,
-        has_arrived: true,
-        status: 'Arrived ',
-        delivery_time: null,
-      },
-      {
-        driver_name: 'Douglas  Pace',
-        customer_name: 'Customer B2',
-        address: '877 Main Street, LA',
-        delivery_date: new Date('2024-06-17'),
-        has_arrived: false,
-        status: 'Not arrived ',
-        delivery_time: new Date('2024-06-17 13:20:30'),
-      },
-      {
-        driver_name: 'Douglas Pace',
-        customer_name: 'Customer C3',
-        address: '34 South Garden Blvd, San Francisco',
-        delivery_date: new Date('2024-06-17'),
-        has_arrived: false,
-        status: 'Not arrived ',
-        delivery_time: new Date('2024-06-17 13:20:30'),
-      },
-    ];
+  getDrivers(): Observable<Driver[]> {
+    return this.http.get<Driver[]>(`${this.apiUrl}/drivers`);
+  }
 
-    //return this.http.get<DeliveryRoute[]>('http://abc.com/dfdf/');
-    //  .get<DeliveryRoute>(this.baseurl + '/bugtracking/')
-    //  .pipe(retry(1), catchError(this.errorHandl));
-    return of(deliveryRoutes);
+  getDeliveryRoute(
+    driverName: string,
+    deliveryDate: string,
+  ): Observable<DeliveryStop[]> {
+    const params = new HttpParams()
+      .set('driverName', driverName)
+      .set('deliveryDate', deliveryDate);
+    return this.http.get<DeliveryStop[]>(`${this.apiUrl}/delivery-stops`, {
+      params,
+    });
+  }
+
+  hasArrived(id: string): Observable<DeliveryStop> {
+    return this.http
+      .patch<DeliveryStop>(`${this.apiUrl}/delivery-stops/${id}`, {})
+      .pipe
+      // catchError((error) => {
+      //console.error('Error marking delivery as arrived:', error);
+      //return throwError(
+      //  () => new Error('Error marking delivery as arrived'),
+      //);
+      //}),
+      ();
+  }
+
+  uploadPhoto(
+    deliveryStopId: number,
+    file: File,
+  ): Observable<HttpEvent<DeliveryStop>> {
+    const formData = new FormData();
+    formData.append('file', file);
+
+    return this.http.post<DeliveryStop>(
+      `${this.apiUrl}/delivery-stops/${deliveryStopId}/photos`,
+      formData,
+      {
+        reportProgress: true,
+        observe: 'events',
+      },
+    );
   }
 }
