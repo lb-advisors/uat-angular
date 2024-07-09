@@ -88,12 +88,20 @@ export class OrderFormComponent implements OnInit {
   fetchSpecialsData(): void {
     const specialsCustomerId = '1';
     this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
-      this.specialsProducts = data.profiles.map((profile: Profile) => ({ ...profile, quantity: profile.quantity || 0 })) || [];
+      this.specialsProducts = data.profiles.map((profile: Profile) => ({
+        profileDid: profile.id, // Ensure the profile ID is mapped correctly
+        profileDescription: profile.profileDescription,
+        unitTypePd: profile.unitTypePd,
+        packSizePd: profile.packSizePd,
+        salesPrice: profile.salesPrice,
+        quantity: profile.quantity || 0
+      })) || [];
       this.updateTotal(); // Initialize the total for specials
     }, error => {
       console.error('Error fetching specials data:', error);
     });
   }
+  
 
   goBack(): void {
     window.history.back();
@@ -162,14 +170,17 @@ export class OrderFormComponent implements OnInit {
   
     const orderProfiles = this.prepareOrderData();
   
+    const orderProfilesArray = orderProfiles.map(profile => ({
+      profileDid: profile.profileDid,
+      quantity: profile.quantity
+    }));
+  
     const orderData = {
       customerId: this.customerId,
       deliveryDate: this.deliveryDate,
-      //totalPrice: this.orderFormService.calculateTotal(orderProfiles),
-      orderProfiles: orderProfiles.map(profile => ({
-        profileDid: profile.profileDid,
-        quantity: profile.quantity
-      }))
+      shipToId: this.selectedShiptoID || null,
+     // totalPrice: this.orderFormService.calculateTotal(orderProfiles),
+      orderProfiles: orderProfilesArray
     };
   
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
@@ -179,6 +190,8 @@ export class OrderFormComponent implements OnInit {
       this.displayErrorMessage('Failed to submit order. Please try again later.');
     });
   }
+  
+  
   
   
   

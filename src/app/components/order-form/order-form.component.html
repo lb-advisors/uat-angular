@@ -22,43 +22,44 @@
     </select>
   </div>
 
-  <!-- Specials Grid -->
-  <div *ngIf="specialsProducts && specialsProducts.length > 0">
-    <h3 class="grid-title">Specials</h3>
-    <table class="order-grid specials-grid">
-      <thead>
-        <tr>
-          <th>Profile ID</th>
-          <th>Customer ID</th>
-          <th>Description</th>
-          <th>Quantity</th>
-          <th>Unit Type</th>
-          <th>Pack Size</th>
-          <th>Price</th>
-          <th class='totalCol'>Total</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let product of specialsProducts; let i = index" [attr.data-special]="true" [attr.data-index]="i">
-          <td>{{ product.profileDid }}</td>
-          <td>{{ orderData.customerId }}</td>
-          <td>{{ product.profileDescription }}</td>
-          <td>
-            <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
-              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
-            <input type="hidden" name="description_special_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
-            <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
-            <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
-            <input type="hidden" name="price_special_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
-          </td>
-          <td>{{ product.unitTypePd }}</td>
-          <td>{{ product.packSizePd }}</td>
-          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
-          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+    <!-- Specials Grid -->
+    <div *ngIf="specialsProducts && specialsProducts.length > 0">
+      <h3 class="grid-title">Specials</h3>
+      <table class="order-grid specials-grid">
+        <thead>
+          <tr>
+            <th>Profile ID</th>
+            <th>Customer ID</th>
+            <th>Description</th>
+            <th>Quantity</th>
+            <th>Unit Type</th>
+            <th>Pack Size</th>
+            <th>Price</th>
+            <th class='totalCol'>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let product of specialsProducts; let i = index" [attr.data-special]="true" [attr.data-index]="i">
+            <td>{{ product.profileDid }}</td> <!-- Ensure this field is displayed -->
+            <td>{{ orderData.customerId }}</td>
+            <td>{{ product.profileDescription }}</td>
+            <td>
+              <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
+                [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+              <input type="hidden" name="description_special_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
+              <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
+              <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
+              <input type="hidden" name="price_special_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
+              <input type="hidden" name="profile_id_special_{{ i }}" [value]="product.profileDid" [(ngModel)]="product.profileDid"> <!-- Ensure this field is bound -->
+            </td>
+            <td>{{ product.unitTypePd }}</td>
+            <td>{{ product.packSizePd }}</td>
+            <td>${{ product.salesPrice | number:'1.2-2' }}</td>
+            <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
   <!-- Normal Grid -->
   <div *ngIf="orders && orders.length > 0">
