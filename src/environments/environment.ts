@@ -1,5 +1,6 @@
+
+// src/environments/environment.prod.ts
 export const environment = {
   production: true,
-  apiKey: 'prodKey',
   apiUrl: 'https://uat-pffc.onrender.com/api',
 };
