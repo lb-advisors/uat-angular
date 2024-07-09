@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Correct import for HttpClientModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
 
@@ -28,8 +28,6 @@ import { GlobalErrorHandlerService } from './services/global-error-handler.servi
 
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
-//import { HttpClientModule } from '@angular/common/http'; // Import HttpClientModule
-
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { ImageThumbnailComponent } from './components/image-thumbnail/image-thumbnail.component';
 
@@ -50,6 +48,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule, // Add FormsModule here
+    HttpClientModule, // Add HttpClientModule here
     MatSlideToggleModule,
     MatTableModule,
     MatSidenavModule,
@@ -59,7 +58,6 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     MatMenuModule,
     MatSnackBarModule,
     InfiniteScrollDirective,
-    //HttpClientModule, // TODO: deprecated
     ModalModule.forRoot(),
   ],
   providers: [
@@ -69,7 +67,6 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
       multi: true,
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })
