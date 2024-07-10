@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { OrderFormService } from '../../services/order-form.service';
 import { NgForm } from '@angular/forms';
 import { Profile } from '../../models/order.model';
@@ -25,7 +25,8 @@ export class OrderFormComponent implements OnInit {
 
   constructor(
     private orderFormService: OrderFormService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -101,7 +102,6 @@ export class OrderFormComponent implements OnInit {
       console.error('Error fetching specials data:', error);
     });
   }
-  
 
   goBack(): void {
     window.history.back();
@@ -147,18 +147,27 @@ export class OrderFormComponent implements OnInit {
 
   updateTotal(): void {
     let total = 0;
-    const totalElements = document.querySelectorAll('.total-per-item');
 
-    totalElements.forEach(element => {
-      const subtotal = parseFloat(element.textContent?.replace(/[^0-9.-]+/g, '') || '0');
-      total += isNaN(subtotal) ? 0 : subtotal;
+    // Calculate the total for normal products
+    this.products.forEach(product => {
+      const quantity = product.quantity || 0;
+      const price = product.salesPrice || 0;
+      const packSize = product.packSizePd || 1;
+      total += quantity * price * packSize;
+    });
+
+    // Calculate the total for specials products
+    this.specialsProducts.forEach(product => {
+      const quantity = product.quantity || 0;
+      const price = product.salesPrice || 0;
+      const packSize = product.packSizePd || 1;
+      total += quantity * price * packSize;
     });
 
     const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
-    totalAmountSpan.textContent = total.toLocaleString('en-US', { style: 'currency', currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    totalAmountSpan.textContent = total.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
 
-    const totalPriceInput = document.getElementById('total_price') as HTMLInputElement;
-    totalPriceInput.value = total.toFixed(2);
+    this.orderData.totalPrice = total.toFixed(2);
   }
 
   submitOrder(form: NgForm): void {
@@ -167,34 +176,32 @@ export class OrderFormComponent implements OnInit {
       this.displayErrorMessage(errorMessage);
       return;
     }
-  
+
     const orderProfiles = this.prepareOrderData();
-  
+
     const orderProfilesArray = orderProfiles.map(profile => ({
       profileDid: profile.profileDid,
       quantity: profile.quantity
     }));
-  
+
     const orderData = {
       customerId: this.customerId,
       deliveryDate: this.deliveryDate,
       shipToId: this.selectedShiptoID || null,
-     // totalPrice: this.orderFormService.calculateTotal(orderProfiles),
+      totalPrice: this.orderData.totalPrice,
+      products: this.products.concat(this.specialsProducts), // Ensure products are included
       orderProfiles: orderProfilesArray
     };
-  
+
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
       console.log('Order submitted successfully', response);
       alert('Order submitted successfully');
+      this.router.navigate(['/order-confirmation'], { queryParams: { orderData: JSON.stringify(orderData) } });
     }, error => {
       this.displayErrorMessage('Failed to submit order. Please try again later.');
     });
   }
-  
-  
-  
-  
-  
+
   restrictInput(event: any, maxLength: number): void {
     const input = event.target;
     if (input.value.length > maxLength) {
@@ -263,5 +270,4 @@ export class OrderFormComponent implements OnInit {
         quantity: product.quantity
       }));
   }
-  
 }

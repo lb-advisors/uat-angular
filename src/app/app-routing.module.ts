@@ -7,6 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { OrderFormComponent } from './components/order-form/order-form.component'; // Adjusted import path
+import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component'; // Added import
 
 const routes: Routes = [
   {
@@ -49,6 +50,11 @@ const routes: Routes = [
     path: 'order-form',
     component: OrderFormComponent,
     title: 'Order Form',
+  },
+  { 
+    path: 'order-confirmation',
+    component: OrderConfirmationComponent,
+    title: 'Order Confirmation',
   },
   { path: '**', redirectTo: '/home', pathMatch: 'full' },
 ];

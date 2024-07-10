@@ -6,6 +6,7 @@ import { DriverRouteComponent } from './components/driver-route/driver-route.com
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Correct import for HttpClientModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { CommonModule } from '@angular/common'; // Import CommonModule
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
@@ -22,6 +23,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
 import { OrderFormComponent } from './components/order-form/order-form.component'; // Corrected import path
+import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component'; // Add OrderConfirmationComponent
 
 import { HttpLoggingInterceptor } from './core/interceptors/http-logging.interceptor';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
@@ -41,6 +43,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     LogoutComponent,
     InventoryComponent,
     OrderFormComponent, // Add OrderFormComponent here
+    OrderConfirmationComponent, // Add OrderConfirmationComponent here
     ImageThumbnailComponent,
   ],
   imports: [
@@ -49,6 +52,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     BrowserAnimationsModule,
     FormsModule, // Add FormsModule here
     HttpClientModule, // Add HttpClientModule here
+    CommonModule, // Add CommonModule here
     MatSlideToggleModule,
     MatTableModule,
     MatSidenavModule,
