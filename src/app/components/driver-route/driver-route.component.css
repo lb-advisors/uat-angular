@@ -129,7 +129,7 @@ body {
   white-space: nowrap;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
 
   .mdc-data-table__cell,
   .mdc-data-table__header-cell {
@@ -148,8 +148,9 @@ body {
 
   .container {
     width: 100%;
-    margin: 5px;
-    padding: 0px
+    margin: 0px;
+    padding: 0px;
+    border: 0px;
   }
 
   label {
