@@ -39,6 +39,10 @@ export class OrderFormService {
     return total;
   }
 
+  checkExistingOrder(customerId: string, deliveryDate: string): Observable<any[]> {
+    return this.http.get<any[]>(`/api/orders/check-existing?customerId=${customerId}&deliveryDate=${deliveryDate}`);
+  }
+  
   hasValidQuantities(products: Profile[]): boolean {
     let hasQuantity = false;
     let invalidQuantity = false;

@@ -1,0 +1,49 @@
+<div class="container">
+    <div class="image-container">
+      <img [src]="imageSrc" alt="Company Logo">
+    </div>
+    <h2>Existing Order</h2>
+    <div class="error-message" style="color: red;">
+      We already have an order for you placed on this delivery date. If you would like it changed please contact your sales rep.
+    </div>
+    <div class="submitted-date">
+      Delivery Date: <span>{{ deliveryDate }}</span>
+    </div>
+    <table class="order-grid" id="order-grid">
+      <thead>
+        <tr>
+          <th>Customer Name</th>
+          <th>Sales Rep</th>
+          <th>Product Description</th>
+          <th>Unit Type</th>
+          <th>Pack Size</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th>Delivery Date</th>
+          <th>Shipto Name</th>
+          <th>Submitted Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ order[1] }}</td>
+          <td>{{ order[2] }}</td>
+          <td>{{ order[3] }}</td>
+          <td>{{ order[4] }}</td>
+          <td>{{ order[5] }}</td>
+          <td class="price">${{ order[6] }}</td>
+          <td>{{ order[7] }}</td>
+          <td>{{ order[9] }}</td>
+          <td>{{ order[17] }}</td>
+          <td>{{ order[13] }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <div style="margin-top: 20px;">
+      <div class="total"><strong>Total:</strong> 
+        <span id="total-amount">${{ calculateTotal() }}</span>
+      </div>
+    </div>
+    <button (click)="goBack()">Back</button>
+  </div>
+  
