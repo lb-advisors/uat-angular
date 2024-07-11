@@ -134,7 +134,7 @@ body {
     }
 
     .inventory-grid th, .inventory-grid td {
-        padding: 0px; /* Reduce padding for better spacing */
+        padding: 5px; /* Reduce padding for better spacing */
         width: 100%; 
     }
 }
