@@ -1,234 +1,245 @@
 body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  justify-content: center;
-  background-color: #f0f0f0; /* Light grey background for the body */
-  color: #000000; /* Black text color */
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0; /* Light grey background for the body */
+    color: #000000; /* Black text color */
 }
 
 .arrived-row {
-  font-weight: bold;
-  background-color: #d3d3d3; /* Lighter grey for arrived rows */
+    font-weight: bold;
+    background-color: #d3d3d3; /* Lighter grey for arrived rows */
 }
 
 .driver-routes-title {
-  font-size: 30px; /* Set font size to 30px */
-  margin: 20px 0; /* Add equal margin to top and bottom */
+    font-size: 30px; /* Set font size to 30px */
+    margin: 20px 0; /* Add equal margin to top and bottom */
 }
 
 .main-container {
-  display: flex;
-  width: 100%;
+    display: flex;
+    width: 100%;
 }
 
 .content {
-  flex-grow: 1;
-  padding: 20px;
+    flex-grow: 1;
+    padding: 20px;
 }
 
 .container {
-  width: 90%;
-  max-width: 800px;
-  margin: 20px auto;
-  padding: 20px;
-  background-color: #ffffff; /* White background for the container */
-  color: #000000; /* Black text color for the container */
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  text-align: center;
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the container */
+    color: #000000; /* Black text color for the container */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
 }
 
 .image-container {
-  background-color: rgba(
-    0,
-    16,
-    46,
-    1
-  ); /* Dark blue background for the image container */
-  padding: 10px;
-  border-radius: 8px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+    background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
+    padding: 10px;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .image-container img {
-  max-width: 100%;
-  height: 100px; /* Adjust the logo size as needed */
-  border-radius: 8px;
+    max-width: 100%;
+    height: 100px; /* Adjust the logo size as needed */
+    border-radius: 8px;
 }
 
 .filters {
-  margin: 20px 0;
-  display: flex;
-  justify-content: space-between; /* Space between for filters */
-  align-items: center;
-  font-size: 18px; /* Increase font size */
+    margin: 20px 0;
+    display: flex;
+    justify-content: space-between; /* Space between for filters */
+    align-items: center;
+    font-size: 18px; /* Increase font size */
 }
 
 .filters .driver-filter {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .filters .delivery-date-filter {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .filters label {
-  margin-right: 5px; /* Space between label and select/input */
+    margin-right: 5px; /* Space between label and select/input */
 }
 
 .filters select,
 .filters input {
-  font-size: 18px; /* Match font size */
-  padding: 5px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+    font-size: 18px; /* Match font size */
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
 
 .filters input {
-  width: auto; /* Adjust the width of the input */
-  min-width: 80px; /* Minimum width for the delivery date input */
+    width: auto; /* Adjust the width of the input */
+    min-width: 80px; /* Minimum width for the delivery date input */
 }
 
 .driver-routes-grid {
-  width: fit-content;
-  border-collapse: collapse;
-  margin-bottom: 20px;
+    width: fit-content;
+    border-collapse: collapse;
+    margin-bottom: 20px;
 }
 
 .driver-routes-grid th,
 .driver-routes-grid td {
-  padding: 8px;
-  text-align: center; /* Center the text in headers and cells */
-  border-bottom: 1px solid #000; /* Black horizontal lines */
+    padding: 8px;
+    text-align: center; /* Center the text in headers and cells */
+    border-bottom: 1px solid #000; /* Black horizontal lines */
 }
 
 .driver-routes-grid th {
-  background-color: #5a5a5a; /* Slightly lighter dark grey */
-  color: #ffffff; /* White text color for table headers */
-  font-weight: bold; /* Bold font for headers */
+    background-color: #5a5a5a; /* Slightly lighter dark grey */
+    color: #ffffff; /* White text color for table headers */
+    /*font-weight: bold; /* Bold font for headers */
+    min-width: 75px; /* Prevent headers from wrapping too much */
 }
 
 .driver-routes-grid td.wrap {
-  white-space: normal;
-  word-wrap: break-word;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word; /* Ensure wrapping within cells */
+}
+
+.driver-routes-grid td {
+    padding: 8px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word; /* Ensure wrapping within cells */
 }
 
 .arrived {
-  background-color: #eeedeb;
-  font-weight: bold;
+    background-color: #eeedeb;
+    font-weight: bold;
 }
 
 .nowrap {
-  white-space: nowrap;
+    white-space: nowrap;
 }
 
 @media (max-width: 500px) {
+    .mdc-data-table__cell,
+    .mdc-data-table__header-cell {
+        padding: 0 0px;
+    }
 
-  .mdc-data-table__cell,
-  .mdc-data-table__header-cell {
-    padding: 0 0px;
-  }
+    .driver-routes-grid th,
+    .driver-routes-grid td {
+        padding: 10px;
+    }
 
-  .driver-routes-grid th,
-  .driver-routes-grid td {
-    padding: 0px;
-  }
+    .driver-routes-grid th,
+    .driver-routes-grid td {
+        font-size: 10px;
+    }
 
-  .driver-routes-grid th,
-  .driver-routes-grid td {
-    font-size: 10px;
-  }
+    .container {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
+    }
 
-  .container {
-    width: 100%;
-    margin: 0px;
-    padding: 0px;
-    border: 0px;
-  }
+   
 
-  label {
-    padding-left: 5px;
-  }
+    
 
-  .filters {
-    flex-direction: column;
-  }
+    .filters .driver-filter,
+    .filters .delivery-date-filter {
+        width: 100%;
+        margin-bottom: 10px;
+    }
 
-  .filters .driver-filter,
-  .filters .delivery-date-filter {
-    width: 100%;
-    margin-bottom: 10px;
-  }
-  .customerPhone {
-    white-space: normal;
-    word-wrap: break-word;
-    word-break: break-all;
-  }
-  .nowrap {
-    white-space: normal;
-  }
+    .address-column {
+        white-space: normal; /* Ensure address text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word; /* Ensure long words break */
+        /*max-width: 100%; /* Allow the column to take full width */
+        padding-left: 50px; /* Add left padding */
+        padding-right: 50px; /* Add right padding */
+    }
+
+    .customerPhone {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word; /* Ensure phone numbers wrap */
+        word-break: break-all; /* Break long words at any character */
+    }
+
+    .nowrap {
+        white-space: normal;
+    }
 }
 
 .hidden-column {
-  display: none;
+    display: none;
 }
 
 .no-bottom-border {
-  border-bottom: none !important;
+    border-bottom: none !important;
 }
 
 .arrow-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 30px;
-  margin-top: 10px; /* Move down the entire arrow container */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 30px;
+    margin-top: 10px; /* Move down the entire arrow container */
 }
 
 .arrow-container i {
-  font-size: 24px; /* Font Awesome icon size */
-  margin-right: 10px; /* Add space to the right of the arrow */
+    font-size: 24px; /* Font Awesome icon size */
+    margin-right: 10px; /* Add space to the right of the arrow */
 }
 
 .time-difference-arrow {
-  font-size: 14px;
-  color: darkgreen;
-  font-weight: bold;
-  margin-left: 5px;
+    font-size: 14px;
+    color: darkgreen;
+    font-weight: bold;
+    margin-left: 5px;
 }
 
 #delivery-date {
-  width: 120px; /* Ensures the width is only as wide as the content */
-  text-align: center; /* Centers the text inside the text box */
-  cursor: default; /* Prevent the text cursor from appearing */
-  background-color: white; /* Set the background color to white */
-  border: 1px solid white; /* Set the border color to white */
+    width: 120px; /* Ensures the width is only as wide as the content */
+    text-align: center; /* Centers the text inside the text box */
+    cursor: default; /* Prevent the text cursor from appearing */
+    background-color: white; /* Set the background color to white */
+    border: 1px solid white; /* Set the border color to white */
 }
 
 .custom-file-input {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .custom-file-input button {
-  background-color: grey;
-  color: white;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
+    background-color: grey;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
 }
 
 .custom-file-input button:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .custom-file-input span {
-  margin-left: 10px;
+    margin-left: 10px;
 }
