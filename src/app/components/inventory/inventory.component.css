@@ -124,17 +124,17 @@ body {
     }
 
     .inventory-grid th, .inventory-grid td {
-        font-size: 14px;
+        font-size: 10px;
     }
 
     .container {
         width: 100%; /* Full width for container on mobile */
         margin: 0; /* Remove margin for better spacing */
-        padding: 10px; /* Reduce padding for better spacing */
+        padding: 0px; /* Reduce padding for better spacing */
     }
 
     .inventory-grid th, .inventory-grid td {
-        padding: 5px; /* Reduce padding for better spacing */
+        padding: 0px; /* Reduce padding for better spacing */
         width: 100%; 
     }
 }
