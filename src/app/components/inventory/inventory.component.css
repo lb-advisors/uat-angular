@@ -91,6 +91,7 @@ body {
 .inventory-grid th {
     background-color: #d3d3d3; /* Light grey background for table headers */
     color: #333; /* Dark grey text color for table headers */
+    min-width: 75px; /* Prevent headers from wrapping too much */
 }
 
 .inventory-grid td.wrap {
@@ -104,13 +105,12 @@ body {
     text-align: center;
 }
 
-.product-header {
-    width: 375px; /* Make the product column wider */
-}
 
 .product-column {
     white-space: normal;
-    word-break: break-word;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
 @media (max-width: 500px) {
@@ -138,24 +138,22 @@ body {
         width: 100%; /* Full width for grid on mobile */
         margin: 0; /* Remove margin */
         border: 0; /* Remove border */
+        display: table; /* Ensure proper table layout */
     }
 
-    .inventory-grid th, .inventory-grid td {
-        padding: 0; /* Remove padding */
-    }
 
-    .inventory-grid th, .inventory-grid td {
-        padding: 8px;
-        text-align: center;
-    }
-
-    .inventory-grid {
-        display: grid;
-        grid-template-columns: min-content min-content min-content min-content 1fr min-content;
-    }
 
     .product-column {
-        grid-column: 5;
-        min-width: 50%; /* Ensure the product column takes up at least 50% */
+        min-width: 60%; /* Ensure the product column takes up at least 50% */
+        max-width: 90%; /* Allow the product column to take up more space */
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word;
     }
+
+    .inventory-grid th {
+        min-width: 51px; /* Prevent headers from wrapping too much */
+    }
+
+    
 }
