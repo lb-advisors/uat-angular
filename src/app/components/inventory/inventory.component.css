@@ -135,5 +135,6 @@ body {
 
     .inventory-grid th, .inventory-grid td {
         padding: 5px; /* Reduce padding for better spacing */
+        width: 100%; 
     }
 }
