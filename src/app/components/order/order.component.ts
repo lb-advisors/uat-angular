@@ -47,7 +47,7 @@ export class OrderListComponent implements OnInit {
       .subscribe(data => {
         this.companies = data;
         if (this.companies.length > 0) {
-          this.selectedCompany = this.companies[0];
+          this.selectedCompany = this.companies.find(company => company.name === 'PFF') || this.companies[0];
           this.filterSalesReps();
         }
       }, error => {
