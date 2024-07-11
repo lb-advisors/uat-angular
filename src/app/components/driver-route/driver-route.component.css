@@ -98,6 +98,21 @@ body {
     margin-bottom: 20px;
 }
 
+.button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkgreen;
+}
+
 .driver-routes-grid th,
 .driver-routes-grid td {
     padding: 10px;
@@ -239,7 +254,7 @@ body {
 }
 
 .custom-file-input button {
-    background-color: grey;
+    background-color: green;
     color: white;
     border: none;
     padding: 5px 10px;

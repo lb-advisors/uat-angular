@@ -54,7 +54,7 @@
       <td mat-cell *matCellDef="let element">
         <div *ngIf="!element.actualArrivalTime || !element.fileUrl; else alreadyArrivedBlock" class="custom-file-input">
           <input type="file" id="file" #fileInput (change)="onFileSelected(element, $event)" accept="image/*" required hidden>
-          <button type="button" (click)="fileInput.click()">Upload a photo</button>
+          <button type="button" class="button" (click)="fileInput.click()">Arrived</button>
         </div>
         <ng-template #alreadyArrivedBlock>
           <div>
