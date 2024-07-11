@@ -76,6 +76,7 @@ body {
 
 .filters label {
     margin-right: 5px; /* Space between label and select/input */
+    margin-left: 10px; 
 }
 
 .filters select,
@@ -149,15 +150,19 @@ body {
         font-size: 10px;
     }
 
+    .driver-routes-grid th {
+        background-color: #5a5a5a; /* Slightly lighter dark grey */
+        color: #ffffff; /* White text color for table headers */
+        font-size: 14px; /* Increase the font size */
+        min-width: 75px; /* Prevent headers from wrapping too much */
+    }
+
     .container {
         width: 100%;
         margin: 0px;
         padding: 0px;
         border: 0px;
     }
-
-   
-
     
 
     .filters .driver-filter,
@@ -216,7 +221,7 @@ body {
 }
 
 #delivery-date {
-    width: 120px; /* Ensures the width is only as wide as the content */
+    width: 100px; /* Ensures the width is only as wide as the content */
     text-align: center; /* Centers the text inside the text box */
     cursor: default; /* Prevent the text cursor from appearing */
     background-color: white; /* Set the background color to white */
