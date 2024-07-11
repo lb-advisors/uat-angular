@@ -28,34 +28,21 @@ body {
     margin-bottom: 20px;
 }
 
-.customer-info {
+.customer-sales-info {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
-    flex-wrap: wrap;
-}
-
-.customer-info div {
-    flex: 1 1 48%;
-    display: flex;
     align-items: center;
+    font-size: 18px; /* Increase font size */
+    margin-bottom: 20px;
 }
 
-.customer-info div label {
-    margin-right: 5px;
-    font-size: 18px; /* Match font size of dynamic text */
+.customer-sales-info p {
+    margin: 0;
 }
 
-.customer-info div .info {
-    font-size: 18px; /* Match font size of dynamic text */
-}
-
-.customer-info div.label-left {
-    justify-content: flex-start;
-}
-
-.customer-info div.label-right {
-    justify-content: flex-end;
+.customer-sales-info a {
+    color: blue;
+    text-decoration: underline;
 }
 
 .grid-title {
@@ -91,24 +78,19 @@ body {
     font-size: 14px; /* Match the inventory grid font size */
 }
 
-/* Set specific column widths */
-.order-grid th:nth-child(1),
-.order-grid td:nth-child(1) {
-    width: 65%; /* Description */
+.hidden-column {
+    display: none;
 }
 
+/* Set specific column widths */
+.order-grid th:nth-child(1),
+.order-grid td:nth-child(1),
 .order-grid th:nth-child(2),
-.order-grid td:nth-child(2),
-.order-grid th:nth-child(3),
-.order-grid td:nth-child(3),
-.order-grid th:nth-child(4),
-.order-grid td:nth-child(4),
-.order-grid th:nth-child(5),
-.order-grid td:nth-child(5),
-.order-grid th:nth-child(6),
-.order-grid td:nth-child(6) {
-    width: 25%; /* Other columns */
+.order-grid td:nth-child(2) {
+    display: none; /* Hide Profile ID and Customer ID columns */
 }
+
+
 
 .order-grid td input[type="number"] {
     width: 70px;
@@ -194,6 +176,20 @@ body {
     .input_quantity {
         width: 100%;
     }
+    
+.order-grid {
+    width: 100%; /* Full width for grid on mobile */
+    margin: 0; /* Remove margin */
+    border: 0; /* Remove border */
+    display: table; /* Ensure proper table layout */
+}
+
+.container {
+    width: 100%; /* Full width for container on mobile */
+    margin: 0; /* Remove margin */
+    padding: 0; /* Remove padding */
+    border: 0; /* Remove border */
+}
 }
 
 /* Additional styles for bold and lighter grey background */
@@ -209,7 +205,7 @@ body {
 }
 
 .image-container {
-    width: 97%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -231,3 +227,10 @@ body {
 .shipto-dropdown {
     margin-top: 10px;
 }
+
+
+.order-grid th:nth-child(3) {
+    width: 30%; /* Other columns */
+   
+}
+
