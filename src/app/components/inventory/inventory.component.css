@@ -20,7 +20,7 @@ body {
 }
 
 .container {
-    width: 100%; /* Make the container full width */
+    width: 90%;
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -113,7 +113,7 @@ body {
     word-break: break-word;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 500px) {
     .filters {
         flex-direction: column;
     }
@@ -124,17 +124,38 @@ body {
     }
 
     .inventory-grid th, .inventory-grid td {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .container {
         width: 100%; /* Full width for container on mobile */
-        margin: 5; /* Remove margin for better spacing */
-        padding: 5px; /* Reduce padding for better spacing */
+        margin: 0; /* Remove margin */
+        padding: 0; /* Remove padding */
+        border: 0; /* Remove border */
+    }
+
+    .inventory-grid {
+        width: 100%; /* Full width for grid on mobile */
+        margin: 0; /* Remove margin */
+        border: 0; /* Remove border */
     }
 
     .inventory-grid th, .inventory-grid td {
-        padding: 5px; /* Reduce padding for better spacing */
-        width: 100%; 
+        padding: 0; /* Remove padding */
+    }
+
+    .inventory-grid th, .inventory-grid td {
+        padding: 8px;
+        text-align: center;
+    }
+
+    .inventory-grid {
+        display: grid;
+        grid-template-columns: min-content min-content min-content min-content 1fr min-content;
+    }
+
+    .product-column {
+        grid-column: 5;
+        min-width: 50%; /* Ensure the product column takes up at least 50% */
     }
 }
