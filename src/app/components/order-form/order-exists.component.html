@@ -21,7 +21,7 @@
           <th>Price</th>
           <th>Quantity</th>
           <th>Delivery Date</th>
-          <th>Shipto Name</th>
+          <th *ngIf="hasShipToName">Shipto Name</th>
         </tr>
       </thead>
       <tbody>
@@ -34,7 +34,7 @@
           <td class="price">{{ order.price | currency:'USD':true }}</td>
           <td>{{ order.quantity }}</td>
           <td>{{ order.deliveryDate }}</td>
-          <td>{{ order.shipToName }}</td>
+          <td *ngIf="hasShipToName">{{ order.shipToName }}</td>
         </tr>
       </tbody>
     </table>

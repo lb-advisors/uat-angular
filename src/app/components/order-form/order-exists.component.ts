@@ -10,6 +10,7 @@ export class OrderExistsComponent implements OnInit {
   orders: any[] = [];
   deliveryDate: string = '';
   imageSrc: string = 'assets/logo.png';
+  hasShipToName: boolean = false;
 
   constructor(private route: ActivatedRoute) {}
 
@@ -28,6 +29,7 @@ export class OrderExistsComponent implements OnInit {
         deliveryDate: order.deliveryDate,
         shipToName: order.shipToName
       }));
+      this.hasShipToName = this.orders.some(order => order.shipToName);
     });
   }
 
