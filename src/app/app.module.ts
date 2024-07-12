@@ -3,9 +3,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'; // Correct import for HttpClientModule
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http'; // Correct import for HttpClientModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
 import { CommonModule } from '@angular/common'; // Import CommonModule
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -18,7 +18,7 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HomeComponent } from './components/home/home.component';
-import { OrderListComponent } from './components/order/order.component'; // Update import
+import { OrderLinksComponent } from './components/order-links/order-links.component'; // Update import
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
@@ -39,7 +39,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     AppComponent,
     DriverRouteComponent,
     HomeComponent,
-    OrderListComponent, // Update declaration
+    OrderLinksComponent,
     LoginComponent,
     LogoutComponent,
     InventoryComponent,
@@ -52,9 +52,9 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule, // Add FormsModule here
-    HttpClientModule, // Add HttpClientModule here
-    CommonModule, // Add CommonModule here
+    FormsModule,
+    ReactiveFormsModule,
+    CommonModule,
     MatSlideToggleModule,
     MatTableModule,
     MatSidenavModule,
@@ -73,6 +73,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
       multi: true,
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })
