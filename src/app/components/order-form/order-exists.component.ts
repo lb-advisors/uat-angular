@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class OrderExistsComponent implements OnInit {
   orders: any[] = [];
   deliveryDate: string = '';
+  company: string = 'PFF';
   imageSrc: string = 'assets/logo.png';
   hasShipToName: boolean = false;
 
@@ -17,6 +18,7 @@ export class OrderExistsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.deliveryDate = params['deliveryDate'];
+      this.company = params['company'] || 'PFF';
       const order = JSON.parse(params['orders']);
       this.orders = order.profiles.map((profile: any) => ({
         customerName: order.customerName,
@@ -30,7 +32,16 @@ export class OrderExistsComponent implements OnInit {
         shipToName: order.shipToName
       }));
       this.hasShipToName = this.orders.some(order => order.shipToName);
+      this.updateImageAndBackground();
     });
+  }
+
+  updateImageAndBackground(): void {
+    if (this.company === 'FOG-RIVER') {
+      this.imageSrc = 'assets/fogriver.png';
+    } else if (this.company === 'PFF') {
+      this.imageSrc = 'assets/logo.png';
+    }
   }
 
   calculateTotal(): number {

@@ -185,13 +185,13 @@ export class OrderFormComponent implements OnInit {
   
     const orderData = {
       customerId: this.customerId,
-      customerName: this.orderData.customerName, // Ensure customer name is included
+      customerName: this.orderData.customerName,
       deliveryDate: this.deliveryDate,
       shipToId: this.selectedShiptoID || null,
       totalPrice: this.orderData.totalPrice,
       products: this.products.concat(this.specialsProducts),
       orderProfiles: orderProfilesArray,
-      company: this.company // Ensure company is included
+      company: this.company
     };
   
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
@@ -205,13 +205,14 @@ export class OrderFormComponent implements OnInit {
       error: error => {
         if (error.status === 409) {
           console.log('Order already exists for this delivery date', error.error);
-          this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error) } });
+          this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error), company: this.company } });
         } else {
           this.displayErrorMessage('Failed to submit order. Please try again later.');
         }
       }
     });
   }
+  
   
   
   
