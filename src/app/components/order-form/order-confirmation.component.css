@@ -123,3 +123,13 @@ p {
         border: 0; /* Remove border */
     }
 }
+
+.button {
+    background-color: #d3d3d3;
+    color: 333;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 5px;
+    }
+    

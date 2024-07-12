@@ -29,11 +29,20 @@ export class OrderExistsComponent implements OnInit {
         packSize: profile.packSize,
         price: profile.price,
         quantity: profile.quantity,
-        deliveryDate: order.deliveryDate,
+        deliveryDate: profile.deliveryDate, // Use the delivery date from the order profile
         shipToName: order.shipToName
       }));
       this.hasShipToName = this.orders.some(order => order.shipToName);
+      this.formatDeliveryDate();
     });
+  }
+
+  formatDeliveryDate(): void {
+    if (this.deliveryDate) {
+      const date = new Date(this.deliveryDate);
+      const formattedDate = `${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}/${date.getFullYear()}`;
+      this.deliveryDate = formattedDate;
+    }
   }
 
   calculateTotal(): number {
