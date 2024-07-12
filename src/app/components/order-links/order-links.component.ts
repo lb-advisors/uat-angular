@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Customer } from 'src/app/models/customer.model';
@@ -31,7 +32,9 @@ export class OrderLinksComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private orderLinksService: OrderLinksService
+    private orderLinksService: OrderLinksService,
+    private route: ActivatedRoute,
+    private router: Router // Add the Router here
   ) {}
 
   ngOnInit(): void {
@@ -52,19 +55,26 @@ export class OrderLinksComponent implements OnInit {
     );
 
     // company change
-    this.salesPersons$ = this.form.get('company')!.valueChanges.pipe(
-      switchMap((company) =>
-        this.orderLinksService.getSalesPersons(company.id).pipe(
+    this.form.get('company')!.valueChanges.pipe(
+      tap((company) => {
+        this.updateImageAndBackground(company.name);
+      }),
+      switchMap((company) => {
+        return this.orderLinksService.getSalesPersons(company.id).pipe(
           tap((salesreps) => {
             // Sort sales reps in ascending order
             salesreps.sort((a, b) => a.name.localeCompare(b.name));
+            this.salesPersons$ = new Observable<SalesRep[]>(observer => {
+              observer.next(salesreps);
+              observer.complete();
+            });
             if (salesreps.length > 0) {
               this.form.get('salesPerson')!.setValue(salesreps[0]);
             }
           }),
-        ),
-      ),
-    );
+        );
+      })
+    ).subscribe();
 
     // salesPerson change
     this.form.get('salesPerson')!.valueChanges.pipe(
@@ -90,9 +100,8 @@ export class OrderLinksComponent implements OnInit {
     });
   }
 
-  updateImageAndBackground(): void {
-    const company = this.form.get('company')!.value;
-    if (company.name === 'FOG-RIVER') {
+  updateImageAndBackground(companyName: string): void {
+    if (companyName === 'FOG-RIVER') {
       this.imageSrc = 'assets/fogriver.png';
       this.imageBackgroundColor = '#000000'; // Black background
     } else {
@@ -104,6 +113,11 @@ export class OrderLinksComponent implements OnInit {
   generateLink(customerId: number): string {
     const companyId = this.form.get('company')!.value.id;
     return `/order-form?customerID=${customerId}&company=${companyId}`;
+  }
+
+  navigateToOrderForm(customerId: number): void {
+    const companyId = this.form.get('company')!.value.id;
+    this.router.navigate(['/order-form'], { queryParams: { customerID: customerId, company: companyId } });
   }
 
   copyLink(customerId: number): void {
