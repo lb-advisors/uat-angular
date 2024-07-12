@@ -177,38 +177,39 @@ export class OrderFormComponent implements OnInit {
       return;
     }
   
-    this.orderFormService.checkExistingOrder(this.customerId, this.deliveryDate).subscribe(existingOrders => {
-      if (existingOrders && existingOrders.length > 0) {
-        this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(existingOrders) } });
-      } else {
-        const orderProfiles = this.prepareOrderData();
-        const orderProfilesArray = orderProfiles.map(profile => ({
-          profileDid: profile.profileDid,
-          quantity: profile.quantity
-        }));
-  
-        const orderData = {
-          customerId: this.customerId,
-          deliveryDate: this.deliveryDate,
-          shipToId: this.selectedShiptoID || null,
-          totalPrice: this.orderData.totalPrice,
-          products: this.products.concat(this.specialsProducts),
-          orderProfiles: orderProfilesArray
-        };
-  
-        this.orderFormService.placeOrder(this.customerId, orderData).subscribe(response => {
+    const orderProfiles = this.prepareOrderData();
+    const orderProfilesArray = orderProfiles.map(profile => ({
+      profileDid: profile.profileDid,
+      quantity: profile.quantity
+    }));
+
+    const orderData = {
+      customerId: this.customerId,
+      deliveryDate: this.deliveryDate,
+      shipToId: this.selectedShiptoID || null,
+      totalPrice: this.orderData.totalPrice,
+      products: this.products.concat(this.specialsProducts),
+      orderProfiles: orderProfilesArray
+    };
+
+    this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
+      next: response => {
+        if (response.status === 200) {
           console.log('Order submitted successfully', response);
           alert('Order submitted successfully');
           this.router.navigate(['/order-confirmation'], { queryParams: { orderData: JSON.stringify(orderData) } });
-        }, error => {
+        }
+      },
+      error: error => {
+        if (error.status === 409) {
+          this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error) } });
+        } else {
           this.displayErrorMessage('Failed to submit order. Please try again later.');
-        });
+        }
       }
-    }, error => {
-      this.displayErrorMessage('Failed to check for existing orders. Please try again later.');
     });
   }
-  
+
   restrictInput(event: any, maxLength: number): void {
     const input = event.target;
     if (input.value.length > maxLength) {

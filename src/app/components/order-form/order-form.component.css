@@ -107,7 +107,7 @@ body {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 20px;
-    flex-wrap: wrap;
+   flex-wrap: wrap; 
 }
 
 .delivery-date label {
@@ -157,13 +157,12 @@ body {
 
     .delivery-date label {
         margin-bottom: 5px;
+        width: 100%; /* Make label take full width */
     }
 
     .delivery-date input[type="date"],
     .delivery-date input[type="text"] {
-        margin-right: 0;
-        margin-bottom: 10px;
-        width: 100%;
+        width: 100%; /* Make input take full width */
     }
 
     .container {
@@ -177,20 +176,21 @@ body {
         width: 100%;
     }
     
-.order-grid {
-    width: 100%; /* Full width for grid on mobile */
-    margin: 0; /* Remove margin */
-    border: 0; /* Remove border */
-    display: table; /* Ensure proper table layout */
+    .order-grid {
+        width: 100%; /* Full width for grid on mobile */
+        margin: 0; /* Remove margin */
+        border: 0; /* Remove border */
+        display: table; /* Ensure proper table layout */
+    }
+
+    .container {
+        width: 100%; /* Full width for container on mobile */
+        margin: 0; /* Remove margin */
+        padding: 0.5; /* Remove padding */
+        border: 0; /* Remove border */
+    }
 }
 
-.container {
-    width: 100%; /* Full width for container on mobile */
-    margin: 0; /* Remove margin */
-    padding: 0; /* Remove padding */
-    border: 0; /* Remove border */
-}
-}
 
 /* Additional styles for bold and lighter grey background */
 .order-grid tr.bold-row {
