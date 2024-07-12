@@ -1,48 +1,47 @@
 <div class="container">
-    <div class="image-container">
-      <img [src]="imageSrc" alt="Company Logo">
-    </div>
-    <h2>Existing Order</h2>
-    <div class="error-message" style="color: red;">
-      We already have an order for you placed on this delivery date. If you would like it changed please contact your sales rep.
-    </div>
-    <br>
-    <div class="submitted-date">
-      Delivery Date: <span>{{ deliveryDate }}</span>
-    </div>
-    <table class="order-grid" id="order-grid">
-      <thead>
-        <tr>
-          <th>Customer Name</th>
-          <th>Sales Rep</th>
-          <th>Product Description</th>
-          <th>Unit Type</th>
-          <th>Pack Size</th>
-          <th>Price</th>
-          <th>Quantity</th>
-          <th>Delivery Date</th>
-          <th *ngIf="hasShipToName">Shipto Name</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let order of orders">
-          <td>{{ order.customerName }}</td>
-          <td>{{ order.salesRepName }}</td>
-          <td>{{ order.profileDescription }}</td>
-          <td>{{ order.unitType }}</td>
-          <td>{{ order.packSize }}</td>
-          <td class="price">{{ order.price | currency:'USD':true }}</td>
-          <td>{{ order.quantity }}</td>
-          <td>{{ order.deliveryDate }}</td>
-          <td *ngIf="hasShipToName">{{ order.shipToName }}</td>
-        </tr>
-      </tbody>
-    </table>
-    <div style="margin-top: 20px;">
-      <div class="total"><strong>Total:</strong> 
-        <span id="total-amount">{{ calculateTotal() | currency:'USD':true }}</span>
-      </div>
-    </div>
-    <button class="button" (click)="goBack()">Back</button>
+  <div class="image-container">
+    <img [src]="imageSrc" alt="Company Logo">
   </div>
-  
+  <h2>Existing Order</h2>
+  <div class="error-message" style="color: red;">
+    We already have an order for you placed on this delivery date. If you would like it changed please contact your sales rep.
+  </div>
+  <br>
+  <div class="submitted-date">
+    Delivery Date: <span>{{ deliveryDate }}</span>
+  </div>
+  <table class="order-grid" id="order-grid">
+    <thead>
+      <tr>
+        <th>Customer Name</th>
+        <th>Sales Rep</th>
+        <th>Product Description</th>
+        <th>Unit Type</th>
+        <th>Pack Size</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Delivery Date</th>
+        <th *ngIf="hasShipToName">Shipto Name</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders">
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.salesRepName }}</td>
+        <td>{{ order.profileDescription }}</td>
+        <td>{{ order.unitType }}</td>
+        <td>{{ order.packSize }}</td>
+        <td class="price">{{ order.price | currency:'USD':true }}</td>
+        <td>{{ order.quantity }}</td>
+        <td>{{ order.deliveryDate }}</td>
+        <td *ngIf="hasShipToName">{{ order.shipToName }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div style="margin-top: 20px;">
+    <div class="total"><strong>Total:</strong> 
+      <span id="total-amount">{{ calculateTotal() | currency:'USD':true }}</span>
+    </div>
+  </div>
+  <button class="button" (click)="goBack()">Back</button>
+</div>

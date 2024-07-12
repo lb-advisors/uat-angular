@@ -17,16 +17,8 @@ export class OrderConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.orderData = JSON.parse(params['orderData']);
+      this.imageSrc = params['image'] || 'assets/logo.png'; // Retrieve the image URL from query params
       this.products = this.orderData.products.filter((product: any) => product.quantity > 0); // Filter out items with quantity 0
-      this.updateImageAndBackground();
     });
-  }
-
-  updateImageAndBackground(): void {
-    if (this.orderData.company === 'FOG-RIVER') {
-      this.imageSrc = 'assets/fogriver.png';
-    } else if (this.orderData.company === 'PFF') {
-      this.imageSrc = 'assets/logo.png';
-    }
   }
 }

@@ -33,6 +33,7 @@ export class OrderFormComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       this.customerId = params['customerID'] || '';
       this.company = params['company'] || 'PFF';
+      this.imageSrc = params['image'] || 'assets/logo.png'; // Retrieve the image URL from query params
       this.updateImageAndBackground();
       if (this.customerId) {
         this.fetchCustomerData();
@@ -176,13 +177,13 @@ export class OrderFormComponent implements OnInit {
       this.displayErrorMessage(errorMessage);
       return;
     }
-    
+
     const orderProfiles = this.prepareOrderData();
     const orderProfilesArray = orderProfiles.map(profile => ({
       profileDid: profile.profileDid,
       quantity: profile.quantity
     }));
-  
+
     const orderData = {
       customerId: this.customerId,
       customerName: this.orderData.customerName,
@@ -193,29 +194,25 @@ export class OrderFormComponent implements OnInit {
       orderProfiles: orderProfilesArray,
       company: this.company
     };
-  
+
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
       next: response => {
         if (response.status === 200) {
           console.log('Order submitted successfully', response);
           alert('Order submitted successfully');
-          this.router.navigate(['/order-confirmation'], { queryParams: { orderData: JSON.stringify(orderData) } });
+          this.router.navigate(['/order-confirmation'], { queryParams: { orderData: JSON.stringify(orderData), image: this.imageSrc } });
         }
       },
       error: error => {
         if (error.status === 409) {
           console.log('Order already exists for this delivery date', error.error);
-          this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error), company: this.company } });
+          this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error), company: this.company, image: this.imageSrc } });
         } else {
           this.displayErrorMessage('Failed to submit order. Please try again later.');
         }
       }
     });
   }
-  
-  
-  
-  
 
   restrictInput(event: any, maxLength: number): void {
     const input = event.target;
