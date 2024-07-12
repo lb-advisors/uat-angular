@@ -248,7 +248,7 @@ body {
 }
 
 #delivery-date {
-    width: 100px; /* Ensures the width is only as wide as the content */
+    width: 120px; /* Ensures the width is only as wide as the content */
     text-align: center; /* Centers the text inside the text box */
     cursor: default; /* Prevent the text cursor from appearing */
     background-color: white; /* Set the background color to white */

@@ -29,7 +29,7 @@ export class OrderExistsComponent implements OnInit {
         packSize: profile.packSize,
         price: profile.price,
         quantity: profile.quantity,
-        deliveryDate: profile.deliveryDate, // Use the delivery date from the order profile
+        deliveryDate: this.deliveryDate, // Use the delivery date from query params
         shipToName: order.shipToName
       }));
       this.hasShipToName = this.orders.some(order => order.shipToName);
@@ -42,6 +42,7 @@ export class OrderExistsComponent implements OnInit {
       const date = new Date(this.deliveryDate);
       const formattedDate = `${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}/${date.getFullYear()}`;
       this.deliveryDate = formattedDate;
+      /*this.orders.forEach(order => order.deliveryDate = formattedDate); // Ensure consistency in the grid */
     }
   }
 
