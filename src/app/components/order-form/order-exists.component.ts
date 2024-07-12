@@ -21,7 +21,7 @@ export class OrderExistsComponent implements OnInit {
   }
 
   calculateTotal(): number {
-    return this.orders.reduce((total, order) => total + order[6], 0);
+    return this.orders.reduce((total, order) => total + order.totalPrice, 0);
   }
 
   goBack(): void {

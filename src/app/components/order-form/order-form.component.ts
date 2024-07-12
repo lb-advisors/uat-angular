@@ -202,6 +202,7 @@ export class OrderFormComponent implements OnInit {
       },
       error: error => {
         if (error.status === 409) {
+          console.log('Order already exists for this delivery date', error.error);
           this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error) } });
         } else {
           this.displayErrorMessage('Failed to submit order. Please try again later.');

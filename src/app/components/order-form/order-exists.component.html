@@ -21,27 +21,25 @@
           <th>Quantity</th>
           <th>Delivery Date</th>
           <th>Shipto Name</th>
-          <th>Submitted Date</th>
         </tr>
       </thead>
       <tbody>
         <tr *ngFor="let order of orders">
-          <td>{{ order[1] }}</td>
-          <td>{{ order[2] }}</td>
-          <td>{{ order[3] }}</td>
-          <td>{{ order[4] }}</td>
-          <td>{{ order[5] }}</td>
-          <td class="price">${{ order[6] }}</td>
-          <td>{{ order[7] }}</td>
-          <td>{{ order[9] }}</td>
-          <td>{{ order[17] }}</td>
-          <td>{{ order[13] }}</td>
+          <td>{{ order.customerName }}</td>
+          <td>{{ order.salesRepName }}</td>
+          <td>{{ order.profiles[0].profileDescription }}</td>
+          <td>{{ order.profiles[0].unitType }}</td>
+          <td>{{ order.profiles[0].packSize }}</td>
+          <td class="price">{{ order.profiles[0].price | currency:'USD':true }}</td>
+          <td>{{ order.profiles[0].quantity }}</td>
+          <td>{{ order.deliveryDate }}</td>
+          <td>{{ order.shipToName }}</td>
         </tr>
       </tbody>
     </table>
     <div style="margin-top: 20px;">
       <div class="total"><strong>Total:</strong> 
-        <span id="total-amount">${{ calculateTotal() }}</span>
+        <span id="total-amount">{{ calculateTotal() | currency:'USD':true }}</span>
       </div>
     </div>
     <button (click)="goBack()">Back</button>
