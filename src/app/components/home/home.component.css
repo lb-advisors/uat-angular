@@ -8,6 +8,38 @@
   margin-top: 20px;
 }
 
+.button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin: 20px 0;
+}
+
+.button {
+  background-color: #d3d3d3;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+}
+
+.page-selector {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.page-button {
+  background-color: #d3d3d3;
+  color: #333;
+  border: none;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
 .kpi-container {
   display: flex;
   justify-content: space-around;
@@ -66,22 +98,34 @@
 /* Media Queries for Mobile Optimization */
 @media (max-width: 768px) {
   .kpi-container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .kpi {
-      width: 80%;
-      margin-bottom: 20px;
+    width: 80%;
+    margin-bottom: 20px;
   }
 
   .grid-container {
-      flex-direction: column;
-      align-items: center;
+    flex-direction: column;
+    align-items: center;
   }
 
   .grid {
-      width: 100%;
-      margin-bottom: 20px;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+
+  .button-container,
+  .page-selector {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .button,
+  .page-button {
+    width: 80%;
+    margin-bottom: 10px;
   }
 }

@@ -1,7 +1,19 @@
 <div class="container">
-  <h1 class="date">{{ today | date:'fullDate' }}</h1>
-
-  <div class="kpi-container">
+    <h1 class="date">{{ today | date:'fullDate' }}</h1>
+    
+    <div class="button-container">
+      <button class="button">Upload Latest Profiles</button>
+      <button class="button">Download Latest Orders</button>
+    </div>
+  
+    <div class="page-selector">
+      <button class="page-button" (click)="navigateTo('inventory')">Inventory</button>
+      <button class="page-button" (click)="navigateTo('employees')">Employees</button>
+      <button class="page-button" (click)="navigateTo('routes')">Routes</button>
+      <button class="page-button" (click)="navigateTo('orders')">Orders</button>
+    </div>
+  
+    <div class="kpi-container">
       <div class="kpi">
           <h2>Online Orders</h2>
           <p>42</p>
@@ -14,9 +26,9 @@
           <h2>Deliveries Ahead of Schedule</h2>
           <p>67%</p>
       </div>
-  </div>
-
-  <div class="grid-container">
+    </div>
+  
+    <div class="grid-container">
       <div class="grid">
           <h2>Items</h2>
           <table class="item-grid">
@@ -37,7 +49,7 @@
               </tbody>
           </table>
       </div>
-
+  
       <div class="grid">
           <h2>Employees</h2>
           <table class="employee-grid">
@@ -55,5 +67,6 @@
               </tbody>
           </table>
       </div>
+    </div>
   </div>
-</div>
+  

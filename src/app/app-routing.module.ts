@@ -8,6 +8,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { OrderFormComponent } from './components/order-form/order-form.component'; // Adjusted import path
 import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component'; // Added import
+import { OrderExistsComponent } from './components/order-form/order-exists.component'; // Added import
 
 const routes: Routes = [
   {
@@ -56,7 +57,16 @@ const routes: Routes = [
     component: OrderConfirmationComponent,
     title: 'Order Confirmation',
   },
-  { path: '**', redirectTo: '/home', pathMatch: 'full' },
+  { 
+    path: 'order-exists',
+    component: OrderExistsComponent,
+    title: 'Order Exists',
+  },
+  { 
+    path: '**', 
+    redirectTo: '/home', 
+    pathMatch: 'full' 
+  },
 ];
 
 @NgModule({

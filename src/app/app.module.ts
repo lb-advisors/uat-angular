@@ -24,6 +24,7 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
 import { OrderFormComponent } from './components/order-form/order-form.component'; // Corrected import path
 import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component'; // Add OrderConfirmationComponent
+import { OrderExistsComponent } from './components/order-form/order-exists.component'; // Add OrderExistsComponent
 
 import { HttpLoggingInterceptor } from './core/interceptors/http-logging.interceptor';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
@@ -42,8 +43,9 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     LoginComponent,
     LogoutComponent,
     InventoryComponent,
-    OrderFormComponent,
-    OrderConfirmationComponent,
+    OrderFormComponent, // Add OrderFormComponent here
+    OrderConfirmationComponent, // Add OrderConfirmationComponent here
+    OrderExistsComponent, // Add OrderExistsComponent here
     ImageThumbnailComponent,
   ],
   imports: [

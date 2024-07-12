@@ -96,6 +96,7 @@ body {
     width: fit-content;
     border-collapse: collapse;
     margin-bottom: 20px;
+    
 }
 
 .button {
@@ -118,6 +119,10 @@ body {
     padding: 10px;
     text-align: center; /* Center the text in headers and cells */
     border-bottom: 1px solid #000; /* Black horizontal lines */
+}
+
+.driver-routes-grid td {
+    font-weight: bold;
 }
 
 .driver-routes-grid th {
@@ -162,7 +167,7 @@ body {
 
     .driver-routes-grid th,
     .driver-routes-grid td {
-        font-size: 10px;
+        font-size: 14px;
     }
 
     .driver-routes-grid th {
@@ -226,11 +231,13 @@ body {
     justify-content: center;
     height: 30px;
     margin-top: 10px; /* Move down the entire arrow container */
+    
 }
 
 .arrow-container i {
-    font-size: 24px; /* Font Awesome icon size */
+    font-size: 19px; /* Font Awesome icon size */
     margin-right: 10px; /* Add space to the right of the arrow */
+   
 }
 
 .time-difference-arrow {
@@ -254,7 +261,7 @@ body {
 }
 
 .custom-file-input button {
-    background-color: green;
+    background-color: #0056b3;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -262,7 +269,7 @@ body {
 }
 
 .custom-file-input button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 .custom-file-input span {

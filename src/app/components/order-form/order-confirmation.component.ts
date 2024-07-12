@@ -17,7 +17,7 @@ export class OrderConfirmationComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.orderData = JSON.parse(params['orderData']);
-      this.products = this.orderData.products; // Update this line to match your previous code
+      this.products = this.orderData.products.filter((product: any) => product.quantity > 0); // Filter out items with quantity 0
       this.updateImageAndBackground();
     });
   }

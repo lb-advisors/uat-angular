@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Profile } from '../models/order.model';
 
@@ -16,8 +16,8 @@ export class OrderFormService {
     return this.http.get<any>(`${this.apiUrl}/${customerId}/profiles`);
   }
 
-  placeOrder(customerId: string, orderData: any): Observable<any> {
-    return this.http.post<any>(`${this.apiUrl}/${customerId}/orders`, orderData);
+  placeOrder(customerId: string, orderData: any): Observable<HttpResponse<any>> {
+    return this.http.post<any>(`${this.apiUrl}/${customerId}/orders`, orderData, { observe: 'response' });
   }
 
   calculateTotal(products: Profile[]): number {
@@ -37,25 +37,5 @@ export class OrderFormService {
     totalPriceInput.value = total.toFixed(2);
 
     return total;
-  }
-
-  checkExistingOrder(customerId: string, deliveryDate: string): Observable<any[]> {
-    return this.http.get<any[]>(`/api/orders/check-existing?customerId=${customerId}&deliveryDate=${deliveryDate}`);
-  }
-  
-  hasValidQuantities(products: Profile[]): boolean {
-    let hasQuantity = false;
-    let invalidQuantity = false;
-
-    products.forEach(product => {
-      const quantity = product.quantity !== undefined ? parseFloat(product.quantity.toString()) : NaN;
-      if (isNaN(quantity) || quantity < 0) {
-        invalidQuantity = true;
-      } else if (quantity > 0) {
-        hasQuantity = true;
-      }
-    });
-
-    return hasQuantity && !invalidQuantity;
   }
 }
