@@ -1,16 +1,11 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Customer } from 'src/app/models/customer.model';
-import { SalesRep } from 'src/app/models/sales-rep.model 3';
+import { SalesRep } from 'src/app/models/sales-rep.model';
 import { OrderLinksService } from 'src/app/services/order-links.service';
 
 @Component({
@@ -36,7 +31,7 @@ export class OrderLinksComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private orderLinksService: OrderLinksService,
+    private orderLinksService: OrderLinksService
   ) {}
 
   ngOnInit(): void {
@@ -48,8 +43,10 @@ export class OrderLinksComponent implements OnInit {
 
     this.companies$ = this.orderLinksService.getCompanies().pipe(
       tap((companies) => {
-        if (companies.length > 0) {
-          this.form.get('company')!.setValue(companies[0]);
+        // Set default company to "PFF"
+        const defaultCompany = companies.find((company) => company.name === 'PFF');
+        if (defaultCompany) {
+          this.form.get('company')!.setValue(defaultCompany);
         }
       }),
     );
@@ -59,6 +56,8 @@ export class OrderLinksComponent implements OnInit {
       switchMap((company) =>
         this.orderLinksService.getSalesPersons(company.id).pipe(
           tap((salesreps) => {
+            // Sort sales reps in ascending order
+            salesreps.sort((a, b) => a.name.localeCompare(b.name));
             if (salesreps.length > 0) {
               this.form.get('salesPerson')!.setValue(salesreps[0]);
             }
@@ -68,32 +67,27 @@ export class OrderLinksComponent implements OnInit {
     );
 
     // salesPerson change
-    this.form
-      .get('salesPerson')!
-      .valueChanges.pipe(
-        switchMap((salesrep) => {
-          const company = this.form.get('company')!.value;
-          return this.orderLinksService.getCustomers(company.id, salesrep.name);
-        }),
-      )
-      .subscribe({
-        next: (customsers) => {
-          this.customers = [...customsers];
-          this.filteredCustomers = [...customsers];
-          this.cdr.markForCheck();
-        },
-      });
+    this.form.get('salesPerson')!.valueChanges.pipe(
+      switchMap((salesrep) => {
+        const company = this.form.get('company')!.value;
+        return this.orderLinksService.getCustomers(company.id, salesrep.name);
+      }),
+    ).subscribe({
+      next: (customers) => {
+        this.customers = [...customers];
+        // Sort customers by name in ascending order
+        this.customers.sort((a, b) => a.name.localeCompare(b.name));
+        this.filteredCustomers = [...this.customers];
+        this.cdr.markForCheck();
+      },
+    });
 
     // searchText change
-    this.form
-      .get('searchText')!
-      .valueChanges.subscribe((searchText: string) => {
-        this.filteredCustomers = [
-          ...this.customers.filter((customer) =>
-            customer.name.toLowerCase().includes(searchText.toLowerCase()),
-          ),
-        ];
-      });
+    this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
+      this.filteredCustomers = this.customers.filter((customer) =>
+        customer.name.toLowerCase().includes(searchText.toLowerCase())
+      );
+    });
   }
 
   updateImageAndBackground(): void {
@@ -114,8 +108,7 @@ export class OrderLinksComponent implements OnInit {
 
   copyLink(customerId: number): void {
     const link = this.generateLink(customerId);
-    navigator.clipboard
-      .writeText(link)
+    navigator.clipboard.writeText(link)
       .then(() => {
         this.snackbarService.showSnackBar('Link copied to clipboard!');
       })

@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Company } from '../models/company.model';
 import { Customer } from '../models/customer.model';
-import { SalesRep } from '../models/sales-rep.model 3';
+import { SalesRep } from '../models/sales-rep.model';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 

@@ -6,9 +6,9 @@ import { OrderLinksComponent } from './components/order-links/order-links.compon
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
-import { OrderFormComponent } from './components/order-form/order-form.component'; // Adjusted import path
-import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component'; // Added import
-import { OrderExistsComponent } from './components/order-form/order-exists.component'; // Added import
+import { OrderFormComponent } from './components/order-form/order-form.component';
+import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component';
+import { OrderExistsComponent } from './components/order-form/order-exists.component';
 
 const routes: Routes = [
   {
