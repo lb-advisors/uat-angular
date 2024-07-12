@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 interface Employee {
   name: string;
@@ -43,6 +44,8 @@ export class HomeComponent implements OnInit {
     { description: 'OYSTER FAT BASTARD LIVE', status: 'low', ordered: false },
     { description: 'Salmon Atlantic Fillet Fresh 2-3 E-Trim Skin-Off 10lb', status: 'low', ordered: false }
   ];
+
+  constructor(private router: Router) {}
 
   ngOnInit(): void {
     this.sortEmployees();
@@ -91,5 +94,9 @@ export class HomeComponent implements OnInit {
       default:
         return '';
     }
+  }
+
+  navigateTo(page: string): void {
+    this.router.navigate([`/${page}`]);
   }
 }
