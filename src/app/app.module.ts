@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HTTP_INTERCEPTORS } from '@angular/common/http'; // Correct import for HttpClientModule
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http'; // Correct import for HttpClientModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
 import { CommonModule } from '@angular/common'; // Import CommonModule
@@ -73,6 +73,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
       multi: true,
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    provideHttpClient(),
   ],
   bootstrap: [AppComponent],
 })
