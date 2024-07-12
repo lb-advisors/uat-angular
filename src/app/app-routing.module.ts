@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
 import { HomeComponent } from './components/home/home.component';
-import { OrderListComponent } from './components/order/order.component';
+import { OrderLinksComponent } from './components/order-links/order-links.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
@@ -27,8 +27,8 @@ const routes: Routes = [
     title: 'Driver Route',
   },
   {
-    path: 'order',
-    component: OrderListComponent,
+    path: 'order-links',
+    component: OrderLinksComponent,
     title: 'Order',
   },
   {
@@ -46,12 +46,12 @@ const routes: Routes = [
     component: InventoryComponent,
     title: 'Inventory',
   },
-  { 
+  {
     path: 'order-form',
     component: OrderFormComponent,
     title: 'Order Form',
   },
-  { 
+  {
     path: 'order-confirmation',
     component: OrderConfirmationComponent,
     title: 'Order Confirmation',
