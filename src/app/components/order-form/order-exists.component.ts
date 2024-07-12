@@ -16,12 +16,23 @@ export class OrderExistsComponent implements OnInit {
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
       this.deliveryDate = params['deliveryDate'];
-      this.orders = JSON.parse(params['orders']);
+      const order = JSON.parse(params['orders']);
+      this.orders = order.profiles.map((profile: any) => ({
+        customerName: order.customerName,
+        salesRepName: order.salesRepName,
+        profileDescription: profile.profileDescription,
+        unitType: profile.unitType,
+        packSize: profile.packSize,
+        price: profile.price,
+        quantity: profile.quantity,
+        deliveryDate: order.deliveryDate,
+        shipToName: order.shipToName
+      }));
     });
   }
 
   calculateTotal(): number {
-    return this.orders.reduce((total, order) => total + order.totalPrice, 0);
+    return this.orders.reduce((total, order) => total + (order.price * order.quantity), 0);
   }
 
   goBack(): void {

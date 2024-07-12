@@ -27,11 +27,11 @@
         <tr *ngFor="let order of orders">
           <td>{{ order.customerName }}</td>
           <td>{{ order.salesRepName }}</td>
-          <td>{{ order.profiles[0].profileDescription }}</td>
-          <td>{{ order.profiles[0].unitType }}</td>
-          <td>{{ order.profiles[0].packSize }}</td>
-          <td class="price">{{ order.profiles[0].price | currency:'USD':true }}</td>
-          <td>{{ order.profiles[0].quantity }}</td>
+          <td>{{ order.profileDescription }}</td>
+          <td>{{ order.unitType }}</td>
+          <td>{{ order.packSize }}</td>
+          <td class="price">{{ order.price | currency:'USD':true }}</td>
+          <td>{{ order.quantity }}</td>
           <td>{{ order.deliveryDate }}</td>
           <td>{{ order.shipToName }}</td>
         </tr>

@@ -182,7 +182,7 @@ export class OrderFormComponent implements OnInit {
       profileDid: profile.profileDid,
       quantity: profile.quantity
     }));
-
+  
     const orderData = {
       customerId: this.customerId,
       deliveryDate: this.deliveryDate,
@@ -191,7 +191,7 @@ export class OrderFormComponent implements OnInit {
       products: this.products.concat(this.specialsProducts),
       orderProfiles: orderProfilesArray
     };
-
+  
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
       next: response => {
         if (response.status === 200) {
@@ -210,6 +210,8 @@ export class OrderFormComponent implements OnInit {
       }
     });
   }
+  
+  
 
   restrictInput(event: any, maxLength: number): void {
     const input = event.target;
