@@ -237,11 +237,14 @@ export class OrderFormComponent implements OnInit {
     const deliveryDate = new Date(this.deliveryDate);
     deliveryDate.setHours(0, 0, 0, 0);
 
+    const yesterday = new Date(today);
+    yesterday.setDate(today.getDate() - 1);
+
     if (deliveryDate < today) {
       return 'Please select a date which is not in the past.';
     }
 
-    if (deliveryDate.getTime() === today.getTime()) {
+    if (deliveryDate <= yesterday) {
       return 'Please order at least one day in advance.';
     }
 
