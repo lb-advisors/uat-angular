@@ -7,7 +7,7 @@
     <br>
     <ul>
       <li *ngFor="let product of products">
-       <strong> {{ product.profileDescription }}: </strong>{{ product.quantity }} {{ product.unitTypePd }} (Pack Size: {{ product.packSizePd }}) at ${{ product.salesPrice | number:'1.2-2' }} each
+        <strong>{{ product.profileDescription }}:</strong> {{ product.quantity }} {{ product.unitTypePd }} (Pack Size: {{ product.packSizePd }}) at ${{ product.salesPrice | number:'1.2-2' }} each
       </li>
     </ul>
     <br>

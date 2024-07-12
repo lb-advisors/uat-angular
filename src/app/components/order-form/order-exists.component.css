@@ -66,6 +66,52 @@ ul li {
     font-weight: bold;
 }
 
+.order-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+    table-layout: fixed; /* Fixed table layout */
+}
+
+.order-grid th,
+.order-grid td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    text-align: center;
+    word-wrap: break-word; /* Ensure content wraps */
+}
+
+.order-grid th {
+    background-color: #d3d3d3; /* Light grey background for table headers */
+    color: #333; /* Dark grey text color for table headers */
+    font-weight: bold;
+    font-size: 14px; /* Match the inventory grid font size */
+}
+
+.order-grid td {
+    font-size: 14px; /* Match the inventory grid font size */
+}
+
+.hidden-column {
+    display: none;
+}
+
+/* Set specific column widths */
+.order-grid th:nth-child(1),
+.order-grid td:nth-child(1),
+.order-grid th:nth-child(2),
+.order-grid td:nth-child(2) {
+    display: none; /* Hide Profile ID and Customer ID columns */
+}
+
+.order-grid th:nth-child(3) {
+    width: 30%; /* Other columns */
+}
+
+.order-grid td input[type="number"] {
+    width: 70px;
+}
+
 @media (max-width: 600px) {
     .container {
         width: 95%;
@@ -83,4 +129,30 @@ ul li {
     ul li {
         font-size: 14px;
     }
+
+    .order-grid th,
+    .order-grid td {
+        font-size: 14px;
+        word-wrap: break-word;
+    }
+
+    .order-grid {
+        width: 100%; /* Full width for grid on mobile */
+        margin: 0; /* Remove margin */
+        border: 0; /* Remove border */
+        display: table; /* Ensure proper table layout */
+    }
+
+    .container {
+        width: 100%; /* Full width for container on mobile */
+        margin: 0; /* Remove margin */
+        padding: 0.5; /* Remove padding */
+        border: 0; /* Remove border */
+    }
+}
+
+/* Additional styles for bold and lighter grey background */
+.order-grid tr.bold-row {
+    font-weight: bold;
+    background-color: #dedede;
 }
