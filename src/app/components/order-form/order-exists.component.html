@@ -6,6 +6,7 @@
     <div class="error-message" style="color: red;">
       We already have an order for you placed on this delivery date. If you would like it changed please contact your sales rep.
     </div>
+    <br>
     <div class="submitted-date">
       Delivery Date: <span>{{ deliveryDate }}</span>
     </div>
@@ -42,6 +43,6 @@
         <span id="total-amount">{{ calculateTotal() | currency:'USD':true }}</span>
       </div>
     </div>
-    <button (click)="goBack()">Back</button>
+    <button class="button" (click)="goBack()">Back</button>
   </div>
   

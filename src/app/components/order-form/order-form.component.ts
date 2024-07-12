@@ -176,7 +176,7 @@ export class OrderFormComponent implements OnInit {
       this.displayErrorMessage(errorMessage);
       return;
     }
-  
+    
     const orderProfiles = this.prepareOrderData();
     const orderProfilesArray = orderProfiles.map(profile => ({
       profileDid: profile.profileDid,
@@ -185,11 +185,13 @@ export class OrderFormComponent implements OnInit {
   
     const orderData = {
       customerId: this.customerId,
+      customerName: this.orderData.customerName, // Ensure customer name is included
       deliveryDate: this.deliveryDate,
       shipToId: this.selectedShiptoID || null,
       totalPrice: this.orderData.totalPrice,
       products: this.products.concat(this.specialsProducts),
-      orderProfiles: orderProfilesArray
+      orderProfiles: orderProfilesArray,
+      company: this.company // Ensure company is included
     };
   
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
@@ -210,6 +212,7 @@ export class OrderFormComponent implements OnInit {
       }
     });
   }
+  
   
   
 
@@ -251,7 +254,7 @@ export class OrderFormComponent implements OnInit {
       return 'Please only submit orders delivered within the next 3 months.';
     }
 
-    if (deliveryDate.getDay() === 0) {
+    if (deliveryDate.getDay() === 6) {
       return 'We are closed on Sundays.';
     }
 

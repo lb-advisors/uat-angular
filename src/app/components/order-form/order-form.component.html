@@ -11,8 +11,12 @@
   </div>
   
   <div *ngIf="orderData.customerName && orderData.salesRepName" class="customer-sales-info">
-    <p>Customer: {{ orderData.customerName }} | Sales Rep: <a [href]="'tel:' + orderData.salesRepPhone">{{ orderData.salesRepPhone }}</a></p>
+    <p>Customer: {{ orderData.customerName }}</p>
+    <div class="sales-rep-info">
+      Sales Rep: {{ orderData.salesRepName }} <a [href]="'tel:' + orderData.salesRepPhone">{{ orderData.salesRepPhone }}</a>
+    </div>
   </div>
+  
   
   <div *ngIf="shiptoNames && shiptoNames.length > 0" class="shipto-dropdown">
     <label for="shipto-select">Ship To:</label>

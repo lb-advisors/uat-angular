@@ -40,6 +40,10 @@ body {
     margin: 0;
 }
 
+.customer-sales-info .sales-rep-info {
+    margin-left: auto;
+  }
+
 .customer-sales-info a {
     color: blue;
     text-decoration: underline;
