@@ -25,8 +25,8 @@ export class OrderConfirmationComponent implements OnInit {
 
   formatDeliveryDate(): void {
     if (this.orderData.deliveryDate) {
-      const date = new Date(this.orderData.deliveryDate);
-      const formattedDate = `${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}/${date.getFullYear()}`;
+      const dateParts = this.orderData.deliveryDate.split('-');
+      const formattedDate = `${dateParts[1]}/${dateParts[2]}/${dateParts[0]}`;
       this.orderData.deliveryDate = formattedDate;
     }
   }
