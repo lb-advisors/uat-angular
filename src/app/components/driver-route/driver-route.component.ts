@@ -10,7 +10,6 @@ import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
-import { format } from 'date-fns';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpEventType } from '@angular/common/http';
 
@@ -29,7 +28,7 @@ export class DriverRouteComponent implements OnInit {
 
   driverNames$!: Observable<Driver[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
-  today = format(new Date(), 'yyyy-MM-dd');
+  today: string;
   selectedFile: File | null = null;
 
   displayedColumns: string[] = [
@@ -44,7 +43,9 @@ export class DriverRouteComponent implements OnInit {
     private snackBarService: SnackbarService,
     private sanitizer: DomSanitizer,
     private cdr: ChangeDetectorRef,
-  ) {}
+  ) {
+    this.today = this.formatDate(new Date());
+  }
 
   ngOnInit(): void {
     this.driverNames$ = this.driverRouteService.getDrivers().pipe(
@@ -55,6 +56,13 @@ export class DriverRouteComponent implements OnInit {
         return data.sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name in ascending order
       }),
     );
+  }
+
+  formatDate(date: Date): string {
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
   }
 
   refreshDeliverRoute(driverName: string, deliveryDate: string): void {
@@ -99,12 +107,6 @@ export class DriverRouteComponent implements OnInit {
     this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
       next: (event) => {
         switch (event.type) {
-          //case HttpEventType.UploadProgress:
-          //  if (event.total) {
-          //    const progress = Math.round((100 * event.loaded) / event.total);
-          //    console.log(`Upload Progress: ${progress}%`);
-          //  }
-          //  break;
           case HttpEventType.Response: {
             const updatedDeliveryStop = event.body as DeliveryStop;
             Object.assign(deliveryRoute, updatedDeliveryStop);

@@ -13,6 +13,7 @@
         <th>Pack Size</th>
         <th>Price</th>
         <th>Quantity</th>
+        <th>Delivery Date</th>
       </tr>
     </thead>
     <tbody>
@@ -22,11 +23,11 @@
         <td>{{ product.packSizePd }}</td>
         <td class="price">{{ product.salesPrice | number:'1.2-2' }}</td>
         <td>{{ product.quantity }}</td>
+        <td>{{ orderData.deliveryDate }}</td>
       </tr>
     </tbody>
   </table>
   <p><strong>Total Price:</strong> {{ orderData.totalPrice | currency:'USD':true }}</p>
-  <p><strong>Delivery Date:</strong> {{ orderData.deliveryDate }}</p>
   <p>Thank you,<br>Your Sales Team</p>
   <button class="button" (click)="goBack()">Back</button>
 </div>
