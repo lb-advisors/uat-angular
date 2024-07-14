@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatIcon } from '@angular/material/icon';
+import { NgFor, NgStyle, NgIf, TitleCasePipe, DatePipe } from '@angular/common';
 
 interface Employee {
   name: string;
@@ -13,9 +15,11 @@ interface Item {
 }
 
 @Component({
-  selector: 'app-home',
-  templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css']
+    selector: 'app-home',
+    templateUrl: './home.component.html',
+    styleUrls: ['./home.component.css'],
+    standalone: true,
+    imports: [NgFor, MatIcon, NgStyle, NgIf, TitleCasePipe, DatePipe]
 })
 export class HomeComponent implements OnInit {
   today: Date = new Date();

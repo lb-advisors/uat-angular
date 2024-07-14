@@ -1,10 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { NgIf, NgFor, CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-order-exists',
-  templateUrl: './order-exists.component.html',
-  styleUrls: ['./order-exists.component.css']
+    selector: 'app-order-exists',
+    templateUrl: './order-exists.component.html',
+    styleUrls: ['./order-exists.component.css'],
+    standalone: true,
+    imports: [NgIf, NgFor, CurrencyPipe]
 })
 export class OrderExistsComponent implements OnInit {
   orders: any[] = [];

@@ -1,11 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location } from '@angular/common';
+import { Location, NgFor, DecimalPipe, CurrencyPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-order-confirmation',
-  templateUrl: './order-confirmation.component.html',
-  styleUrls: ['./order-confirmation.component.css']
+    selector: 'app-order-confirmation',
+    templateUrl: './order-confirmation.component.html',
+    styleUrls: ['./order-confirmation.component.css'],
+    standalone: true,
+    imports: [NgFor, DecimalPipe, CurrencyPipe]
 })
 export class OrderConfirmationComponent implements OnInit {
   orderData: any = {};

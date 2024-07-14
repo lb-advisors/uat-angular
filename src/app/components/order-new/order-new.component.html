@@ -1,0 +1,60 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+    <table>
+        <tr>
+            <td>Custmer naem: </td>
+            <td>{{order.customerName}}</td>
+        </tr>
+        <tr>
+            <td>Sales rep: </td>
+            <td>{{order.salesRepName}}</td>
+        </tr>
+        <tr>
+            <td>Sales rep phone:</td>
+            <td>{{order.salesRepPhone}}</td>
+        </tr>
+        <tr>
+            <td><label for="customer-id">Customer ID:</label></td>
+            <td><input id="customer-id" formControlName="customerId" type="text"></td>
+        </tr>
+        <tr>
+            <td><label for="ship-to">Ship to:</label></td>
+            <td><select id="ship-to" formControlName="shipToId">
+                    <option *ngFor="let shipTo of order.shipTos" [value]="shipTo.id">{{ shipTo.shipToName }}</option>
+                </select></td>
+        </tr>
+        <tr>
+            <td><label for="delivery-date">Delivery Date:</label></td>
+            <td><input id="delivery-date" formControlName="deliveryDate" type="date">
+                <div *ngIf="submitted && form.get('deliveryDate')?.hasError('required')" class="error">
+                    Delivery date is required
+                </div>
+                <div *ngIf="form.get('deliveryDate')?.touched && form.get('deliveryDate')?.hasError('dateAfterTomorrow')" class="error">
+                    Delivery date must be after tomorrow
+                </div>
+            </td>
+        </tr>
+    </table>
+
+    <div formArrayName="profiles">
+        <table>
+            <tr *ngFor="let profile of profileControls.controls; index as i" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
+                <td>ID: <input type="text" formControlName="id"></td>
+                <td>{{ order.profiles[i].profileDescription }}</td>
+                <td>{{ order.profiles[i].unitType }}</td>
+
+                <td>Quantity: <input type="number" formControlName="quantity">
+                    <div *ngIf="profile.get('quantity')?.errors?.['min']">The number must be positive and greater than zero.</div>
+                </td>
+
+            </tr>
+        </table>
+        <div *ngIf="submitted && form.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
+            At least one quantity is required
+        </div>
+    </div>
+    <button type="submit">Submit</button>
+
+</form>
+
+<pre>{{results | json}}</pre>

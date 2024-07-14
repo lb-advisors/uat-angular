@@ -8,12 +8,21 @@ import { InventoryService } from '../../services/inventory.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { InventoryItem } from 'src/app/models/inventoty-item.model';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
+import { NgFor, AsyncPipe, CurrencyPipe } from '@angular/common';
+import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 
 @Component({
-  selector: 'app-inventory',
-  templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-inventory',
+    templateUrl: './inventory.component.html',
+    styleUrls: ['./inventory.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        InfiniteScrollDirective,
+        NgFor,
+        AsyncPipe,
+        CurrencyPipe,
+    ],
 })
 export class InventoryComponent implements OnInit, OnDestroy {
   page = 0;

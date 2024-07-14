@@ -1,13 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderFormService } from '../../services/order-form.service';
-import { NgForm } from '@angular/forms';
+import { NgForm, FormsModule } from '@angular/forms';
 import { Profile } from '../../models/order.model';
+import { NgStyle, NgIf, NgFor, DecimalPipe } from '@angular/common';
 
 @Component({
-  selector: 'app-order-form',
-  templateUrl: './order-form.component.html',
-  styleUrls: ['./order-form.component.css']
+    selector: 'app-order-form',
+    templateUrl: './order-form.component.html',
+    styleUrls: ['./order-form.component.css'],
+    standalone: true,
+    imports: [NgStyle, FormsModule, NgIf, NgFor, DecimalPipe]
 })
 export class OrderFormComponent implements OnInit {
   orders: any[] = [];

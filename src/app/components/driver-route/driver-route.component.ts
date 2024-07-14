@@ -12,16 +12,40 @@ import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpEventType } from '@angular/common/http';
+import { ImageThumbnailComponent } from '../image-thumbnail/image-thumbnail.component';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgClass, AsyncPipe, DatePipe } from '@angular/common';
 
 interface Driver {
   name: string;
 }
 
 @Component({
-  selector: 'app-driver-route',
-  templateUrl: './driver-route.component.html',
-  styleUrls: ['./driver-route.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-driver-route',
+    templateUrl: './driver-route.component.html',
+    styleUrls: ['./driver-route.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgFor,
+        FormsModule,
+        NgIf,
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        ImageThumbnailComponent,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        NgClass,
+        AsyncPipe,
+        DatePipe,
+    ],
 })
 export class DriverRouteComponent implements OnInit {
   readonly maxFileSize = 4 * 1024 * 1024; // 4 MB
