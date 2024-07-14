@@ -1,9 +1,5 @@
 <div class="container">
     <div class="header-container">
-        <!-- <div class="button-container">
-            <button class="button">Upload Latest Profiles</button>
-            <button class="button">Download Latest Orders</button>
-        </div> -->
         <h1 class="date">{{ today | date:'fullDate' }}</h1>
     </div>
 
@@ -36,15 +32,20 @@
                 <tbody>
                     <tr *ngFor="let item of items">
                         <td>{{ item.description }}</td>
-                        <td>
+                        <td class="status-cell">
                             <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor(item.status)}">{{ getStatusIcon(item.status) }}</mat-icon>
                             {{ item.status | titlecase }}
                         </td>
-                        <td class="status-cell" *ngIf="item.ordered">
-                            <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor('ordered')}">circle</mat-icon>
-                            Ordered
+                        <td class="ordered-cell">
+                            <ng-container *ngIf="item.ordered">
+                                <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor('ordered')}">circle</mat-icon>
+                                Ordered
+                            </ng-container>
+                            <ng-container *ngIf="!item.ordered">
+                                <!-- Empty cell content for unordered items -->
+                                &nbsp;
+                            </ng-container>
                         </td>
-                        <td class="status-cell" *ngIf="!item.ordered"></td>
                     </tr>
                 </tbody>
             </table>

@@ -160,7 +160,7 @@
       <input type="text" id="customer-po" name="customer_po" maxlength="150" [(ngModel)]="customerPo" (input)="restrictInput($event, 150)">
     </div>
     <div class="error-message" style="color: red;">&nbsp;</div>
-    <button type="submit" class="submit-btn">Submit your order</button>
+    <button type="submit" class="submit-btn" [disabled]="isSubmitting">Submit your order</button>
   
     <input type="hidden" name="nb_products" [value]="products.length" [(ngModel)]="products.length">
     <input type="hidden" name="customer_name" [value]="orderData.customerName" [(ngModel)]="orderData.customerName">
