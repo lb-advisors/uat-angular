@@ -1,9 +1,9 @@
 <div class="container">
     <div class="header-container">
-        <div class="button-container">
+        <!-- <div class="button-container">
             <button class="button">Upload Latest Profiles</button>
             <button class="button">Download Latest Orders</button>
-        </div>
+        </div> -->
         <h1 class="date">{{ today | date:'fullDate' }}</h1>
     </div>
 
@@ -40,11 +40,11 @@
                             <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor(item.status)}">{{ getStatusIcon(item.status) }}</mat-icon>
                             {{ item.status | titlecase }}
                         </td>
-                        <td *ngIf="item.ordered">
+                        <td class="status-cell" *ngIf="item.ordered">
                             <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor('ordered')}">circle</mat-icon>
                             Ordered
                         </td>
-                        <td *ngIf="!item.ordered"></td>
+                        <td class="status-cell" *ngIf="!item.ordered"></td>
                     </tr>
                 </tbody>
             </table>
@@ -62,7 +62,7 @@
                 <tbody>
                     <tr *ngFor="let employee of employees">
                         <td>{{ employee.name }}</td>
-                        <td>
+                        <td class="status-cell">
                             <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor(employee.status)}">{{ getStatusIcon(employee.status) }}</mat-icon>
                             {{ employee.status | titlecase }}
                         </td>
