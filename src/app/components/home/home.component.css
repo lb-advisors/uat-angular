@@ -20,6 +20,8 @@
 .button-container {
   display: flex;
   justify-content: flex-start;
+  margin-top: -10px; /* Move buttons up */
+  margin-left: 20px; /* Move buttons to the right */
 }
 
 .button {
@@ -88,46 +90,55 @@
   margin-right: 5px;
 }
 
+.status-cell {
+  display: flex;
+  align-items: center;
+}
+
 /* Media Queries for Mobile Optimization */
 @media (max-width: 768px) {
   .header-container {
-    flex-direction: column;
-    align-items: center;
+      flex-direction: column;
+      align-items: center;
   }
 
   .date {
-    position: static;
-    transform: none;
-    margin-top: 10px;
-  }
-
-  .kpi-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .kpi {
-    width: 80%;
-    margin-bottom: 20px;
-  }
-
-  .grid-container {
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .grid {
-    width: 100%;
-    margin-bottom: 20px;
+      position: static;
+      transform: none;
+      margin-top: 10px;
   }
 
   .button-container {
-    flex-direction: column;
-    align-items: center;
+      margin: 10px 0;
+  }
+
+  .kpi-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .kpi {
+      width: 80%;
+      margin-bottom: 20px;
+  }
+
+  .grid-container {
+      flex-direction: column;
+      align-items: center;
+  }
+
+  .grid {
+      width: 100%;
+      margin-bottom: 20px;
+  }
+
+  .button-container {
+      flex-direction: column;
+      align-items: center;
   }
 
   .button {
-    width: 80%;
-    margin-bottom: 10px;
+      width: 80%;
+      margin-bottom: 10px;
   }
 }
