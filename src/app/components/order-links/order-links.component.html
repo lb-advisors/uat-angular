@@ -39,7 +39,7 @@
       <tbody>
         <tr *ngFor="let order of filteredCustomers">
           <td>{{ order.name }}</td>
-          <td><a [href]="generateLink(order.id)" target="_blank">Order Form</a></td>
+          <td><a [href]="generateLink(order.id)" >Order Form</a></td>
           <td><a href="javascript:void(0)" (click)="copyLink(order.id)" (keyup)="copyLink(order.id)">Copy Link</a></td>
         </tr>
       </tbody>
