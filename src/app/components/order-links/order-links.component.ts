@@ -1,4 +1,9 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup } from '@angular/forms';
@@ -34,7 +39,7 @@ export class OrderLinksComponent implements OnInit {
     private snackbarService: SnackbarService,
     private orderLinksService: OrderLinksService,
     private route: ActivatedRoute,
-    private router: Router // Add the Router here
+    private router: Router, // Add the Router here
   ) {}
 
   ngOnInit(): void {
@@ -47,7 +52,9 @@ export class OrderLinksComponent implements OnInit {
     this.companies$ = this.orderLinksService.getCompanies().pipe(
       tap((companies) => {
         // Set default company to "PFF"
-        const defaultCompany = companies.find((company) => company.name === 'PFF');
+        const defaultCompany = companies.find(
+          (company) => company.name === 'PFF',
+        );
         if (defaultCompany) {
           this.form.get('company')!.setValue(defaultCompany);
         }
@@ -55,49 +62,57 @@ export class OrderLinksComponent implements OnInit {
     );
 
     // company change
-    this.form.get('company')!.valueChanges.pipe(
-      tap((company) => {
-        this.updateImageAndBackground(company.name);
-      }),
-      switchMap((company) => {
-        return this.orderLinksService.getSalesPersons(company.id).pipe(
-          tap((salesreps) => {
-            // Sort sales reps in ascending order
-            salesreps.sort((a, b) => a.name.localeCompare(b.name));
-            this.salesPersons$ = new Observable<SalesRep[]>(observer => {
-              observer.next(salesreps);
-              observer.complete();
-            });
-            if (salesreps.length > 0) {
-              this.form.get('salesPerson')!.setValue(salesreps[0]);
-            }
-          }),
-        );
-      })
-    ).subscribe();
+    this.form
+      .get('company')!
+      .valueChanges.pipe(
+        tap((company) => {
+          this.updateImageAndBackground(company.name);
+        }),
+        switchMap((company) => {
+          return this.orderLinksService.getSalesPersons(company.id).pipe(
+            tap((salesreps) => {
+              // Sort sales reps in ascending order
+              salesreps.sort((a, b) => a.name.localeCompare(b.name));
+              this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+                observer.next(salesreps);
+                observer.complete();
+              });
+              if (salesreps.length > 0) {
+                this.form.get('salesPerson')!.setValue(salesreps[0]);
+              }
+            }),
+          );
+        }),
+      )
+      .subscribe();
 
     // salesPerson change
-    this.form.get('salesPerson')!.valueChanges.pipe(
-      switchMap((salesrep) => {
-        const company = this.form.get('company')!.value;
-        return this.orderLinksService.getCustomers(company.id, salesrep.name);
-      }),
-    ).subscribe({
-      next: (customers) => {
-        this.customers = [...customers];
-        // Sort customers by name in ascending order
-        this.customers.sort((a, b) => a.name.localeCompare(b.name));
-        this.filteredCustomers = [...this.customers];
-        this.cdr.markForCheck();
-      },
-    });
+    this.form
+      .get('salesPerson')!
+      .valueChanges.pipe(
+        switchMap((salesrep) => {
+          const company = this.form.get('company')!.value;
+          return this.orderLinksService.getCustomers(company.id, salesrep.name);
+        }),
+      )
+      .subscribe({
+        next: (customers) => {
+          this.customers = [...customers];
+          // Sort customers by name in ascending order
+          this.customers.sort((a, b) => a.name.localeCompare(b.name));
+          this.filteredCustomers = [...this.customers];
+          this.cdr.markForCheck();
+        },
+      });
 
     // searchText change
-    this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
-      this.filteredCustomers = this.customers.filter((customer) =>
-        customer.name.toLowerCase().includes(searchText.toLowerCase())
-      );
-    });
+    this.form
+      .get('searchText')!
+      .valueChanges.subscribe((searchText: string) => {
+        this.filteredCustomers = this.customers.filter((customer) =>
+          customer.name.toLowerCase().includes(searchText.toLowerCase()),
+        );
+      });
   }
 
   updateImageAndBackground(companyName: string): void {
@@ -115,31 +130,39 @@ export class OrderLinksComponent implements OnInit {
     const companyId = company.id;
     const companyName = company.name;
     let imageUrl = 'assets/logo.png';
-    
+
     if (companyName === 'FOG-RIVER') {
       imageUrl = 'assets/fogriver.png';
     }
-    
-    return `/order-form?customerID=${customerId}&company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
+
+    return `order-form?customerID=${customerId}&company=${companyId}&image=${encodeURIComponent(
+      imageUrl,
+    )}`;
   }
-  
+
   navigateToOrderForm(customerId: number): void {
     const company = this.form.get('company')!.value;
     const companyId = company.id;
     const companyName = company.name;
     let imageUrl = 'assets/logo.png';
-    
+
     if (companyName === 'FOG-RIVER') {
       imageUrl = 'assets/fogriver.png';
     }
-    
-    this.router.navigate(['/order-form'], { queryParams: { customerID: customerId, company: companyId, image: imageUrl } });
+
+    this.router.navigate(['/order-form'], {
+      queryParams: {
+        customerID: customerId,
+        company: companyId,
+        image: imageUrl,
+      },
+    });
   }
-  
 
   copyLink(customerId: number): void {
     const link = this.generateLink(customerId);
-    navigator.clipboard.writeText(link)
+    navigator.clipboard
+      .writeText(link)
       .then(() => {
         this.snackbarService.showSnackBar('Link copied to clipboard!');
       })

@@ -12,12 +12,6 @@ import { OrderExistsComponent } from './components/order-form/order-exists.compo
 
 const routes: Routes = [
   {
-    path: '',
-    redirectTo: '/home',
-    pathMatch: 'full',
-    title: 'Home',
-  },
-  {
     path: 'home',
     component: HomeComponent,
     title: 'Home',
@@ -57,15 +51,21 @@ const routes: Routes = [
     component: OrderConfirmationComponent,
     title: 'Order Confirmation',
   },
-  { 
+  {
     path: 'order-exists',
     component: OrderExistsComponent,
     title: 'Order Exists',
   },
-  { 
-    path: '**', 
-    redirectTo: '/home', 
-    pathMatch: 'full' 
+  {
+    path: '',
+    redirectTo: '/home',
+    pathMatch: 'full',
+    title: 'Home',
+  },
+  {
+    path: '**',
+    redirectTo: '/home',
+    pathMatch: 'full',
   },
 ];
 
