@@ -78,7 +78,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
     provideHttpClient(),
-    { provide: LocationStrategy, useClass: HashLocationStrategy },
+    //{ provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
