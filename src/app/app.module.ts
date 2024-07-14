@@ -6,7 +6,11 @@ import { DriverRouteComponent } from './components/driver-route/driver-route.com
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http'; // Correct import for HttpClientModule
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
-import { CommonModule } from '@angular/common'; // Import CommonModule
+import {
+  CommonModule,
+  HashLocationStrategy,
+  LocationStrategy,
+} from '@angular/common'; // Import CommonModule
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
@@ -74,6 +78,7 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
     provideHttpClient(),
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
