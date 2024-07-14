@@ -3,14 +3,10 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http'; // Correct import for HttpClientModule
+import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms'; // Import FormsModule
-import {
-  CommonModule,
-  HashLocationStrategy,
-  LocationStrategy,
-} from '@angular/common'; // Import CommonModule
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatTableModule } from '@angular/material/table';
@@ -22,13 +18,13 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { HomeComponent } from './components/home/home.component';
-import { OrderLinksComponent } from './components/order-links/order-links.component'; // Update import
+import { OrderLinksComponent } from './components/order-links/order-links.component';
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
-import { InventoryComponent } from './components/inventory/inventory.component'; // Update path
-import { OrderFormComponent } from './components/order-form/order-form.component'; // Corrected import path
-import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component'; // Add OrderConfirmationComponent
-import { OrderExistsComponent } from './components/order-form/order-exists.component'; // Add OrderExistsComponent
+import { InventoryComponent } from './components/inventory/inventory.component';
+import { OrderFormComponent } from './components/order-form/order-form.component';
+import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component';
+import { OrderExistsComponent } from './components/order-form/order-exists.component';
 
 import { HttpLoggingInterceptor } from './core/interceptors/http-logging.interceptor';
 import { GlobalErrorHandlerService } from './services/global-error-handler.service';
@@ -78,7 +74,6 @@ import { ImageThumbnailComponent } from './components/image-thumbnail/image-thum
     },
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
     provideHttpClient(),
-    //{ provide: LocationStrategy, useClass: HashLocationStrategy },
   ],
   bootstrap: [AppComponent],
 })
