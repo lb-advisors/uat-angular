@@ -1,16 +1,10 @@
 <div class="container">
-    <h1 class="date">{{ today | date:'fullDate' }}</h1>
-    
-    <div class="button-container">
-      <button class="button">Upload Latest Profiles</button>
-      <button class="button">Download Latest Orders</button>
-    </div>
-  
-    <div class="page-selector">
-      <button class="page-button" (click)="navigateTo('inventory')">Inventory</button>
-      <button class="page-button" (click)="navigateTo('employees')">Employees</button>
-      <button class="page-button" (click)="navigateTo('routes')">Routes</button>
-      <button class="page-button" (click)="navigateTo('orders')">Orders</button>
+    <div class="header-container">
+        <div class="button-container">
+          <button class="button">Upload Latest Profiles</button>
+          <button class="button">Download Latest Orders</button>
+        </div>
+        <h1 class="date">{{ today | date:'fullDate' }}</h1>
     </div>
   
     <div class="kpi-container">
@@ -68,5 +62,4 @@
           </table>
       </div>
     </div>
-  </div>
-  
+</div>

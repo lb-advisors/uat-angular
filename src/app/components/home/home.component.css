@@ -1,43 +1,35 @@
 .container {
   width: 80%;
   margin: 0 auto;
-  text-align: center;
+}
+
+.header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  position: relative;
 }
 
 .date {
-  margin-top: 20px;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
 }
 
 .button-container {
   display: flex;
   justify-content: flex-start;
-  margin: 20px 0;
 }
 
 .button {
-  background-color: #d3d3d3;
-  color: #333;
+  background-color: #0056b3;
+  color: white;
   border: none;
   padding: 5px 10px;
   cursor: pointer;
   border-radius: 5px;
   margin-right: 10px;
-}
-
-.page-selector {
-  display: flex;
-  justify-content: center;
-  margin: 20px 0;
-}
-
-.page-button {
-  background-color: #d3d3d3;
-  color: #333;
-  border: none;
-  padding: 5px 10px;
-  cursor: pointer;
-  border-radius: 5px;
-  margin: 0 5px;
 }
 
 .kpi-container {
@@ -52,6 +44,7 @@
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: 30%;
+  text-align: center;
 }
 
 .kpi h2 {
@@ -97,6 +90,17 @@
 
 /* Media Queries for Mobile Optimization */
 @media (max-width: 768px) {
+  .header-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .date {
+    position: static;
+    transform: none;
+    margin-top: 10px;
+  }
+
   .kpi-container {
     flex-direction: column;
     align-items: center;
@@ -117,14 +121,12 @@
     margin-bottom: 20px;
   }
 
-  .button-container,
-  .page-selector {
+  .button-container {
     flex-direction: column;
     align-items: center;
   }
 
-  .button,
-  .page-button {
+  .button {
     width: 80%;
     margin-bottom: 10px;
   }
