@@ -22,6 +22,7 @@ export class OrderFormComponent implements OnInit {
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)';
   shiptoNames: { id: string, name: string }[] = [];
   selectedShiptoID: string = '';
+  isSubmitting: boolean = false; // Add this line
 
   constructor(
     private orderFormService: OrderFormService,
@@ -178,6 +179,7 @@ export class OrderFormComponent implements OnInit {
       return;
     }
 
+    this.isSubmitting = true;  // Lock the button
     const orderProfiles = this.prepareOrderData();
     const orderProfilesArray = orderProfiles.map(profile => ({
       profileDid: profile.profileDid,
@@ -202,6 +204,7 @@ export class OrderFormComponent implements OnInit {
           alert('Order submitted successfully');
           this.router.navigate(['/order-confirmation'], { queryParams: { orderData: JSON.stringify(orderData), image: this.imageSrc } });
         }
+        this.isSubmitting = false;  // Unlock the button
       },
       error: error => {
         if (error.status === 409) {
@@ -210,6 +213,7 @@ export class OrderFormComponent implements OnInit {
         } else {
           this.displayErrorMessage('Failed to submit order. Please try again later.');
         }
+        this.isSubmitting = false;  // Unlock the button
       }
     });
   }
