@@ -7,8 +7,8 @@ import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
-import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component';
-import { OrderExistsComponent } from './components/order-form/order-exists.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import { OrderExistsComponent } from './components/order-exists/order-exists.component';
 import { OrderNewComponent } from './components/order-new/order-new.component';
 
 const routes: Routes = [
