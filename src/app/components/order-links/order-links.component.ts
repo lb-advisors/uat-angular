@@ -137,28 +137,16 @@ export class OrderLinksComponent implements OnInit {
       imageUrl = 'assets/fogriver.png';
     }
 
-    return `order-form?customerID=${customerId}&company=${companyId}&image=${encodeURIComponent(
+    const baseUrl = window.location.origin;
+
+    return `${baseUrl}/order-form?customerID=${customerId}&company=${companyId}&image=${encodeURIComponent(
       imageUrl,
     )}`;
   }
 
   navigateToOrderForm(customerId: number): void {
-    const company = this.form.get('company')!.value;
-    const companyId = company.id;
-    const companyName = company.name;
-    let imageUrl = 'assets/logo.png';
-
-    if (companyName === 'FOG-RIVER') {
-      imageUrl = 'assets/fogriver.png';
-    }
-
-    this.router.navigate(['/order-form'], {
-      queryParams: {
-        customerID: customerId,
-        company: companyId,
-        image: imageUrl,
-      },
-    });
+    const link = this.generateLink(customerId);
+    this.router.navigateByUrl(link);
   }
 
   copyLink(customerId: number): void {
