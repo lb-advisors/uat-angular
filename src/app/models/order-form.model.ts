@@ -1,7 +1,7 @@
-import { ProfileNew } from './profile-new';
-import { ShipTo } from './shipTo';
+import { Profile } from './profile.model';
+import { ShipTo } from './shipTo.model';
 
-export interface OrderNew {
+export interface OrderForm {
   id: number;
   customerId: number;
   customerName: string;
@@ -11,5 +11,5 @@ export interface OrderNew {
   shipTos: ShipTo[];
   shipToName: string;
   totalPrice: number;
-  profiles: ProfileNew[];
+  profiles: Profile[];
 }

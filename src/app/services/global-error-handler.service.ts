@@ -20,8 +20,6 @@ export class GlobalErrorHandlerService implements ErrorHandler {
         return;
       }
 
-      alert(error.status);
-
       if (error.status === 413) {
         this.snackBarService.showSnackBar('File too large');
         return;

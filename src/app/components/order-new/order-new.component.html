@@ -26,35 +26,71 @@
         <tr>
             <td><label for="delivery-date">Delivery Date:</label></td>
             <td><input id="delivery-date" formControlName="deliveryDate" type="date">
-                <div *ngIf="submitted && form.get('deliveryDate')?.hasError('required')" class="error">
+                <div *ngIf="formControls['deliveryDate'].touched && formControls['deliveryDate'].errors?.['required']" class="error">
                     Delivery date is required
                 </div>
-                <div *ngIf="form.get('deliveryDate')?.touched && form.get('deliveryDate')?.hasError('dateAfterTomorrow')" class="error">
+                <div *ngIf="formControls['deliveryDate'].dirty  && formControls['deliveryDate'].errors?.['dateAfterTomorrow']" class="error">
                     Delivery date must be after tomorrow
                 </div>
             </td>
         </tr>
     </table>
 
+    Specials:
     <div formArrayName="profiles">
-        <table>
-            <tr *ngFor="let profile of profileControls.controls; index as i" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
-                <td>ID: <input type="text" formControlName="id"></td>
-                <td>{{ order.profiles[i].profileDescription }}</td>
-                <td>{{ order.profiles[i].unitType }}</td>
+        <table border="1">
+            @for (profile of profileControls.controls; track $index) {
+            @if (order.profiles[$index].isSpecial) {
 
+            <tr [formGroupName]="$index" [ngStyle]="{'background-color': isQuantityEntered($index) ? 'lightgrey' : 'white'}">
+                <td>ID: <input type="text" formControlName="id"></td>
+                <td>{{ order.profiles[$index].profileDescription }}</td>
+                <td>{{ order.profiles[$index].unitType }}</td>
                 <td>Quantity: <input type="number" formControlName="quantity">
-                    <div *ngIf="profile.get('quantity')?.errors?.['min']">The number must be positive and greater than zero.</div>
+                    <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
                 </td>
 
             </tr>
+            }
+            }
         </table>
         <div *ngIf="submitted && form.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
             At least one quantity is required
         </div>
     </div>
-    <button type="submit">Submit</button>
+
+    <br>
+    Non specials:
+    <div formArrayName="profiles">
+        <table border="1">
+            @for (profile of profileControls.controls; track $index) {
+            @if (!order.profiles[$index].isSpecial) {
+            <tr [formGroupName]="$index" [ngStyle]="{'background-color': isQuantityEntered($index) ? 'lightgrey' : 'white'}">
+                <td>ID: <input type="text" formControlName="id"></td>
+                <td>{{ order.profiles[$index].profileDescription }}</td>
+                <td>{{ order.profiles[$index].unitType }}</td>
+                <td>Quantity: <input type="number" formControlName="quantity">
+                    <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must greater than zero.</div>
+                </td>
+
+            </tr>
+            }
+            }
+        </table>
+        <div *ngIf="submitted && form.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
+            At least one quantity is required
+        </div>
+    </div>
+
+    <div *ngIf="profileControls.touched && profileControls.errors?.['atLeastOneQuantity']" class="error">
+        Enter at least one quantity
+    </div>
+
+    <br><button type="submit" [disabled]="!form.valid">Submit</button>
 
 </form>
 
-<pre>{{results | json}}</pre>
+<br>
+Data to send to spring boot:
+<br>
+<pre>{{dataToBeSubmitted | json}}</pre>

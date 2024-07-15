@@ -9,6 +9,7 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { OrderConfirmationComponent } from './components/order-form/order-confirmation.component';
 import { OrderExistsComponent } from './components/order-form/order-exists.component';
+import { OrderNewComponent } from './components/order-new/order-new.component';
 
 const routes: Routes = [
   {
@@ -60,6 +61,11 @@ const routes: Routes = [
   {
     path: 'order-exists',
     component: OrderExistsComponent,
+    title: 'Order Exists',
+  },
+  {
+    path: 'test',
+    component: OrderNewComponent,
     title: 'Order Exists',
   },
   {

@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
-import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Customer } from 'src/app/models/customer.model';
@@ -16,18 +16,12 @@ import { OrderLinksService } from 'src/app/services/order-links.service';
 import { NgStyle, NgFor, AsyncPipe } from '@angular/common';
 
 @Component({
-    selector: 'app-order-links',
-    templateUrl: './order-links.component.html',
-    styleUrls: ['./order-links.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        NgStyle,
-        NgFor,
-        AsyncPipe,
-    ],
+  selector: 'app-order-links',
+  templateUrl: './order-links.component.html',
+  styleUrls: ['./order-links.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+  standalone: true,
+  imports: [ReactiveFormsModule, NgStyle, NgFor, AsyncPipe],
 })
 export class OrderLinksComponent implements OnInit {
   form!: FormGroup;
@@ -47,7 +41,6 @@ export class OrderLinksComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
     private orderLinksService: OrderLinksService,
-    private route: ActivatedRoute,
     private router: Router, // Add the Router here
   ) {}
 

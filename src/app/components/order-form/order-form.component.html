@@ -9,14 +9,14 @@
     <input id="customer-id" type="text" [(ngModel)]="customerId" placeholder="Enter customer ID" />
     <button (click)="fetchCustomerData()">Submit</button>
   </div>
-  
+
   <div *ngIf="orderData.customerName && orderData.salesRepName" class="customer-sales-info">
     <p>Customer: {{ orderData.customerName }}</p>
     <div class="sales-rep-info">
       Sales Rep: {{ orderData.salesRepName }} <a [href]="'tel:' + orderData.salesRepPhone">{{ orderData.salesRepPhone }}</a>
     </div>
   </div>
-  
+
   <div *ngIf="shiptoNames && shiptoNames.length > 0" class="shipto-dropdown">
     <label for="shipto-select">Ship To:</label>
     <select id="shipto-select" [(ngModel)]="selectedShiptoID">
@@ -42,22 +42,22 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of specialsProducts; let i = index" [attr.data-special]="true" [attr.data-index]="i">
-          <td class="hidden-column">{{ product.profileDid }}</td>
+          <td class="hidden-column">{{ product.id }}</td>
           <td class="hidden-column">{{ orderData.customerId }}</td>
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
-              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+              [attr.data-price]="product.price" [attr.data-pack-size]="product.packSize" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
             <input type="hidden" name="description_special_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
-            <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
-            <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
-            <input type="hidden" name="price_special_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
-            <input type="hidden" name="profile_id_special_{{ i }}" [value]="product.profileDid" [(ngModel)]="product.profileDid">
+            <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitType" [(ngModel)]="product.unitType">
+            <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSize" [(ngModel)]="product.packSize">
+            <input type="hidden" name="price_special_{{ i }}" [value]="product.price | number:'1.2-2'" [(ngModel)]="product.price">
+            <input type="hidden" name="profile_id_special_{{ i }}" [value]="product.id" [(ngModel)]="product.id">
           </td>
-          <td>{{ product.unitTypePd }}</td>
-          <td>{{ product.packSizePd }}</td>
-          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
-          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
+          <td>{{ product.unitType }}</td>
+          <td>{{ product.packSize }}</td>
+          <td>${{ product.price | number:'1.2-2' }}</td>
+          <td class="total-per-item">${{ (product.quantity || 0) * product.packSize * product.price | number:'1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
@@ -131,22 +131,22 @@
       </thead>
       <tbody>
         <tr *ngFor="let product of products; let i = index" [attr.data-index]="i">
-          <td class="hidden-column">{{ product.profileDid }}</td>
+          <td class="hidden-column">{{ product.id }}</td>
           <td class="hidden-column">{{ orderData.customerId }}</td>
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
-              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+              [attr.data-price]="product.price" [attr.data-pack-size]="product.packSize" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
             <input type="hidden" name="description_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
-            <input type="hidden" name="unit_type_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
-            <input type="hidden" name="pack_size_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
-            <input type="hidden" name="price_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
-            <input type="hidden" name="profile_id_{{ i }}" [value]="product.profileDid" [(ngModel)]="product.profileDid">
+            <input type="hidden" name="unit_type_{{ i }}" [value]="product.unitType" [(ngModel)]="product.unitType">
+            <input type="hidden" name="pack_size_{{ i }}" [value]="product.packSize" [(ngModel)]="product.packSize">
+            <input type="hidden" name="price_{{ i }}" [value]="product.price | number:'1.2-2'" [(ngModel)]="product.price">
+            <input type="hidden" name="profile_id_{{ i }}" [value]="product.id" [(ngModel)]="product.id">
           </td>
-          <td>{{ product.unitTypePd }}</td>
-          <td>{{ product.packSizePd }}</td>
-          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
-          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
+          <td>{{ product.unitType }}</td>
+          <td>{{ product.packSize }}</td>
+          <td>${{ product.price | number:'1.2-2' }}</td>
+          <td class="total-per-item">${{ (product.quantity || 0) * product.packSize * product.price | number:'1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
@@ -155,13 +155,13 @@
     <div class="delivery-date">
       <label for="delivery-date">Delivery Date:</label>
       <input type="date" id="delivery-date" class="calendar" name="delivery_date" [(ngModel)]="deliveryDate" required>
-  
+
       <label for="customer-po">&nbsp;&nbsp;Customer PO:</label>
       <input type="text" id="customer-po" name="customer_po" maxlength="150" [(ngModel)]="customerPo" (input)="restrictInput($event, 150)">
     </div>
     <div class="error-message" style="color: red;">&nbsp;</div>
     <button type="submit" class="submit-btn" [disabled]="isSubmitting">Submit your order</button>
-  
+
     <input type="hidden" name="nb_products" [value]="products.length" [(ngModel)]="products.length">
     <input type="hidden" name="customer_name" [value]="orderData.customerName" [(ngModel)]="orderData.customerName">
     <input type="hidden" name="sales_rep" [value]="orderData.salesRepName" [(ngModel)]="orderData.salesRepName">

@@ -2,15 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderFormService } from '../../services/order-form.service';
 import { NgForm, FormsModule } from '@angular/forms';
-import { Profile } from '../../models/order.model';
 import { NgStyle, NgIf, NgFor, DecimalPipe } from '@angular/common';
+import { Profile } from 'src/app/models/profile.model';
 
 @Component({
-    selector: 'app-order-form',
-    templateUrl: './order-form.component.html',
-    styleUrls: ['./order-form.component.css'],
-    standalone: true,
-    imports: [NgStyle, FormsModule, NgIf, NgFor, DecimalPipe]
+  selector: 'app-order-form',
+  templateUrl: './order-form.component.html',
+  styleUrls: ['./order-form.component.css'],
+  standalone: true,
+  imports: [NgStyle, FormsModule, NgIf, NgFor, DecimalPipe],
 })
 export class OrderFormComponent implements OnInit {
   orders: any[] = [];
@@ -23,18 +23,18 @@ export class OrderFormComponent implements OnInit {
   company: string = '';
   imageSrc: string = 'assets/logo.png';
   imageBackgroundColor: string = 'rgba(0, 16, 46, 1)';
-  shiptoNames: { id: string, name: string }[] = [];
+  shiptoNames: { id: string; name: string }[] = [];
   selectedShiptoID: string = '';
   isSubmitting: boolean = false; // Add this line
 
   constructor(
     private orderFormService: OrderFormService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.customerId = params['customerID'] || '';
       this.company = params['company'] || 'PFF';
       this.imageSrc = params['image'] || 'assets/logo.png'; // Retrieve the image URL from query params
@@ -59,33 +59,45 @@ export class OrderFormComponent implements OnInit {
 
   fetchCustomerData(): void {
     if (this.isValidCustomerId(this.customerId)) {
-      this.orderFormService.fetchCustomerData(this.customerId).subscribe(data => {
-        this.orderData = {
-          customerId: this.customerId,
-          customerName: data.customerName,
-          salesRepName: data.salesRepName,
-          salesRepPhone: data.salesRepPhone,
-          customerEmail: data.customerEmail,
-          deliveryDate: this.deliveryDate,
-          shipToId: this.selectedShiptoID,
-          shipToName: this.shiptoNames.find(shipto => shipto.id === this.selectedShiptoID)?.name || ''
-        };
+      this.orderFormService.fetchCustomerData(this.customerId).subscribe(
+        (data) => {
+          this.orderData = {
+            customerId: this.customerId,
+            customerName: data.customerName,
+            salesRepName: data.salesRepName,
+            salesRepPhone: data.salesRepPhone,
+            customerEmail: data.customerEmail,
+            deliveryDate: this.deliveryDate,
+            shipToId: this.selectedShiptoID,
+            shipToName:
+              this.shiptoNames.find(
+                (shipto) => shipto.id === this.selectedShiptoID,
+              )?.name || '',
+          };
 
-        this.products = data.profiles.map((profile: Profile) => ({
-          profileDid: profile.id, // Ensure the profile ID is mapped correctly
-          profileDescription: profile.profileDescription,
-          unitTypePd: profile.unitTypePd,
-          packSizePd: profile.packSizePd,
-          salesPrice: profile.salesPrice,
-          quantity: profile.quantity || 0
-        })) || [];
-        this.orders = data.orders || [];
-        this.shiptoNames = data.shipTos.map((shipto: any) => ({ id: shipto.id, name: shipto.shipToName })) || [];
-        this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
-        this.updateTotal(); // Initialize the total
-      }, error => {
-        console.error('Error fetching customer data:', error);
-      });
+          this.products =
+            data.profiles.map((profile: Profile) => ({
+              profileDid: profile.id, // Ensure the profile ID is mapped correctly
+              profileDescription: profile.profileDescription,
+              unitTypePd: profile.unitType,
+              packSizePd: profile.packSize,
+              salesPrice: profile.price,
+              quantity: profile.quantity || 0,
+            })) || [];
+          this.orders = data.orders || [];
+          this.shiptoNames =
+            data.shipTos.map((shipto: any) => ({
+              id: shipto.id,
+              name: shipto.shipToName,
+            })) || [];
+          this.selectedShiptoID =
+            this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
+          this.updateTotal(); // Initialize the total
+        },
+        (error) => {
+          console.error('Error fetching customer data:', error);
+        },
+      );
     } else {
       console.error('Invalid customer ID:', this.customerId);
     }
@@ -93,19 +105,23 @@ export class OrderFormComponent implements OnInit {
 
   fetchSpecialsData(): void {
     const specialsCustomerId = '1';
-    this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(data => {
-      this.specialsProducts = data.profiles.map((profile: Profile) => ({
-        profileDid: profile.id, // Ensure the profile ID is mapped correctly
-        profileDescription: profile.profileDescription,
-        unitTypePd: profile.unitTypePd,
-        packSizePd: profile.packSizePd,
-        salesPrice: profile.salesPrice,
-        quantity: profile.quantity || 0
-      })) || [];
-      this.updateTotal(); // Initialize the total for specials
-    }, error => {
-      console.error('Error fetching specials data:', error);
-    });
+    this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(
+      (data) => {
+        this.specialsProducts =
+          data.profiles.map((profile: Profile) => ({
+            profileDid: profile.id, // Ensure the profile ID is mapped correctly
+            profileDescription: profile.profileDescription,
+            unitTypePd: profile.unitType,
+            packSizePd: profile.packSize,
+            salesPrice: profile.price,
+            quantity: profile.quantity || 0,
+          })) || [];
+        this.updateTotal(); // Initialize the total for specials
+      },
+      (error) => {
+        console.error('Error fetching specials data:', error);
+      },
+    );
   }
 
   goBack(): void {
@@ -154,23 +170,30 @@ export class OrderFormComponent implements OnInit {
     let total = 0;
 
     // Calculate the total for normal products
-    this.products.forEach(product => {
+    this.products.forEach((product) => {
       const quantity = product.quantity || 0;
-      const price = product.salesPrice || 0;
-      const packSize = product.packSizePd || 1;
+      const price = product.price || 0;
+      const packSize = product.packSize || 1;
       total += quantity * price * packSize;
     });
 
     // Calculate the total for specials products
-    this.specialsProducts.forEach(product => {
+    this.specialsProducts.forEach((product) => {
       const quantity = product.quantity || 0;
-      const price = product.salesPrice || 0;
-      const packSize = product.packSizePd || 1;
+      const price = product.price || 0;
+      const packSize = product.packSize || 1;
       total += quantity * price * packSize;
     });
 
-    const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
-    totalAmountSpan.textContent = total.toLocaleString('en-US', { style: 'currency', currency: 'USD', minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const totalAmountSpan = document.getElementById(
+      'total-amount',
+    ) as HTMLSpanElement;
+    totalAmountSpan.textContent = total.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
     this.orderData.totalPrice = total.toFixed(2);
   }
@@ -182,11 +205,11 @@ export class OrderFormComponent implements OnInit {
       return;
     }
 
-    this.isSubmitting = true;  // Lock the button
+    this.isSubmitting = true; // Lock the button
     const orderProfiles = this.prepareOrderData();
-    const orderProfilesArray = orderProfiles.map(profile => ({
+    const orderProfilesArray = orderProfiles.map((profile) => ({
       profileDid: profile.profileDid,
-      quantity: profile.quantity
+      quantity: profile.quantity,
     }));
 
     const orderData = {
@@ -197,27 +220,44 @@ export class OrderFormComponent implements OnInit {
       totalPrice: this.orderData.totalPrice,
       products: this.products.concat(this.specialsProducts),
       orderProfiles: orderProfilesArray,
-      company: this.company
+      company: this.company,
     };
 
     this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
-      next: response => {
+      next: (response) => {
         if (response.status === 200) {
           console.log('Order submitted successfully', response);
           alert('Order submitted successfully');
-          this.router.navigate(['/order-confirmation'], { queryParams: { orderData: JSON.stringify(orderData), image: this.imageSrc } });
+          this.router.navigate(['/order-confirmation'], {
+            queryParams: {
+              orderData: JSON.stringify(orderData),
+              image: this.imageSrc,
+            },
+          });
         }
-        this.isSubmitting = false;  // Unlock the button
+        this.isSubmitting = false; // Unlock the button
       },
-      error: error => {
+      error: (error) => {
         if (error.status === 409) {
-          console.log('Order already exists for this delivery date', error.error);
-          this.router.navigate(['/order-exists'], { queryParams: { deliveryDate: this.deliveryDate, orders: JSON.stringify(error.error), company: this.company, image: this.imageSrc } });
+          console.log(
+            'Order already exists for this delivery date',
+            error.error,
+          );
+          this.router.navigate(['/order-exists'], {
+            queryParams: {
+              deliveryDate: this.deliveryDate,
+              orders: JSON.stringify(error.error),
+              company: this.company,
+              image: this.imageSrc,
+            },
+          });
         } else {
-          this.displayErrorMessage('Failed to submit order. Please try again later.');
+          this.displayErrorMessage(
+            'Failed to submit order. Please try again later.',
+          );
         }
-        this.isSubmitting = false;  // Unlock the button
-      }
+        this.isSubmitting = false; // Unlock the button
+      },
     });
   }
 
@@ -266,12 +306,16 @@ export class OrderFormComponent implements OnInit {
       return 'We are closed on Sundays.';
     }
 
-    const hasQuantity = this.products.concat(this.specialsProducts).some(product => product.quantity && product.quantity > 0);
+    const hasQuantity = this.products
+      .concat(this.specialsProducts)
+      .some((product) => product.quantity && product.quantity > 0);
     if (!hasQuantity) {
       return 'Please select a quantity which is not 0';
     }
 
-    const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
+    const totalPrice = this.orderFormService.calculateTotal(
+      this.products.concat(this.specialsProducts),
+    );
     if (totalPrice > 10000) {
       return 'The total amount has to be less than $10,000.';
     }
@@ -280,16 +324,19 @@ export class OrderFormComponent implements OnInit {
   }
 
   private displayErrorMessage(message: string): void {
-    const errorMessageDiv = document.querySelector('.error-message') as HTMLDivElement;
+    const errorMessageDiv = document.querySelector(
+      '.error-message',
+    ) as HTMLDivElement;
     errorMessageDiv.textContent = message;
   }
 
   private prepareOrderData(): any[] {
-    return this.products.concat(this.specialsProducts)
-      .filter(product => product.quantity && product.quantity > 0)
-      .map(product => ({
-        profileDid: product.profileDid,
-        quantity: product.quantity
+    return this.products
+      .concat(this.specialsProducts)
+      .filter((product) => product.quantity && product.quantity > 0)
+      .map((product) => ({
+        profileDid: product.id,
+        quantity: product.quantity,
       }));
   }
 }

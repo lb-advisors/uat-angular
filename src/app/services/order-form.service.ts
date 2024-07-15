@@ -1,39 +1,61 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Profile } from '../models/order.model';
+import { Profile } from '../models/profile.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderFormService {
-
   private apiUrl = 'https://uat-pffc.onrender.com/api/customers';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   fetchCustomerData(customerId: string): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${customerId}/profiles`);
   }
 
-  placeOrder(customerId: string, orderData: any): Observable<HttpResponse<any>> {
-    return this.http.post<any>(`${this.apiUrl}/${customerId}/orders`, orderData, { observe: 'response' });
+  placeOrder(
+    customerId: string,
+    orderData: any,
+  ): Observable<HttpResponse<any>> {
+    return this.http.post<any>(
+      `${this.apiUrl}/${customerId}/orders`,
+      orderData,
+      { observe: 'response' },
+    );
   }
 
   calculateTotal(products: Profile[]): number {
     let total = 0;
-    products.forEach(product => {
-      const quantity = product.quantity !== undefined ? parseFloat(product.quantity.toString()) : 0;
-      const price = product.salesPrice !== undefined ? parseFloat(product.salesPrice.toString()) : 0;
-      const packSize = product.packSizePd !== undefined ? parseFloat(product.packSizePd.toString()) : 1;
+    products.forEach((product) => {
+      const quantity =
+        product.quantity !== undefined
+          ? parseFloat(product.quantity.toString())
+          : 0;
+      const price =
+        product.price !== undefined ? parseFloat(product.price.toString()) : 0;
+      const packSize =
+        product.packSize !== undefined
+          ? parseFloat(product.packSize.toString())
+          : 1;
       const lineTotal = quantity * packSize * price;
       total += lineTotal;
     });
 
-    const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
-    totalAmountSpan.textContent = total.toLocaleString('en-US', { style: 'currency', currency: "USD", minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    const totalAmountSpan = document.getElementById(
+      'total-amount',
+    ) as HTMLSpanElement;
+    totalAmountSpan.textContent = total.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2,
+    });
 
-    const totalPriceInput = document.getElementById('total_price') as HTMLInputElement;
+    const totalPriceInput = document.getElementById(
+      'total_price',
+    ) as HTMLInputElement;
     totalPriceInput.value = total.toFixed(2);
 
     return total;

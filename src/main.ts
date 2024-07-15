@@ -1,6 +1,3 @@
-import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
-
-
 import { AppComponent } from './app/app.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
@@ -22,18 +19,32 @@ import { ErrorHandler, importProvidersFrom } from '@angular/core';
 import { HttpLoggingInterceptor } from './app/core/interceptors/http-logging.interceptor';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 
-
 bootstrapApplication(AppComponent, {
-    providers: [
-        importProvidersFrom(BrowserModule, AppRoutingModule, FormsModule, ReactiveFormsModule, CommonModule, MatSlideToggleModule, MatTableModule, MatSidenavModule, MatToolbarModule, MatIconModule, MatListModule, MatMenuModule, MatSnackBarModule, InfiniteScrollDirective, ModalModule.forRoot()),
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: HttpLoggingInterceptor,
-            multi: true,
-        },
-        { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-        provideHttpClient(),
-        provideAnimations(),
-    ]
-})
-  .catch(err => console.error(err));
+  providers: [
+    importProvidersFrom(
+      BrowserModule,
+      AppRoutingModule,
+      FormsModule,
+      ReactiveFormsModule,
+      CommonModule,
+      MatSlideToggleModule,
+      MatTableModule,
+      MatSidenavModule,
+      MatToolbarModule,
+      MatIconModule,
+      MatListModule,
+      MatMenuModule,
+      MatSnackBarModule,
+      InfiniteScrollDirective,
+      ModalModule.forRoot(),
+    ),
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: HttpLoggingInterceptor,
+      multi: true,
+    },
+    { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
+    provideHttpClient(),
+    provideAnimations(),
+  ],
+}).catch((err) => console.error(err));
