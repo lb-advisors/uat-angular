@@ -21,10 +21,10 @@ jobs:
         with:
           node-version: "20" # Use the Node.js version your project requires
 
-      - name: Delete node_modules and package-lock.json
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
+      #- name: Delete node_modules and package-lock.json
+      #  run: |
+      #    rm -rf node_modules
+      #    rm -f package-lock.json
 
       - name: Cache node modules
         id: cache-npm
