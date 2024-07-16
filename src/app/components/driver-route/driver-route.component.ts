@@ -10,26 +10,49 @@ import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
 import { map } from 'rxjs/operators';
-import { format } from 'date-fns';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpEventType } from '@angular/common/http';
+import { ImageThumbnailComponent } from '../image-thumbnail/image-thumbnail.component';
+import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
+import { FormsModule } from '@angular/forms';
+import { NgFor, NgIf, NgClass, AsyncPipe, DatePipe } from '@angular/common';
 
 interface Driver {
   name: string;
 }
 
 @Component({
-  selector: 'app-driver-route',
-  templateUrl: './driver-route.component.html',
-  styleUrls: ['./driver-route.component.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-driver-route',
+    templateUrl: './driver-route.component.html',
+    styleUrls: ['./driver-route.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        NgFor,
+        FormsModule,
+        NgIf,
+        MatTable,
+        MatColumnDef,
+        MatHeaderCellDef,
+        MatHeaderCell,
+        MatCellDef,
+        MatCell,
+        ImageThumbnailComponent,
+        MatHeaderRowDef,
+        MatHeaderRow,
+        MatRowDef,
+        MatRow,
+        NgClass,
+        AsyncPipe,
+        DatePipe,
+    ],
 })
 export class DriverRouteComponent implements OnInit {
-  readonly maxFileSize = 5 * 1024 * 1024; // 5 MB
+  readonly maxFileSize = 4 * 1024 * 1024; // 4 MB
 
   driverNames$!: Observable<Driver[]>;
   deliveryRoute$: Observable<DeliveryStop[]> | undefined;
-  today = format(new Date(), 'yyyy-MM-dd');
+  today: string;
   selectedFile: File | null = null;
 
   displayedColumns: string[] = [
@@ -43,7 +66,10 @@ export class DriverRouteComponent implements OnInit {
     private driverRouteService: DriverRouteService,
     private snackBarService: SnackbarService,
     private sanitizer: DomSanitizer,
-  ) {}
+    private cdr: ChangeDetectorRef,
+  ) {
+    this.today = this.formatDate(new Date());
+  }
 
   ngOnInit(): void {
     this.driverNames$ = this.driverRouteService.getDrivers().pipe(
@@ -54,6 +80,13 @@ export class DriverRouteComponent implements OnInit {
         return data.sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name in ascending order
       }),
     );
+  }
+
+  formatDate(date: Date): string {
+    const month = ("0" + (date.getMonth() + 1)).slice(-2);
+    const day = ("0" + date.getDate()).slice(-2);
+    const year = date.getFullYear();
+    return `${month}/${day}/${year}`;
   }
 
   refreshDeliverRoute(driverName: string, deliveryDate: string): void {
@@ -77,8 +110,6 @@ export class DriverRouteComponent implements OnInit {
   }
 
   onFileSelected(deliveryRoute: DeliveryStop, event: Event) {
-    this.test(deliveryRoute);
-
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
       const file = input.files[0];
@@ -87,7 +118,7 @@ export class DriverRouteComponent implements OnInit {
           this.selectedFile = file;
           this.uploadFile(deliveryRoute, file);
         } else {
-          this.snackBarService.showSnackBar('File size exceeds 5 MB.');
+          this.snackBarService.showSnackBar('File size exceeds 4 MB.');
         }
       } else {
         this.snackBarService.showSnackBar('Please select an image file');
@@ -96,25 +127,14 @@ export class DriverRouteComponent implements OnInit {
     }
   }
 
-  test(deliveryRoute: DeliveryStop) {
-    deliveryRoute.actualArrivalTime = '2030-01-01';
-  }
-
   uploadFile(deliveryRoute: DeliveryStop, file: File) {
     this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
       next: (event) => {
         switch (event.type) {
-          case HttpEventType.UploadProgress:
-            if (event.total) {
-              const progress = Math.round((100 * event.loaded) / event.total);
-              console.log(`Upload Progress: ${progress}%`);
-            }
-            break;
           case HttpEventType.Response: {
-            console.log('Upload successful', event.body);
             const updatedDeliveryStop = event.body as DeliveryStop;
-            deliveryRoute = updatedDeliveryStop;
-            break;
+            Object.assign(deliveryRoute, updatedDeliveryStop);
+            this.cdr.detectChanges();
           }
         }
       },

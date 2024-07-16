@@ -22,7 +22,7 @@ body {
 }
 
 .image-container {
-    width: 97%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,23 +47,22 @@ body {
 .filters {
     margin: 20px 0;
     display: flex;
-    justify-content: center; /* Center the filter section */
-    gap: 10px; /* Adds white space between each filter */
-    align-items: center;
+    flex-direction: column; /* Stack the filter groups vertically */
+    gap: 10px; /* Adds white space between each filter group */
+    align-items: flex-start; /* Align items to the left */
     font-size: 18px; /* Increase font size */
 }
 
 .filter-group {
     display: flex;
-    align-items: center;
-    gap: 5px;
+    align-items: center; /* Align items horizontally */
+    gap: 5px; /* Reduce space between the label and the input/select */
 }
 
 .filter-label {
     font-size: 18px; /* Increase font size to match the select box */
     font-family: Arial, sans-serif; /* Ensure same font */
-    margin-left: 10px; /* Add margin for better spacing */
-    margin-right: 10px; /* Add margin for better spacing */
+    margin: 0; /* Remove margin */
 }
 
 .filters select,
@@ -71,10 +70,9 @@ body {
     font-size: 18px; /* Match the font size of the label */
     font-family: Arial, sans-serif; /* Ensure same font */
     padding: 5px;
-}
-
-.filters input {
-    width: 200px; /* Adjust width as needed */
+    width: 100px; /* Set a consistent width */
+    text-align: left; /* Left-align the text */
+    margin: 0; /* Remove margin */
 }
 
 .order-grid {
@@ -104,6 +102,24 @@ body {
     text-decoration: underline;
 }
 
+@media (min-width: 601px) {
+    .filters {
+        flex-direction: row; /* Align filter groups in a row */
+        justify-content: space-between; /* Distribute space between filter groups */
+    }
+
+    .filter-group {
+        flex-direction: column; /* Align label and input vertically */
+        align-items: flex-start; /* Align items to the left */
+        width: auto; /* Let the width be determined by content */
+    }
+
+    .filters select,
+    .filters input {
+        width: auto; /* Let the width be determined by content */
+    }
+}
+
 @media (max-width: 600px) {
     .container {
         width: 95%;
@@ -111,18 +127,29 @@ body {
     }
 
     .filters {
-        flex-direction: column;
+        flex-direction: column; /* Stack filter groups vertically */
+    }
+
+    .filter-group {
+        width: 100%; /* Full width for each filter group */
+        align-items: flex-start; /* Align items to the left */
     }
 
     .filters label,
     .filters select,
     .filters input {
-        width: 100%;
-        margin-bottom: 10px;
+        width: 100%; /* Full width for label and input */
+        margin-bottom: 5px; /* Reduce bottom margin */
+        text-align: left; /* Left-align the text */
     }
 
     .order-grid th,
     .order-grid td {
         font-size: 14px;
+    }
+
+    #customer-search::placeholder {
+        font-size: 16px; /* Adjust the font size as needed */
+        color: #999; /* Optional: Change the placeholder text color */
     }
 }

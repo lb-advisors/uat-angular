@@ -2,9 +2,10 @@ import { Component, Input, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
-  selector: 'app-image-thumbnail',
-  templateUrl: './image-thumbnail.component.html',
-  styleUrl: './image-thumbnail.component.css',
+    selector: 'app-image-thumbnail',
+    templateUrl: './image-thumbnail.component.html',
+    styleUrl: './image-thumbnail.component.css',
+    standalone: true,
 })
 export class ImageThumbnailComponent {
   @Input() imageUrl: string = '';

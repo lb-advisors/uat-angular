@@ -84,4 +84,18 @@
       width: 100%;
       margin-bottom: 20px;
   }
+  .mdc-data-table__cell,
+  .mdc-data-table__header-cell {
+    padding: 0 0px;
+  }
+
+  .driver-routes-grid th,
+  .driver-routes-grid td {
+    padding: 0px;
+  }
+
+  .driver-routes-grid th,
+  .driver-routes-grid td {
+    font-size: 10px;
+  }
 }

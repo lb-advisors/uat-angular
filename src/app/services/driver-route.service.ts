@@ -22,7 +22,7 @@ export class DriverRouteService {
 
   getDeliveryRoute(
     driverName: string,
-    deliveryDate: string,
+    deliveryDate: string
   ): Observable<DeliveryStop[]> {
     const params = new HttpParams()
       .set('driverName', driverName)
@@ -33,21 +33,12 @@ export class DriverRouteService {
   }
 
   hasArrived(id: string): Observable<DeliveryStop> {
-    return this.http
-      .patch<DeliveryStop>(`${this.apiUrl}/delivery-stops/${id}`, {})
-      .pipe
-      // catchError((error) => {
-      //console.error('Error marking delivery as arrived:', error);
-      //return throwError(
-      //  () => new Error('Error marking delivery as arrived'),
-      //);
-      //}),
-      ();
+    return this.http.patch<DeliveryStop>(`${this.apiUrl}/delivery-stops/${id}`, {});
   }
 
   uploadPhoto(
     deliveryStopId: number,
-    file: File,
+    file: File
   ): Observable<HttpEvent<DeliveryStop>> {
     const formData = new FormData();
     formData.append('file', file);
@@ -58,7 +49,7 @@ export class DriverRouteService {
       {
         reportProgress: true,
         observe: 'events',
-      },
+      }
     );
   }
 }

@@ -1,10 +1,10 @@
-<mat-toolbar color="primary" class="header">
+<mat-toolbar color="primary" class="header" [ngClass]="{'warning': showWarning}">
     <div class="nav-links-center">
         <a mat-button routerLink="/inventory" routerLinkActive="active-link">
             <mat-icon>inventory</mat-icon>
             Inventory
         </a>
-        <a mat-button routerLink="/order" routerLinkActive="active-link">
+        <a mat-button routerLink="/order-links" routerLinkActive="active-link">
             <mat-icon>description</mat-icon> <!-- Change the icon to match Order Form -->
             Order
         </a>
@@ -12,10 +12,14 @@
             <mat-icon>local_shipping</mat-icon> <!-- Truck profile view icon facing the other direction -->
             Routes
         </a>
+
+
     </div>
-    <a routerLink="/home" class="gs-logo-link">
+
+    <a routerLink="/home" class="logo">
         <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
     </a>
+
 </mat-toolbar>
 
 <div class="underline"></div> <!-- Thinner black line underlining the nav bar -->
@@ -29,6 +33,8 @@
     <div class="container">
         <div class="text-align-center">
             © 2024 - Pacific Fresh Fish Company
+            @if (isDevMode) {<div class="dev-mode">UAT ENVIRONMENT</div>
+            <div class="dev-mode">{{apiUrl}}</div>}
         </div>
     </div>
 </footer>

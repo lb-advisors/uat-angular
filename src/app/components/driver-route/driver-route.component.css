@@ -42,7 +42,6 @@ body {
 }
 
 .image-container {
-    width: 97.3%;
     background-color: rgba(0, 16, 46, 1); /* Dark blue background for the image container */
     padding: 10px;
     border-radius: 8px;
@@ -77,6 +76,7 @@ body {
 
 .filters label {
     margin-right: 5px; /* Space between label and select/input */
+    margin-left: 10px; 
 }
 
 .filters select,
@@ -93,30 +93,60 @@ body {
 }
 
 .driver-routes-grid {
-    width: 100%;
+    width: fit-content;
     border-collapse: collapse;
     margin-bottom: 20px;
+    
 }
 
-.driver-routes-grid th, .driver-routes-grid td {
-    padding: 8px;
+.button {
+    background-color: green;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: darkgreen;
+}
+
+.driver-routes-grid th,
+.driver-routes-grid td {
+    padding: 10px;
     text-align: center; /* Center the text in headers and cells */
     border-bottom: 1px solid #000; /* Black horizontal lines */
 }
 
+.driver-routes-grid td {
+    font-weight: bold;
+}
+
 .driver-routes-grid th {
-    background-color: #5A5A5A; /* Slightly lighter dark grey */
+    background-color: #5a5a5a; /* Slightly lighter dark grey */
     color: #ffffff; /* White text color for table headers */
-    font-weight: bold; /* Bold font for headers */
+    /*font-weight: bold; /* Bold font for headers */
+    min-width: 75px; /* Prevent headers from wrapping too much */
 }
 
 .driver-routes-grid td.wrap {
     white-space: normal;
     word-wrap: break-word;
+    overflow-wrap: break-word; /* Ensure wrapping within cells */
+}
+
+.driver-routes-grid td {
+    padding: 8px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow-wrap: break-word; /* Ensure wrapping within cells */
 }
 
 .arrived {
-    background-color: #EEEDEB;
+    background-color: #eeedeb;
     font-weight: bold;
 }
 
@@ -124,23 +154,66 @@ body {
     white-space: nowrap;
 }
 
-@media (max-width: 600px) {
-    .driver-routes-grid th, .driver-routes-grid td {
+@media (max-width: 500px) {
+    .mdc-data-table__cell,
+    .mdc-data-table__header-cell {
+        padding: 0 0px;
+    }
+
+    .driver-routes-grid th,
+    .driver-routes-grid td {
+        padding: 10px;
+    }
+
+    .driver-routes-grid th,
+    .driver-routes-grid td {
         font-size: 14px;
     }
 
+    .driver-routes-grid th {
+        background-color: #5a5a5a; /* Slightly lighter dark grey */
+        color: #ffffff; /* White text color for table headers */
+        font-size: 14px; /* Increase the font size */
+        min-width: 75px; /* Prevent headers from wrapping too much */
+    }
+
+    .driver-routes-grid td {
+        font-size: 11px; /* Increase the font size */
+        
+    }
+
     .container {
-        width: 95%;
-        margin: 5px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+        border: 0px;
     }
+    
 
-    .filters {
-        flex-direction: column;
-    }
-
-    .filters .driver-filter, .filters .delivery-date-filter {
+    .filters .driver-filter,
+    .filters .delivery-date-filter {
         width: 100%;
         margin-bottom: 10px;
+    }
+
+    .address-column {
+        white-space: normal; /* Ensure address text wraps */
+        word-wrap: break-word;
+        overflow-wrap: break-word; /* Ensure long words break */
+        /*max-width: 100%; /* Allow the column to take full width */
+        padding-left: 50px; /* Add left padding */
+        padding-right: 50px; /* Add right padding */
+    }
+
+    .customerPhone {
+        white-space: normal;
+        word-wrap: break-word;
+        overflow-wrap: break-word; /* Ensure phone numbers wrap */
+        word-break: break-all; /* Break long words at any character */
+    }
+
+    .nowrap {
+        white-space: normal;
     }
 }
 
@@ -158,11 +231,13 @@ body {
     justify-content: center;
     height: 30px;
     margin-top: 10px; /* Move down the entire arrow container */
+    
 }
 
 .arrow-container i {
-    font-size: 24px; /* Font Awesome icon size */
+    font-size: 19px; /* Font Awesome icon size */
     margin-right: 10px; /* Add space to the right of the arrow */
+   
 }
 
 .time-difference-arrow {
@@ -175,6 +250,9 @@ body {
 #delivery-date {
     width: 120px; /* Ensures the width is only as wide as the content */
     text-align: center; /* Centers the text inside the text box */
+    cursor: default; /* Prevent the text cursor from appearing */
+    background-color: white; /* Set the background color to white */
+    border: 1px solid white; /* Set the border color to white */
 }
 
 .custom-file-input {
@@ -183,7 +261,7 @@ body {
 }
 
 .custom-file-input button {
-    background-color: grey;
+    background-color: #0056b3;
     color: white;
     border: none;
     padding: 5px 10px;
@@ -191,7 +269,7 @@ body {
 }
 
 .custom-file-input button:hover {
-    background-color: #0056b3;
+    background-color: green;
 }
 
 .custom-file-input span {

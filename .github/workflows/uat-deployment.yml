@@ -1,9 +1,9 @@
-name: Build and Deploy Angular App
+name: UAT - Build and Deploy Angular App
 
 on:
   push:
     branches:
-      - develop # Change to your main branch name if different
+      - develop
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -23,24 +23,29 @@ jobs:
         with:
           node-version: "20" # Use the Node.js version your project requires
 
+      - name: Pre-cache Cleanup
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
+
       - name: Cache Node.js modules
         uses: actions/cache@v3
         with:
           path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-v2
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Delete node_modules and package-lock.json
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
+      #- name: Delete node_modules and package-lock.json
+      #  run: |
+      #    rm -rf node_modules
+      #    rm -f package-lock.json
 
       - name: Install dependencies
         run: npm install
 
       - name: Build Angular app
-        run: npm run build #builddev
+        run: npm run builddev
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4

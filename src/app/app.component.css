@@ -6,8 +6,8 @@
 }
 
 .active-link {
-    background-color: #d3d3d3 !important; /* Light grey background for selected link */
-    color: #333 !important; /* Dark grey text color */
+    background-color: #d3d3d3;
+    color: #333 !important;
 }
 
 a {
@@ -51,13 +51,13 @@ mat-icon {
     display: flex;
     align-items: center;
     justify-content: center; /* Center the nav links */
-    background-color: #ffffff !important; /* White background */
+    background-color: #ffffff;
     width: 100%;
     padding: 5px 0; /* Reduce padding to make the nav bar less tall */
 }
 
 mat-toolbar {
-    background-color: #ffffff !important; /* White background */
+    background-color: #ffffff;
     width: 100%;
     color: #333; /* Dark grey text color */
 }
@@ -97,5 +97,12 @@ mat-sidenav-container {
     width: 24px;
     height: 24px;
     margin-right: 5px; /* Space between icon and text */
-    
+}
+
+.dev-mode {
+    color: darkblue;;
+}
+
+.warning {
+    background-color: red;
 }

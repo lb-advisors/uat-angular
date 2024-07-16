@@ -8,8 +8,8 @@ describe('DriverRouteComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [DriverRouteComponent]
-    });
+    imports: [DriverRouteComponent]
+});
     fixture = TestBed.createComponent(DriverRouteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
