@@ -2,6 +2,10 @@ name: Prod - Build and Deploy Angular App
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to deploy"
+        required: true
 
 jobs:
   build-and-deploy:
@@ -11,11 +15,18 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
           node-version: "18" # Use the Node.js version your project requires
+
+      - name: Pre-cache Cleanup
+        run: |
+          rm -rf node_modules
+          rm -f package-lock.json
 
       - name: Cache Node.js modules
         uses: actions/cache@v3
