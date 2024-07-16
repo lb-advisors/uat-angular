@@ -97,5 +97,8 @@ mat-sidenav-container {
     width: 24px;
     height: 24px;
     margin-right: 5px; /* Space between icon and text */
-    
+}
+
+.dev-mode {
+    color: red;;
 }

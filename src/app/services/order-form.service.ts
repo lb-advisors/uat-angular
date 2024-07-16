@@ -34,10 +34,12 @@ export class OrderFormService {
           ? parseFloat(product.quantity.toString())
           : 0;
       const price =
-        product.price !== undefined ? parseFloat(product.price.toString()) : 0;
+        product.salesPrice !== undefined
+          ? parseFloat(product.salesPrice.toString())
+          : 0;
       const packSize =
-        product.packSize !== undefined
-          ? parseFloat(product.packSize.toString())
+        product.packSizePd !== undefined
+          ? parseFloat(product.packSizePd.toString())
           : 1;
       const lineTotal = quantity * packSize * price;
       total += lineTotal;

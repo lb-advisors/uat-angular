@@ -1,15 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import {
-  AbstractControl,
-  FormArray,
-  FormBuilder,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidationErrors,
-  Validators,
-} from '@angular/forms';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { OrderForm } from 'src/app/models/order-form.model';
 import { Profile } from 'src/app/models/profile.model';
 import { environment } from 'src/environments/environment';
@@ -26,45 +18,43 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class OrderNewComponent implements OnInit {
   private apiUrl = environment.apiUrl;
   order!: OrderForm;
-  form!: FormGroup;
+  orderForm!: FormGroup;
   submitted: boolean = false;
 
-  constructor(
-    private http: HttpClient,
-    private fb: FormBuilder,
-    private snackBarService: SnackbarService,
-  ) {}
+  constructor(private http: HttpClient, private fb: FormBuilder, private snackBarService: SnackbarService) {}
 
   ngOnInit(): void {
-    this.http
-      .get<OrderForm>(`${this.apiUrl}/customers/5003/profiles`)
-      .subscribe({
-        next: (order) => {
-          this.order = order;
-          this.form = this.fb.group({
-            customerId: [order.customerId],
-            deliveryDate: [
-              '',
-              [Validators.required, this.dateAfterTomorrowValidator],
-            ],
-            shipToId: [],
-            profiles: this.fb.array(
-              this.order.profiles.map((profile) =>
-                this.createProfileGroup(profile),
-              ),
-              [this.atLeastOneQuantityValidator],
-            ),
-          });
-        },
-      });
+    // fetch remote data
+    this.http.get<OrderForm>(`${this.apiUrl}/customers/5003/profiles`).subscribe({
+      next: (order) => {
+        this.order = order;
+        this.orderForm = this.fb.group({
+          customerId: [order.customerId],
+          deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
+          shipToId: ['', [Validators.required]],
+          profiles: this.fb.array(
+            this.order.profiles.map((profile) => this.createProfileGroup(profile)),
+            [this.atLeastOneQuantityValidator],
+          ),
+        });
+      },
+    });
   }
 
   get formControls() {
-    return this.form.controls;
+    return this.orderForm.controls;
   }
 
   get profileControls(): FormArray {
-    return this.form.get('profiles') as FormArray;
+    return this.orderForm.get('profiles') as FormArray;
+  }
+
+  get totalPrice(): number {
+    let totalPrice = 0;
+    for (let i = 0; i < this.order.profiles.length; i++) {
+      totalPrice += this.order.profiles[i].salesPrice * this.profileControls.at(i).get('quantity')?.value;
+    }
+    return totalPrice;
   }
 
   createProfileGroup(profile: Profile): FormGroup {
@@ -77,21 +67,23 @@ export class OrderNewComponent implements OnInit {
   onSubmit() {
     this.snackBarService.showSnackBar('Just some sample message');
 
-    const order = this.form.value;
-    order.profiles = order.profiles.filter(
-      (control: { quantity: number }) => control.quantity > 0,
-    );
+    if (this.orderForm.valid) {
+      console.log('Form Submitted', this.orderForm.value);
+      const order = this.orderForm.value;
+      order.profiles = order.profiles.filter((control: { quantity: number }) => control.quantity > 0);
 
-    // add code to post the order
-    // ...
-    this.submitted = true;
+      // add code to post the order
+      // ...
+
+      this.submitted = true;
+    } else {
+      this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
+    }
   }
 
   get dataToBeSubmitted() {
-    const data = this.form.value;
-    data.profiles = data.profiles.filter(
-      (control: { quantity: number }) => control.quantity > 0,
-    );
+    const data = this.orderForm.value;
+    data.profiles = data.profiles.filter((control: { quantity: number }) => control.quantity > 0);
     return data;
   }
 
@@ -100,29 +92,36 @@ export class OrderNewComponent implements OnInit {
   }
 
   isQuantityEntered(index: number): boolean {
-    return (
-      typeof this.profileControls.at(index).get('quantity')?.value === 'number'
-    );
+    return typeof this.profileControls.at(index).get('quantity')?.value === 'number';
   }
 
   // validator
-  dateAfterTomorrowValidator(
-    control: AbstractControl,
-  ): ValidationErrors | null {
+  dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
     const dateValue = new Date(control.value);
     const today = new Date();
-    const dayAfterTomorrow = new Date(today.setDate(today.getDate() + 2));
-    return dateValue > dayAfterTomorrow ? null : { dateAfterTomorrow: true };
+    return dateValue > today ? null : { dateAfterTomorrow: true };
   }
 
   // validator
-  atLeastOneQuantityValidator(
-    control: AbstractControl,
-  ): ValidationErrors | null {
+  atLeastOneQuantityValidator(control: AbstractControl): ValidationErrors | null {
     const formArray = control as FormArray;
-    const hasAtLeastOneQuantity = formArray.controls.some(
-      (group) => group.get('quantity')?.value > 0,
-    );
+    const hasAtLeastOneQuantity = formArray.controls.some((group) => group.get('quantity')?.value > 0);
     return hasAtLeastOneQuantity ? null : { atLeastOneQuantity: true };
+  }
+
+  // validator
+  dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
+    const threeMonthsFromNow = new Date();
+    threeMonthsFromNow.setMonth(threeMonthsFromNow.getMonth() + 3);
+    threeMonthsFromNow.setHours(0, 0, 0, 0);
+
+    return dateValue <= threeMonthsFromNow ? null : { dateWithinThreeMonths: true };
+  }
+
+  // validator
+  dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
+    return dateValue.getDay() != 6 ? null : { dateNotOnSunday: true };
   }
 }

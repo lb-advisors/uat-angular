@@ -1,4 +1,4 @@
-<form [formGroup]="form" (ngSubmit)="onSubmit()">
+<form [formGroup]="orderForm" (ngSubmit)="onSubmit()">
 
     <table>
         <tr>
@@ -21,7 +21,11 @@
             <td><label for="ship-to">Ship to:</label></td>
             <td><select id="ship-to" formControlName="shipToId">
                     <option *ngFor="let shipTo of order.shipTos" [value]="shipTo.id">{{ shipTo.shipToName }}</option>
-                </select></td>
+                </select>
+                <div *ngIf="(orderForm.get('shipToId')?.touched || orderForm.get('shipToId')?.dirty) && orderForm.get('shipToId')?.errors?.['required']" class="error">Ship to is
+                    required.</div>
+
+            </td>
         </tr>
         <tr>
             <td><label for="delivery-date">Delivery Date:</label></td>
@@ -30,7 +34,13 @@
                     Delivery date is required
                 </div>
                 <div *ngIf="formControls['deliveryDate'].dirty  && formControls['deliveryDate'].errors?.['dateAfterTomorrow']" class="error">
-                    Delivery date must be after tomorrow
+                    Delivery date must be after today
+                </div>
+                <div *ngIf="formControls['deliveryDate'].dirty  && formControls['deliveryDate'].errors?.['dateWithinThreeMonths']" class="error">
+                    Delivery date must be within 3 months
+                </div>
+                <div *ngIf="formControls['deliveryDate'].dirty  && formControls['deliveryDate'].errors?.['dateNotOnSunday']" class="error">
+                    Delivery date cannot be on Sunday
                 </div>
             </td>
         </tr>
@@ -45,7 +55,7 @@
             <tr [formGroupName]="$index" [ngStyle]="{'background-color': isQuantityEntered($index) ? 'lightgrey' : 'white'}">
                 <td>ID: <input type="text" formControlName="id"></td>
                 <td>{{ order.profiles[$index].profileDescription }}</td>
-                <td>{{ order.profiles[$index].unitType }}</td>
+                <td>{{ order.profiles[$index].unitTypePd }}</td>
                 <td>Quantity: <input type="number" formControlName="quantity">
                     <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
                 </td>
@@ -54,9 +64,6 @@
             }
             }
         </table>
-        <div *ngIf="submitted && form.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
-            At least one quantity is required
-        </div>
     </div>
 
     <br>
@@ -68,7 +75,8 @@
             <tr [formGroupName]="$index" [ngStyle]="{'background-color': isQuantityEntered($index) ? 'lightgrey' : 'white'}">
                 <td>ID: <input type="text" formControlName="id"></td>
                 <td>{{ order.profiles[$index].profileDescription }}</td>
-                <td>{{ order.profiles[$index].unitType }}</td>
+                <td>{{ order.profiles[$index].unitTypePd }}</td>
+                <td>{{ order.profiles[$index].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
                 <td>Quantity: <input type="number" formControlName="quantity">
                     <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must greater than zero.</div>
                 </td>
@@ -77,7 +85,7 @@
             }
             }
         </table>
-        <div *ngIf="submitted && form.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
+        <div *ngIf="submitted && orderForm.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
             At least one quantity is required
         </div>
     </div>
@@ -86,7 +94,11 @@
         Enter at least one quantity
     </div>
 
-    <br><button type="submit" [disabled]="!form.valid">Submit</button>
+    <br>Total price: {{totalPrice| currency:'USD':'symbol':'1.2-2'}}
+    <div *ngIf="totalPrice>10000" class="error">The total has to be less than $10,000</div>
+    <br>
+
+    <br><button type="submit" [disabled]="!orderForm.valid">Submit</button>
 
 </form>
 

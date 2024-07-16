@@ -27,24 +27,22 @@ export class OrderFormComponent implements OnInit {
   selectedShiptoID: string = '';
   isSubmitting: boolean = false; // Add this line
 
-  constructor(
-    private orderFormService: OrderFormService,
-    private route: ActivatedRoute,
-    private router: Router,
-  ) {}
+  constructor(private orderFormService: OrderFormService, private route: ActivatedRoute, private router: Router) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.customerId = params['customerID'] || '';
-      this.company = params['company'] || 'PFF';
-      this.imageSrc = params['image'] || 'assets/logo.png'; // Retrieve the image URL from query params
-      this.updateImageAndBackground();
+    this.route.paramMap.subscribe((params) => {
+      this.customerId = params.get('id') || '';
       if (this.customerId) {
         this.fetchCustomerData();
+        this.fetchSpecialsData();
       }
     });
 
-    this.fetchSpecialsData();
+    this.route.queryParamMap.subscribe((params) => {
+      this.company = params.get('company') || 'PFF';
+      this.imageSrc = params.get('image') || 'assets/logo.png'; // Retrieve the image URL from query params
+      this.updateImageAndBackground();
+    });
   }
 
   updateImageAndBackground(): void {
@@ -69,19 +67,16 @@ export class OrderFormComponent implements OnInit {
             customerEmail: data.customerEmail,
             deliveryDate: this.deliveryDate,
             shipToId: this.selectedShiptoID,
-            shipToName:
-              this.shiptoNames.find(
-                (shipto) => shipto.id === this.selectedShiptoID,
-              )?.name || '',
+            shipToName: this.shiptoNames.find((shipto) => shipto.id === this.selectedShiptoID)?.name || '',
           };
 
           this.products =
             data.profiles.map((profile: Profile) => ({
               profileDid: profile.id, // Ensure the profile ID is mapped correctly
               profileDescription: profile.profileDescription,
-              unitTypePd: profile.unitType,
-              packSizePd: profile.packSize,
-              salesPrice: profile.price,
+              unitTypePd: profile.unitTypePd,
+              packSizePd: profile.packSizePd,
+              salesPrice: profile.salesPrice,
               quantity: profile.quantity || 0,
             })) || [];
           this.orders = data.orders || [];
@@ -90,8 +85,7 @@ export class OrderFormComponent implements OnInit {
               id: shipto.id,
               name: shipto.shipToName,
             })) || [];
-          this.selectedShiptoID =
-            this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
+          this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
           this.updateTotal(); // Initialize the total
         },
         (error) => {
@@ -111,9 +105,9 @@ export class OrderFormComponent implements OnInit {
           data.profiles.map((profile: Profile) => ({
             profileDid: profile.id, // Ensure the profile ID is mapped correctly
             profileDescription: profile.profileDescription,
-            unitTypePd: profile.unitType,
-            packSizePd: profile.packSize,
-            salesPrice: profile.price,
+            unitTypePd: profile.unitTypePd,
+            packSizePd: profile.packSizePd,
+            salesPrice: profile.salesPrice,
             quantity: profile.quantity || 0,
           })) || [];
         this.updateTotal(); // Initialize the total for specials
@@ -172,22 +166,20 @@ export class OrderFormComponent implements OnInit {
     // Calculate the total for normal products
     this.products.forEach((product) => {
       const quantity = product.quantity || 0;
-      const price = product.price || 0;
-      const packSize = product.packSize || 1;
+      const price = product.salesPrice || 0;
+      const packSize = product.packSizePd || 1;
       total += quantity * price * packSize;
     });
 
     // Calculate the total for specials products
     this.specialsProducts.forEach((product) => {
       const quantity = product.quantity || 0;
-      const price = product.price || 0;
-      const packSize = product.packSize || 1;
+      const price = product.salesPrice || 0;
+      const packSize = product.packSizePd || 1;
       total += quantity * price * packSize;
     });
 
-    const totalAmountSpan = document.getElementById(
-      'total-amount',
-    ) as HTMLSpanElement;
+    const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
     totalAmountSpan.textContent = total.toLocaleString('en-US', {
       style: 'currency',
       currency: 'USD',
@@ -228,7 +220,7 @@ export class OrderFormComponent implements OnInit {
         if (response.status === 200) {
           console.log('Order submitted successfully', response);
           alert('Order submitted successfully');
-          this.router.navigate(['/order-confirmation'], {
+          this.router.navigate(['/customer', this.customerId, '/order-confirmation'], {
             queryParams: {
               orderData: JSON.stringify(orderData),
               image: this.imageSrc,
@@ -239,11 +231,8 @@ export class OrderFormComponent implements OnInit {
       },
       error: (error) => {
         if (error.status === 409) {
-          console.log(
-            'Order already exists for this delivery date',
-            error.error,
-          );
-          this.router.navigate(['/order-exists'], {
+          console.log('Order already exists for this delivery date', error.error);
+          this.router.navigate(['/customer', this.customerId, 'order-exists'], {
             queryParams: {
               deliveryDate: this.deliveryDate,
               orders: JSON.stringify(error.error),
@@ -252,9 +241,7 @@ export class OrderFormComponent implements OnInit {
             },
           });
         } else {
-          this.displayErrorMessage(
-            'Failed to submit order. Please try again later.',
-          );
+          this.displayErrorMessage('Failed to submit order. Please try again later.');
         }
         this.isSubmitting = false; // Unlock the button
       },
@@ -306,16 +293,12 @@ export class OrderFormComponent implements OnInit {
       return 'We are closed on Sundays.';
     }
 
-    const hasQuantity = this.products
-      .concat(this.specialsProducts)
-      .some((product) => product.quantity && product.quantity > 0);
+    const hasQuantity = this.products.concat(this.specialsProducts).some((product) => product.quantity && product.quantity > 0);
     if (!hasQuantity) {
       return 'Please select a quantity which is not 0';
     }
 
-    const totalPrice = this.orderFormService.calculateTotal(
-      this.products.concat(this.specialsProducts),
-    );
+    const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
     if (totalPrice > 10000) {
       return 'The total amount has to be less than $10,000.';
     }
@@ -324,9 +307,7 @@ export class OrderFormComponent implements OnInit {
   }
 
   private displayErrorMessage(message: string): void {
-    const errorMessageDiv = document.querySelector(
-      '.error-message',
-    ) as HTMLDivElement;
+    const errorMessageDiv = document.querySelector('.error-message') as HTMLDivElement;
     errorMessageDiv.textContent = message;
   }
 

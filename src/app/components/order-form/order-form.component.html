@@ -47,17 +47,17 @@
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_special_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
-              [attr.data-price]="product.price" [attr.data-pack-size]="product.packSize" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
             <input type="hidden" name="description_special_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
-            <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitType" [(ngModel)]="product.unitType">
-            <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSize" [(ngModel)]="product.packSize">
-            <input type="hidden" name="price_special_{{ i }}" [value]="product.price | number:'1.2-2'" [(ngModel)]="product.price">
+            <input type="hidden" name="unit_type_special_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
+            <input type="hidden" name="pack_size_special_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
+            <input type="hidden" name="price_special_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
             <input type="hidden" name="profile_id_special_{{ i }}" [value]="product.id" [(ngModel)]="product.id">
           </td>
-          <td>{{ product.unitType }}</td>
-          <td>{{ product.packSize }}</td>
-          <td>${{ product.price | number:'1.2-2' }}</td>
-          <td class="total-per-item">${{ (product.quantity || 0) * product.packSize * product.price | number:'1.2-2' }}</td>
+          <td>{{ product.unitTypePd }}</td>
+          <td>{{ product.packSizePd }}</td>
+          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
+          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
         </tr>
       </tbody>
     </table>
@@ -100,7 +100,7 @@
           <td>{{ order.product_description }}</td>
           <td>{{ order.unit_type }}</td>
           <td>{{ order.pack_size }}</td>
-          <td>${{ order.price | number:'1.2-2' }}</td>
+          <td>${{ order.salesPrice | number:'1.2-2' }}</td>
           <td>{{ order.quantity }}</td>
           <td>${{ order.total_price | number:'1.2-2' }}</td>
           <td>{{ order.delivery_date }}</td>
@@ -136,17 +136,17 @@
           <td>{{ product.profileDescription }}</td>
           <td>
             <input type="text" class="input_quantity" inputmode="numeric" pattern="[0-9]*" name="quantity_{{ i }}" maxlength="4" [(ngModel)]="product.quantity"
-              [attr.data-price]="product.price" [attr.data-pack-size]="product.packSize" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
+              [attr.data-price]="product.salesPrice" [attr.data-pack-size]="product.packSizePd" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)" required>
             <input type="hidden" name="description_{{ i }}" [value]="product.profileDescription" [(ngModel)]="product.profileDescription">
-            <input type="hidden" name="unit_type_{{ i }}" [value]="product.unitType" [(ngModel)]="product.unitType">
-            <input type="hidden" name="pack_size_{{ i }}" [value]="product.packSize" [(ngModel)]="product.packSize">
-            <input type="hidden" name="price_{{ i }}" [value]="product.price | number:'1.2-2'" [(ngModel)]="product.price">
+            <input type="hidden" name="unit_type_{{ i }}" [value]="product.unitTypePd" [(ngModel)]="product.unitTypePd">
+            <input type="hidden" name="pack_size_{{ i }}" [value]="product.packSizePd" [(ngModel)]="product.packSizePd">
+            <input type="hidden" name="price_{{ i }}" [value]="product.salesPrice | number:'1.2-2'" [(ngModel)]="product.salesPrice">
             <input type="hidden" name="profile_id_{{ i }}" [value]="product.id" [(ngModel)]="product.id">
           </td>
-          <td>{{ product.unitType }}</td>
-          <td>{{ product.packSize }}</td>
-          <td>${{ product.price | number:'1.2-2' }}</td>
-          <td class="total-per-item">${{ (product.quantity || 0) * product.packSize * product.price | number:'1.2-2' }}</td>
+          <td>{{ product.unitTypePd }}</td>
+          <td>{{ product.packSizePd }}</td>
+          <td>${{ product.salesPrice | number:'1.2-2' }}</td>
+          <td class="total-per-item">${{ (product.quantity || 0) * product.packSizePd * product.salesPrice | number:'1.2-2' }}</td>
         </tr>
       </tbody>
     </table>

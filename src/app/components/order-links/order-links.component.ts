@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
@@ -54,9 +49,7 @@ export class OrderLinksComponent implements OnInit {
     this.companies$ = this.orderLinksService.getCompanies().pipe(
       tap((companies) => {
         // Set default company to "PFF"
-        const defaultCompany = companies.find(
-          (company) => company.name === 'PFF',
-        );
+        const defaultCompany = companies.find((company) => company.name === 'PFF');
         if (defaultCompany) {
           this.form.get('company')!.setValue(defaultCompany);
         }
@@ -108,13 +101,9 @@ export class OrderLinksComponent implements OnInit {
       });
 
     // searchText change
-    this.form
-      .get('searchText')!
-      .valueChanges.subscribe((searchText: string) => {
-        this.filteredCustomers = this.customers.filter((customer) =>
-          customer.name.toLowerCase().includes(searchText.toLowerCase()),
-        );
-      });
+    this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
+      this.filteredCustomers = this.customers.filter((customer) => customer.name.toLowerCase().includes(searchText.toLowerCase()));
+    });
   }
 
   updateImageAndBackground(companyName: string): void {
@@ -139,9 +128,7 @@ export class OrderLinksComponent implements OnInit {
 
     const baseUrl = window.location.origin;
 
-    return `${baseUrl}/order-form?customerID=${customerId}&company=${companyId}&image=${encodeURIComponent(
-      imageUrl,
-    )}`;
+    return `${baseUrl}/customer/${customerId}/order-form?company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
   }
 
   navigateToOrderForm(customerId: number): void {

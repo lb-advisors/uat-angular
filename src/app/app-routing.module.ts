@@ -49,17 +49,17 @@ const routes: Routes = [
     title: 'Inventory',
   },
   {
-    path: 'order-form',
+    path: 'customer/:id/order-form',
     component: OrderFormComponent,
     title: 'Order Form',
   },
   {
-    path: 'order-confirmation',
+    path: 'customer/:id/order-confirmation',
     component: OrderConfirmationComponent,
     title: 'Order Confirmation',
   },
   {
-    path: 'order-exists',
+    path: 'customer/:id/order-exists',
     component: OrderExistsComponent,
     title: 'Order Exists',
   },
