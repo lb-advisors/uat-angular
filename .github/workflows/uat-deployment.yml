@@ -21,10 +21,10 @@ jobs:
         with:
           node-version: "20" # Use the Node.js version your project requires
 
-      - name: Pre-cache Cleanup
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
+      #- name: Pre-cache Cleanup
+      #  run: |
+      #    rm -rf node_modules
+      #    rm -f package-lock.json
 
       - name: Cache Node.js modules
         uses: actions/cache@v3
