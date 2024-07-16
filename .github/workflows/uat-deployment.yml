@@ -45,8 +45,8 @@ jobs:
       - name: Build Angular app
         run: npm run builddev
 
-      #- name: Deploy to GitHub Pages
-      #  uses: peaceiris/actions-gh-pages@v4
-      #  with:
-      #    github_token: ${{ secrets.GH_TOKEN }}
-      #    publish_dir: ./dist
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GH_TOKEN }}
+          publish_dir: ./dist
