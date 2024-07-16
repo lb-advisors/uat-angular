@@ -2,6 +2,10 @@ name: Prod - Build and Deploy Angular App
 
 on:
   workflow_dispatch:
+    inputs:
+      tag:
+        description: "Tag to deploy"
+        required: true
 
 jobs:
   build-and-deploy:
@@ -11,6 +15,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.inputs.tag }}
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
