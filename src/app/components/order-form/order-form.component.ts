@@ -11,7 +11,7 @@ import { Profile } from 'src/app/models/profile.model';
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.css'],
   imports: [CommonModule, FormsModule],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  //changeDetection: ChangeDetectionStrategy.OnPush,    // TODO: onPush
 })
 export class OrderFormComponent implements OnInit {
   orders: any[] = [];
