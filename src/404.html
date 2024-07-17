@@ -6,7 +6,12 @@
     <title>Page not found</title>
     <script type="text/javascript">
         // Redirect to index.html with the path preserved as a query parameter
-        window.location.replace('index.html?redirect=' + window.location.pathname);
+
+        console.error('window.location.href: ' + window.location.href);
+        console.error('window.location.pathname: ' + window.location.pathname);
+
+
+        //window.location.replace('index.html?redirect=' + window.location.pathname);
     </script>
     </meta>
 </head>
