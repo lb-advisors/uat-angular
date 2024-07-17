@@ -81,10 +81,6 @@ const routes = [{
   path: 'test',
   component: _components_order_new_order_new_component__WEBPACK_IMPORTED_MODULE_9__.OrderNewComponent,
   title: 'Order Exists'
-}, {
-  path: '**',
-  redirectTo: '/home',
-  pathMatch: 'full'
 }];
 class AppRoutingModule {
   static #_ = this.ɵfac = function AppRoutingModule_Factory(t) {
