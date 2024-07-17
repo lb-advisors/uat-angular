@@ -68,11 +68,6 @@ const routes: Routes = [
     component: OrderNewComponent,
     title: 'Order Exists',
   },
-  {
-    path: '**',
-    redirectTo: '/home',
-    pathMatch: 'full',
-  },
 ];
 
 @NgModule({
