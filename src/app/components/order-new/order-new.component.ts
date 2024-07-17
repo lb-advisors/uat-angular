@@ -12,8 +12,8 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
   selector: 'app-order-new',
   templateUrl: './order-new.component.html',
   styleUrl: './order-new.component.css',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [CommonModule, ReactiveFormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderNewComponent implements OnInit {
   private apiUrl = environment.apiUrl;

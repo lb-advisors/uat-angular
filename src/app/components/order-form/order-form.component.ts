@@ -1,16 +1,17 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { OrderFormService } from '../../services/order-form.service';
-import { NgForm, FormsModule } from '@angular/forms';
-import { NgStyle, NgIf, NgFor, DecimalPipe } from '@angular/common';
+import { FormsModule, NgForm } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 import { Profile } from 'src/app/models/profile.model';
 
 @Component({
+  standalone: true,
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.css'],
-  standalone: true,
-  imports: [NgStyle, FormsModule, NgIf, NgFor, DecimalPipe],
+  imports: [CommonModule, FormsModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderFormComponent implements OnInit {
   orders: any[] = [];

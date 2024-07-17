@@ -1,28 +1,18 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { InventoryService } from '../../services/inventory.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
 import { InventoryItem } from 'src/app/models/inventoty-item.model';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
-import { NgFor, AsyncPipe, CurrencyPipe } from '@angular/common';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
+import { CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-inventory',
-    templateUrl: './inventory.component.html',
-    styleUrls: ['./inventory.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        InfiniteScrollDirective,
-        NgFor,
-        AsyncPipe,
-        CurrencyPipe,
-    ],
+  standalone: true,
+  selector: 'app-inventory',
+  templateUrl: './inventory.component.html',
+  styleUrls: ['./inventory.component.css'],
+  imports: [CommonModule, InfiniteScrollDirective],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InventoryComponent implements OnInit, OnDestroy {
   page = 0;
@@ -41,24 +31,25 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
     this.searchSubscription = this.searchSubject
       .pipe(
-        debounceTime(200), // Wait 300ms after the last event before emitting last event
-        distinctUntilChanged(), // Only emit if value is different from the last value
+        distinctUntilChanged(this.trimComparator), // Only emit if value is different from the last value
+        debounceTime(200), // Wait 200ms after the last event before emitting last event
       )
       .subscribe((searchTerm) => {
+        console.log(searchTerm + '##');
         this.searchTerm = searchTerm;
+        this.inventoryItemsSubject.next([]);
         this.loadData();
       });
   }
 
   loadData(): void {
-    this.inventoryService
-      .getInventoryItems(this.page, this.size, this.searchTerm)
-      .subscribe({
-        next: (inventoryItems: InventoryItem[]) => {
-          const currentData = this.inventoryItemsSubject.value;
-          this.inventoryItemsSubject.next([...currentData, ...inventoryItems]);
-        },
-      });
+    console.log('loadData');
+    this.inventoryService.getInventoryItems(this.page, this.size, this.searchTerm).subscribe({
+      next: (inventoryItems: InventoryItem[]) => {
+        const currentData = this.inventoryItemsSubject.value;
+        this.inventoryItemsSubject.next([...currentData, ...inventoryItems]);
+      },
+    });
   }
 
   onScroll(): void {
@@ -68,11 +59,14 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   onSearchChange(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value;
-    if (searchTerm.length > 1) {
+    if (searchTerm.trim().length > 1) {
       this.page = 0; // Reset page when searching
-      this.inventoryItemsSubject.next([]);
       this.searchSubject.next(searchTerm);
     }
+  }
+
+  private trimComparator(prev: string, curr: string): boolean {
+    return prev.trim() === curr.trim();
   }
 
   ngOnDestroy(): void {
