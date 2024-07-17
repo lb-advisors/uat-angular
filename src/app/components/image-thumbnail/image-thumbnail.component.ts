@@ -1,11 +1,12 @@
-import { Component, Input, TemplateRef } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
-    selector: 'app-image-thumbnail',
-    templateUrl: './image-thumbnail.component.html',
-    styleUrl: './image-thumbnail.component.css',
-    standalone: true,
+  standalone: true,
+  selector: 'app-image-thumbnail',
+  templateUrl: './image-thumbnail.component.html',
+  styleUrl: './image-thumbnail.component.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ImageThumbnailComponent {
   @Input() imageUrl: string = '';
@@ -16,9 +17,6 @@ export class ImageThumbnailComponent {
   constructor(private modalService: BsModalService) {}
 
   openModal(template: string | TemplateRef<unknown>) {
-    this.modalRef = this.modalService.show(
-      template,
-      Object.assign({}, { class: 'modal-lg' }),
-    );
+    this.modalRef = this.modalService.show(template, Object.assign({}, { class: 'modal-lg' }));
   }
 }

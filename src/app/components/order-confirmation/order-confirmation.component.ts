@@ -1,23 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Location, NgFor, DecimalPipe, CurrencyPipe } from '@angular/common';
+import { Location, CommonModule } from '@angular/common';
 
 @Component({
-    selector: 'app-order-confirmation',
-    templateUrl: './order-confirmation.component.html',
-    styleUrls: ['./order-confirmation.component.css'],
-    standalone: true,
-    imports: [NgFor, DecimalPipe, CurrencyPipe]
+  standalone: true,
+  selector: 'app-order-confirmation',
+  templateUrl: './order-confirmation.component.html',
+  styleUrls: ['./order-confirmation.component.css'],
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderConfirmationComponent implements OnInit {
   orderData: any = {};
   products: any[] = [];
   imageSrc: string = 'assets/logo.png';
 
-  constructor(private route: ActivatedRoute, private router: Router, private location: Location) { }
+  constructor(private route: ActivatedRoute, private router: Router, private location: Location) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe(params => {
+    this.route.queryParams.subscribe((params) => {
       this.orderData = JSON.parse(params['orderData']);
       this.imageSrc = params['image'] || 'assets/logo.png'; // Retrieve the image URL from query params
       this.products = this.orderData.products.filter((product: any) => product.quantity > 0); // Filter out items with quantity 0

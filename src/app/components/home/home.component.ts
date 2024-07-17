@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MatIcon } from '@angular/material/icon';
-import { NgFor, NgStyle, NgIf, TitleCasePipe, DatePipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 interface Employee {
   name: string;
@@ -15,11 +14,12 @@ interface Item {
 }
 
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css'],
-    standalone: true,
-    imports: [NgFor, MatIcon, NgStyle, NgIf, TitleCasePipe, DatePipe]
+  standalone: true,
+  selector: 'app-home',
+  templateUrl: './home.component.html',
+  styleUrls: ['./home.component.css'],
+  imports: [CommonModule],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent implements OnInit {
   today: Date = new Date();
@@ -33,7 +33,7 @@ export class HomeComponent implements OnInit {
     { name: 'Anahit Hovhannisyan', status: 'onsite' },
     { name: 'David Martirosyan', status: 'onsite' },
     { name: 'Armen Harutyunyan', status: 'sick' },
-    { name: 'Karen Avanesyan', status: 'vacation' }
+    { name: 'Karen Avanesyan', status: 'vacation' },
   ];
 
   items: Item[] = [
@@ -46,7 +46,7 @@ export class HomeComponent implements OnInit {
     { description: 'ALBACORE SUSHI LOIN FROZEN', status: 'low', ordered: false },
     { description: 'LOBSTER MEAT CK (CLAW / KNUCKLE) FROZEN', status: 'low', ordered: false },
     { description: 'OYSTER FAT BASTARD LIVE', status: 'low', ordered: false },
-    { description: 'Salmon Atlantic Fillet Fresh 2-3 E-Trim Skin-Off 10lb', status: 'low', ordered: false }
+    { description: 'Salmon Atlantic Fillet Fresh 2-3 E-Trim Skin-Off 10lb', status: 'low', ordered: false },
   ];
 
   constructor(private router: Router) {}
@@ -58,20 +58,20 @@ export class HomeComponent implements OnInit {
 
   sortEmployees(): void {
     this.employees.sort((a, b) => {
-      const statusOrder = { 'sick': 0, 'vacation': 1, 'onsite': 2 };
+      const statusOrder = { sick: 0, vacation: 1, onsite: 2 };
       return statusOrder[a.status] - statusOrder[b.status];
     });
   }
 
   sortItems(): void {
     this.items.sort((a, b) => {
-      const statusOrder = { 'none': 0, 'low': 1 };
+      const statusOrder = { none: 0, low: 1 };
       return statusOrder[a.status] - statusOrder[b.status];
     });
   }
 
   getStatusIcon(status: string): string {
-    switch(status) {
+    switch (status) {
       case 'sick':
       case 'vacation':
       case 'onsite':
@@ -84,7 +84,7 @@ export class HomeComponent implements OnInit {
   }
 
   getStatusColor(status: string): string {
-    switch(status) {
+    switch (status) {
       case 'sick':
         return 'red';
       case 'vacation':

@@ -1,10 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  OnInit,
-  SecurityContext,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, SecurityContext } from '@angular/core';
 import { DriverRouteService } from '../../services/driver-route.service';
 import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
@@ -13,39 +7,20 @@ import { map } from 'rxjs/operators';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpEventType } from '@angular/common/http';
 import { ImageThumbnailComponent } from '../image-thumbnail/image-thumbnail.component';
-import { MatTable, MatColumnDef, MatHeaderCellDef, MatHeaderCell, MatCellDef, MatCell, MatHeaderRowDef, MatHeaderRow, MatRowDef, MatRow } from '@angular/material/table';
-import { FormsModule } from '@angular/forms';
-import { NgFor, NgIf, NgClass, AsyncPipe, DatePipe } from '@angular/common';
+import { MatTableModule } from '@angular/material/table';
+import { CommonModule } from '@angular/common';
 
 interface Driver {
   name: string;
 }
 
 @Component({
-    selector: 'app-driver-route',
-    templateUrl: './driver-route.component.html',
-    styleUrls: ['./driver-route.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush,
-    standalone: true,
-    imports: [
-        NgFor,
-        FormsModule,
-        NgIf,
-        MatTable,
-        MatColumnDef,
-        MatHeaderCellDef,
-        MatHeaderCell,
-        MatCellDef,
-        MatCell,
-        ImageThumbnailComponent,
-        MatHeaderRowDef,
-        MatHeaderRow,
-        MatRowDef,
-        MatRow,
-        NgClass,
-        AsyncPipe,
-        DatePipe,
-    ],
+  standalone: true,
+  selector: 'app-driver-route',
+  templateUrl: './driver-route.component.html',
+  styleUrls: ['./driver-route.component.css'],
+  imports: [CommonModule, MatTableModule, ImageThumbnailComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent implements OnInit {
   readonly maxFileSize = 4 * 1024 * 1024; // 4 MB
@@ -55,12 +30,7 @@ export class DriverRouteComponent implements OnInit {
   today: string;
   selectedFile: File | null = null;
 
-  displayedColumns: string[] = [
-    'deliveryAddress1',
-    'address',
-    'customerPhone',
-    'actualArrivalTime',
-  ];
+  displayedColumns: string[] = ['deliveryAddress1', 'address', 'customerPhone', 'actualArrivalTime'];
 
   constructor(
     private driverRouteService: DriverRouteService,
@@ -83,8 +53,8 @@ export class DriverRouteComponent implements OnInit {
   }
 
   formatDate(date: Date): string {
-    const month = ("0" + (date.getMonth() + 1)).slice(-2);
-    const day = ("0" + date.getDate()).slice(-2);
+    const month = ('0' + (date.getMonth() + 1)).slice(-2);
+    const day = ('0' + date.getDate()).slice(-2);
     const year = date.getFullYear();
     return `${month}/${day}/${year}`;
   }
@@ -93,9 +63,7 @@ export class DriverRouteComponent implements OnInit {
     const formattedDate = new Date(deliveryDate).toISOString().split('T')[0]; // Ensure date is formatted as YYYY-MM-DD
     this.deliveryRoute$ = this.driverRouteService
       .getDeliveryRoute(driverName, formattedDate)
-      .pipe(
-        map((deliveryStops) => this.calculateTimeDifferences(deliveryStops)),
-      );
+      .pipe(map((deliveryStops) => this.calculateTimeDifferences(deliveryStops)));
   }
 
   hasArrived(deliveryRoute: DeliveryStop): void {
@@ -142,9 +110,7 @@ export class DriverRouteComponent implements OnInit {
   }
 
   getGoogleMapsUrl(address2: string, address3: string): SafeUrl {
-    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(
-      address2 + ' ' + address3,
-    )}`;
+    const url = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(address2 + ' ' + address3)}`;
 
     const sanitizedUrl = this.sanitizer.sanitize(SecurityContext.URL, url);
     if (sanitizedUrl) {
@@ -154,9 +120,7 @@ export class DriverRouteComponent implements OnInit {
     }
   }
 
-  private calculateTimeDifferences(
-    deliveryStops: DeliveryStop[],
-  ): DeliveryStop[] {
+  private calculateTimeDifferences(deliveryStops: DeliveryStop[]): DeliveryStop[] {
     for (let i = deliveryStops.length - 1; i > 0; i--) {
       const currentStop = deliveryStops[i];
       const previousStop = deliveryStops[i - 1];
@@ -164,9 +128,7 @@ export class DriverRouteComponent implements OnInit {
       const currentTime = new Date(currentStop.plannedArrivalTime).getTime();
       const previousTime = new Date(previousStop.plannedArrivalTime).getTime();
 
-      const timeDifferenceInMinutes = Math.round(
-        (currentTime - previousTime) / 60000,
-      );
+      const timeDifferenceInMinutes = Math.round((currentTime - previousTime) / 60000);
       currentStop.timeDifference = timeDifferenceInMinutes;
     }
 
