@@ -1,5 +1,5 @@
 import { Profile } from './profile.model';
-import { ShipTo } from './shipTo.model';
+import { ShipTo } from './ship-to.model';
 
 export interface OrderForm {
   id: number;

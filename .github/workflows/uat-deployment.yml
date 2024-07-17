@@ -23,26 +23,22 @@ jobs:
         with:
           node-version: "20" # Use the Node.js version your project requires
 
-      - name: Pre-cache Cleanup
+      - name: Cache node_modules
+        id: cache-node-modules
+        uses: actions/cache@v4
+        with:
+          path: |
+            node_modules
+            package-lock.json
+          key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-modules-
+
+      - name: Clean install dependencies
         run: |
           rm -rf node_modules
           rm -f package-lock.json
-
-      - name: Cache Node.js modules
-        uses: actions/cache@v3
-        with:
-          path: node_modules
-          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}-v2
-          restore-keys: |
-            ${{ runner.os }}-node-
-
-      #- name: Delete node_modules and package-lock.json
-      #  run: |
-      #    rm -rf node_modules
-      #    rm -f package-lock.json
-
-      - name: Install dependencies
-        run: npm install
+          npm install
 
       - name: Build Angular app
         run: npm run builddev

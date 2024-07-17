@@ -8,15 +8,15 @@ import { Company } from 'src/app/models/company.model';
 import { Customer } from 'src/app/models/customer.model';
 import { SalesRep } from 'src/app/models/sales-rep.model';
 import { OrderLinksService } from 'src/app/services/order-links.service';
-import { NgStyle, NgFor, AsyncPipe } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-order-links',
   templateUrl: './order-links.component.html',
   styleUrls: ['./order-links.component.css'],
+  imports: [CommonModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  standalone: true,
-  imports: [ReactiveFormsModule, NgStyle, NgFor, AsyncPipe],
 })
 export class OrderLinksComponent implements OnInit {
   form!: FormGroup;
