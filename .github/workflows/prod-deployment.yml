@@ -47,6 +47,9 @@ jobs:
       - name: Build Angular app
         run: npm run build
 
+      - name: Create CNAME file
+        run: echo 'www.gs-fish.com' > dist/CNAME
+
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
         with:
