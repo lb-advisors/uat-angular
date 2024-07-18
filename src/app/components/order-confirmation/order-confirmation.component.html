@@ -1,6 +1,6 @@
 <div class="container">
   <div class="image-container">
-    <img [src]="imageSrc" alt="Company Logo">
+    <app-logo [commpanyId]="orderData.companyId"></app-logo>
   </div>
   <h2>Hello {{ orderData.customerName }},</h2>
   <p>Thank you for your order. Here are the details of your order:</p>
@@ -17,13 +17,13 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let product of products">
+      <tr *ngFor="let product of orderData.profiles">
         <td>{{ product.profileDescription }}</td>
         <td>{{ product.unitTypePd }}</td>
         <td>{{ product.packSizePd }}</td>
         <td class="price">{{ product.salesPrice | number:'1.2-2' }}</td>
         <td>{{ product.quantity }}</td>
-        <td>{{ orderData.deliveryDate }}</td>
+        <td>{{ orderData.deliveryDate | date: 'MM/dd/yyyy'}}</td>
       </tr>
     </tbody>
   </table>

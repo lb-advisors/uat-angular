@@ -14,9 +14,8 @@ import { OrderNewComponent } from './components/order-new/order-new.component';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/home',
+    redirectTo: 'order-links',
     pathMatch: 'full',
-    title: 'Home',
   },
   {
     path: 'home',
@@ -31,7 +30,7 @@ const routes: Routes = [
   {
     path: 'order-links',
     component: OrderLinksComponent,
-    title: 'Order',
+    title: 'Order Links',
   },
   {
     path: 'login',

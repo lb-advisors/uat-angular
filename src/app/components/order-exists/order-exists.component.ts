@@ -1,57 +1,24 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { LogoComponent } from '../logo/logo.component';
+import { OrderForm } from 'src/app/models/order-form.model';
 
 @Component({
   standalone: true,
   selector: 'app-order-exists',
   templateUrl: './order-exists.component.html',
   styleUrls: ['./order-exists.component.css'],
-  imports: [CommonModule],
+  imports: [CommonModule, LogoComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderExistsComponent implements OnInit {
-  orders: any[] = [];
-  deliveryDate: string = '';
-  company: string = 'PFF';
-  imageSrc: string = 'assets/logo.png';
-  hasShipToName: boolean = false;
+  orderData!: OrderForm;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.queryParams.subscribe((params) => {
-      this.deliveryDate = params['deliveryDate'];
-      this.company = params['company'] || 'PFF';
-      this.imageSrc = params['image'] || 'assets/logo.png'; // Retrieve the image URL from query params
-      const order = JSON.parse(params['orders']);
-      this.orders = order.profiles.map((profile: any) => ({
-        customerName: order.customerName,
-        salesRepName: order.salesRepName,
-        profileDescription: profile.profileDescription,
-        unitType: profile.unitType,
-        packSize: profile.packSize,
-        price: profile.price,
-        quantity: profile.quantity,
-        deliveryDate: this.deliveryDate, // Use the delivery date from query params
-        shipToName: order.shipToName,
-      }));
-      this.hasShipToName = this.orders.some((order) => order.shipToName);
-      this.formatDeliveryDate();
-    });
-  }
-
-  formatDeliveryDate(): void {
-    if (this.deliveryDate) {
-      const date = new Date(this.deliveryDate);
-      const formattedDate = `${('0' + (date.getMonth() + 1)).slice(-2)}/${('0' + date.getDate()).slice(-2)}/${date.getFullYear()}`;
-      this.deliveryDate = formattedDate;
-      /*this.orders.forEach(order => order.deliveryDate = formattedDate); // Ensure consistency in the grid */
-    }
-  }
-
-  calculateTotal(): number {
-    return this.orders.reduce((total, order) => total + order.price * order.quantity, 0);
+    this.orderData = history.state.data; // Access the passed data here
   }
 
   goBack(): void {

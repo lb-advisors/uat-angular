@@ -66,17 +66,6 @@ export class DriverRouteComponent implements OnInit {
       .pipe(map((deliveryStops) => this.calculateTimeDifferences(deliveryStops)));
   }
 
-  hasArrived(deliveryRoute: DeliveryStop): void {
-    this.driverRouteService.hasArrived(deliveryRoute.id.toString()).subscribe(
-      () => {
-        console.log('Delivery marked as arrived');
-      },
-      (error) => {
-        console.error('Error marking delivery as arrived', error);
-      },
-    );
-  }
-
   onFileSelected(deliveryRoute: DeliveryStop, event: Event) {
     const input = event.target as HTMLInputElement;
     if (input.files && input.files.length > 0) {
@@ -96,12 +85,14 @@ export class DriverRouteComponent implements OnInit {
   }
 
   uploadFile(deliveryRoute: DeliveryStop, file: File) {
+    this.snackBarService.showSnackBar('Your file is being uploaded');
     this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
       next: (event) => {
         switch (event.type) {
           case HttpEventType.Response: {
             const updatedDeliveryStop = event.body as DeliveryStop;
             Object.assign(deliveryRoute, updatedDeliveryStop);
+            this.snackBarService.closeSnackBar();
             this.cdr.detectChanges();
           }
         }

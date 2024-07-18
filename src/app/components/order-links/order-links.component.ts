@@ -2,27 +2,25 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { RouterModule } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Customer } from 'src/app/models/customer.model';
 import { SalesRep } from 'src/app/models/sales-rep.model';
 import { OrderLinksService } from 'src/app/services/order-links.service';
 import { CommonModule } from '@angular/common';
+import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   standalone: true,
   selector: 'app-order-links',
   templateUrl: './order-links.component.html',
   styleUrls: ['./order-links.component.css'],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule, LogoComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderLinksComponent implements OnInit {
   form!: FormGroup;
-
-  imageSrc: string = 'assets/logo.png'; // Default image source
-  imageBackgroundColor: string = 'rgba(0, 16, 46, 1)'; // Default background color
 
   companies$!: Observable<Company[]>;
   salesPersons$!: Observable<SalesRep[]>;
@@ -36,7 +34,6 @@ export class OrderLinksComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
     private orderLinksService: OrderLinksService,
-    private router: Router, // Add the Router here
   ) {}
 
   ngOnInit(): void {
@@ -60,9 +57,6 @@ export class OrderLinksComponent implements OnInit {
     this.form
       .get('company')!
       .valueChanges.pipe(
-        tap((company) => {
-          this.updateImageAndBackground(company.name);
-        }),
         switchMap((company) => {
           return this.orderLinksService.getSalesPersons(company.id).pipe(
             tap((salesreps) => {
@@ -106,35 +100,10 @@ export class OrderLinksComponent implements OnInit {
     });
   }
 
-  updateImageAndBackground(companyName: string): void {
-    if (companyName === 'FOG-RIVER') {
-      this.imageSrc = 'assets/fogriver.png';
-      this.imageBackgroundColor = '#000000'; // Black background
-    } else {
-      this.imageSrc = 'assets/logo.png';
-      this.imageBackgroundColor = 'rgba(0, 16, 46, 1)'; // Dark blue background
-    }
-  }
-
   generateLink(customerId: number): string {
-    const company = this.form.get('company')!.value;
-    const companyId = company.id;
-    const companyName = company.name;
-    let imageUrl = 'assets/logo.png';
-
-    if (companyName === 'FOG-RIVER') {
-      imageUrl = 'assets/fogriver.png';
-    }
-
     // TODO: find a solution without hard-coding ordre-links
     const baseUrl = window.location.href.replace('/order-links', '');
-
-    return `${baseUrl}/customer/${customerId}/order-form?company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
-  }
-
-  navigateToOrderForm(customerId: number): void {
-    const link = this.generateLink(customerId);
-    this.router.navigateByUrl(link);
+    return `${baseUrl}/customer/${customerId}/order-form`;
   }
 
   copyLink(customerId: number): void {

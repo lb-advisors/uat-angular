@@ -1,7 +1,6 @@
 <div class="container">
-  <div class="image-container">
-    <img [src]="imageSrc" alt="Company Logo">
-  </div>
+  <app-logo [commpanyId]="orderData.companyId"></app-logo>
+
   <h2>Existing Order</h2>
   <div class="error-message" style="color: red;">
     We already have an order for you placed on this delivery date. If you would like it changed please contact your sales rep.
@@ -18,26 +17,26 @@
         <th>Price</th>
         <th>Quantity</th>
         <th>Delivery Date</th>
-        <th *ngIf="hasShipToName">Shipto Name</th>
+        <th *ngIf="orderData.id">Shipto Name</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of orders">
-        <td>{{ order.customerName }}</td>
-        <td>{{ order.salesRepName }}</td>
-        <td>{{ order.profileDescription }}</td>
-        <td>{{ order.unitType }}</td>
-        <td>{{ order.packSize }}</td>
-        <td class="price">{{ order.price | currency:'USD':true }}</td>
-        <td>{{ order.quantity }}</td>
-        <td>{{ order.deliveryDate }}</td>
-        <td *ngIf="hasShipToName">{{ order.shipToName }}</td>
+      <tr *ngFor="let profile of orderData.profiles">
+        <td>{{ orderData.customerName }}</td>
+        <td>{{ orderData.salesRepName }}</td>
+        <td>{{ profile.profileDescription }}</td>
+        <td>{{ profile.unitTypePd }}</td>
+        <td>{{ profile.packSizePd }}</td>
+        <td class="price">{{ profile.salesPrice| currency:'USD':true }}</td>
+        <td>{{ profile.quantity }}</td>
+        <td>{{ orderData.deliveryDate | date: 'MM/dd/yyyy' }}</td>
+        <td *ngIf="orderData.id">{{ orderData.shipToName }}</td>
       </tr>
     </tbody>
   </table>
   <div style="margin-top: 20px;">
-    <div class="total"><strong>Total:</strong> 
-      <span id="total-amount">{{ calculateTotal() | currency:'USD':true }}</span>
+    <div class="total"><strong>Total:</strong>
+      <span id="total-amount">{{ orderData.totalPrice| currency:'USD':true }}</span>
     </div>
   </div>
   <button class="button" (click)="goBack()">Back</button>
