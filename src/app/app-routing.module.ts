@@ -64,9 +64,9 @@ const routes: Routes = [
     title: 'Order Exists',
   },
   {
-    path: 'test',
+    path: 'order-new',
     component: OrderNewComponent,
-    title: 'Order Exists',
+    title: 'New Order',
   },
 ];
 

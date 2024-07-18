@@ -11,7 +11,7 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
   standalone: true,
   selector: 'app-order-new',
   templateUrl: './order-new.component.html',
-  styleUrl: './order-new.component.css',
+  styleUrls: ['./order-new.component.css'],
   imports: [CommonModule, ReactiveFormsModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
