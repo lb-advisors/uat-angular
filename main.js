@@ -460,13 +460,6 @@ class DriverRouteComponent {
     const formattedDate = new Date(deliveryDate).toISOString().split('T')[0]; // Ensure date is formatted as YYYY-MM-DD
     this.deliveryRoute$ = this.driverRouteService.getDeliveryRoute(driverName, formattedDate).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.map)(deliveryStops => this.calculateTimeDifferences(deliveryStops)));
   }
-  hasArrived(deliveryRoute) {
-    this.driverRouteService.hasArrived(deliveryRoute.id.toString()).subscribe(() => {
-      console.log('Delivery marked as arrived');
-    }, error => {
-      console.error('Error marking delivery as arrived', error);
-    });
-  }
   onFileSelected(deliveryRoute, event) {
     const input = event.target;
     if (input.files && input.files.length > 0) {
@@ -485,6 +478,7 @@ class DriverRouteComponent {
     }
   }
   uploadFile(deliveryRoute, file) {
+    this.snackBarService.showSnackBar('Your file is being uploaded');
     this.driverRouteService.uploadPhoto(deliveryRoute.id, file).subscribe({
       next: event => {
         switch (event.type) {
@@ -492,6 +486,7 @@ class DriverRouteComponent {
             {
               const updatedDeliveryStop = event.body;
               Object.assign(deliveryRoute, updatedDeliveryStop);
+              this.snackBarService.closeSnackBar();
               this.cdr.detectChanges();
             }
         }
@@ -3729,12 +3724,20 @@ class SnackbarService {
     this.action = 'Hide';
   }
   showSnackBar(message, style) {
-    this.matSnackBar.open(message, this.action, {
+    this.snackBarRef = this.matSnackBar.open(message, this.action, {
       duration: this.duration,
       verticalPosition: this.verticalPosition,
       horizontalPosition: this.horizontalPos,
       panelClass: style
     });
+    this.snackBarRef.onAction().subscribe(() => {
+      this.closeSnackBar();
+    });
+  }
+  closeSnackBar() {
+    if (this.snackBarRef) {
+      this.snackBarRef.dismiss();
+    }
   }
   static #_ = this.ɵfac = function SnackbarService_Factory(t) {
     return new (t || SnackbarService)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵinject"](_angular_material_snack_bar__WEBPACK_IMPORTED_MODULE_1__.MatSnackBar));
