@@ -1,9 +1,7 @@
 <form [formGroup]="form">
 
   <div class="container">
-    <div class="image-container" [ngStyle]="{'background-color': imageBackgroundColor}">
-      <img [src]="imageSrc" alt="Company Logo">
-    </div>
+    <app-logo [commpanyId]="form.get('company')?.value?.id"></app-logo>
 
     <h2 class="underlined">Customers</h2>
 

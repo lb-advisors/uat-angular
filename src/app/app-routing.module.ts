@@ -16,7 +16,6 @@ const routes: Routes = [
     path: '',
     redirectTo: 'order-links',
     pathMatch: 'full',
-    title: 'Order Links',
   },
   {
     path: 'home',
@@ -31,7 +30,7 @@ const routes: Routes = [
   {
     path: 'order-links',
     component: OrderLinksComponent,
-    title: 'Order',
+    title: 'Order Links',
   },
   {
     path: 'login',
