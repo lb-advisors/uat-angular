@@ -7,10 +7,6 @@
     <script type="text/javascript">
         // Redirect to index.html with the path preserved as a query parameter
 
-        console.error('window.location.href: ' + window.location.href);
-        console.error('window.location.pathname: ' + window.location.pathname);
-
-        console.log(window.location);
         const url = window.location.pathname
         const segments = url.split('/').filter((segment) => segment); // Split and filter out empty segments
         console.log(segments);
@@ -18,14 +14,7 @@
         const basePathSegments = 1; // Number of segments in the base path
         const relativePath = segments.slice(basePathSegments).join('/');
 
-        console.log(relativePath);
-
-        alert('');
-
-        //window.location.replace('index.html?redirect=' + relativePath);
         window.location.replace(`/${segments[0]}/index.html?redirect=${relativePath}`);
-
-
 
     </script>
     </meta>

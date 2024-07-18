@@ -37,12 +37,14 @@
         </tr>
       </thead>
       <tbody>
-        <tr *customer="let customer of filteredCustomers">
+        @for (customer of filteredCustomers; track customer) {
+        <tr>
           <td>{{ customer.name }}</td>
           <td><a [routerLink]="['/customer', customer.id, 'order-form']">Order Form</a></td>
           <td><a href="javascript:void(0)" (click)="copyLink(customer.id)" (keyup)="copyLink(customer.id)">Copy Link</a>
           </td>
         </tr>
+        }
       </tbody>
     </table>
   </div>
