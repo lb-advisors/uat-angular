@@ -38,9 +38,9 @@ __webpack_require__.r(__webpack_exports__);
 
 const routes = [{
   path: '',
-  redirectTo: '/home',
+  redirectTo: 'order-links',
   pathMatch: 'full',
-  title: 'Home'
+  title: 'Order Links'
 }, {
   path: 'home',
   component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_1__.HomeComponent,
@@ -1093,7 +1093,7 @@ class InventoryComponent {
     this.loadData();
   }
   onSearchChange(event) {
-    const searchTerm = event.target.value;
+    const searchTerm = event.target.value.replace('$', ''); // $ is not in the database
     if (searchTerm.trim().length > 1) {
       this.page = 0; // Reset page when searching
       this.searchSubject.next(searchTerm);
