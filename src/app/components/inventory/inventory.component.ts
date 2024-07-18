@@ -58,7 +58,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   onSearchChange(event: Event) {
-    const searchTerm = (event.target as HTMLInputElement).value;
+    const searchTerm = (event.target as HTMLInputElement).value.replace('$', ''); // $ is not in the database
     if (searchTerm.trim().length > 1) {
       this.page = 0; // Reset page when searching
       this.searchSubject.next(searchTerm);
