@@ -7,6 +7,8 @@ export interface OrderForm {
   customerName: string;
   salesRepName: string;
   salesRepPhone: string;
+  companyId: number;
+  companyName: string;
   deliveryDate: string;
   shipTos: ShipTo[];
   shipToName: string;
