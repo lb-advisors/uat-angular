@@ -1,97 +1,99 @@
 <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
     <div class="container">
-      <div class="image-container" [ngStyle]="{'background-color': imageBackgroundColor}">
-        <img [src]="imageSrc" alt="Company Logo">
+      <div class="image-container">
+        <img src="assets/logo.png" alt="Company Logo">
       </div>
       <h2 class="page-title">Order Form</h2>
   
-      <div *ngIf="orderData.customerName && orderData.salesRepName" class="customer-sales-info">
-        <p>Customer: {{ orderData.customerName }}</p>
+      <div *ngIf="order.customerName && order.salesRepName" class="customer-sales-info">
+        <p><strong>Customer:</strong> {{ order.customerName }}</p>
         <div class="sales-rep-info">
-          Sales Rep: {{ orderData.salesRepName }} <a [href]="'tel:' + orderData.salesRepPhone">{{ orderData.salesRepPhone }}</a>
+          <strong>Sales Rep:</strong> {{ order.salesRepName }} <a [href]="'tel:' + order.salesRepPhone">{{ order.salesRepPhone }}</a>
         </div>
       </div>
   
-      <div *ngIf="shiptoNames && shiptoNames.length > 0" class="shipto-dropdown">
-        <label for="shipto-select">Ship To:</label>
-        <select id="shipto-select" formControlName="shipToId" class="input-select">
-          <option *ngFor="let shipto of shiptoNames" [value]="shipto.id">{{ shipto.name }}</option>
+      <div class="shipto-dropdown">
+        <label for="ship-to"><strong>Ship to:</strong></label>
+        <select id="ship-to" formControlName="shipToId" class="input-select">
+          <option *ngFor="let shipTo of order.shipTos" [value]="shipTo.id">{{ shipTo.shipToName }}</option>
         </select>
         <div *ngIf="(orderForm.get('shipToId')?.touched || orderForm.get('shipToId')?.dirty) && orderForm.get('shipToId')?.errors?.['required']" class="error">
           Ship to is required.
         </div>
       </div>
   
-      <h3 class="grid-title">Specials</h3>
+      <h3 class="section-title">Specials:</h3>
       <div formArrayName="profiles" class="profiles">
-        <table class="order-grid specials-grid">
+        <table class="table">
           <thead>
             <tr>
-              <th class="hidden-column">Profile ID</th>
-              <th class="hidden-column">Customer ID</th>
               <th>Description</th>
               <th>Quantity</th>
               <th>Unit Type</th>
               <th>Pack Size</th>
               <th>Price</th>
-              <th class="totalCol">Total</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let profile of profileControls.controls; let i = index" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
-              <td class="hidden-column">{{ profile.value.id }}</td>
-              <td class="hidden-column">{{ orderData.customerId }}</td>
-              <td>{{ profile.value.profileDescription }}</td>
-              <td>
-                <input type="number" class="input_quantity" formControlName="quantity" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)">
+              <input type="text" formControlName="id" class="input-text hidden-column">
+              <td>{{ order.profiles[i].profileDescription }}</td>
+              <td><input type="number" formControlName="quantity" class="input-number">
                 <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
               </td>
-              <td>{{ profile.value.unitTypePd }}</td>
-              <td>{{ profile.value.packSizePd }}</td>
-              <td>{{ profile.value.salesPrice | currency:'USD':'symbol':'1.2-2' }}</td>
-              <td class="total-per-item">{{ (profile.value.quantity || 0) * profile.value.packSizePd * profile.value.salesPrice | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>{{ order.profiles[i].unitTypePd }}</td>
+              <td>{{ order.profiles[i].packSizePd }}</td>
+              <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+             <!-- <td>{{ (profile.get('quantity').value || 0) * order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2' }}</td> -->
             </tr>
           </tbody>
         </table>
       </div>
   
-      <h3 class="grid-title">Products</h3>
+      <h3 class="section-title">Products:</h3>
       <div formArrayName="profiles" class="profiles">
-        <table class="order-grid">
+        <table class="table">
           <thead>
             <tr>
-              <th class="hidden-column">Profile ID</th>
-              <th class="hidden-column">Customer ID</th>
               <th>Description</th>
               <th>Quantity</th>
               <th>Unit Type</th>
               <th>Pack Size</th>
               <th>Price</th>
-              <th class="totalCol">Total</th>
+              <th>Total</th>
             </tr>
           </thead>
           <tbody>
             <tr *ngFor="let profile of profileControls.controls; let i = index" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
-              <td class="hidden-column">{{ profile.value.id }}</td>
-              <td class="hidden-column">{{ orderData.customerId }}</td>
-              <td>{{ profile.value.profileDescription }}</td>
-              <td>
-                <input type="number" class="input_quantity" formControlName="quantity" (input)="updateRowStyle($event)" (blur)="checkEmptyInput($event)">
+              <td>{{ order.profiles[i].profileDescription }}</td>
+              <td><input type="number" formControlName="quantity" class="input-number">
                 <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
               </td>
-              <td>{{ profile.value.unitTypePd }}</td>
-              <td>{{ profile.value.packSizePd }}</td>
-              <td>{{ profile.value.salesPrice | currency:'USD':'symbol':'1.2-2' }}</td>
-              <td class="total-per-item">{{ (profile.value.quantity || 0) * profile.value.packSizePd * profile.value.salesPrice | currency:'USD':'symbol':'1.2-2' }}</td>
+              <td>{{ order.profiles[i].unitTypePd }}</td>
+              <td>{{ order.profiles[i].packSizePd }}</td>
+              <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+            <!--  <td>{{ (profile.get('quantity').value || 0) * order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2' }}</td>-->
             </tr>
           </tbody>
         </table>
+        <div *ngIf="submitted && orderForm.get('profiles')?.hasError('atLeastOneQuantity')" class="error">
+          At least one quantity is required
+        </div>
       </div>
   
-      <div class="total">Total: <span id="total-amount">{{ totalPrice | currency:'USD':'symbol':'1.2-2' }}</span></div>
+      <div *ngIf="profileControls.touched && profileControls.errors?.['atLeastOneQuantity']" class="error">
+        Enter at least one quantity
+      </div>
+  
+      <div class="total-price">
+        <br>Total price: {{totalPrice | currency:'USD':'symbol':'1.2-2'}}
+        <div *ngIf="totalPrice > 10000" class="error">The total has to be less than $10,000</div>
+      </div>
+  
       <div class="delivery-date">
-        <label for="delivery-date">Delivery Date:</label>
-        <input type="date" id="delivery-date" formControlName="deliveryDate" class="calendar" required>
+        <label for="delivery-date"><strong>Delivery Date:</strong></label>
+        <input id="delivery-date" formControlName="deliveryDate" type="date" class="input-date">
         <div *ngIf="formControls['deliveryDate'].touched && formControls['deliveryDate'].errors?.['required']" class="error">
           Delivery date is required
         </div>
@@ -106,17 +108,10 @@
         </div>
       </div>
   
-      <div class="customer-po">
-        <label for="customer-po">Customer PO:</label>
-        <input type="text" id="customer-po" formControlName="customerPo" maxlength="150" (input)="restrictInput($event, 150)">
-      </div>
-  
-      <button type="submit" [disabled]="!orderForm.valid" class="submit-btn">Submit your order</button>
+      <br><button type="submit" [disabled]="!orderForm.valid" class="submit-btn">Submit</button>
     </div>
   
-    <div>
-      <h3>Data to send to spring boot:</h3>
-      <pre>{{ dataToBeSubmitted | json }}</pre>
-    </div>
+   <!-- <br>Data to send to spring boot:
+    <br><pre>{{dataToBeSubmitted | json}}</pre>-->
   </form>
   
