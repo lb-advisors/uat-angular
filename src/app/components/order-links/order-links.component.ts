@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Customer } from 'src/app/models/customer.model';
@@ -15,7 +15,7 @@ import { CommonModule } from '@angular/common';
   selector: 'app-order-links',
   templateUrl: './order-links.component.html',
   styleUrls: ['./order-links.component.css'],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderLinksComponent implements OnInit {
@@ -129,12 +129,7 @@ export class OrderLinksComponent implements OnInit {
     // TODO: find a solution without hard-coding ordre-links
     const baseUrl = window.location.href.replace('/order-links', '');
 
-    return `customer/${customerId}/order-form?company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
-  }
-
-  navigateToOrderForm(customerId: number): void {
-    const link = this.generateLink(customerId);
-    this.router.navigateByUrl(link);
+    return `${baseUrl}/customer/${customerId}/order-form?company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
   }
 
   copyLink(customerId: number): void {

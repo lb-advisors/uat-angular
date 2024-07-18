@@ -37,10 +37,11 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of filteredCustomers">
-          <td>{{ order.name }}</td>
-          <td><a [href]="generateLink(order.id)" >Order Form</a></td>
-          <td><a href="javascript:void(0)" (click)="copyLink(order.id)" (keyup)="copyLink(order.id)">Copy Link</a></td>
+        <tr *customer="let customer of filteredCustomers">
+          <td>{{ customer.name }}</td>
+          <td><a [routerLink]="['/customer', customer.id, 'order-form']">Order Form</a></td>
+          <td><a href="javascript:void(0)" (click)="copyLink(customer.id)" (keyup)="copyLink(customer.id)">Copy Link</a>
+          </td>
         </tr>
       </tbody>
     </table>
