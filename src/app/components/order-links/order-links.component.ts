@@ -129,7 +129,7 @@ export class OrderLinksComponent implements OnInit {
     // TODO: find a solution without hard-coding ordre-links
     const baseUrl = window.location.href.replace('/order-links', '');
 
-    return `${baseUrl}/customer/${customerId}/order-form?company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
+    return `customer/${customerId}/order-form?company=${companyId}&image=${encodeURIComponent(imageUrl)}`;
   }
 
   navigateToOrderForm(customerId: number): void {
