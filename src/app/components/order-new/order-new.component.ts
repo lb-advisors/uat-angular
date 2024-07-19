@@ -55,6 +55,8 @@ export class OrderNewComponent implements OnInit {
       },
     });
   }
+  
+  
 
   get formControls() {
     return this.orderForm.controls;
@@ -80,19 +82,24 @@ export class OrderNewComponent implements OnInit {
 
   createProfileGroup(profile: Profile): FormGroup {
     return this.fb.group({
-      id: [profile.id],
-      quantity: ['', Validators.min(0.0001)],
+      profile_did: [profile.id], // Use id from the API response as profile_did
+      quantity: ['', Validators.min(1)],
     });
   }
+  
+  
 
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
-
+  
     if (this.orderForm.valid) {
       console.log('Form Submitted', this.orderForm.value);
       const order = this.orderForm.value;
       order.profiles = order.profiles.filter((control: { quantity: number }) => control.quantity > 0);
-
+      
+      // Ensure shipToId is a number
+      order.shipToId = parseInt(order.shipToId, 10);
+  
       // POST request to the API
       this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
         next: (response) => {
@@ -104,12 +111,15 @@ export class OrderNewComponent implements OnInit {
           this.snackBarService.showSnackBar('Error submitting order');
         }
       });
-
+  
       this.submitted = true;
     } else {
       this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
     }
   }
+  
+  
+  
 
   get dataToBeSubmitted() {
     const data = this.orderForm.value;

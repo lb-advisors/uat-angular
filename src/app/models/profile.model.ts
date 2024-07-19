@@ -6,4 +6,5 @@ export interface Profile {
   quantity: number;
   id: number;
   isSpecial: boolean;
+  profile_did: number; 
 }
