@@ -57,6 +57,12 @@ export class OrderNewComponent implements OnInit {
     return totalPrice;
   }
 
+  getRowTotalPrice(index: number): number {
+    const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
+    const salesPrice = this.order.profiles[index].salesPrice || 0;
+    return quantity * salesPrice;
+  }
+
   createProfileGroup(profile: Profile): FormGroup {
     return this.fb.group({
       id: [profile.id],
