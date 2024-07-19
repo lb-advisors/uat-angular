@@ -42,10 +42,11 @@ export class OrderNewComponent implements OnInit {
     this.http.get<OrderForm>(`${this.apiUrl}/customers/${customerId}/profiles`).subscribe({
       next: (order) => {
         this.order = order;
+        const shipToValidators = order.shipTos?.length ? [Validators.required] : [];
         this.orderForm = this.fb.group({
           customerId: [order.customerId],
           deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
-          shipToId: ['', [Validators.required]],
+          shipToId: ['', shipToValidators],
           profiles: this.fb.array(
             this.order.profiles.map((profile) => this.createProfileGroup(profile)),
             [this.atLeastOneQuantityValidator],
@@ -151,6 +152,6 @@ export class OrderNewComponent implements OnInit {
   // validator
   dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
     const dateValue = new Date(control.value);
-    return dateValue.getDay() != 6 ? null : { dateNotOnSunday: true };
+    return dateValue.getDay() != 0 ? null : { dateNotOnSunday: true };
   }
 }
