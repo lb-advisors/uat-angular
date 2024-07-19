@@ -2,7 +2,8 @@ import { Profile } from './profile.model';
 import { ShipTo } from './ship-to.model';
 
 export interface OrderForm {
-  id: number;
+  id: number;  // Add this line if 'id' is required
+  Did: number;
   customerId: number;
   customerName: string;
   salesRepName: string;
@@ -14,4 +15,9 @@ export interface OrderForm {
   shipToName: string;
   totalPrice: number;
   profiles: Profile[];
+}
+
+export interface OrderProfile {
+  profileDid: number;
+  quantity: number;
 }

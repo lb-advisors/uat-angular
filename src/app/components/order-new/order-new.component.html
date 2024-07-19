@@ -38,7 +38,7 @@
                 <tbody>
                     <ng-container *ngFor="let profile of profileControls.controls; let i = index">
                         <tr *ngIf="order.profiles[i].isSpecial" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
-                            <input type="text" formControlName="id" class="input-text hidden-column">
+                            <input type="text" formControlName="profileDid" class="input-text hidden-column">
                             <td>{{ order.profiles[i].profileDescription }}</td>
                             <td><input type="number" formControlName="quantity" class="input-number">
                                 <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
@@ -69,7 +69,7 @@
                 <tbody>
                     <ng-container *ngFor="let profile of profileControls.controls; let i = index">
                         <tr *ngIf="!order.profiles[i].isSpecial" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
-                            <input type="text" formControlName="id" class="input-text hidden-column">
+                            <input type="text" formControlName="profileDid" class="input-text hidden-column">
                             <td>{{ order.profiles[i].profileDescription }}</td>
                             <td><input type="number" formControlName="quantity" class="input-number">
                                 <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
@@ -116,7 +116,6 @@
         <br><button type="submit" [disabled]="!orderForm.valid" class="submit-btn">Submit</button>
     </div>
 
-    
     <br>Data to send to spring boot:
     <br><pre>{{dataToBeSubmitted | json}}</pre> 
 </form>

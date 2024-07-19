@@ -2,8 +2,9 @@ import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { OrderForm } from 'src/app/models/order-form.model';
-import { Profile } from 'src/app/models/profile.model';
+import { OrderForm, OrderProfile } from 'src/app/models/order-form.model';
+import { Profile } from 'src/app/models/profile.model'; // Import Profile from profile.model
+import { ShipTo } from 'src/app/models/ship-to.model'; // Import ShipTo from ship-to.model
 import { environment } from 'src/environments/environment';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ActivatedRoute } from '@angular/router';
@@ -47,6 +48,8 @@ export class OrderNewComponent implements OnInit {
           customerId: [order.customerId],
           deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
           shipToId: ['', shipToValidators],
+          customerPo: [''],
+          totalPrice: [0], // Initialize totalPrice
           profiles: this.fb.array(
             this.order.profiles.map((profile) => this.createProfileGroup(profile)),
             [this.atLeastOneQuantityValidator],
@@ -55,8 +58,6 @@ export class OrderNewComponent implements OnInit {
       },
     });
   }
-  
-  
 
   get formControls() {
     return this.orderForm.controls;
@@ -82,26 +83,31 @@ export class OrderNewComponent implements OnInit {
 
   createProfileGroup(profile: Profile): FormGroup {
     return this.fb.group({
-      profile_did: [profile.id], // Use id from the API response as profile_did
+      profileDid: [profile.id], // Use id from the API response as profileDid
       quantity: ['', Validators.min(1)],
     });
   }
-  
-  
 
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
-  
+
     if (this.orderForm.valid) {
       console.log('Form Submitted', this.orderForm.value);
       const order = this.orderForm.value;
-      order.profiles = order.profiles.filter((control: { quantity: number }) => control.quantity > 0);
-      
+      order.profiles = order.profiles.filter((profile: OrderProfile) => profile.quantity > 0);
+      order.totalPrice = this.totalPrice; // Calculate total price
+
       // Ensure shipToId is a number
       order.shipToId = parseInt(order.shipToId, 10);
-  
+
       // POST request to the API
-      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
+      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, {
+        ...order,
+        profiles: order.profiles.map((profile: any) => ({
+          profileDid: profile.profileDid,
+          quantity: profile.quantity,
+        }))
+      }).subscribe({
         next: (response) => {
           console.log('Order submitted successfully', response);
           this.snackBarService.showSnackBar('Order submitted successfully');
@@ -111,19 +117,16 @@ export class OrderNewComponent implements OnInit {
           this.snackBarService.showSnackBar('Error submitting order');
         }
       });
-  
+
       this.submitted = true;
     } else {
       this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
     }
   }
-  
-  
-  
 
   get dataToBeSubmitted() {
     const data = this.orderForm.value;
-    data.profiles = data.profiles.filter((control: { quantity: number }) => control.quantity > 0);
+    data.profiles = data.profiles.filter((profile: { quantity: number }) => profile.quantity > 0);
     return data;
   }
 
