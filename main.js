@@ -1256,7 +1256,7 @@ class LogoComponent {
     this.imageBackgroundColor = '#000000';
   }
   ngOnChanges() {
-    if (this.companyId === 14) {
+    if (this.companyId === 3) {
       this.imageSrc = 'assets/fogriver.png';
       this.imageBackgroundColor = '#000000'; // Black background
     } else {
