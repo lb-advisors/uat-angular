@@ -6,16 +6,16 @@ import { Component, Input, OnChanges } from '@angular/core';
   standalone: true,
   imports: [CommonModule],
   templateUrl: './logo.component.html',
-  styleUrl: './logo.component.css',
+  styleUrls: ['./logo.component.css'],
 })
 export class LogoComponent implements OnChanges {
-  @Input() commpanyId!: number; // PFF
+  @Input() companyId!: number;
 
   imageSrc = 'assets/fogriver.png';
   imageBackgroundColor = '#000000';
 
   ngOnChanges(): void {
-    if (this.commpanyId === 14) {
+    if (this.companyId === 14) {
       this.imageSrc = 'assets/fogriver.png';
       this.imageBackgroundColor = '#000000'; // Black background
     } else {

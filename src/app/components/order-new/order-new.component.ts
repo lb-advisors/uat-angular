@@ -6,6 +6,7 @@ import { OrderForm } from 'src/app/models/order-form.model';
 import { Profile } from 'src/app/models/profile.model';
 import { environment } from 'src/environments/environment';
 import { SnackbarService } from 'src/app/services/snackbar.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -20,12 +21,25 @@ export class OrderNewComponent implements OnInit {
   order!: OrderForm;
   orderForm!: FormGroup;
   submitted: boolean = false;
+  customerId!: string; // Add a customerId property
 
-  constructor(private http: HttpClient, private fb: FormBuilder, private snackBarService: SnackbarService) {}
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private snackBarService: SnackbarService,
+    private route: ActivatedRoute // Inject ActivatedRoute
+  ) {}
 
   ngOnInit(): void {
-    // fetch remote data
-    this.http.get<OrderForm>(`${this.apiUrl}/customers/5003/profiles`).subscribe({
+    // Get customerId from route parameters
+    this.route.paramMap.subscribe(params => {
+      this.customerId = params.get('id') || 'defaultId'; // Use 'defaultId' if id is not provided
+      this.loadOrderData(this.customerId);
+    });
+  }
+
+  loadOrderData(customerId: string): void {
+    this.http.get<OrderForm>(`${this.apiUrl}/customers/${customerId}/profiles`).subscribe({
       next: (order) => {
         this.order = order;
         this.orderForm = this.fb.group({
@@ -71,15 +85,24 @@ export class OrderNewComponent implements OnInit {
   }
 
   onSubmit() {
-    this.snackBarService.showSnackBar('Just some sample message');
+    this.snackBarService.showSnackBar('Submitting Order...');
 
     if (this.orderForm.valid) {
       console.log('Form Submitted', this.orderForm.value);
       const order = this.orderForm.value;
       order.profiles = order.profiles.filter((control: { quantity: number }) => control.quantity > 0);
 
-      // add code to post the order
-      // ...
+      // POST request to the API
+      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
+        next: (response) => {
+          console.log('Order submitted successfully', response);
+          this.snackBarService.showSnackBar('Order submitted successfully');
+        },
+        error: (error) => {
+          console.error('Error submitting order', error);
+          this.snackBarService.showSnackBar('Error submitting order');
+        }
+      });
 
       this.submitted = true;
     } else {

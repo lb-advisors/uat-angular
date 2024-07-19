@@ -12,61 +12,17 @@ import { OrderExistsComponent } from './components/order-exists/order-exists.com
 import { OrderNewComponent } from './components/order-new/order-new.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'order-links',
-    pathMatch: 'full',
-  },
-  {
-    path: 'home',
-    component: HomeComponent,
-    title: 'Home',
-  },
-  {
-    path: 'driver',
-    component: DriverRouteComponent,
-    title: 'Driver Route',
-  },
-  {
-    path: 'order-links',
-    component: OrderLinksComponent,
-    title: 'Order Links',
-  },
-  {
-    path: 'login',
-    component: LoginComponent,
-    title: 'Login',
-  },
-  {
-    path: 'logout',
-    component: LogoutComponent,
-    title: 'Logout',
-  },
-  {
-    path: 'inventory',
-    component: InventoryComponent,
-    title: 'Inventory',
-  },
-  {
-    path: 'customer/:id/order-form',
-    component: OrderFormComponent,
-    title: 'Order Form',
-  },
-  {
-    path: 'customer/:id/order-confirmation',
-    component: OrderConfirmationComponent,
-    title: 'Order Confirmation',
-  },
-  {
-    path: 'customer/:id/order-exists',
-    component: OrderExistsComponent,
-    title: 'Order Exists',
-  },
-  {
-    path: 'order-new',
-    component: OrderNewComponent,
-    title: 'New Order',
-  },
+  { path: '', redirectTo: 'order-links', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent, title: 'Home' },
+  { path: 'driver', component: DriverRouteComponent, title: 'Driver Route' },
+  { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },
+  { path: 'login', component: LoginComponent, title: 'Login' },
+  { path: 'logout', component: LogoutComponent, title: 'Logout' },
+  { path: 'inventory', component: InventoryComponent, title: 'Inventory' },
+  { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
+  { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
+  { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
+  { path: 'customer/:id/order-new', component: OrderNewComponent, title: 'New Order' },
 ];
 
 @NgModule({

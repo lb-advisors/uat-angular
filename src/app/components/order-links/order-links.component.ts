@@ -21,10 +21,8 @@ import { LogoComponent } from '../logo/logo.component';
 })
 export class OrderLinksComponent implements OnInit {
   form!: FormGroup;
-
   companies$!: Observable<Company[]>;
   salesPersons$!: Observable<SalesRep[]>;
-
   customers: Customer[] = [];
   filteredCustomers: Customer[] = [];
 
@@ -45,7 +43,6 @@ export class OrderLinksComponent implements OnInit {
 
     this.companies$ = this.orderLinksService.getCompanies().pipe(
       tap((companies) => {
-        // Set default company to "PFF"
         const defaultCompany = companies.find((company) => company.name === 'PFF');
         if (defaultCompany) {
           this.form.get('company')!.setValue(defaultCompany);
@@ -53,68 +50,51 @@ export class OrderLinksComponent implements OnInit {
       }),
     );
 
-    // company change
-    this.form
-      .get('company')!
-      .valueChanges.pipe(
-        switchMap((company) => {
-          return this.orderLinksService.getSalesPersons(company.id).pipe(
-            tap((salesreps) => {
-              // Sort sales reps in ascending order
-              salesreps.sort((a, b) => a.name.localeCompare(b.name));
-              this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
-                observer.next(salesreps);
-                observer.complete();
-              });
-              if (salesreps.length > 0) {
-                this.form.get('salesPerson')!.setValue(salesreps[0]);
-              }
-            }),
-          );
+    this.form.get('company')!.valueChanges.pipe(
+      switchMap((company) => this.orderLinksService.getSalesPersons(company.id).pipe(
+        tap((salesreps) => {
+          salesreps.sort((a, b) => a.name.localeCompare(b.name));
+          this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+            observer.next(salesreps);
+            observer.complete();
+          });
+          if (salesreps.length > 0) {
+            this.form.get('salesPerson')!.setValue(salesreps[0]);
+          }
         }),
-      )
-      .subscribe();
+      )),
+    ).subscribe();
 
-    // salesPerson change
-    this.form
-      .get('salesPerson')!
-      .valueChanges.pipe(
-        switchMap((salesrep) => {
-          const company = this.form.get('company')!.value;
-          return this.orderLinksService.getCustomers(company.id, salesrep.name);
-        }),
-      )
-      .subscribe({
-        next: (customers) => {
-          this.customers = [...customers];
-          // Sort customers by name in ascending order
-          this.customers.sort((a, b) => a.name.localeCompare(b.name));
-          this.filteredCustomers = [...this.customers];
-          this.cdr.markForCheck();
-        },
-      });
+    this.form.get('salesPerson')!.valueChanges.pipe(
+      switchMap((salesrep) => {
+        const company = this.form.get('company')!.value;
+        return this.orderLinksService.getCustomers(company.id, salesrep.name);
+      }),
+    ).subscribe({
+      next: (customers) => {
+        this.customers = [...customers];
+        this.customers.sort((a, b) => a.name.localeCompare(b.name));
+        this.filteredCustomers = [...this.customers];
+        this.cdr.markForCheck();
+      },
+    });
 
-    // searchText change
     this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
       this.filteredCustomers = this.customers.filter((customer) => customer.name.toLowerCase().includes(searchText.toLowerCase()));
     });
   }
 
   generateLink(customerId: number): string {
-    // TODO: find a solution without hard-coding ordre-links
     const baseUrl = window.location.href.replace('/order-links', '');
-    return `${baseUrl}/customer/${customerId}/order-form`;
+    return `${baseUrl}/customer/${customerId}/order-new`;
   }
 
   copyLink(customerId: number): void {
     const link = this.generateLink(customerId);
-    navigator.clipboard
-      .writeText(link)
-      .then(() => {
-        this.snackbarService.showSnackBar('Link copied to clipboard!');
-      })
-      .catch((err) => {
-        console.error('Failed to copy link: ', err);
-      });
+    navigator.clipboard.writeText(link).then(() => {
+      this.snackbarService.showSnackBar('Link copied to clipboard!');
+    }).catch((err) => {
+      console.error('Failed to copy link: ', err);
+    });
   }
 }
