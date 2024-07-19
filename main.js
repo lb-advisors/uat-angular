@@ -3219,6 +3219,9 @@ class OrderNewComponent {
           customerId: [order.customerId],
           deliveryDate: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
           shipToId: ['', shipToValidators],
+          customerPo: [''],
+          totalPrice: [0],
+          // Initialize totalPrice
           profiles: this.fb.array(this.order.profiles.map(profile => this.createProfileGroup(profile)), [this.atLeastOneQuantityValidator])
         });
       }
@@ -3244,8 +3247,8 @@ class OrderNewComponent {
   }
   createProfileGroup(profile) {
     return this.fb.group({
-      profile_did: [profile.id],
-      // Use id from the API response as profile_did
+      profileDid: [profile.id],
+      // Use id from the API response as profileDid
       quantity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_3__.Validators.min(1)]
     });
   }
@@ -3254,11 +3257,18 @@ class OrderNewComponent {
     if (this.orderForm.valid) {
       console.log('Form Submitted', this.orderForm.value);
       const order = this.orderForm.value;
-      order.profiles = order.profiles.filter(control => control.quantity > 0);
+      order.profiles = order.profiles.filter(profile => profile.quantity > 0);
+      order.totalPrice = this.totalPrice; // Calculate total price
       // Ensure shipToId is a number
       order.shipToId = parseInt(order.shipToId, 10);
       // POST request to the API
-      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
+      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, {
+        ...order,
+        profiles: order.profiles.map(profile => ({
+          profileDid: profile.profileDid,
+          quantity: profile.quantity
+        }))
+      }).subscribe({
         next: response => {
           console.log('Order submitted successfully', response);
           this.snackBarService.showSnackBar('Order submitted successfully');
@@ -3275,7 +3285,7 @@ class OrderNewComponent {
   }
   get dataToBeSubmitted() {
     const data = this.orderForm.value;
-    data.profiles = data.profiles.filter(control => control.quantity > 0);
+    data.profiles = data.profiles.filter(profile => profile.quantity > 0);
     return data;
   }
   isQuantityInvalid(index) {
@@ -3327,7 +3337,7 @@ class OrderNewComponent {
     features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
     decls: 79,
     vars: 23,
-    consts: [[1, "order-form", 3, "ngSubmit", "formGroup"], [1, "container"], [1, "image-container"], ["src", "assets/logo.png", "alt", "Company Logo", 1, "company-logo"], [1, "page-title"], ["class", "customer-sales-info", 4, "ngIf"], [1, "shipto-dropdown"], ["for", "ship-to"], ["id", "ship-to", "formControlName", "shipToId", 1, "input-select"], [3, "value", 4, "ngFor", "ngForOf"], ["class", "error", 4, "ngIf"], [1, "section-title"], ["formArrayName", "profiles", 1, "profiles"], [1, "table"], [4, "ngFor", "ngForOf"], [1, "total-price"], [1, "delivery-date"], ["for", "delivery-date"], ["id", "delivery-date", "formControlName", "deliveryDate", "type", "date", 1, "input-date"], ["type", "submit", 1, "submit-btn", 3, "disabled"], [1, "customer-sales-info"], [1, "sales-rep-info"], [3, "href"], [3, "value"], [1, "error"], [3, "formGroupName", "ngStyle", 4, "ngIf"], [3, "formGroupName", "ngStyle"], ["type", "text", "formControlName", "id", 1, "input-text", "hidden-column"], ["type", "number", "formControlName", "quantity", 1, "input-number"]],
+    consts: [[1, "order-form", 3, "ngSubmit", "formGroup"], [1, "container"], [1, "image-container"], ["src", "assets/logo.png", "alt", "Company Logo", 1, "company-logo"], [1, "page-title"], ["class", "customer-sales-info", 4, "ngIf"], [1, "shipto-dropdown"], ["for", "ship-to"], ["id", "ship-to", "formControlName", "shipToId", 1, "input-select"], [3, "value", 4, "ngFor", "ngForOf"], ["class", "error", 4, "ngIf"], [1, "section-title"], ["formArrayName", "profiles", 1, "profiles"], [1, "table"], [4, "ngFor", "ngForOf"], [1, "total-price"], [1, "delivery-date"], ["for", "delivery-date"], ["id", "delivery-date", "formControlName", "deliveryDate", "type", "date", 1, "input-date"], ["type", "submit", 1, "submit-btn", 3, "disabled"], [1, "customer-sales-info"], [1, "sales-rep-info"], [3, "href"], [3, "value"], [1, "error"], [3, "formGroupName", "ngStyle", 4, "ngIf"], [3, "formGroupName", "ngStyle"], ["type", "text", "formControlName", "profileDid", 1, "input-text", "hidden-column"], ["type", "number", "formControlName", "quantity", 1, "input-number"]],
     template: function OrderNewComponent_Template(rf, ctx) {
       if (rf & 1) {
         _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "form", 0);
