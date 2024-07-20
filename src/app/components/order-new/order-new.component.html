@@ -1,8 +1,6 @@
 <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
     <div class="container">
-        <div class="image-container">
-            <img src="assets/logo.png" alt="Company Logo" class="company-logo">
-        </div>
+        <app-logo [companyId]="order.companyId"></app-logo>
         <h2 class="page-title">Order Form</h2>
 
         <div *ngIf="order.customerName && order.salesRepName" class="customer-sales-info">

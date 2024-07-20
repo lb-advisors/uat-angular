@@ -8,13 +8,14 @@ import { ShipTo } from 'src/app/models/ship-to.model'; // Import ShipTo from shi
 import { environment } from 'src/environments/environment';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { LogoComponent } from '../logo/logo.component';
 
 @Component({
   standalone: true,
   selector: 'app-order-new',
   templateUrl: './order-new.component.html',
   styleUrls: ['./order-new.component.css'],
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, LogoComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderNewComponent implements OnInit {
@@ -102,12 +103,12 @@ export class OrderNewComponent implements OnInit {
       this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
         next: (order) => {
           console.log('Order submitted successfully', order);
-          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: order } });
+          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: order, companyId: this.order.companyId } });
           this.snackBarService.showSnackBar('Order submitted successfully');
         },
         error: (error) => {
           console.error('Error submitting order', error);
-          this.router.navigate(['/customer', this.customerId, 'order-exists'], { state: { order: error.error } });
+          this.router.navigate(['/customer', this.customerId, 'order-exists'], { state: { order: error.error, companyId: this.order.companyId } });
           this.snackBarService.showSnackBar('Error submitting order');
         },
       });

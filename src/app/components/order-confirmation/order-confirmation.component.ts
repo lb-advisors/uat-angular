@@ -14,11 +14,13 @@ import { OrderForm } from 'src/app/models/order-form.model';
 })
 export class OrderConfirmationComponent implements OnInit {
   orderData!: OrderForm;
+  companyId!: number;
 
   constructor(private router: Router, private location: Location) {}
 
   ngOnInit(): void {
-    this.orderData = history.state['order']; // Access the passed data here
+    this.orderData = history.state['order']; // Access the passed data here'
+    this.companyId = history.state['companyId'];
   }
 
   goBack(): void {

@@ -14,11 +14,13 @@ import { OrderForm } from 'src/app/models/order-form.model';
 })
 export class OrderExistsComponent implements OnInit {
   orderData!: OrderForm;
+  companyId!: number;
 
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
     this.orderData = history.state['order']; // Access the passed data here
+    this.companyId = history.state['companyId'];
   }
 
   goBack(): void {
