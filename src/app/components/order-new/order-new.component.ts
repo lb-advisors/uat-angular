@@ -7,7 +7,7 @@ import { Profile } from 'src/app/models/profile.model'; // Import Profile from p
 import { ShipTo } from 'src/app/models/ship-to.model'; // Import ShipTo from ship-to.model
 import { environment } from 'src/environments/environment';
 import { SnackbarService } from 'src/app/services/snackbar.service';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -22,18 +22,19 @@ export class OrderNewComponent implements OnInit {
   order!: OrderForm;
   orderForm!: FormGroup;
   submitted: boolean = false;
-  customerId!: string; // Add a customerId property
+  customerId!: string;
 
   constructor(
     private http: HttpClient,
     private fb: FormBuilder,
+    private router: Router,
     private snackBarService: SnackbarService,
-    private route: ActivatedRoute // Inject ActivatedRoute
+    private route: ActivatedRoute, // Inject ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     // Get customerId from route parameters
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe((params) => {
       this.customerId = params.get('id') || 'defaultId'; // Use 'defaultId' if id is not provided
       this.loadOrderData(this.customerId);
     });
@@ -97,25 +98,18 @@ export class OrderNewComponent implements OnInit {
       order.profiles = order.profiles.filter((profile: OrderProfile) => profile.quantity > 0);
       order.totalPrice = this.totalPrice; // Calculate total price
 
-      // Ensure shipToId is a number
-      order.shipToId = parseInt(order.shipToId, 10);
-
       // POST request to the API
-      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, {
-        ...order,
-        profiles: order.profiles.map((profile: any) => ({
-          profileDid: profile.profileDid,
-          quantity: profile.quantity,
-        }))
-      }).subscribe({
-        next: (response) => {
-          console.log('Order submitted successfully', response);
+      this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
+        next: (order) => {
+          console.log('Order submitted successfully', order);
+          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: order } });
           this.snackBarService.showSnackBar('Order submitted successfully');
         },
         error: (error) => {
           console.error('Error submitting order', error);
+          this.router.navigate(['/customer', this.customerId, 'order-exists'], { state: { order: error.error } });
           this.snackBarService.showSnackBar('Error submitting order');
-        }
+        },
       });
 
       this.submitted = true;
@@ -165,6 +159,6 @@ export class OrderNewComponent implements OnInit {
   // validator
   dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
     const dateValue = new Date(control.value);
-    return dateValue.getDay() != 0 ? null : { dateNotOnSunday: true };
+    return dateValue.getDay() != 6 ? null : { dateNotOnSunday: true };
   }
 }

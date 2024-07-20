@@ -18,7 +18,7 @@ export class OrderExistsComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.orderData = history.state.data; // Access the passed data here
+    this.orderData = history.state['order']; // Access the passed data here
   }
 
   goBack(): void {

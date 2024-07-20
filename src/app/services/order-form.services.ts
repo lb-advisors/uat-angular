@@ -4,13 +4,12 @@ import { Observable } from 'rxjs';
 import { Order } from '../models/order.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class OrderFormService {
+  private apiUrl = 'https://localhost:8080/api/customers';
 
-  private apiUrl = 'https://uat-pffc.onrender.com/api/customers';
-
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   getCustomerInfo(customerId: number): Observable<any> {
     return this.http.get<any>(`${this.apiUrl}/${customerId}/profiles`);

@@ -18,7 +18,7 @@ export class OrderConfirmationComponent implements OnInit {
   constructor(private router: Router, private location: Location) {}
 
   ngOnInit(): void {
-    this.orderData = history.state.data; // Access the passed data here
+    this.orderData = history.state['order']; // Access the passed data here
   }
 
   goBack(): void {
