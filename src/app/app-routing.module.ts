@@ -6,10 +6,9 @@ import { OrderLinksComponent } from './components/order-links/order-links.compon
 import { LoginComponent } from './components/login/login.component';
 import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
-import { OrderFormComponent } from './components/order-form/order-form.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { OrderExistsComponent } from './components/order-exists/order-exists.component';
-import { OrderNewComponent } from './components/order-new/order-new.component';
+import { OrderNewComponent } from './components/order-form/order-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'order-links', pathMatch: 'full' },
@@ -19,10 +18,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'logout', component: LogoutComponent, title: 'Logout' },
   { path: 'inventory', component: InventoryComponent, title: 'Inventory' },
-  { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
   { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
   { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
-  { path: 'customer/:id/order-new', component: OrderNewComponent, title: 'New Order' },
+  { path: 'customer/:id/order-form', component: OrderNewComponent, title: 'Order Form' },
 ];
 
 @NgModule({

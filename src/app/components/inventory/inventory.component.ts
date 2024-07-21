@@ -35,7 +35,6 @@ export class InventoryComponent implements OnInit, OnDestroy {
         debounceTime(200), // Wait 200ms after the last event before emitting last event
       )
       .subscribe((searchTerm) => {
-        console.log(searchTerm + '##');
         this.searchTerm = searchTerm;
         this.inventoryItemsSubject.next([]);
         this.loadData();
@@ -47,7 +46,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
     this.inventoryService.getInventoryItems(this.page, this.size, this.searchTerm).subscribe({
       next: (inventoryItems: InventoryItem[]) => {
         const currentData = this.inventoryItemsSubject.value;
-        this.inventoryItemsSubject.next([...currentData, ...inventoryItems]);
+        const newData = inventoryItems.filter((item) => !currentData.some((currentItem) => currentItem.id === item.id));
+        this.inventoryItemsSubject.next([...currentData, ...newData]); // needed for the scroll
       },
     });
   }
@@ -58,7 +58,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
   }
 
   onSearchChange(event: Event) {
-    const searchTerm = (event.target as HTMLInputElement).value.replace('$', ''); // $ is not in the database
+    const searchTerm = (event.target as HTMLInputElement).value;
     if (searchTerm.trim().length > 1) {
       this.page = 0; // Reset page when searching
       this.searchSubject.next(searchTerm);

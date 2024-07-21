@@ -1,10 +1,8 @@
-export interface Profile {
+export interface ProfileConfirmation {
   profileDescription: string;
   unitType: string;
   packSize: number;
-  price: number;
+  salesPrice: number;
   quantity: number;
   id: number;
-  isSpecial: boolean;
-  profile_did: number; 
 }

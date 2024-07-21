@@ -50,34 +50,42 @@ export class OrderLinksComponent implements OnInit {
       }),
     );
 
-    this.form.get('company')!.valueChanges.pipe(
-      switchMap((company) => this.orderLinksService.getSalesPersons(company.id).pipe(
-        tap((salesreps) => {
-          salesreps.sort((a, b) => a.name.localeCompare(b.name));
-          this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
-            observer.next(salesreps);
-            observer.complete();
-          });
-          if (salesreps.length > 0) {
-            this.form.get('salesPerson')!.setValue(salesreps[0]);
-          }
-        }),
-      )),
-    ).subscribe();
+    this.form
+      .get('company')!
+      .valueChanges.pipe(
+        switchMap((company) =>
+          this.orderLinksService.getSalesPersons(company.id).pipe(
+            tap((salesreps) => {
+              salesreps.sort((a, b) => a.name.localeCompare(b.name));
+              this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+                observer.next(salesreps);
+                observer.complete();
+              });
+              if (salesreps.length > 0) {
+                this.form.get('salesPerson')!.setValue(salesreps[0]);
+              }
+            }),
+          ),
+        ),
+      )
+      .subscribe();
 
-    this.form.get('salesPerson')!.valueChanges.pipe(
-      switchMap((salesrep) => {
-        const company = this.form.get('company')!.value;
-        return this.orderLinksService.getCustomers(company.id, salesrep.name);
-      }),
-    ).subscribe({
-      next: (customers) => {
-        this.customers = [...customers];
-        this.customers.sort((a, b) => a.name.localeCompare(b.name));
-        this.filteredCustomers = [...this.customers];
-        this.cdr.markForCheck();
-      },
-    });
+    this.form
+      .get('salesPerson')!
+      .valueChanges.pipe(
+        switchMap((salesrep) => {
+          const company = this.form.get('company')!.value;
+          return this.orderLinksService.getCustomers(company.id, salesrep.name);
+        }),
+      )
+      .subscribe({
+        next: (customers) => {
+          this.customers = [...customers];
+          this.customers.sort((a, b) => a.name.localeCompare(b.name));
+          this.filteredCustomers = [...this.customers];
+          this.cdr.markForCheck();
+        },
+      });
 
     this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
       this.filteredCustomers = this.customers.filter((customer) => customer.name.toLowerCase().includes(searchText.toLowerCase()));
@@ -86,15 +94,18 @@ export class OrderLinksComponent implements OnInit {
 
   generateLink(customerId: number): string {
     const baseUrl = window.location.href.replace('/order-links', '');
-    return `${baseUrl}/customer/${customerId}/order-new`;
+    return `${baseUrl}/customer/${customerId}/order-form`;
   }
 
   copyLink(customerId: number): void {
     const link = this.generateLink(customerId);
-    navigator.clipboard.writeText(link).then(() => {
-      this.snackbarService.showSnackBar('Link copied to clipboard!');
-    }).catch((err) => {
-      console.error('Failed to copy link: ', err);
-    });
+    navigator.clipboard
+      .writeText(link)
+      .then(() => {
+        this.snackbarService.showSnackBar('Link copied to clipboard!');
+      })
+      .catch((err) => {
+        console.error('Failed to copy link: ', err);
+      });
   }
 }
