@@ -1082,7 +1082,6 @@ class InventoryComponent {
     this.searchSubscription = this.searchSubject.pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_4__.distinctUntilChanged)(this.trimComparator),
     // Only emit if value is different from the last value
     (0,rxjs_operators__WEBPACK_IMPORTED_MODULE_5__.debounceTime)(200)).subscribe(searchTerm => {
-      console.log(searchTerm + '##');
       this.searchTerm = searchTerm;
       this.inventoryItemsSubject.next([]);
       this.loadData();
@@ -1093,7 +1092,8 @@ class InventoryComponent {
     this.inventoryService.getInventoryItems(this.page, this.size, this.searchTerm).subscribe({
       next: inventoryItems => {
         const currentData = this.inventoryItemsSubject.value;
-        this.inventoryItemsSubject.next([...currentData, ...inventoryItems]);
+        const newData = inventoryItems.filter(item => !currentData.some(currentItem => currentItem.id === item.id));
+        this.inventoryItemsSubject.next([...currentData, ...newData]); // needed for the scroll
       }
     });
   }
@@ -1102,7 +1102,7 @@ class InventoryComponent {
     this.loadData();
   }
   onSearchChange(event) {
-    const searchTerm = event.target.value.replace('$', ''); // $ is not in the database
+    const searchTerm = event.target.value;
     if (searchTerm.trim().length > 1) {
       this.page = 0; // Reset page when searching
       this.searchSubject.next(searchTerm);
