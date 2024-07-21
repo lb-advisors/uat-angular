@@ -1,8 +1,8 @@
 export interface Profile {
   profileDescription: string;
-  unitTypePd: string;
-  packSizePd: number;
-  salesPrice: number;
+  unitType: string;
+  packSize: number;
+  price: number;
   quantity: number;
   id: number;
   isSpecial: boolean;

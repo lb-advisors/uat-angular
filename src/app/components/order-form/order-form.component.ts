@@ -75,9 +75,9 @@ export class OrderFormComponent implements OnInit {
             data.profiles.map((profile: Profile) => ({
               profileDid: profile.id, // Ensure the profile ID is mapped correctly
               profileDescription: profile.profileDescription,
-              unitTypePd: profile.unitTypePd,
-              packSizePd: profile.packSizePd,
-              salesPrice: profile.salesPrice,
+              unitType: profile.unitType,
+              packSize: profile.packSize,
+              price: profile.price,
               quantity: profile.quantity || 0,
             })) || [];
           this.orders = data.orders || [];
@@ -106,9 +106,9 @@ export class OrderFormComponent implements OnInit {
           data.profiles.map((profile: Profile) => ({
             profileDid: profile.id, // Ensure the profile ID is mapped correctly
             profileDescription: profile.profileDescription,
-            unitTypePd: profile.unitTypePd,
-            packSizePd: profile.packSizePd,
-            salesPrice: profile.salesPrice,
+            unitTypePd: profile.unitType,
+            packSizePd: profile.packSize,
+            salesPrice: profile.price,
             quantity: profile.quantity || 0,
           })) || [];
         this.updateTotal(); // Initialize the total for specials
@@ -167,16 +167,16 @@ export class OrderFormComponent implements OnInit {
     // Calculate the total for normal products
     this.products.forEach((product) => {
       const quantity = product.quantity || 0;
-      const price = product.salesPrice || 0;
-      const packSize = product.packSizePd || 1;
+      const price = product.price || 0;
+      const packSize = product.packSize || 1;
       total += quantity * price * packSize;
     });
 
     // Calculate the total for specials products
     this.specialsProducts.forEach((product) => {
       const quantity = product.quantity || 0;
-      const price = product.salesPrice || 0;
-      const packSize = product.packSizePd || 1;
+      const price = product.price || 0;
+      const packSize = product.packSize || 1;
       total += quantity * price * packSize;
     });
 

@@ -45,9 +45,9 @@
                             <td><input type="number" formControlName="quantity" class="input-number">
                                 <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
                             </td>
-                            <td>{{ order.profiles[i].unitTypePd }}</td>
-                            <td>{{ order.profiles[i].packSizePd }}</td>
-                            <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+                            <td>{{ order.profiles[i].unitType }}</td>
+                            <td>{{ order.profiles[i].packSize }}</td>
+                            <td>{{ order.profiles[i].price | currency:'USD':'symbol':'1.2-2'}}</td>
                             <td>{{ getRowTotalPrice(i) | currency:'USD':'symbol':'1.2-2' }}</td>
                         </tr>
                     </ng-container>
@@ -76,9 +76,9 @@
                             <td><input type="number" formControlName="quantity" class="input-number">
                                 <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
                             </td>
-                            <td>{{ order.profiles[i].unitTypePd }}</td>
-                            <td>{{ order.profiles[i].packSizePd }}</td>
-                            <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+                            <td>{{ order.profiles[i].unitType }}</td>
+                            <td>{{ order.profiles[i].packSize }}</td>
+                            <td>{{ order.profiles[i].price | currency:'USD':'symbol':'1.2-2'}}</td>
                             <td>{{ getRowTotalPrice(i) | currency:'USD':'symbol':'1.2-2' }}</td>
                         </tr>
                     </ng-container>

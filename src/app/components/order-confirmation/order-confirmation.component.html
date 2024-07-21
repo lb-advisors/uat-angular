@@ -19,9 +19,9 @@
     <tbody>
       <tr *ngFor="let product of orderData.profiles">
         <td>{{ product.profileDescription }}</td>
-        <td>{{ product.unitTypePd }}</td>
-        <td>{{ product.packSizePd }}</td>
-        <td class="price">{{ product.salesPrice | number:'1.2-2' }}</td>
+        <td>{{ product.unitType }}</td>
+        <td>{{ product.packSize }}</td>
+        <td class="price">{{ product.price | currency:'USD':'symbol':'1.2-2' }}</td>
         <td>{{ product.quantity }}</td>
         <td>{{ orderData.deliveryDate | date: 'MM/dd/yyyy'}}</td>
       </tr>

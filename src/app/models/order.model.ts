@@ -1,9 +1,9 @@
 export interface Profile {
   profileDid: number;
   profileDescription: string;
-  unitTypePd: string;
-  packSizePd: number;
-  salesPrice: number;
+  unitType: string;
+  packSize: number;
+  price: number;
   id: number;
   quantity?: number;
   customer_id?: number;  // Add this line

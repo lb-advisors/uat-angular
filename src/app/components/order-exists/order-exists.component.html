@@ -25,9 +25,9 @@
         <td>{{ orderData.customerName }}</td>
         <td>{{ orderData.salesRepName }}</td>
         <td>{{ profile.profileDescription }}</td>
-        <td>{{ profile.unitTypePd }}</td>
-        <td>{{ profile.packSizePd }}</td>
-        <td class="price">{{ profile.salesPrice| currency:'USD':true }}</td>
+        <td>{{ profile.unitType }}</td>
+        <td>{{ profile.packSize }}</td>
+        <td class="price">{{ profile.price| currency:'USD':true }}</td>
         <td>{{ profile.quantity }}</td>
         <td>{{ orderData.deliveryDate | date: 'MM/dd/yyyy' }}</td>
         <td *ngIf="orderData.id">{{ orderData.shipToName }}</td>

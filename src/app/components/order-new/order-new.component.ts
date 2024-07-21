@@ -71,14 +71,14 @@ export class OrderNewComponent implements OnInit {
   get totalPrice(): number {
     let totalPrice = 0;
     for (let i = 0; i < this.order.profiles.length; i++) {
-      totalPrice += this.order.profiles[i].salesPrice * this.profileControls.at(i).get('quantity')?.value;
+      totalPrice += this.order.profiles[i].price * this.profileControls.at(i).get('quantity')?.value;
     }
     return totalPrice;
   }
 
   getRowTotalPrice(index: number): number {
     const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
-    const salesPrice = this.order.profiles[index].salesPrice || 0;
+    const salesPrice = this.order.profiles[index].price || 0;
     return quantity * salesPrice;
   }
 
@@ -91,18 +91,18 @@ export class OrderNewComponent implements OnInit {
 
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
-
+  
     if (this.orderForm.valid) {
       console.log('Form Submitted', this.orderForm.value);
       const order = this.orderForm.value;
       order.profiles = order.profiles.filter((profile: OrderProfile) => profile.quantity > 0);
       order.totalPrice = this.totalPrice; // Calculate total price
-
+  
       // POST request to the API
       this.http.post(`${this.apiUrl}/customers/${this.customerId}/orders`, order).subscribe({
-        next: (order) => {
-          console.log('Order submitted successfully', order);
-          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: order } });
+        next: (orderResponse) => {
+          console.log('Order submitted successfully', orderResponse);
+          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: orderResponse } });
           this.snackBarService.showSnackBar('Order submitted successfully');
         },
         error: (error) => {
@@ -111,12 +111,14 @@ export class OrderNewComponent implements OnInit {
           this.snackBarService.showSnackBar('Error submitting order');
         },
       });
-
+  
       this.submitted = true;
     } else {
       this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
     }
   }
+  
+  
 
   get dataToBeSubmitted() {
     const data = this.orderForm.value;
