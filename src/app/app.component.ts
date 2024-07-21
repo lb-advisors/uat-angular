@@ -33,7 +33,7 @@ export class AppComponent implements OnInit {
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = event.urlAfterRedirects;
-        this.isOrderForm = currentRoute.includes('order-form');
+        this.isOrderForm = currentRoute.includes('order-');
       }
     });
   }
