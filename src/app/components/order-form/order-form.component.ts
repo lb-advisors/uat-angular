@@ -23,6 +23,7 @@ import { OrderFormService } from 'src/app/services/order-form.service';
 export class OrderNewComponent implements OnInit {
   private apiUrl = environment.apiUrl;
   order!: Order;
+  hasSpecials = false;
   orderForm!: FormGroup;
   submitted: boolean = false;
   customerId!: number;
@@ -49,6 +50,7 @@ export class OrderNewComponent implements OnInit {
     this.orderService.getOrderData(customerId).subscribe({
       next: (order: Order) => {
         this.order = order;
+        this.hasSpecials = this.order.profiles.some((profile) => profile.isSpecial);
         const shipToValidators = order.shipTos?.length ? [Validators.required] : [];
         this.orderForm = this.fb.group({
           customerId: [order.customerId],
