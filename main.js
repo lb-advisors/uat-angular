@@ -182,7 +182,7 @@ class AppComponent {
     this.router.events.subscribe(event => {
       if (event instanceof _angular_router__WEBPACK_IMPORTED_MODULE_2__.NavigationEnd) {
         const currentRoute = event.urlAfterRedirects;
-        this.isOrderForm = currentRoute.includes('order-');
+        this.isOrderForm = currentRoute.includes('order-') && !currentRoute.includes('order-links');
       }
     });
   }
