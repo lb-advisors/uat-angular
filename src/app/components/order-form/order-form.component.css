@@ -1,240 +1,217 @@
 body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
+
+
 .container {
-    width: 90%;
-    max-width: 800px;
-    margin: 20px auto;
-    padding: 20px;
-    border: 1px solid #ccc;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
 .page-title {
-    font-size: 28px; /* Slightly smaller font size */
-    text-align: center;
-    margin: 10px 0; /* Equal space above and below the title */
-    text-decoration: none; /* Remove underline */
-}
-
-.customer-id-input {
-    margin-bottom: 20px;
+  font-size: 28px;
+  text-align: center;
+  margin: 10px 0;
+  text-decoration: none;
 }
 
 .customer-sales-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 18px; /* Increase font size */
-    margin-bottom: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 18px; /* Increased font size */
+  margin-bottom: 10px;
 }
 
-.customer-sales-info p {
-    margin: 0;
-}
-
-.customer-sales-info .sales-rep-info {
-    margin-left: auto;
-  }
-
-.customer-sales-info a {
-    color: blue;
-    text-decoration: underline;
-}
-
-.grid-title {
-    font-size: 20px; /* Increase font size */
-    margin-top: 20px;
-    margin-bottom: 10px;
-    text-decoration: none; /* Remove underline */
-}
-
-.order-grid {
-    width: 100%;
-    border-collapse: collapse;
-    margin-bottom: 20px;
-    table-layout: fixed; /* Fixed table layout */
-}
-
-.order-grid th,
-.order-grid td {
-    border: 1px solid #ccc;
-    padding: 8px;
-    text-align: center;
-    word-wrap: break-word; /* Ensure content wraps */
-}
-
-.order-grid th {
-    background-color: #d3d3d3; /* Light grey background for table headers */
-    color: #333; /* Dark grey text color for table headers */
-    font-weight: bold;
-    font-size: 14px; /* Match the inventory grid font size */
-}
-
-.order-grid td {
-    font-size: 14px; /* Match the inventory grid font size */
-}
-
-.hidden-column {
-    display: none;
-}
-
-/* Set specific column widths */
-.order-grid th:nth-child(1),
-.order-grid td:nth-child(1),
-.order-grid th:nth-child(2),
-.order-grid td:nth-child(2) {
-    display: none; /* Hide Profile ID and Customer ID columns */
-}
-
-
-
-.order-grid td input[type="number"] {
-    width: 70px;
-}
-
-.total {
-    font-weight: bold;
-    text-align: right;
-    margin-bottom: 20px;
-}
-
-.delivery-date {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-   flex-wrap: wrap; 
-}
-
-.delivery-date label {
-    margin-right: 10px;
-    font-weight: bold;
-}
-
-.delivery-date input[type="date"],
-.delivery-date input[type="text"] {
-    margin-right: 20px;
-    flex: 1;
-}
-
-.submit-btn {
-    width: 100%;
-    font-size: large;
-}
-
-.input_quantity {
-    width: 70px;
-}
-
-.totalCol {
-    width: 80px;
-}
-
-.calendar {
-    font-size: larger;
-}
-
-@media (max-width: 600px) {
-    .customer-info div {
-        flex: 1 1 100%;
-        margin-bottom: 10px;
-    }
-
-    .order-grid th,
-    .order-grid td {
-        font-size: 14px;
-        word-wrap: break-word;
-    }
-
-    .delivery-date {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .delivery-date label {
-        margin-bottom: 5px;
-        width: 100%; /* Make label take full width */
-    }
-
-    .delivery-date input[type="date"],
-    .delivery-date input[type="text"] {
-        width: 100%; /* Make input take full width */
-    }
-
-    .container {
-        width: 95%;
-        margin: 5px;
-    }
-
-    /* Adjust the width of the quantity input for smaller screens */
-    .order-grid td input[type="number"],
-    .input_quantity {
-        width: 100%;
-    }
-    
-    .order-grid {
-        width: 100%; /* Full width for grid on mobile */
-        margin: 0; /* Remove margin */
-        border: 0; /* Remove border */
-        display: table; /* Ensure proper table layout */
-    }
-
-    .container {
-        width: 100%; /* Full width for container on mobile */
-        margin: 0; /* Remove margin */
-        padding: 0.5; /* Remove padding */
-        border: 0; /* Remove border */
-    }
-}
-
-
-/* Additional styles for bold and lighter grey background */
-.order-grid tr.bold-row {
-    font-weight: bold;
-    background-color: #dedede;
-}
-
-/* Styles specific to the specials grid */
-.specials-grid th {
-    background-color: #d3d3d3; /* Light grey background for table headers */
-    color: #333; /* Dark grey text color for table headers */
-}
-
-.image-container {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 10px;
-    border-radius: 8px;
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background */
-}
-
-.image-container img {
-    max-width: 100%;
-    height: 100px; /* Adjust height to match the order page */
-    border-radius: 8px;
-}
-
-.hidden {
-    display: none;
+.sales-rep-info {
+  margin-left: auto;
 }
 
 .shipto-dropdown {
-    margin-top: 10px;
+  margin-top: 5px; /* Moved higher */
+  display: flex;
+  align-items: center;
+  font-size: medium;
+}
+
+.shipto-dropdown label {
+  margin-right: 10px; /* Added white space */
+}
+
+.input-select {
+  width: auto; /* Only as wide as needed */
+  padding: 4px; /* Less tall */
+}
+
+.section-title {
+  font-size: 20px; /* Increased font size */
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 20px;
+  table-layout: fixed;
+}
+
+.table th,
+.table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: left;
+  word-wrap: break-word;
+}
+
+.table th {
+  background-color: #d3d3d3;
+  color: #333;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.table td {
+  font-size: 14px;
+}
+
+.table th:nth-child(1),
+.table td:nth-child(1) {
+  width: 40%; /* Wider description column */
+}
+
+.hidden-column {
+  display: none;
+}
+
+.error {
+  color: red;
+}
+
+.submit-btn {
+  width: 100%;
+  font-size: large;
+}
+
+.input-text,
+.input-select,
+.input-date,
+.input-number {
+  width: 100%;
+  padding: 8px;
+  margin: 4px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.input-select {
+  width: auto;
+  padding: 4px;
+}
+
+.total-price {
+  margin-top: 0px;
+}
+
+.delivery-date {
+  margin-top: 5px;
+}
+
+.image-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-radius: 8px;
+  background-color: rgba(0, 16, 46, 1);
+}
+
+.company-logo {
+  max-width: 100%;
+  height: 100px;
+  border-radius: 8px;
+}
+
+.input-number {
+  width: 100%;
+  padding: 2px; /* Adjust the padding to make it less tall */
+  margin: 3px 0;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
 
 
-.order-grid th:nth-child(3) {
-    width: 30%; /* Other columns */
-   
 
+
+@media (max-width: 600px) {
+  .table th,
+  .table td {
+    font-size: 14px;
+    word-wrap: break-word;
+  }
+
+  .delivery-date {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .delivery-date label {
+    margin-bottom: 5px;
+    width: 100%;
+  }
+
+  .delivery-date input[type="date"],
+  .delivery-date input[type="text"] {
+    width: 100%;
+  }
+
+  .container {
+    width: 95%;
+    margin: 5px;
+  }
+
+  .input-text,
+  .input-select,
+  .input-date,
+  .input-number {
+    width: 100%;
+  }
+
+  .table {
+    width: 100%;
+    margin: 0;
+    border: 0;
+    display: table;
+  }
+
+  .container {
+    width: 100%;
+    margin: 0;
+    padding: 0.5;
+    border: 0;
+  }
+}
+
+
+.table th,
+.table td {
+  text-align: center; /* Center text in table headers and data cells */
+}
+
+.total-price {
+  font-weight: bold; /* Make text bold */
+  text-align: right; /* Align text to the right */
+  font-size: medium;
 }

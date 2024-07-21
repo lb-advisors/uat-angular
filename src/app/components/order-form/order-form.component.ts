@@ -1,324 +1,174 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { OrderFormService } from '../../services/order-form.service';
-import { FormsModule, NgForm } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { Profile } from 'src/app/models/profile.model';
+import { HttpClient } from '@angular/common/http';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
+import { environment } from 'src/environments/environment';
+import { SnackbarService } from 'src/app/services/snackbar.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { LogoComponent } from '../logo/logo.component';
+import { Profile } from 'src/app/models/profile-model';
+import { Order } from 'src/app/models/order.model';
+import { OrderRequest } from 'src/app/models/order-request.model';
+import { ProfileRequest } from 'src/app/models/profile-request.model';
+import { OrderFormService } from 'src/app/services/order-form.service';
 
 @Component({
   standalone: true,
   selector: 'app-order-form',
   templateUrl: './order-form.component.html',
   styleUrls: ['./order-form.component.css'],
-  imports: [CommonModule, FormsModule],
-  //changeDetection: ChangeDetectionStrategy.OnPush,    // TODO: onPush
+  imports: [CommonModule, ReactiveFormsModule, LogoComponent],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderFormComponent implements OnInit {
-  orders: any[] = [];
-  orderData: any = {};
-  products: Profile[] = [];
-  specialsProducts: Profile[] = [];
-  deliveryDate: string = '';
-  customerPo: string = '';
-  customerId: string = '';
-  company: string = '';
-  imageSrc: string = 'assets/logo.png';
-  imageBackgroundColor: string = 'rgba(0, 16, 46, 1)';
-  shiptoNames: { id: string; name: string }[] = [];
-  selectedShiptoID: string = '';
-  isSubmitting: boolean = false; // Add this line
+export class OrderNewComponent implements OnInit {
+  private apiUrl = environment.apiUrl;
+  order!: Order;
+  orderForm!: FormGroup;
+  submitted: boolean = false;
+  customerId!: number;
 
-  constructor(private orderFormService: OrderFormService, private route: ActivatedRoute, private router: Router) {}
+  constructor(
+    private http: HttpClient,
+    private fb: FormBuilder,
+    private router: Router,
+    private snackBarService: SnackbarService,
+    private orderService: OrderFormService,
+    private route: ActivatedRoute,
+  ) {}
 
   ngOnInit(): void {
+    // Get customerId from route parameters
     this.route.paramMap.subscribe((params) => {
-      this.customerId = params.get('id') || '';
-      if (this.customerId) {
-        this.fetchCustomerData();
-        this.fetchSpecialsData();
-      }
-    });
-
-    this.route.queryParamMap.subscribe((params) => {
-      this.company = params.get('company') || 'PFF';
-      this.imageSrc = params.get('image') || 'assets/logo.png'; // Retrieve the image URL from query params
-      this.updateImageAndBackground();
+      const id = params.get('id');
+      this.customerId = id ? +id : NaN;
+      this.loadOrderData(this.customerId);
     });
   }
 
-  updateImageAndBackground(): void {
-    if (this.company === 'FOG-RIVER') {
-      this.imageSrc = 'assets/fogriver.png';
-      this.imageBackgroundColor = '#000000';
-    } else if (this.company === 'PFF') {
-      this.imageSrc = 'assets/logo.png';
-      this.imageBackgroundColor = 'rgba(0, 16, 46, 1)';
+  loadOrderData(customerId: number): void {
+    this.orderService.getOrderData(customerId).subscribe({
+      next: (order: Order) => {
+        this.order = order;
+        const shipToValidators = order.shipTos?.length ? [Validators.required] : [];
+        this.orderForm = this.fb.group({
+          customerId: [order.customerId],
+          deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
+          shipToId: ['', shipToValidators],
+          customerPo: [''],
+          totalPrice: [0], // Initialize totalPrice
+          profiles: this.fb.array(
+            this.order.profiles.map((profile) => this.createProfileGroup(profile)),
+            [this.atLeastOneQuantityValidator],
+          ),
+        });
+      },
+    });
+  }
+
+  get formControls() {
+    return this.orderForm.controls;
+  }
+
+  get profileControls(): FormArray {
+    return this.orderForm.get('profiles') as FormArray;
+  }
+
+  get totalPrice(): number {
+    let totalPrice = 0;
+    for (let i = 0; i < this.order.profiles.length; i++) {
+      totalPrice += this.order.profiles[i].salesPrice * this.profileControls.at(i).get('quantity')?.value;
     }
+    return totalPrice;
   }
 
-  fetchCustomerData(): void {
-    if (this.isValidCustomerId(this.customerId)) {
-      this.orderFormService.fetchCustomerData(this.customerId).subscribe(
-        (data) => {
-          this.orderData = {
-            customerId: this.customerId,
-            customerName: data.customerName,
-            salesRepName: data.salesRepName,
-            salesRepPhone: data.salesRepPhone,
-            customerEmail: data.customerEmail,
-            deliveryDate: this.deliveryDate,
-            shipToId: this.selectedShiptoID,
-            shipToName: this.shiptoNames.find((shipto) => shipto.id === this.selectedShiptoID)?.name || '',
-          };
+  getRowTotalPrice(index: number): number {
+    const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
+    const salesPrice = this.order.profiles[index].salesPrice || 0;
+    return quantity * salesPrice;
+  }
 
-          this.products =
-            data.profiles.map((profile: Profile) => ({
-              profileDid: profile.id, // Ensure the profile ID is mapped correctly
-              profileDescription: profile.profileDescription,
-              unitTypePd: profile.unitTypePd,
-              packSizePd: profile.packSizePd,
-              salesPrice: profile.salesPrice,
-              quantity: profile.quantity || 0,
-            })) || [];
-          this.orders = data.orders || [];
-          this.shiptoNames =
-            data.shipTos.map((shipto: any) => ({
-              id: shipto.id,
-              name: shipto.shipToName,
-            })) || [];
-          this.selectedShiptoID = this.shiptoNames.length > 0 ? this.shiptoNames[0].id : '';
-          this.updateTotal(); // Initialize the total
+  createProfileGroup(profile: Profile): FormGroup {
+    return this.fb.group({
+      profileDid: [profile.id], // Use id from the API response as profileDid
+      quantity: ['', Validators.min(1)],
+    });
+  }
+
+  onSubmit() {
+    this.snackBarService.showSnackBar('Submitting Order...');
+
+    if (this.orderForm.valid) {
+      console.log('Form Submitted', this.orderForm.value);
+      const order: OrderRequest = this.orderForm.value;
+      order.profiles = order.profiles.filter((profile: ProfileRequest) => profile.quantity > 0);
+      order.totalPrice = this.totalPrice; // Calculate total price
+
+      // POST request to the API
+      this.orderService.placeOrder(this.customerId, order).subscribe({
+        next: (orderConfirmation) => {
+          console.log('Order submitted successfully', orderConfirmation);
+          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: orderConfirmation, companyId: this.order.companyId } });
+          this.snackBarService.showSnackBar('Order submitted successfully');
         },
-        (error) => {
-          console.error('Error fetching customer data:', error);
+        error: (error) => {
+          const errorCode = error.status;
+          const errorMessage = errorCode == 409 ? 'An order already exists for that day' : 'Error submitting order';
+          if (errorCode == 409) {
+            this.router.navigate(['/customer', this.customerId, 'order-exists'], { state: { order: error.error, companyId: this.order.companyId } });
+          }
+          this.snackBarService.showSnackBar(errorMessage);
+
+          console.error('Error submitting order', error);
         },
-      );
+      });
+
+      this.submitted = true;
     } else {
-      console.error('Invalid customer ID:', this.customerId);
+      this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
     }
   }
 
-  fetchSpecialsData(): void {
-    const specialsCustomerId = '1';
-    this.orderFormService.fetchCustomerData(specialsCustomerId).subscribe(
-      (data) => {
-        this.specialsProducts =
-          data.profiles.map((profile: Profile) => ({
-            profileDid: profile.id, // Ensure the profile ID is mapped correctly
-            profileDescription: profile.profileDescription,
-            unitTypePd: profile.unitTypePd,
-            packSizePd: profile.packSizePd,
-            salesPrice: profile.salesPrice,
-            quantity: profile.quantity || 0,
-          })) || [];
-        this.updateTotal(); // Initialize the total for specials
-      },
-      (error) => {
-        console.error('Error fetching specials data:', error);
-      },
-    );
+  get dataToBeSubmitted() {
+    const data = this.orderForm.value;
+    data.profiles = data.profiles.filter((profile: { quantity: number }) => profile.quantity > 0);
+    return data;
   }
 
-  goBack(): void {
-    window.history.back();
+  isQuantityInvalid(index: number): boolean {
+    return this.profileControls.at(index).get('quantity')?.invalid || false;
   }
 
-  updateRowStyle(event: any): void {
-    const input = event.target;
-    input.value = input.value.replace(/[^0-9]/g, '').slice(0, 4);
-    const row = input.closest('tr');
-    const quantity = parseFloat(input.value) || 0;
-
-    if (quantity > 0) {
-      row.classList.add('bold-row');
-    } else {
-      row.classList.remove('bold-row');
-    }
-
-    const productIndex = row.getAttribute('data-index');
-    if (productIndex !== null) {
-      const isSpecial = row.getAttribute('data-special') === 'true';
-      if (isSpecial) {
-        this.specialsProducts[productIndex].quantity = quantity;
-        if (quantity > 0) {
-          row.classList.add('special-bold-row');
-        } else {
-          row.classList.remove('special-bold-row');
-        }
-      } else {
-        this.products[productIndex].quantity = quantity;
-      }
-    }
-
-    this.updateTotal();
+  isQuantityEntered(index: number): boolean {
+    return typeof this.profileControls.at(index).get('quantity')?.value === 'number';
   }
 
-  checkEmptyInput(event: any): void {
-    const input = event.target;
-    if (input.value === '') {
-      input.value = '0';
-    }
-    this.updateRowStyle(event);
-  }
-
-  updateTotal(): void {
-    let total = 0;
-
-    // Calculate the total for normal products
-    this.products.forEach((product) => {
-      const quantity = product.quantity || 0;
-      const price = product.salesPrice || 0;
-      const packSize = product.packSizePd || 1;
-      total += quantity * price * packSize;
-    });
-
-    // Calculate the total for specials products
-    this.specialsProducts.forEach((product) => {
-      const quantity = product.quantity || 0;
-      const price = product.salesPrice || 0;
-      const packSize = product.packSizePd || 1;
-      total += quantity * price * packSize;
-    });
-
-    const totalAmountSpan = document.getElementById('total-amount') as HTMLSpanElement;
-    totalAmountSpan.textContent = total.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-      minimumFractionDigits: 2,
-      maximumFractionDigits: 2,
-    });
-
-    this.orderData.totalPrice = total.toFixed(2);
-  }
-
-  submitOrder(form: NgForm): void {
-    const errorMessage = this.validateForm();
-    if (errorMessage) {
-      this.displayErrorMessage(errorMessage);
-      return;
-    }
-
-    this.isSubmitting = true; // Lock the button
-    const orderProfiles = this.prepareOrderData();
-    const orderProfilesArray = orderProfiles.map((profile) => ({
-      profileDid: profile.profileDid,
-      quantity: profile.quantity,
-    }));
-
-    const orderData = {
-      customerId: this.customerId,
-      customerName: this.orderData.customerName,
-      deliveryDate: this.deliveryDate,
-      shipToId: this.selectedShiptoID || null,
-      totalPrice: this.orderData.totalPrice,
-      products: this.products.concat(this.specialsProducts),
-      orderProfiles: orderProfilesArray,
-      company: this.company,
-    };
-
-    this.orderFormService.placeOrder(this.customerId, orderData).subscribe({
-      next: (response) => {
-        if (response.status === 200) {
-          console.log('Order submitted successfully', response);
-          alert('Order submitted successfully');
-          this.router.navigate(['/customer', this.customerId, '/order-confirmation'], {
-            queryParams: {
-              orderData: JSON.stringify(orderData),
-              image: this.imageSrc,
-            },
-          });
-        }
-        this.isSubmitting = false; // Unlock the button
-      },
-      error: (error) => {
-        if (error.status === 409) {
-          console.log('Order already exists for this delivery date', error.error);
-          this.router.navigate(['/customer', this.customerId, 'order-exists'], {
-            queryParams: {
-              deliveryDate: this.deliveryDate,
-              orders: JSON.stringify(error.error),
-              company: this.company,
-              image: this.imageSrc,
-            },
-          });
-        } else {
-          this.displayErrorMessage('Failed to submit order. Please try again later.');
-        }
-        this.isSubmitting = false; // Unlock the button
-      },
-    });
-  }
-
-  restrictInput(event: any, maxLength: number): void {
-    const input = event.target;
-    if (input.value.length > maxLength) {
-      input.value = input.value.slice(0, maxLength);
-    }
-  }
-
-  private isValidCustomerId(customerId: string): boolean {
-    const customerIdNumber = Number(customerId);
-    return !isNaN(customerIdNumber) && customerId.trim() !== '';
-  }
-
-  private validateForm(): string | null {
+  // validator
+  dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
     const today = new Date();
-    today.setHours(0, 0, 0, 0);
-
-    if (!this.deliveryDate) {
-      return 'Please select a delivery date';
-    }
-
-    const deliveryDate = new Date(this.deliveryDate);
-    deliveryDate.setHours(0, 0, 0, 0);
-
-    const yesterday = new Date(today);
-    yesterday.setDate(today.getDate() - 1);
-
-    if (deliveryDate < today) {
-      return 'Please select a date which is not in the past.';
-    }
-
-    if (deliveryDate <= yesterday) {
-      return 'Please order at least one day in advance.';
-    }
-
-    const maxDeliveryDate = new Date(today);
-    maxDeliveryDate.setMonth(maxDeliveryDate.getMonth() + 3);
-
-    if (deliveryDate > maxDeliveryDate) {
-      return 'Please only submit orders delivered within the next 3 months.';
-    }
-
-    if (deliveryDate.getDay() === 6) {
-      return 'We are closed on Sundays.';
-    }
-
-    const hasQuantity = this.products.concat(this.specialsProducts).some((product) => product.quantity && product.quantity > 0);
-    if (!hasQuantity) {
-      return 'Please select a quantity which is not 0';
-    }
-
-    const totalPrice = this.orderFormService.calculateTotal(this.products.concat(this.specialsProducts));
-    if (totalPrice > 10000) {
-      return 'The total amount has to be less than $10,000.';
-    }
-
-    return null;
+    return dateValue > today ? null : { dateAfterTomorrow: true };
   }
 
-  private displayErrorMessage(message: string): void {
-    const errorMessageDiv = document.querySelector('.error-message') as HTMLDivElement;
-    errorMessageDiv.textContent = message;
+  // validator
+  atLeastOneQuantityValidator(control: AbstractControl): ValidationErrors | null {
+    const formArray = control as FormArray;
+    const hasAtLeastOneQuantity = formArray.controls.some((group) => group.get('quantity')?.value > 0);
+    return hasAtLeastOneQuantity ? null : { atLeastOneQuantity: true };
   }
 
-  private prepareOrderData(): any[] {
-    return this.products
-      .concat(this.specialsProducts)
-      .filter((product) => product.quantity && product.quantity > 0)
-      .map((product) => ({
-        profileDid: product.id,
-        quantity: product.quantity,
-      }));
+  // validator
+  dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
+    const threeMonthsFromNow = new Date();
+    threeMonthsFromNow.setMonth(threeMonthsFromNow.getMonth() + 3);
+    threeMonthsFromNow.setHours(0, 0, 0, 0);
+
+    return dateValue <= threeMonthsFromNow ? null : { dateWithinThreeMonths: true };
+  }
+
+  // validator
+  dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
+    return dateValue.getDay() != 6 ? null : { dateNotOnSunday: true };
   }
 }

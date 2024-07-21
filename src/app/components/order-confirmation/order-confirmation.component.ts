@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Location, CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
-import { OrderForm } from 'src/app/models/order-form.model';
+import { OrderConfirmation } from 'src/app/models/order-confirmation.model';
 
 @Component({
   standalone: true,
@@ -13,7 +13,7 @@ import { OrderForm } from 'src/app/models/order-form.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderConfirmationComponent implements OnInit {
-  orderData!: OrderForm;
+  orderData!: OrderConfirmation;
   companyId!: number;
 
   constructor(private router: Router, private location: Location) {}

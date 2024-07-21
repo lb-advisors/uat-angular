@@ -24,12 +24,14 @@ body {
     align-items: center;
     padding: 10px;
     border-radius: 8px;
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background */
+    background-color: rgba(0, 16, 46, 1);
+    /* Dark blue background */
 }
 
 .image-container img {
     max-width: 100%;
-    height: 100px; /* Adjust height to match the order page */
+    height: 100px;
+    /* Adjust height to match the order page */
     border-radius: 8px;
 }
 
@@ -44,11 +46,33 @@ p {
     margin: 10px 0;
 }
 
+ul {
+    list-style: none;
+    padding: 0;
+    font-size: 16px;
+}
+
+ul li {
+    margin-bottom: 10px;
+    word-wrap: break-word;
+}
+
+.total {
+    font-weight: bold;
+    text-align: right;
+    font-size: 18px;
+}
+
+.delivery-date {
+    font-weight: bold;
+}
+
 .order-grid {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
-    table-layout: fixed; /* Fixed table layout */
+    table-layout: fixed;
+    /* Fixed table layout */
 }
 
 .order-grid th,
@@ -56,34 +80,28 @@ p {
     border: 1px solid #ccc;
     padding: 8px;
     text-align: center;
-    word-wrap: break-word; /* Ensure content wraps */
+    word-wrap: break-word;
+    /* Ensure content wraps */
 }
 
 .order-grid th {
-    background-color: #d3d3d3; /* Light grey background for table headers */
-    color: #333; /* Dark grey text color for table headers */
+    background-color: #d3d3d3;
+    /* Light grey background for table headers */
+    color: #333;
+    /* Dark grey text color for table headers */
     font-weight: bold;
-    font-size: 14px; /* Match the inventory grid font size */
+    font-size: 14px;
+    /* Match the inventory grid font size */
 }
 
 .order-grid td {
-    font-size: 14px; /* Match the inventory grid font size */
+    font-size: 14px;
+    /* Match the inventory grid font size */
 }
 
-.hidden-column {
-    display: none;
-}
 
-.total {
-    font-weight: bold;
-    text-align: right;
-    margin-bottom: 20px;
-    font-size: 18px;
-}
 
-.delivery-date {
-    font-weight: bold;
-}
+
 
 @media (max-width: 600px) {
     .container {
@@ -95,7 +113,8 @@ p {
         font-size: 24px;
     }
 
-    p, ul {
+    p,
+    ul {
         font-size: 16px;
     }
 
@@ -110,19 +129,45 @@ p {
     }
 
     .order-grid {
-        width: 100%; /* Full width for grid on mobile */
-        margin: 0; /* Remove margin */
-        border: 0; /* Remove border */
-        display: table; /* Ensure proper table layout */
+        width: 100%;
+        /* Full width for grid on mobile */
+        margin: 0;
+        /* Remove margin */
+        border: 0;
+        /* Remove border */
+        display: table;
+        /* Ensure proper table layout */
     }
 
     .container {
-        width: 100%; /* Full width for container on mobile */
-        margin: 0; /* Remove margin */
-        padding: 0.5; /* Remove padding */
-        border: 0; /* Remove border */
+        width: 100%;
+        /* Full width for container on mobile */
+        margin: 0;
+        /* Remove margin */
+        padding: 0.5;
+        /* Remove padding */
+        border: 0;
+        /* Remove border */
     }
 }
+
+/* Additional styles for bold and lighter grey background */
+.order-grid tr.bold-row {
+    font-weight: bold;
+    background-color: #dedede;
+}
+
+
+.error-message {
+    font-size: 20px;
+}
+
+.submitted-date {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
 
 .button {
     background-color: #d3d3d3;
@@ -131,5 +176,8 @@ p {
     padding: 5px 10px;
     cursor: pointer;
     border-radius: 5px;
-    }
-    
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
