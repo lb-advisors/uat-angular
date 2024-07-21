@@ -3,7 +3,7 @@ import { DriverRouteService } from '../../services/driver-route.service';
 import { Observable } from 'rxjs';
 import { DeliveryStop } from 'src/app/models/delivery-stop.model';
 import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { HttpEventType } from '@angular/common/http';
 import { ImageThumbnailComponent } from '../image-thumbnail/image-thumbnail.component';
@@ -43,11 +43,10 @@ export class DriverRouteComponent implements OnInit {
 
   ngOnInit(): void {
     this.driverNames$ = this.driverRouteService.getDrivers().pipe(
-      map((data) => {
+      tap((data) => {
         if (data && data.length > 0) {
           this.refreshDeliverRoute(data[0].name, this.today);
         }
-        return data.sort((a, b) => a.name.localeCompare(b.name)); // Sort drivers by name in ascending order
       }),
     );
   }
