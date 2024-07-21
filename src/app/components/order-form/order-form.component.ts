@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
 import { environment } from 'src/environments/environment';
 import { SnackbarService } from 'src/app/services/snackbar.service';
@@ -35,6 +35,7 @@ export class OrderNewComponent implements OnInit {
     private snackBarService: SnackbarService,
     private orderService: OrderFormService,
     private route: ActivatedRoute,
+    private cdr: ChangeDetectorRef,
   ) {}
 
   ngOnInit(): void {
@@ -63,6 +64,7 @@ export class OrderNewComponent implements OnInit {
             [this.atLeastOneQuantityValidator],
           ),
         });
+        this.cdr.markForCheck();
       },
     });
   }

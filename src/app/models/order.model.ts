@@ -12,6 +12,7 @@ export interface Order {
   deliveryDate: string;
   shipTos: ShipTo[];
   shipToName: string;
+  customerPo: string;
   totalPrice: number;
   profiles: Profile[];
 }

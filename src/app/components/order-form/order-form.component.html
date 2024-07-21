@@ -1,3 +1,4 @@
+@if (order) {
 <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
     <div class="container">
         <app-logo [companyId]="order.companyId"></app-logo>
@@ -98,6 +99,11 @@
             <div *ngIf="totalPrice > 10000" class="error">The total has to be less than $10,000</div>
         </div>
 
+        <div>
+            <label for="customer-po"><strong>Customer PO: </strong></label>
+            <input id="customer-po" formControlName="customerPo" type="text" class="customer-po">
+        </div>
+
         <div class="delivery-date">
             <label for="delivery-date"><strong>Delivery Date:</strong></label>
             <input id="delivery-date" formControlName="deliveryDate" type="date" class="input-date">
@@ -118,3 +124,4 @@
         <br><button type="submit" [disabled]="!orderForm.valid" class="submit-btn">Submit</button>
     </div>
 </form>
+}
