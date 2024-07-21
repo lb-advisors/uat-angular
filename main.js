@@ -2805,7 +2805,7 @@ __webpack_require__.r(__webpack_exports__);
 const environment = {
   production: false,
   apiKey: 'devKey',
-  apiUrl: 'http://localhost:8080/api'
+  apiUrl: 'https://uat-pffc.onrender.com/api'
 };
 
 /***/ }),
