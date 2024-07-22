@@ -1,15 +1,14 @@
-import { Profile } from './profile.model';
-import { ShipTo } from './ship-to.model';
+import { ProfileConfirmation } from './profile-confirmation';
 
-export interface OrderForm {
+export interface OrderConfirmation {
   id: number;
   customerId: number;
   customerName: string;
   salesRepName: string;
   salesRepPhone: string;
   deliveryDate: string;
-  shipTos: ShipTo[];
+  shipToId: number;
   shipToName: string;
   totalPrice: number;
-  profiles: Profile[];
+  profiles: ProfileConfirmation[];
 }

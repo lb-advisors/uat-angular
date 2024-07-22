@@ -6,7 +6,15 @@
     <title>Page not found</title>
     <script type="text/javascript">
         // Redirect to index.html with the path preserved as a query parameter
-        window.location.replace('index.html?redirect=' + window.location.pathname);
+
+        const url = window.location.pathname
+        const segments = url.split('/').filter((segment) => segment); // Split and filter out empty segments
+
+        const basePathSegments = 1; // Number of segments in the base path
+        const relativePath = segments.slice(basePathSegments).join('/');
+
+        window.location.replace(`/${segments[0]}/index.html?redirect=${relativePath}`);
+
     </script>
     </meta>
 </head>

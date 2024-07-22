@@ -1,9 +1,6 @@
 <form [formGroup]="form">
-
   <div class="container">
-    <div class="image-container" [ngStyle]="{'background-color': imageBackgroundColor}">
-      <img [src]="imageSrc" alt="Company Logo">
-    </div>
+    <app-logo [companyId]="form.get('company')?.value?.id"></app-logo>
 
     <h2 class="underlined">Customers</h2>
 
@@ -37,10 +34,10 @@
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let order of filteredCustomers">
-          <td>{{ order.name }}</td>
-          <td><a [href]="generateLink(order.id)" >Order Form</a></td>
-          <td><a href="javascript:void(0)" (click)="copyLink(order.id)" (keyup)="copyLink(order.id)">Copy Link</a></td>
+        <tr *ngFor="let customer of filteredCustomers;">
+          <td>{{ customer.name }}</td>
+          <td><a [routerLink]="['/customer', customer.id, 'order-form']" target="_blank">Order Form</a></td>
+          <td><a href="javascript:void(0)" (click)="copyLink(customer.id)" (keyup)="copyLink(customer.id)">Copy Link</a></td>
         </tr>
       </tbody>
     </table>

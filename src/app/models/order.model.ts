@@ -1,12 +1,18 @@
-export interface Profile {
-  profileDid: number;
-  profileDescription: string;
-  unitTypePd: string;
-  packSizePd: number;
-  salesPrice: number;
+import { Profile } from './profile-model';
+import { ShipTo } from './ship-to.model';
+
+export interface Order {
   id: number;
-  quantity?: number;
-  customer_id?: number;  // Add this line
-  deliveryDate?: string;  // Add this line
-  customerPo?: string;    // Add this line
+  customerId: number;
+  customerName: string;
+  salesRepName: string;
+  salesRepPhone: string;
+  companyId: number;
+  companyName: string;
+  deliveryDate: string;
+  shipTos: ShipTo[];
+  shipToName: string;
+  customerPo: string;
+  totalPrice: number;
+  profiles: Profile[];
 }

@@ -28,11 +28,10 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       console.error('An error occurred:', error);
       console.log(JSON.stringify(error.error));
 
-      this.snackBarService.showSnackBar(
-        'An error has occured: ' + error.error.message,
-      );
+      this.snackBarService.showSnackBar('An error has occured: ' + error.error.message);
     } else {
       // Client-side error
+      console.error(error);
     }
   }
 }
