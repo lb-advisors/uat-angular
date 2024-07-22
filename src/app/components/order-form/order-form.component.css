@@ -87,8 +87,10 @@ body {
 
 .table th:nth-child(1),
 .table td:nth-child(1) {
-  width: 40%; /* Wider description column */
+  width: 30%; /* Wider description column */
 }
+
+
 
 .hidden-column {
   display: none;
@@ -147,7 +149,7 @@ label {
 }
 
 .customer-po {
-width: 250px;
+width: 140px;
 }
 
 
@@ -174,9 +176,41 @@ width: 250px;
   .container {
     width: 100%;
     margin: 0;
-    padding: 0.5;
+    padding: 0;
     border: 0;
   }
+
+  .profiles {
+    width: 100%;
+  }
+
+  .table {
+    width: 100%;
+
+  }
+
+  .table th:nth-child(2),
+  .table td:nth-child(2) {
+    width: 17%; /* Adjust width for price column */
+  }
+  .table th:nth-child(3),
+  .table td:nth-child(3) {
+    width: 17%; /* Adjust width for price column */
+  }
+
+  .table th:nth-child(4),
+  .table td:nth-child(4) {
+    width: 16%; /* Adjust width for price column */
+  }
+  .table th:nth-child(5),
+.table td:nth-child(5) {
+  width: 20%; /* Adjust width for price column */
+}
+
+.table th:nth-child(6),
+.table td:nth-child(6) {
+  width: 20%; /* Adjust width for total column */
+}
 }
 
 

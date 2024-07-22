@@ -100,13 +100,18 @@ ul li {
 }
 
 
+.order-grid th:nth-child(1),
+.order-grid td:nth-child(1) {
+  width: 40%; /* Wider description column */
+}
+
 
 
 
 @media (max-width: 600px) {
     .container {
-        width: 95%;
-        margin: 5px;
+        width: 100%;
+        margin: 0px;
     }
 
     h2 {
@@ -144,11 +149,43 @@ ul li {
         /* Full width for container on mobile */
         margin: 0;
         /* Remove margin */
-        padding: 0.5;
+        padding: 0;
         /* Remove padding */
         border: 0;
         /* Remove border */
     }
+    
+     .table {
+    width: 100%;
+    display: table;
+    }
+
+
+    .profiles {
+    width: 100%;
+    }
+
+     .table {
+    width: 100%;
+    }
+
+    .table th:nth-child(2),
+    .table td:nth-child(2) {
+      width: 17%; /* Adjust width for price column */
+    }
+    .table th:nth-child(3),
+    .table td:nth-child(3) {
+      width: 17%; /* Adjust width for price column */
+    }
+  
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+      width: 17%; /* Adjust width for price column */
+    }
+    .table th:nth-child(5),
+  .table td:nth-child(5) {
+    width: 17%; /* Adjust width for price column */
+  }
 }
 
 /* Additional styles for bold and lighter grey background */

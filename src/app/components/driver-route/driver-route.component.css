@@ -215,6 +215,18 @@ body {
     .nowrap {
         white-space: normal;
     }
+
+    @media (max-width: 600px) {
+        .driver-routes-grid th:nth-child(2),
+        .driver-routes-grid td:nth-child(2) {
+          width: 40%; /* Adjust width for address column on mobile */
+        }
+      
+        .driver-routes-grid th:nth-child(3),
+        .driver-routes-grid td:nth-child(3) {
+          width: 5%; /* Adjust width for customer phone column on mobile */
+        }
+      }
 }
 
 .hidden-column {
@@ -249,10 +261,13 @@ body {
 
 #delivery-date {
     width: 120px; /* Ensures the width is only as wide as the content */
-    text-align: center; /* Centers the text inside the text box */
+    text-align: left; /* Centers the text inside the text box */
     cursor: default; /* Prevent the text cursor from appearing */
     background-color: white; /* Set the background color to white */
     border: 1px solid white; /* Set the border color to white */
+    font-size: medium;
+    padding: 0;
+    margin: 0;
 }
 
 .custom-file-input {
