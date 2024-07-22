@@ -59,10 +59,8 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   onSearchChange(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value;
-    if (searchTerm.trim().length > 1) {
-      this.page = 0; // Reset page when searching
-      this.searchSubject.next(searchTerm);
-    }
+    this.page = 0; // Reset page when searching
+    this.searchSubject.next(searchTerm);
   }
 
   private trimComparator(prev: string, curr: string): boolean {
