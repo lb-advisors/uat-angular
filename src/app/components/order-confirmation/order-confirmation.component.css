@@ -105,15 +105,7 @@ ul li {
   width: 40%; /* Wider description column */
 }
 
-.order-grid th:nth-child(4),
-.order-grid td:nth-child(4) {
-  width: 17%; /* Adjust width for price column */
-}
 
-.order-grid th:nth-child(3),
-.order-grid td:nth-child(3) {
-  width: 17%; /* Adjust width for total column */
-}
 
 
 @media (max-width: 600px) {
@@ -176,6 +168,24 @@ ul li {
      .table {
     width: 100%;
     }
+
+    .table th:nth-child(2),
+    .table td:nth-child(2) {
+      width: 17%; /* Adjust width for price column */
+    }
+    .table th:nth-child(3),
+    .table td:nth-child(3) {
+      width: 17%; /* Adjust width for price column */
+    }
+  
+    .table th:nth-child(4),
+    .table td:nth-child(4) {
+      width: 17%; /* Adjust width for price column */
+    }
+    .table th:nth-child(5),
+  .table td:nth-child(5) {
+    width: 17%; /* Adjust width for price column */
+  }
 }
 
 /* Additional styles for bold and lighter grey background */
