@@ -33,7 +33,7 @@ body {
 }
 
 .image-container {
-    width: 97%;
+    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -144,16 +144,33 @@ body {
 
 
     .product-column {
-        min-width: 60%; /* Ensure the product column takes up at least 50% */
+        min-width: 50%; /* Ensure the product column takes up at least 50% */
         max-width: 90%; /* Allow the product column to take up more space */
         white-space: normal;
         word-wrap: break-word;
         overflow-wrap: break-word;
     }
 
+   
     .inventory-grid th {
-        min-width: 51px; /* Prevent headers from wrapping too much */
+        min-width: 40px; /* Prevent headers from wrapping too much */
+    }
+  
+
+    .content {
+        width: 100%; /* Full width for container on mobile */
+        margin: 0; /* Remove margin */
+        padding: 0; /* Remove padding */
+        border: 0; /* Remove border */
     }
 
+    .inventory-grid th:nth-child(3),
+    .inventory-grid td:nth-child(3) {
+      width: 15%; /* Wider description column */
+    }
+   
+    .image-container {
+        border-radius: 0%;
+    }
     
 }

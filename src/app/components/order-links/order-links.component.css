@@ -122,8 +122,9 @@ body {
 
 @media (max-width: 600px) {
     .container {
-        width: 95%;
-        margin: 5px;
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
     }
 
     .filters {
@@ -151,5 +152,10 @@ body {
     #customer-search::placeholder {
         font-size: 16px; /* Adjust the font size as needed */
         color: #999; /* Optional: Change the placeholder text color */
+    }
+    .image-container {
+        border-radius: 0;
+        padding: 0;
+        margin: 0;
     }
 }

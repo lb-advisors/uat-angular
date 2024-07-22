@@ -5,9 +5,12 @@
         <h2 class="page-title">Order Form</h2>
 
         <div *ngIf="order.customerName && order.salesRepName" class="customer-sales-info">
-            <p><strong>Customer:</strong> {{ order.customerName }}</p>
+            <p><strong>Customer:</strong> <br>
+                {{ order.customerName }}</p>
             <div class="sales-rep-info">
-                <strong>Sales Rep:</strong> {{ order.salesRepName }} <a [href]="'tel:' + order.salesRepPhone">{{ order.salesRepPhone }}</a>
+                <strong>Sales Rep:</strong> <br>
+                {{ order.salesRepName }} 
+                <br><a [href]="'tel:' + order.salesRepPhone">{{ order.salesRepPhone }}</a>
             </div>
         </div>
 
@@ -30,11 +33,11 @@
                 <thead>
                     <tr>
                         <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Unit Type</th>
-                        <th>Pack Size</th>
+                        <th>Qty</th>
+                        <th>Unit Typ</th>
+                        <th>Pck Sze</th>
                         <th>Price</th>
-                        <th>Total</th>
+                        <th>Tot.</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -62,11 +65,11 @@
                 <thead>
                     <tr>
                         <th>Description</th>
-                        <th>Quantity</th>
-                        <th>Unit Type</th>
-                        <th>Pack Size</th>
+                        <th>Qty</th>
+                        <th>Unit Typ</th>
+                        <th>Pck Sze</th>
                         <th>Price</th>
-                        <th>Total</th>
+                        <th>Tot.</th>
                     </tr>
                 </thead>
                 <tbody>
