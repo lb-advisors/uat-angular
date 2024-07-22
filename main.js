@@ -2130,14 +2130,18 @@ class OrderNewComponent {
   get totalPrice() {
     let totalPrice = 0;
     for (let i = 0; i < this.order.profiles.length; i++) {
-      totalPrice += this.order.profiles[i].salesPrice * this.profileControls.at(i).get('quantity')?.value;
+      const quantity = this.profileControls.at(i).get('quantity')?.value || 0;
+      const packSize = this.order.profiles[i].packSize || 0; // Assuming 'packSize' is a property of 'profile'
+      const price = this.order.profiles[i].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
+      totalPrice += quantity * packSize * price;
     }
     return totalPrice;
   }
   getRowTotalPrice(index) {
     const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
-    const salesPrice = this.order.profiles[index].salesPrice || 0;
-    return quantity * salesPrice;
+    const packSize = this.order.profiles[index].packSize || 0; // Assuming 'packSize' is a property of 'profile'
+    const price = this.order.profiles[index].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
+    return quantity * packSize * price;
   }
   createProfileGroup(profile) {
     return this.fb.group({
