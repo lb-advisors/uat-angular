@@ -1151,7 +1151,7 @@ class InventoryComponent {
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, "Unit");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "th", 8);
-        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](18, "Pck");
+        _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](18, "Pack");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](19, "br");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](20, "Size");
         _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
