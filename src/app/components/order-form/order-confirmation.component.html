@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="image-container">
+      <img [src]="imageSrc" alt="Company Logo">
+    </div>
+    <h2>Hello {{ orderData.customerName }},</h2>
+    <p>Thank you for your order. Here are the details of your order:</p>
+    <br>
+    <table class="order-grid" id="order-grid">
+      <thead>
+        <tr>
+          <th>Product Description</th>
+          <th>Unit Type</th>
+          <th>Pack Size</th>
+          <th>Price</th>
+          <th>Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let product of products">
+          <td>{{ product.profileDescription }}</td>
+          <td>{{ product.unitTypePd }}</td>
+          <td>{{ product.packSizePd }}</td>
+          <td class="price">{{ product.salesPrice | number:'1.2-2' }}</td>
+          <td>{{ product.quantity }}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <p><strong>Total Price:</strong> {{ orderData.totalPrice | currency:'USD':true }}</p>
+    <p><strong>Delivery Date:</strong> {{ orderData.deliveryDate }}</p>
+    <p>Thank you,<br>Your Sales Team</p>
+  </div>
+  
