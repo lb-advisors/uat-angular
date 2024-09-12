@@ -20,7 +20,7 @@ import { OrderFormService } from 'src/app/services/order-form.service';
   imports: [CommonModule, ReactiveFormsModule, LogoComponent],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class OrderNewComponent implements OnInit {
+export class OrderFormComponent implements OnInit {
   private apiUrl = environment.apiUrl;
   order!: Order;
   hasSpecials = false;
@@ -87,14 +87,13 @@ export class OrderNewComponent implements OnInit {
     }
     return totalPrice;
   }
-  
+
   getRowTotalPrice(index: number): number {
     const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
     const packSize = this.order.profiles[index].packSize || 0; // Assuming 'packSize' is a property of 'profile'
     const price = this.order.profiles[index].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
     return quantity * packSize * price;
   }
-  
 
   createProfileGroup(profile: Profile): FormGroup {
     return this.fb.group({

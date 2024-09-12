@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { environment } from 'src/environments/environment'; // Import the environment configuration
 
 @Component({
   selector: 'app-data',
   templateUrl: './data.component.html',
-  styleUrls: ['./data.component.css']
+  styleUrls: ['./data.component.css'],
 })
 export class DataComponent {
   private apiUrl = environment.apiUrl;
@@ -27,10 +27,10 @@ export class DataComponent {
         link.click();
         window.URL.revokeObjectURL(downloadURL);
       },
-      error => {
+      (error) => {
         console.error('Download failed:', error);
         this.snackBar.open('Failed to download orders. Please try again later.', 'Close', { duration: 3000 });
-      }
+      },
     );
   }
 
@@ -46,24 +46,12 @@ export class DataComponent {
     const formData = new FormData();
     formData.append('file', file);
 
-    // Show the "Processing your CSV file" snackbar
-    const processingSnackbar = this.snackBar.open('Processing your CSV file', '', { duration: 5000 });
+    this.snackBar.open('Processing your CSV file', '', { duration: 20000 });
 
     this.http.post(this.uploadUrl, formData).subscribe({
-      next: response => {
-        processingSnackbar.dismiss(); // Dismiss the processing message
+      next: () => {
         this.snackBar.open('All Done', '', { duration: 3000 });
       },
-      error: (error: HttpErrorResponse) => {
-        processingSnackbar.dismiss(); // Dismiss the processing message if error occurs
-        console.error('Upload failed:', error);
-        this.snackBar.open('Failed to upload the file. Please try again.', 'Close', { duration: 3000 });
-      }
     });
-  }
-
-  // Optional: Method to dynamically update the upload URL if needed
-  setUploadUrl(newUrl: string) {
-    this.uploadUrl = newUrl;
   }
 }
