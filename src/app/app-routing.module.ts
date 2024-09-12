@@ -9,7 +9,6 @@ import { InventoryComponent } from './components/inventory/inventory.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { OrderExistsComponent } from './components/order-exists/order-exists.component';
 import { OrderNewComponent } from './components/order-form/order-form.component';
-import { DataComponent } from './components/data/data.component';  // Updated import
 
 const routes: Routes = [
   { path: '', redirectTo: 'order-links', pathMatch: 'full' },
@@ -22,7 +21,6 @@ const routes: Routes = [
   { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
   { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
   { path: 'customer/:id/order-form', component: OrderNewComponent, title: 'Order Form' },
-  { path: 'data', component: DataComponent, title: 'Data' },  // Added new route
 ];
 
 @NgModule({
