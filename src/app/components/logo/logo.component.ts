@@ -15,7 +15,7 @@ export class LogoComponent implements OnChanges {
   imageBackgroundColor = '#000000';
 
   ngOnChanges(): void {
-    if (this.companyId === 3) {
+    if (this.companyId === 14) {
       this.imageSrc = 'assets/fogriver.png';
       this.imageBackgroundColor = '#000000'; // Black background
     } else {
