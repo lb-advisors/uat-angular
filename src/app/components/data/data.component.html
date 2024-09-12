@@ -1,7 +1,7 @@
 <div class="data-container">
     <button class="action-button download-button" (click)="downloadOrders()">Download Orders</button>
     <button class="action-button upload-button" (click)="fileInput.click()">Upload Profiles</button>
-    <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)" />
+    <input type="file" #fileInput accept=".csv" style="display: none" (change)="onFileSelected($event)" />
 </div>
 
 <div class="upload-instructions">
