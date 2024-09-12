@@ -1,16 +1,14 @@
-@if (order) {
 <form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
     <div class="container">
-        <app-logo [companyId]="order.companyId"></app-logo>
+        <div class="image-container">
+            <img src="assets/logo.png" alt="Company Logo" class="company-logo">
+        </div>
         <h2 class="page-title">Order Form</h2>
 
         <div *ngIf="order.customerName && order.salesRepName" class="customer-sales-info">
-            <p><strong>Customer:</strong> <br>
-                {{ order.customerName }}</p>
+            <p><strong>Customer:</strong> {{ order.customerName }}</p>
             <div class="sales-rep-info">
-                <strong>Sales Rep:</strong> <br>
-                {{ order.salesRepName }}
-                <br><a [href]="'tel:' + order.salesRepPhone">{{ order.salesRepPhone }}</a>
+                <strong>Sales Rep:</strong> {{ order.salesRepName }} <a [href]="'tel:' + order.salesRepPhone">{{ order.salesRepPhone }}</a>
             </div>
         </div>
 
@@ -26,14 +24,13 @@
         </div>
         }
 
-        @if (hasSpecials) {
         <h3 class="section-title">Specials</h3>
         <div formArrayName="profiles" class="profiles">
             <table class="table">
                 <thead>
                     <tr>
                         <th>Description</th>
-                        <th>Qty</th>
+                        <th>Quantity</th>
                         <th>Unit Type</th>
                         <th>Pack Size</th>
                         <th>Price</th>
@@ -50,14 +47,13 @@
                             </td>
                             <td>{{ order.profiles[i].unitType }}</td>
                             <td>{{ order.profiles[i].packSize }}</td>
-                            <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+                            <td>{{ order.profiles[i].price | currency:'USD':'symbol':'1.2-2'}}</td>
                             <td>{{ getRowTotalPrice(i) | currency:'USD':'symbol':'1.2-2' }}</td>
                         </tr>
                     </ng-container>
                 </tbody>
             </table>
         </div>
-        }
 
         <h3 class="section-title">Products</h3>
         <div formArrayName="profiles" class="profiles">
@@ -65,7 +61,7 @@
                 <thead>
                     <tr>
                         <th>Description</th>
-                        <th>Qty</th>
+                        <th>Quantity</th>
                         <th>Unit Type</th>
                         <th>Pack Size</th>
                         <th>Price</th>
@@ -82,7 +78,7 @@
                             </td>
                             <td>{{ order.profiles[i].unitType }}</td>
                             <td>{{ order.profiles[i].packSize }}</td>
-                            <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+                            <td>{{ order.profiles[i].price | currency:'USD':'symbol':'1.2-2'}}</td>
                             <td>{{ getRowTotalPrice(i) | currency:'USD':'symbol':'1.2-2' }}</td>
                         </tr>
                     </ng-container>
@@ -100,11 +96,6 @@
         <div class="total-price">
             <br>Total price: {{totalPrice | currency:'USD':'symbol':'1.2-2'}}
             <div *ngIf="totalPrice > 10000" class="error">The total has to be less than $10,000</div>
-        </div>
-
-        <div>
-            <label for="customer-po"><strong>Customer PO: </strong></label>
-            <input id="customer-po" formControlName="customerPo" type="text" class="customer-po">
         </div>
 
         <div class="delivery-date">
@@ -126,5 +117,8 @@
 
         <br><button type="submit" [disabled]="!orderForm.valid" class="submit-btn">Submit</button>
     </div>
+
+    <br>Data to send to spring boot:
+    <br>
+    <pre>{{dataToBeSubmitted | json}}</pre>
 </form>
-}
