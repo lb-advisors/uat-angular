@@ -152,7 +152,8 @@ export class OrderFormComponent implements OnInit {
 
   // validator
   dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
-    const dateValue = new Date(control.value);
+    const dateParts = control.value.split('-').map(Number);
+    const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
     const today = new Date();
     return dateValue > today ? null : { dateAfterTomorrow: true };
   }
