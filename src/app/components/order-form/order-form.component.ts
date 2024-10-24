@@ -177,7 +177,7 @@ export class OrderFormComponent implements OnInit {
     let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
     givenDateTimePacific = setHours(givenDateTimePacific, 2);
     givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
-    givenDateTimePacific = setSeconds(givenDateTimePacific, 0);
+    givenDateTimePacific = setSeconds(givenDateTimePacific, 1);
 
     return isAfter(givenDateTimePacific, next2amPacific) ? null : { dateAfterTomorrow: true };
   }
