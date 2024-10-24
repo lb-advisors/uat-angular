@@ -2455,7 +2455,7 @@ class OrderFormComponent {
     let givenDateTimePacific = (0,date_fns_tz__WEBPACK_IMPORTED_MODULE_2__.fromZonedTime)(dateValue, pacificZone);
     givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.setHours)(givenDateTimePacific, 2);
     givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.setMinutes)(givenDateTimePacific, 0);
-    givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.setSeconds)(givenDateTimePacific, 0);
+    givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.setSeconds)(givenDateTimePacific, 1);
     return (0,date_fns__WEBPACK_IMPORTED_MODULE_10__.isAfter)(givenDateTimePacific, next2amPacific) ? null : {
       dateAfterTomorrow: true
     };
