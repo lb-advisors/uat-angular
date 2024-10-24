@@ -12,7 +12,7 @@ import { OrderRequest } from 'src/app/models/order-request.model';
 import { ProfileRequest } from 'src/app/models/profile-request.model';
 import { OrderFormService } from 'src/app/services/order-form.service';
 
-import { zonedTimeToUtc, utcToZonedTime, format } from 'date-fns-tz';
+import { toZonedTime, fromZonedTime } from 'date-fns-tz'; // Correct import from date-fns-tz
 import { addMonths, setHours, setMinutes, setSeconds, isAfter, isBefore } from 'date-fns';
 
 @Component({
@@ -161,7 +161,7 @@ export class OrderFormComponent implements OnInit {
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
     // Get the current Pacific time
-    const nowPacific = utcToZonedTime(new Date(), pacificZone);
+    const nowPacific = toZonedTime(new Date(), pacificZone);
 
     // Get the next 2 AM in Pacific Time
     let next2amPacific = setHours(nowPacific, 2);
@@ -174,7 +174,7 @@ export class OrderFormComponent implements OnInit {
     }
 
     // Convert the given LocalDate to 2 AM in Pacific Time
-    let givenDateTimePacific = zonedTimeToUtc(dateValue, pacificZone);
+    let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
     givenDateTimePacific = setHours(givenDateTimePacific, 2);
     givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
     givenDateTimePacific = setSeconds(givenDateTimePacific, 0);
@@ -197,7 +197,7 @@ export class OrderFormComponent implements OnInit {
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
 
     // Get the current Pacific time
-    const nowPacific = utcToZonedTime(new Date(), pacificZone);
+    const nowPacific = toZonedTime(new Date(), pacificZone);
 
     // Get the next 2 AM in Pacific Time
     let next2amPacific = setHours(nowPacific, 2);
@@ -213,7 +213,7 @@ export class OrderFormComponent implements OnInit {
     const threeMonthsLaterPacific = addMonths(next2amPacific, 3);
 
     // Convert the given LocalDate to 2 AM in Pacific Time
-    let givenDateTimePacific = zonedTimeToUtc(dateValue, pacificZone);
+    let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
     givenDateTimePacific = setHours(givenDateTimePacific, 2);
     givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
     givenDateTimePacific = setSeconds(givenDateTimePacific, 0);
