@@ -2201,7 +2201,7 @@ function OrderFormComponent_Conditional_0_div_45_Template(rf, ctx) {
 function OrderFormComponent_Conditional_0_div_46_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementStart"](0, "div", 26);
-    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, " Delivery date must be after today. ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵtext"](1, " Delivery date must cannot be in past, or after 2am of todays date. ");
     _angular_core__WEBPACK_IMPORTED_MODULE_5__["ɵɵelementEnd"]();
   }
 }
