@@ -54,8 +54,8 @@ jobs:
 
       - name: Create info.html
         run: |
-          echo "Commit message: ${{ steps.commit_message.outputs.message }}\n" > info.html
-          echo "Commit hash: ${{ steps.commit_hash.outputs.hash }}\n" >> info.html
+          echo "Commit message: ${{ steps.commit_message.outputs.message }}<br>" > info.html
+          echo "Commit hash: ${{ steps.commit_hash.outputs.hash }}<br>" >> info.html
           echo "Build time: ${{ steps.build_time.outputs.time }}" >> info.html
 
       - name: Set up Node.js
