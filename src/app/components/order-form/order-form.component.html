@@ -114,7 +114,7 @@
                 Delivery date is required.
             </div>
             <div *ngIf="formControls['deliveryDate'].dirty && formControls['deliveryDate'].errors?.['dateAfterTomorrow']" class="error">
-                Delivery date must be after today.
+                Delivery date must cannot be in past, or after 2am of todays date. 
             </div>
             <div *ngIf="formControls['deliveryDate'].dirty && formControls['deliveryDate'].errors?.['dateWithinThreeMonths']" class="error">
                 Delivery date must be within 3 months.

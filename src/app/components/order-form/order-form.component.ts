@@ -12,6 +12,9 @@ import { OrderRequest } from 'src/app/models/order-request.model';
 import { ProfileRequest } from 'src/app/models/profile-request.model';
 import { OrderFormService } from 'src/app/services/order-form.service';
 
+import { toZonedTime, fromZonedTime } from 'date-fns-tz'; // Correct import from date-fns-tz
+import { addMonths, setHours, setMinutes, setSeconds, isAfter, isBefore } from 'date-fns';
+
 @Component({
   standalone: true,
   selector: 'app-order-form',
@@ -152,10 +155,31 @@ export class OrderFormComponent implements OnInit {
 
   // validator
   dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
+    const pacificZone = 'America/Los_Angeles';
+
     const dateParts = control.value.split('-').map(Number);
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    const today = new Date();
-    return dateValue > today ? null : { dateAfterTomorrow: true };
+
+    // Get the current Pacific time
+    const nowPacific = toZonedTime(new Date(), pacificZone);
+
+    // Get the next 2 AM in Pacific Time
+    let next2amPacific = setHours(nowPacific, 2);
+    next2amPacific = setMinutes(next2amPacific, 0);
+    next2amPacific = setSeconds(next2amPacific, 0);
+
+    if (isAfter(nowPacific, next2amPacific)) {
+      // If it's already past 2 AM today, move to the next day's 2 AM
+      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000); // Add one day
+    }
+
+    // Convert the given LocalDate to 2 AM in Pacific Time
+    let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
+    givenDateTimePacific = setHours(givenDateTimePacific, 2);
+    givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
+    givenDateTimePacific = setSeconds(givenDateTimePacific, 1);
+
+    return isAfter(givenDateTimePacific, next2amPacific) ? null : { dateAfterTomorrow: true };
   }
 
   // validator
@@ -167,12 +191,34 @@ export class OrderFormComponent implements OnInit {
 
   // validator
   dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
-    const dateValue = new Date(control.value);
-    const threeMonthsFromNow = new Date();
-    threeMonthsFromNow.setMonth(threeMonthsFromNow.getMonth() + 3);
-    threeMonthsFromNow.setHours(0, 0, 0, 0);
+    const pacificZone = 'America/Los_Angeles';
 
-    return dateValue <= threeMonthsFromNow ? null : { dateWithinThreeMonths: true };
+    const dateParts = control.value.split('-').map(Number);
+    const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
+
+    // Get the current Pacific time
+    const nowPacific = toZonedTime(new Date(), pacificZone);
+
+    // Get the next 2 AM in Pacific Time
+    let next2amPacific = setHours(nowPacific, 2);
+    next2amPacific = setMinutes(next2amPacific, 0);
+    next2amPacific = setSeconds(next2amPacific, 0);
+
+    if (isAfter(nowPacific, next2amPacific)) {
+      // If it's already past 2 AM today, move to the next day's 2 AM
+      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000); // Add one day
+    }
+
+    // Calculate 3 months from now at 2 AM
+    const threeMonthsLaterPacific = addMonths(next2amPacific, 3);
+
+    // Convert the given LocalDate to 2 AM in Pacific Time
+    let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
+    givenDateTimePacific = setHours(givenDateTimePacific, 2);
+    givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
+    givenDateTimePacific = setSeconds(givenDateTimePacific, 0);
+
+    return isBefore(givenDateTimePacific, threeMonthsLaterPacific) ? null : { dateWithinThreeMonths: true };
   }
 
   // validator
