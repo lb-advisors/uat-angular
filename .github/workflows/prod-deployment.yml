@@ -54,9 +54,9 @@ jobs:
 
       - name: Create info.html
         run: |
-          echo "Latest commit message: ${{ steps.commit_message.outputs.message }}" > info.html
-          echo "Latest commit hash: ${{ steps.commit_hash.outputs.hash }}" >> info.html
-          echo "Latest build time: ${{ steps.build_time.outputs.time }}" >> info.html
+          echo "Commit message: ${{ steps.commit_message.outputs.message }}\n" > info.html
+          echo "Commit hash: ${{ steps.commit_hash.outputs.hash }}\n" >> info.html
+          echo "Build time: ${{ steps.build_time.outputs.time }}" >> info.html
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -86,6 +86,9 @@ jobs:
 
       - name: Build Angular app
         run: npm run build
+
+      - name: Copy info.html to dist folder
+        run: cp info.html dist/
 
       - name: Create CNAME file
         run: echo 'www.gs-fish.com' > dist/CNAME
