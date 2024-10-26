@@ -3,7 +3,7 @@ name: Prod - Build and Deploy Angular App
 on:
   workflow_dispatch:
     inputs:
-      #tag:
+      ##tag:
       #  description: "Tag to deploy"
       #  required: true
       confirmation:
