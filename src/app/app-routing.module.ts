@@ -8,8 +8,8 @@ import { LogoutComponent } from './components/logout/logout.component';
 import { InventoryComponent } from './components/inventory/inventory.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 import { OrderExistsComponent } from './components/order-exists/order-exists.component';
-import { OrderNewComponent } from './components/order-form/order-form.component';
-import { DataComponent } from './components/data/data.component'; // Import DataComponent
+import { OrderFormComponent } from './components/order-form/order-form.component';
+import { DataComponent } from './components/data/data.component'; // Updated import
 
 const routes: Routes = [
   { path: '', redirectTo: 'order-links', pathMatch: 'full' },
@@ -21,8 +21,8 @@ const routes: Routes = [
   { path: 'inventory', component: InventoryComponent, title: 'Inventory' },
   { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
   { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
-  { path: 'customer/:id/order-form', component: OrderNewComponent, title: 'Order Form' },
-  { path: 'data', component: DataComponent, title: 'Data' }, // Added route for DataComponent
+  { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
+  { path: 'data', component: DataComponent, title: 'Data' }, // Added new route
 ];
 
 @NgModule({
