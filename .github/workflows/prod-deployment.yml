@@ -3,9 +3,13 @@ name: Prod - Build and Deploy Angular App
 on:
   workflow_dispatch:
     inputs:
-      tag:
-        description: "Tag to deploy"
+      #tag:
+      #  description: "Tag to deploy"
+      #  required: true
+      confirmation:
+        description: "Type YES to confirm deployment"
         required: true
+        default: "NO"
 
 jobs:
   build-and-deploy:
@@ -13,10 +17,46 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - name: Check Branch
+        id: check_branch
+        run: |
+          if [[ "${{ github.ref }}" != "refs/heads/master" ]]; then
+            echo "Error: This workflow can only be triggered from the master branch."
+            exit 1  # Exit with an error if the branch is not master
+          fi
+
+      - name: Check Confirmation
+        id: check_confirmation
+        run: |
+          if [[ "${{ github.event.inputs.confirmation }}" != "YES" ]]; then
+            echo "Error: You must type 'YES' to confirm deployment."
+            exit 1  # Exit with an error if the confirmation is not 'YES'
+          fi
+          echo "Confirmation received. Proceeding with deployment."
+
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.inputs.tag }}
+
+      - name: Get commit message
+        id: commit_message
+        #run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
+        run: echo "message=$(git log -1 --pretty=%B)" >> $GITHUB_OUTPUT
+
+      - name: Get commit hash
+        id: commit_hash
+        #run: echo "::set-output name=hash::$(git log -1 --pretty=%H)"
+        run: echo "hash=$(git log -1 --pretty=%H)" >> $GITHUB_OUTPUT
+
+      - name: Get current time
+        id: build_time
+        #run: echo "::set-output name=time::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+        run: echo "time=$(date -u +'%Y-%m-%dT%H:%M:%SZ')" >> $GITHUB_OUTPUT
+
+      - name: Create info.html
+        run: |
+          echo "Latest commit message: ${{ steps.commit_message.outputs.message }}" > info.html
+          echo "Latest commit hash: ${{ steps.commit_hash.outputs.hash }}" >> info.html
+          echo "Latest build time: ${{ steps.build_time.outputs.time }}" >> info.html
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
