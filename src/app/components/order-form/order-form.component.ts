@@ -53,9 +53,14 @@ export class OrderFormComponent implements OnInit {
   loadOrderData(customerId: number): void {
     this.orderService.getOrderData(customerId).subscribe({
       next: (order: Order) => {
+        // Sort profiles by description in ascending alphabetical order
+        order.profiles.sort((a, b) => a.profileDescription.localeCompare(b.profileDescription));
+
+
         this.order = order;
         this.hasSpecials = this.order.profiles.some((profile) => profile.isSpecial);
         const shipToValidators = order.shipTos?.length ? [Validators.required] : [];
+        
         this.orderForm = this.fb.group({
           customerId: [order.customerId],
           deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
@@ -67,6 +72,7 @@ export class OrderFormComponent implements OnInit {
             [this.atLeastOneQuantityValidator],
           ),
         });
+
         this.cdr.markForCheck();
       },
     });
@@ -84,8 +90,8 @@ export class OrderFormComponent implements OnInit {
     let totalPrice = 0;
     for (let i = 0; i < this.order.profiles.length; i++) {
       const quantity = this.profileControls.at(i).get('quantity')?.value || 0;
-      const packSize = this.order.profiles[i].packSize || 0; // Assuming 'packSize' is a property of 'profile'
-      const price = this.order.profiles[i].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
+      const packSize = this.order.profiles[i].packSize || 0;
+      const price = this.order.profiles[i].salesPrice || 0;
       totalPrice += quantity * packSize * price;
     }
     return totalPrice;
@@ -93,14 +99,14 @@ export class OrderFormComponent implements OnInit {
 
   getRowTotalPrice(index: number): number {
     const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
-    const packSize = this.order.profiles[index].packSize || 0; // Assuming 'packSize' is a property of 'profile'
-    const price = this.order.profiles[index].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
+    const packSize = this.order.profiles[index].packSize || 0;
+    const price = this.order.profiles[index].salesPrice || 0;
     return quantity * packSize * price;
   }
 
   createProfileGroup(profile: Profile): FormGroup {
     return this.fb.group({
-      profileDid: [profile.id], // Use id from the API response as profileDid
+      profileDid: [profile.id],
       quantity: ['', Validators.min(1)],
     });
   }
@@ -112,9 +118,8 @@ export class OrderFormComponent implements OnInit {
       console.log('Form Submitted', this.orderForm.value);
       const order: OrderRequest = this.orderForm.value;
       order.profiles = order.profiles.filter((profile: ProfileRequest) => profile.quantity > 0);
-      order.totalPrice = this.totalPrice; // Calculate total price
+      order.totalPrice = this.totalPrice;
 
-      // POST request to the API
       this.orderService.placeOrder(this.customerId, order).subscribe({
         next: (orderConfirmation) => {
           console.log('Order submitted successfully', orderConfirmation);
@@ -135,7 +140,7 @@ export class OrderFormComponent implements OnInit {
 
       this.submitted = true;
     } else {
-      this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
+      this.orderForm.markAllAsTouched();
     }
   }
 
@@ -153,27 +158,19 @@ export class OrderFormComponent implements OnInit {
     return typeof this.profileControls.at(index).get('quantity')?.value === 'number';
   }
 
-  // validator
   dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
     const pacificZone = 'America/Los_Angeles';
-
     const dateParts = control.value.split('-').map(Number);
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-
-    // Get the current Pacific time
     const nowPacific = toZonedTime(new Date(), pacificZone);
-
-    // Get the next 2 AM in Pacific Time
     let next2amPacific = setHours(nowPacific, 2);
     next2amPacific = setMinutes(next2amPacific, 0);
     next2amPacific = setSeconds(next2amPacific, 0);
 
     if (isAfter(nowPacific, next2amPacific)) {
-      // If it's already past 2 AM today, move to the next day's 2 AM
-      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000); // Add one day
+      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000);
     }
 
-    // Convert the given LocalDate to 2 AM in Pacific Time
     let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
     givenDateTimePacific = setHours(givenDateTimePacific, 2);
     givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
@@ -182,37 +179,26 @@ export class OrderFormComponent implements OnInit {
     return isAfter(givenDateTimePacific, next2amPacific) ? null : { dateAfterTomorrow: true };
   }
 
-  // validator
   atLeastOneQuantityValidator(control: AbstractControl): ValidationErrors | null {
     const formArray = control as FormArray;
     const hasAtLeastOneQuantity = formArray.controls.some((group) => group.get('quantity')?.value > 0);
     return hasAtLeastOneQuantity ? null : { atLeastOneQuantity: true };
   }
 
-  // validator
   dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
     const pacificZone = 'America/Los_Angeles';
-
     const dateParts = control.value.split('-').map(Number);
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-
-    // Get the current Pacific time
     const nowPacific = toZonedTime(new Date(), pacificZone);
-
-    // Get the next 2 AM in Pacific Time
     let next2amPacific = setHours(nowPacific, 2);
     next2amPacific = setMinutes(next2amPacific, 0);
     next2amPacific = setSeconds(next2amPacific, 0);
 
     if (isAfter(nowPacific, next2amPacific)) {
-      // If it's already past 2 AM today, move to the next day's 2 AM
-      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000); // Add one day
+      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000);
     }
 
-    // Calculate 3 months from now at 2 AM
     const threeMonthsLaterPacific = addMonths(next2amPacific, 3);
-
-    // Convert the given LocalDate to 2 AM in Pacific Time
     let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
     givenDateTimePacific = setHours(givenDateTimePacific, 2);
     givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
@@ -221,7 +207,7 @@ export class OrderFormComponent implements OnInit {
     return isBefore(givenDateTimePacific, threeMonthsLaterPacific) ? null : { dateWithinThreeMonths: true };
   }
 
-  // validator
+   // validator
   dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
     const dateValue = new Date(control.value);
     return dateValue.getDay() != 6 ? null : { dateNotOnSunday: true };
