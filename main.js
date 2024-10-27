@@ -2341,6 +2341,8 @@ class OrderFormComponent {
   loadOrderData(customerId) {
     this.orderService.getOrderData(customerId).subscribe({
       next: order => {
+        // Sort profiles by description in ascending alphabetical order
+        order.profiles.sort((a, b) => a.profileDescription.localeCompare(b.profileDescription));
         this.order = order;
         this.hasSpecials = this.order.profiles.some(profile => profile.isSpecial);
         const shipToValidators = order.shipTos?.length ? [_angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.required] : [];
@@ -2367,22 +2369,21 @@ class OrderFormComponent {
     let totalPrice = 0;
     for (let i = 0; i < this.order.profiles.length; i++) {
       const quantity = this.profileControls.at(i).get('quantity')?.value || 0;
-      const packSize = this.order.profiles[i].packSize || 0; // Assuming 'packSize' is a property of 'profile'
-      const price = this.order.profiles[i].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
+      const packSize = this.order.profiles[i].packSize || 0;
+      const price = this.order.profiles[i].salesPrice || 0;
       totalPrice += quantity * packSize * price;
     }
     return totalPrice;
   }
   getRowTotalPrice(index) {
     const quantity = this.profileControls.at(index).get('quantity')?.value || 0;
-    const packSize = this.order.profiles[index].packSize || 0; // Assuming 'packSize' is a property of 'profile'
-    const price = this.order.profiles[index].salesPrice || 0; // Assuming 'salesPrice' is the price per unit
+    const packSize = this.order.profiles[index].packSize || 0;
+    const price = this.order.profiles[index].salesPrice || 0;
     return quantity * packSize * price;
   }
   createProfileGroup(profile) {
     return this.fb.group({
       profileDid: [profile.id],
-      // Use id from the API response as profileDid
       quantity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_6__.Validators.min(1)]
     });
   }
@@ -2392,8 +2393,7 @@ class OrderFormComponent {
       console.log('Form Submitted', this.orderForm.value);
       const order = this.orderForm.value;
       order.profiles = order.profiles.filter(profile => profile.quantity > 0);
-      order.totalPrice = this.totalPrice; // Calculate total price
-      // POST request to the API
+      order.totalPrice = this.totalPrice;
       this.orderService.placeOrder(this.customerId, order).subscribe({
         next: orderConfirmation => {
           console.log('Order submitted successfully', orderConfirmation);
@@ -2422,7 +2422,7 @@ class OrderFormComponent {
       });
       this.submitted = true;
     } else {
-      this.orderForm.markAllAsTouched(); // Mark all controls as touched to show validation errors
+      this.orderForm.markAllAsTouched();
     }
   }
   get dataToBeSubmitted() {
@@ -2436,22 +2436,17 @@ class OrderFormComponent {
   isQuantityEntered(index) {
     return typeof this.profileControls.at(index).get('quantity')?.value === 'number';
   }
-  // validator
   dateAfterTomorrowValidator(control) {
     const pacificZone = 'America/Los_Angeles';
     const dateParts = control.value.split('-').map(Number);
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    // Get the current Pacific time
     const nowPacific = (0,date_fns_tz__WEBPACK_IMPORTED_MODULE_2__.toZonedTime)(new Date(), pacificZone);
-    // Get the next 2 AM in Pacific Time
     let next2amPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.setHours)(nowPacific, 2);
     next2amPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.setMinutes)(next2amPacific, 0);
     next2amPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.setSeconds)(next2amPacific, 0);
     if ((0,date_fns__WEBPACK_IMPORTED_MODULE_10__.isAfter)(nowPacific, next2amPacific)) {
-      // If it's already past 2 AM today, move to the next day's 2 AM
-      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000); // Add one day
+      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000);
     }
-    // Convert the given LocalDate to 2 AM in Pacific Time
     let givenDateTimePacific = (0,date_fns_tz__WEBPACK_IMPORTED_MODULE_2__.fromZonedTime)(dateValue, pacificZone);
     givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.setHours)(givenDateTimePacific, 2);
     givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.setMinutes)(givenDateTimePacific, 0);
@@ -2460,7 +2455,6 @@ class OrderFormComponent {
       dateAfterTomorrow: true
     };
   }
-  // validator
   atLeastOneQuantityValidator(control) {
     const formArray = control;
     const hasAtLeastOneQuantity = formArray.controls.some(group => group.get('quantity')?.value > 0);
@@ -2468,24 +2462,18 @@ class OrderFormComponent {
       atLeastOneQuantity: true
     };
   }
-  // validator
   dateWithinThreeMonthsValidator(control) {
     const pacificZone = 'America/Los_Angeles';
     const dateParts = control.value.split('-').map(Number);
     const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    // Get the current Pacific time
     const nowPacific = (0,date_fns_tz__WEBPACK_IMPORTED_MODULE_2__.toZonedTime)(new Date(), pacificZone);
-    // Get the next 2 AM in Pacific Time
     let next2amPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.setHours)(nowPacific, 2);
     next2amPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.setMinutes)(next2amPacific, 0);
     next2amPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_9__.setSeconds)(next2amPacific, 0);
     if ((0,date_fns__WEBPACK_IMPORTED_MODULE_10__.isAfter)(nowPacific, next2amPacific)) {
-      // If it's already past 2 AM today, move to the next day's 2 AM
-      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000); // Add one day
+      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000);
     }
-    // Calculate 3 months from now at 2 AM
     const threeMonthsLaterPacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_11__.addMonths)(next2amPacific, 3);
-    // Convert the given LocalDate to 2 AM in Pacific Time
     let givenDateTimePacific = (0,date_fns_tz__WEBPACK_IMPORTED_MODULE_2__.fromZonedTime)(dateValue, pacificZone);
     givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_7__.setHours)(givenDateTimePacific, 2);
     givenDateTimePacific = (0,date_fns__WEBPACK_IMPORTED_MODULE_8__.setMinutes)(givenDateTimePacific, 0);
