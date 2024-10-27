@@ -18,6 +18,27 @@ jobs:
         with:
           ref: develop # Specify the branch to use
 
+      - name: Get commit message
+        id: commit_message
+        #run: echo "::set-output name=message::$(git log -1 --pretty=%B)"
+        run: echo "message=$(git log -1 --pretty=%B | sed ':a;N;$!ba;s/\n/ /g')" >> $GITHUB_OUTPUT
+
+      - name: Get commit hash
+        id: commit_hash
+        #run: echo "::set-output name=hash::$(git log -1 --pretty=%H)"
+        run: echo "hash=$(git log -1 --pretty=%H | sed ':a;N;$!ba;s/\n/ /g')" >> $GITHUB_OUTPUT
+
+      - name: Get current time
+        id: build_time
+        #run: echo "::set-output name=time::$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+        run: echo "time=$(date -u +'%Y-%m-%dT%H:%M:%SZ' | sed ':a;N;$!ba;s/\n/ /g')" >> $GITHUB_OUTPUT
+
+      - name: Create info.html
+        run: |
+          echo "Commit message: ${{ steps.commit_message.outputs.message }}<br>" > info.html
+          echo "Commit hash: ${{ steps.commit_hash.outputs.hash }}<br>" >> info.html
+          echo "Build time: ${{ steps.build_time.outputs.time }}" >> info.html
+
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -42,6 +63,9 @@ jobs:
 
       - name: Build Angular app
         run: npm run builddev
+
+      - name: Copy info.html to dist folder
+        run: cp info.html dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
