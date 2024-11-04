@@ -1,20 +1,20 @@
 import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
-import { InventoryService } from '../../services/inventory.service';
+import { ProductService } from '../../services/products.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { InventoryItem } from 'src/app/models/inventoty-item.model';
+import { InventoryItem } from 'src/app/models/products.model';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { CommonModule } from '@angular/common';
 
 @Component({
   standalone: true,
-  selector: 'app-inventory',
-  templateUrl: './inventory.component.html',
-  styleUrls: ['./inventory.component.css'],
+  selector: 'app-products', // Updated selector to app-products
+  templateUrl: './products.component.html',
+  styleUrls: ['./products.component.css'],
   imports: [CommonModule, InfiniteScrollDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class InventoryComponent implements OnInit, OnDestroy {
+export class ProductsComponent implements OnInit, OnDestroy { // Renamed to ProductsComponent
   page = 0;
   size = 50;
   searchTerm = '';
@@ -24,15 +24,15 @@ export class InventoryComponent implements OnInit, OnDestroy {
   private inventoryItemsSubject = new BehaviorSubject<InventoryItem[]>([]);
   inventoryItems$ = this.inventoryItemsSubject.asObservable();
 
-  constructor(private inventoryService: InventoryService) {}
+  constructor(private productService: ProductService) {}
 
   ngOnInit(): void {
     this.loadData();
 
     this.searchSubscription = this.searchSubject
       .pipe(
-        distinctUntilChanged(this.trimComparator), // Only emit if value is different from the last value
-        debounceTime(200), // Wait 200ms after the last event before emitting last event
+        distinctUntilChanged(this.trimComparator),
+        debounceTime(200),
       )
       .subscribe((searchTerm) => {
         this.searchTerm = searchTerm;
@@ -43,11 +43,13 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   loadData(): void {
     console.log('loadData');
-    this.inventoryService.getInventoryItems(this.page, this.size, this.searchTerm).subscribe({
-      next: (inventoryItems: InventoryItem[]) => {
+    this.productService.getProducts(this.page, this.size, this.searchTerm).subscribe({
+      next: (products: InventoryItem[]) => {
         const currentData = this.inventoryItemsSubject.value;
-        const newData = inventoryItems.filter((item) => !currentData.some((currentItem) => currentItem.id === item.id));
-        this.inventoryItemsSubject.next([...currentData, ...newData]); // needed for the scroll
+        const newData = products.filter(
+          (item) => !currentData.some((currentItem) => currentItem.compItemId === item.compItemId)
+        );
+        this.inventoryItemsSubject.next([...currentData, ...newData]);
       },
     });
   }
@@ -59,7 +61,7 @@ export class InventoryComponent implements OnInit, OnDestroy {
 
   onSearchChange(event: Event) {
     const searchTerm = (event.target as HTMLInputElement).value;
-    this.page = 0; // Reset page when searching
+    this.page = 0;
     this.searchSubject.next(searchTerm);
   }
 
