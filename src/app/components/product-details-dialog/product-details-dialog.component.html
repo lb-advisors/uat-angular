@@ -1,20 +1,94 @@
-<h2>Product Details</h2>
-<div>
-  <p><strong>ID:</strong> {{ data.compItemId }}</p>
-  <p><strong>Description:</strong> {{ data.compDescription }}</p>
-  <p><strong>Origin:</strong> {{ data.origin }}</p>
-  <p><strong>Notes:</strong> {{ data.notes || 'N/A' }}</p>
-  <p><strong>WOH:</strong> {{ data.woh }}</p>
-  <p><strong>Unit Type:</strong> {{ data.unitType }}</p>
-  <p><strong>Pack Size:</strong> {{ data.packSize }}</p>
-  <p><strong>Pack Lock:</strong> {{ data.packLock }}</p>
-  <p><strong>Cost:</strong> {{ data.compCost | number:'1.2-2' }}</p>
-  <p><strong>Yield:</strong> {{ data.yield }}%</p>
-  <p><strong>Labor Pack Cost:</strong> {{ data.laborPackCost | number:'1.2-2' }}</p>
-  <p><strong>Buyer:</strong> {{ data.buyer }}</p>
-  <p><strong>Sixty Sales:</strong> {{ data.sixtySales }}</p>
-  <p><strong>Ten Sales:</strong> {{ data.tenSales }}</p>
-  <p><strong>Pre-Order Hours:</strong> {{ data.preOrderHours }}</p>
-  <p><strong>Instructions:</strong> {{ data.compInstructions || 'N/A' }}</p>
-</div>
-<button mat-button (click)="close()">Close</button>
+<h2>{{ data.compItemId }} - {{ data.compDescription }}</h2>
+<mat-dialog-content>
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Origin</span>
+      <span>{{ data.origin }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Notes</span>
+      <span>{{ data.notes || 'N/A' }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">WOH</span>
+      <span>{{ data.woh }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Unit Type</span>
+      <span>{{ getUnitType(data.unitType ?? 0) }}</span>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Pack Size</span>
+      <span>{{ data.packSize }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Pack Lock</span>
+      <span>{{ data.packLock }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Cost</span>
+      <span>{{ data.compCost | number:'1.2-2' }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Yield</span>
+      <span>{{ data.yield }}%</span>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Labor Pack Cost</span>
+      <span>{{ data.laborPackCost | number:'1.2-2' }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Buyer</span>
+      <span>{{ data.buyer }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Sixty Sales</span>
+      <span>{{ data.sixtySales }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Ten Sales</span>
+      <span>{{ data.tenSales }}</span>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Pre-Order Hours</span>
+      <span>{{ data.preOrderHours }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Instructions</span>
+      <span>{{ data.compInstructions || 'N/A' }}</span>
+    </div>
+  </div>
+
+  <div class="margins">
+    <p class="margin-label">Margin:</p>
+    <div class="margin-values">
+      <div class="margin-group">
+        <div class="field">
+          <span class="field-label">16%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.16 : 0) | number:'1.2-2' }}</span>
+        </div>
+        <div class="field">
+          <span class="field-label">18%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.18 : 0) | number:'1.2-2' }}</span>
+        </div>
+        <div class="field">
+          <span class="field-label">20%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.20 : 0) | number:'1.2-2' }}</span>
+        </div>
+        <div class="field">
+          <span class="field-label">22%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.22 : 0) | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
