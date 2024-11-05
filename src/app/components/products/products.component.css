@@ -174,3 +174,12 @@ body {
     }
     
 }
+
+  :host ::ng-deep .inventory-grid tbody tr {
+    cursor: pointer;
+  }
+  
+  :host ::ng-deep .inventory-grid tbody tr:hover {
+    background-color: #f0f0f0;
+  }
+  

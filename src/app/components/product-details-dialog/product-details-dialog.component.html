@@ -1,0 +1,94 @@
+<h2>{{ data.compItemId }} - {{ data.compDescription }}</h2>
+<mat-dialog-content>
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Origin</span>
+      <span>{{ data.origin }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Notes</span>
+      <span>{{ data.notes || 'N/A' }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">WOH</span>
+      <span>{{ data.woh }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Unit Type</span>
+      <span>{{ getUnitType(data.unitType ?? 0) }}</span>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Pack Size</span>
+      <span>{{ data.packSize }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Pack Lock</span>
+      <span>{{ data.packLock }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Cost</span>
+      <span>{{ data.compCost | number:'1.2-2' }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Yield</span>
+      <span>{{ data.yield }}%</span>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Labor Pack Cost</span>
+      <span>{{ data.laborPackCost | number:'1.2-2' }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Buyer</span>
+      <span>{{ data.buyer }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">60 Sales</span>
+      <span>{{ data.sixtySales }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">10 Sales</span>
+      <span>{{ data.tenSales }}</span>
+    </div>
+  </div>
+
+  <div class="field-group">
+    <div class="field">
+      <span class="field-label">Pre-Order Hours</span>
+      <span>{{ data.preOrderHours }}</span>
+    </div>
+    <div class="field">
+      <span class="field-label">Instructions</span>
+      <span>{{ data.compInstructions || 'N/A' }}</span>
+    </div>
+  </div>
+
+  <div class="margins">
+    <p class="margin-label">Margin:</p>
+    <div class="margin-values">
+      <div class="margin-group">
+        <div class="field">
+          <span class="field-label">16%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.16 : 0) | number:'1.2-2' }}</span>
+        </div>
+        <div class="field">
+          <span class="field-label">18%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.18 : 0) | number:'1.2-2' }}</span>
+        </div>
+        <div class="field">
+          <span class="field-label">20%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.20 : 0) | number:'1.2-2' }}</span>
+        </div>
+        <div class="field">
+          <span class="field-label">22%</span>
+          <span>{{ (data.compCost ? data.compCost * 1.22 : 0) | number:'1.2-2' }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</mat-dialog-content>
