@@ -2686,13 +2686,13 @@ class ProductDetailsDialogComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](57);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](58, "div", 1)(59, "span", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](60, "Sixty Sales");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](60, "60 Sales");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](61, "span");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](62);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](63, "div", 1)(64, "span", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](65, "Ten Sales");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](65, "10 Sales");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](66, "span");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](67);
