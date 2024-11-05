@@ -10,6 +10,7 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { OrderExistsComponent } from './components/order-exists/order-exists.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { DataComponent } from './components/data/data.component';
+import { OrdersComponent } from './components/orders/orders.component'; // Import the OrdersComponent
 
 const routes: Routes = [
   { path: '', redirectTo: 'order-links', pathMatch: 'full' }, // Default route to order-links
@@ -18,11 +19,12 @@ const routes: Routes = [
   { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'logout', component: LogoutComponent, title: 'Logout' },
-  { path: 'products', component: ProductsComponent, title: 'Products' }, // Ensure path is 'products'
+  { path: 'products', component: ProductsComponent, title: 'Products' },
   { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
   { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
   { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
   { path: 'data', component: DataComponent, title: 'Data' },
+  { path: 'orders', component: OrdersComponent, title: 'Orders' }, // New Orders route
   { path: '**', redirectTo: 'order-links' }, // Wildcard route to handle unmatched paths
 ];
 
