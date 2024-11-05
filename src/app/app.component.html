@@ -9,9 +9,13 @@
                 <mat-icon>description</mat-icon>
                 Order Links
             </a>
-            <a mat-button routerLink="/orders" routerLinkActive="active-link"> <!-- New Orders link -->
+            <a mat-button routerLink="/orders" routerLinkActive="active-link"> <!-- Orders link -->
                 <mat-icon>assignment</mat-icon>
                 Orders
+            </a>
+            <a mat-button routerLink="/preorders" routerLinkActive="active-link"> <!-- New PreOrders link -->
+                <mat-icon>assignment</mat-icon>
+                PreOrders
             </a>
             <a mat-button routerLink="/driver" routerLinkActive="active-link">
                 <mat-icon>local_shipping</mat-icon>
@@ -22,19 +26,19 @@
                 Data
             </a> -->
         </div>
-    
+
       <!--  <a routerLink="/home" class="logo">
             <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
         </a> -->
     </mat-toolbar>
 }
-    
+
 <div class="underline"></div> <!-- Thinner black line underlining the nav bar -->
-    
+
 <main>
     <router-outlet></router-outlet>
 </main>
-    
+
 <!-- Footer with Navigation and Social Icons-->
 <footer class="mat-drawer-container">
     <div class="container">

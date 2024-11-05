@@ -10,7 +10,8 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import { OrderExistsComponent } from './components/order-exists/order-exists.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { DataComponent } from './components/data/data.component';
-import { OrdersComponent } from './components/orders/orders.component'; // Import the OrdersComponent
+import { OrdersComponent } from './components/orders/orders.component';
+import { PreOrdersComponent } from './components/preorders/preorders.component'; // Import the PreOrdersComponent
 
 const routes: Routes = [
   { path: '', redirectTo: 'order-links', pathMatch: 'full' }, // Default route to order-links
@@ -24,7 +25,8 @@ const routes: Routes = [
   { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
   { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
   { path: 'data', component: DataComponent, title: 'Data' },
-  { path: 'orders', component: OrdersComponent, title: 'Orders' }, // New Orders route
+  { path: 'orders', component: OrdersComponent, title: 'Orders' },
+  { path: 'preorders', component: PreOrdersComponent, title: 'PreOrders' }, // New PreOrders route
   { path: '**', redirectTo: 'order-links' }, // Wildcard route to handle unmatched paths
 ];
 

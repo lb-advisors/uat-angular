@@ -1,0 +1,70 @@
+<div class="container preorders-container">
+  <div class="image-container">
+    <img src="assets/logo.png" alt="PFF Logo" class="logo">
+  </div>
+
+  <h2 class="page-title">PreOrders</h2>
+
+  <table class="table preorders-table">
+    <thead>
+      <tr>
+        <th>Dispatch Date</th>
+        <th class="wide-column">Customer Name</th>
+        <th>SOD ID</th>
+        <th class="wide-column">Description</th>
+        <th>Entry Time</th>
+        <th>Ordered Units</th>
+        <th>Unit Type</th>
+        <th>Unit Size</th>
+        <th>Vendor Name</th>
+        <th>Weight</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of preOrders; let i = index">
+        <td>{{ order.dispatchDate }}</td>
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.sodId }}</td>
+        <td>{{ order.descriptionMemo }}</td>
+        <td>{{ order.entryTime }}</td>
+        <td>{{ order.orderedUnits }}</td>
+        <td>{{ getUnitTypeLabel(order.unitType) }}</td>
+        <td>{{ order.unitSize }}</td>
+        <td>{{ order.vendorName }}</td>
+        
+        <!-- Editable Weight column with validation -->
+        <td>
+          <input
+            class="input-number"
+            type="number"
+            [(ngModel)]="weights[i]"
+            placeholder="Enter weight"
+            required
+            (blur)="validateWeight(i)"
+          />
+          <div *ngIf="weightErrors[i]" class="error">
+            {{ weightErrors[i] }}
+          </div>
+        </td>
+        
+        <!-- Editable Price column with validation -->
+        <td>
+          <input
+            class="input-number"
+            type="number"
+            [(ngModel)]="prices[i]"
+            placeholder="Enter price"
+            required
+            (blur)="validatePrice(i)"
+          />
+          <div *ngIf="priceErrors[i]" class="error">
+            {{ priceErrors[i] }}
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <button class="submit-btn" (click)="submitWeights()">Submit</button>
+</div>
