@@ -1,7 +1,20 @@
+// src/app/models/products.model.ts
+
 export interface InventoryItem {
-  compItemId: number; // Product ID (API uses compItemId)
-  compDescription: string; // Product Description
-  origin: string; // Product Origin (origin is a string, e.g., "Chile")
-  woh: number | null; // WOH (Weeks on Hand)
-  sixtySales: number; // Sixty Sales (API uses sixtySales with capital "S")
+  compItemId: number;
+  compDescription: string;
+  compInstructions?: string;
+  origin: string;
+  notes?: string;
+  woh?: number | null;
+  unitType?: string | number;
+  packSize?: string | number;
+  packLock?: number | null;
+  compCost?: number;
+  yield?: number;
+  laborPackCost?: number;
+  buyer?: string;
+  sixtySales?: number;
+  tenSales?: number;
+  preOrderHours?: number | null;
 }

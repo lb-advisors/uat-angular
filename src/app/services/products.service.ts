@@ -13,6 +13,10 @@ export class ProductService {
 
   constructor(private http: HttpClient) {}
 
+  getProductDetails(compItemId: number): Observable<any> {
+    return this.http.get<any>(`${this.apiUrl}/products/${compItemId}`);
+  }
+
   getProducts(
     page: number,
     size: number,
@@ -30,11 +34,22 @@ export class ProductService {
       .pipe(
         map((response) =>
           response.content.map((item) => ({
-            compItemId: item.compItemId, // Use compItemId to match the model
+            compItemId: item.compItemId,
             compDescription: item.compDescription,
+            compInstructions: item.compInstructions,
             origin: item.origin,
+            notes: item.notes,
             woh: item.woh,
-            sixtySales: item.sixtySales, // Use sixtySales to match the model
+            unitType: item.unitType,
+            packSize: item.packSize,
+            packLock: item.packLock,
+            compCost: item.compCost,
+            yield: item.yield,
+            laborPackCost: item.laborPackCost,
+            buyer: item.buyer,
+            sixtySales: item.sixtySales,
+            tenSales: item.tenSales,
+            preOrderHours: item.preOrderHours,
           }))
         )
       );
