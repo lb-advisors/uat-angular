@@ -5,7 +5,18 @@
 
   <h2 class="page-title">PreOrders</h2>
 
-  <table class="table preorders-table">
+  <!-- Vendor Name Selector/Filter -->
+  <div class="filters">
+    <div class="filter-group">
+      <label for="vendorFilter" class="filter-label">Vendor Name:</label>
+      <select id="vendorFilter" [(ngModel)]="selectedVendor" (change)="filterByVendor()">
+        <option value="">All Vendors</option>
+        <option *ngFor="let vendor of uniqueVendors" [value]="vendor">{{ vendor }}</option>
+      </select>
+    </div>
+  </div>
+
+  <table class="table preorders-table order-grid">
     <thead>
       <tr>
         <th>Dispatch Date</th>
@@ -13,16 +24,15 @@
         <th>SOD ID</th>
         <th class="wide-column">Description</th>
         <th>Entry Time</th>
-        <th>Ordered Units</th>
+        <th>Units</th>
         <th>Unit Type</th>
         <th>Unit Size</th>
-        <th>Vendor Name</th>
         <th>Weight</th>
         <th>Price</th>
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let order of preOrders; let i = index">
+      <tr *ngFor="let order of filteredPreOrders; let i = index">
         <td>{{ order.dispatchDate }}</td>
         <td>{{ order.customerName }}</td>
         <td>{{ order.sodId }}</td>
@@ -31,8 +41,7 @@
         <td>{{ order.orderedUnits }}</td>
         <td>{{ getUnitTypeLabel(order.unitType) }}</td>
         <td>{{ order.unitSize }}</td>
-        <td>{{ order.vendorName }}</td>
-        
+
         <!-- Editable Weight column with validation -->
         <td>
           <input
@@ -47,13 +56,13 @@
             {{ weightErrors[i] }}
           </div>
         </td>
-        
-        <!-- Editable Price column with validation -->
+
+        <!-- Editable Price column -->
         <td>
           <input
             class="input-number"
             type="number"
-            [(ngModel)]="prices[i]"
+            [(ngModel)]="order.price"
             placeholder="Enter price"
             required
             (blur)="validatePrice(i)"
