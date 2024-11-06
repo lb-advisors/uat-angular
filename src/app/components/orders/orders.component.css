@@ -1,0 +1,136 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    background-color: #f0f0f0; /* Light grey background for the body */
+    color: #000000; /* Black text color */
+}
+
+.container {
+    width: 90%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff; /* White background for the container */
+    color: #000000; /* Black text color for the container */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.underlined {
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-weight: bold;
+    color: #333;
+    text-decoration: underline;
+}
+
+.filters {
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    font-size: 18px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-label {
+    font-size: 18px;
+    margin: 0;
+}
+
+.filters select,
+.filters input {
+    font-size: 18px;
+    padding: 5px;
+    width: 150px;
+    margin: 0;
+    text-align: left;
+}
+
+.order-grid {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.order-grid th,
+.order-grid td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+    font-size: 16px;
+}
+
+.order-grid th {
+    background-color: #d3d3d3;
+    color: #333;
+    font-weight: bold;
+}
+
+.order-grid tbody tr:hover {
+    background-color: #f9f9f9; /* Light hover effect */
+}
+
+.copy-link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+@media (min-width: 601px) {
+    .filters {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+
+    .filter-group {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .filters select,
+    .filters input {
+        width: auto;
+    }
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        margin: 0px;
+        padding: 0px;
+    }
+
+    .filters {
+        flex-direction: column;
+    }
+
+    .filter-group {
+        width: 100%;
+        align-items: flex-start;
+    }
+
+    .filters label,
+    .filters select,
+    .filters input {
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    .order-grid th,
+    .order-grid td {
+        font-size: 14px;
+    }
+}
