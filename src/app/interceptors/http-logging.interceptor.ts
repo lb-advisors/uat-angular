@@ -17,28 +17,15 @@ export class HttpLoggingInterceptor implements HttpInterceptor {
     request: HttpRequest<unknown>,
     next: HttpHandler,
   ): Observable<HttpEvent<unknown>> {
-    const authToken = 'YOUR_AUTH_TOKEN_HERE';
-
-    // Clone the request and add the authorization header
-    const authReq = request.clone({
-      setHeaders: {
-        'X-New-Header': authToken,
-      },
-    });
-
-    // Pass the cloned request with the updated header to the next handler
-    return next.handle(authReq).pipe(
+    // Remove the authorization header modification
+    return next.handle(request).pipe(
       catchError((err: unknown) => {
         if (err instanceof HttpErrorResponse) {
           this.handleServerSideError(err);
         } else {
           this.snackBarService.showSnackBar('Error fetching data');
         }
-
-        // Re-throw the error to propagate it further
-        //return throwError(() => err);
-        // stop propagating error
-        return throwError(() => err); //EMPTY;
+        return throwError(() => err);
       }),
     );
   }

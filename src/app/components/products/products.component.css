@@ -4,19 +4,13 @@ body {
     padding: 0;
     display: flex;
     justify-content: center;
-    background-color: #f0f0f0; /* Light grey background for the body */
-    color: #000000; /* Black text color */
-}
-
-.main-container {
-    display: flex;
-    width: 100%;
+    background-color: #f0f0f0;
+    color: #000000;
 }
 
 .content {
     flex-grow: 1;
     padding: 20px;
-    margin-top: -10px; /* Reduce space between the container and the nav bar */
 }
 
 .container {
@@ -24,8 +18,8 @@ body {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
-    background-color: #ffffff; /* White background for the container */
-    color: #000000; /* Black text color for the container */
+    background-color: #ffffff;
+    color: #000000;
     border: 1px solid #ccc;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -39,45 +33,87 @@ body {
     align-items: center;
     padding: 10px;
     border-radius: 8px;
-    background-color: rgba(0, 16, 46, 1); /* Dark blue background */
+    background-color: rgba(0, 16, 46, 1);
 }
 
 .image-container img {
     max-width: 100%;
-    height: 100px; /* Adjust height as needed */
+    height: 100px;
     border-radius: 8px;
 }
 
 .inventory-title {
-    margin-top: 10px; /* Adjust margin to ensure equal white space */
-    margin-bottom: 10px; /* Adjust margin to ensure equal white space */
-    font-size: 32px; /* Make the text bigger */
-    text-decoration: none; /* Remove the underline */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 32px;
 }
 
-.filters {
-    margin: 20px 0;
+/* Updated Search Bar */
+.search-bar {
+    margin-bottom: 20px;
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px; /* Adds white space between each filter */
+    justify-content: center;
 }
 
-.filter-group {
+.search-bar input {
+    width: 100%;
+    max-width: 100%;
+    padding: 12px; /* Increased padding for a "fatter" look */
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Updated Filters Section */
+.filters {
     display: flex;
     align-items: center;
-    gap: 5px;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
 }
 
-.filters input {
+/* Updated Relevant Items Button */
+.relevant-items-btn {
+    background-color: #a9a9a9; /* Grey color */
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 10px; /* Moved down to align with dropdowns */
+}
+
+.relevant-items-btn:hover {
+    background-color: #888888; /* Darker grey on hover */
+}
+
+/* Filter Group and Dropdowns */
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.filter-group label {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+.filters select {
+    font-size: 16px;
     padding: 5px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    flex: 1 1 calc(50% - 20px); /* Adjust width to match column headers */
-    min-width: 120px;
+    min-width: 100px;
+    text-align: left;
 }
 
 .inventory-grid {
-    width: 100%; /* Ensure the grid takes full width */
+    width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
@@ -89,28 +125,9 @@ body {
 }
 
 .inventory-grid th {
-    background-color: #d3d3d3; /* Light grey background for table headers */
-    color: #333; /* Dark grey text color for table headers */
-    min-width: 75px; /* Prevent headers from wrapping too much */
-}
-
-.inventory-grid td.wrap {
-    white-space: normal;
-    word-wrap: break-word;
-}
-
-.shrinkable-header {
-    white-space: normal;
-    word-break: break-word;
-    text-align: center;
-}
-
-
-.product-column {
-    white-space: normal;
-    white-space: normal;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    background-color: #d3d3d3;
+    color: #333;
+    min-width: 75px;
 }
 
 @media (max-width: 500px) {
@@ -118,8 +135,8 @@ body {
         flex-direction: column;
     }
 
-    .filters input {
-        flex: 1 1 100%; /* Full width for inputs */
+    .search-bar input {
+        width: 100%;
         margin-bottom: 10px;
     }
 
@@ -128,58 +145,9 @@ body {
     }
 
     .container {
-        width: 100%; /* Full width for container on mobile */
-        margin: 0; /* Remove margin */
-        padding: 0; /* Remove padding */
-        border: 0; /* Remove border */
+        width: 100%;
+        margin: 0;
+        padding: 0;
+        border: 0;
     }
-
-    .inventory-grid {
-        width: 100%; /* Full width for grid on mobile */
-        margin: 0; /* Remove margin */
-        border: 0; /* Remove border */
-        display: table; /* Ensure proper table layout */
-    }
-
-
-
-    .product-column {
-        min-width: 50%; /* Ensure the product column takes up at least 50% */
-        max-width: 90%; /* Allow the product column to take up more space */
-        white-space: normal;
-        word-wrap: break-word;
-        overflow-wrap: break-word;
-    }
-
-   
-    .inventory-grid th {
-        min-width: 40px; /* Prevent headers from wrapping too much */
-    }
-  
-
-    .content {
-        width: 100%; /* Full width for container on mobile */
-        margin: 0; /* Remove margin */
-        padding: 0; /* Remove padding */
-        border: 0; /* Remove border */
-    }
-
-    .inventory-grid th:nth-child(3),
-    .inventory-grid td:nth-child(3) {
-      width: 15%; /* Wider description column */
-    }
-   
-    .image-container {
-        border-radius: 0%;
-    }
-    
 }
-
-  :host ::ng-deep .inventory-grid tbody tr {
-    cursor: pointer;
-  }
-  
-  :host ::ng-deep .inventory-grid tbody tr:hover {
-    background-color: #f0f0f0;
-  }
-  

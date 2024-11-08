@@ -4,9 +4,57 @@
         <img src="assets/logo.png" alt="Company Logo">
       </div>
       <h2 class="inventory-title">Products</h2>
-      <div class="filters">
+  
+      <!-- Search Bar Section -->
+      <div class="search-bar">
         <input type="text" placeholder="Search Products" (input)="onSearchChange($event)">
       </div>
+  
+      <!-- Filters Section -->
+      <div class="filters">
+        <!-- Relevant Items Toggle Button -->
+        <button (click)="toggleRelevantItemsFilter()" class="relevant-items-btn">
+          {{ showRelevantItems ? 'Show All Items' : 'Relevant Items' }}
+        </button>
+  
+        <!-- Origin Filter Dropdown -->
+        <div class="filter-group">
+          <label for="originFilter">Origin</label>
+          <select id="originFilter" (change)="onFilterChange()" [(ngModel)]="originFilter">
+            <option value="">All Origins</option>
+            <option *ngFor="let origin of uniqueOrigins" [value]="origin">{{ origin }}</option>
+          </select>
+        </div>
+  
+        <!-- Unit Type Filter Dropdown -->
+        <div class="filter-group">
+          <label for="unitTypeFilter">Unit Type</label>
+          <select id="unitTypeFilter" (change)="onFilterChange()" [(ngModel)]="unitTypeFilter">
+            <option value="">All Unit Types</option>
+            <option *ngFor="let unitType of uniqueUnitTypes" [value]="unitType">{{ unitType }}</option>
+          </select>
+        </div>
+  
+        <!-- Pack Size Filter Dropdown -->
+        <div class="filter-group">
+          <label for="packSizeFilter">Pack Size</label>
+          <select id="packSizeFilter" (change)="onFilterChange()" [(ngModel)]="packSizeFilter">
+            <option value="">All Pack Sizes</option>
+            <option *ngFor="let packSize of uniquePackSizes" [value]="packSize">{{ packSize }}</option>
+          </select>
+        </div>
+  
+        <!-- Buyer Filter Dropdown -->
+        <div class="filter-group">
+          <label for="buyerFilter">Buyer</label>
+          <select id="buyerFilter" (change)="onFilterChange()" [(ngModel)]="buyerFilter">
+            <option value="">All Buyers</option>
+            <option *ngFor="let buyer of uniqueBuyers" [value]="buyer">{{ buyer }}</option>
+          </select>
+        </div>
+      </div>
+  
+      <!-- Inventory Grid Table -->
       <table class="inventory-grid">
         <thead>
           <tr>

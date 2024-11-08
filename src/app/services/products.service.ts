@@ -1,9 +1,10 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { InventoryItem } from '../models/products.model';
+import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root',
@@ -11,10 +12,23 @@ import { InventoryItem } from '../models/products.model';
 export class ProductService {
   private apiUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) {}
+  constructor(
+    private http: HttpClient,
+    private authService: AuthService
+  ) {}
+
+  private getHeaders(): HttpHeaders {
+    const token = this.authService.getToken();
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+  }
 
   getProductDetails(compItemId: number): Observable<any> {
-    return this.http.get<any>(`${this.apiUrl}/products/${compItemId}`);
+    return this.http.get<any>(
+      `${this.apiUrl}/products/${compItemId}`,
+      { headers: this.getHeaders() }
+    );
   }
 
   getProducts(
@@ -27,9 +41,12 @@ export class ProductService {
       .set('size', size.toString())
       .set('search', searchTerm);
 
+    console.log('Fetching products with token:', this.authService.getToken()); // Debug log
+
     return this.http
       .get<{ content: InventoryItem[] }>(`${this.apiUrl}/products`, {
         params,
+        headers: this.getHeaders()
       })
       .pipe(
         map((response) =>

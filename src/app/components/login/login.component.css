@@ -1,0 +1,52 @@
+/* Center the entire login container in the viewport */
+.login-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh; /* Full viewport height for vertical centering */
+    margin: 0 auto;
+    padding-top: 0; /* Remove extra space above login text */
+}
+
+/* Center the title text */
+h1 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+/* Style the form fields and center-align them below the title */
+mat-form-field {
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 16px;
+}
+
+/* Apply the dark blue color and width settings to the button */
+button {
+    width: 100%;
+    max-width: 300px;
+    background-color: #003366 !important; /* Dark blue color with !important */
+    color: white !important; /* White text with !important */
+    margin-top: 16px;
+}
+
+button:hover {
+    background-color: #002855 !important; /* Slightly darker blue on hover */
+}
+
+/* Center the logo */
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+    background-color: #003366 !important; /* Dark blue color with !important */
+    
+}
+
+.logo {
+    height: 100px;
+    width: auto;
+    
+}
