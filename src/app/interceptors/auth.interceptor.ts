@@ -13,6 +13,7 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     // Get the token from AuthService
     const token = this.authService.getToken();
+    console.log('Token from AuthService:', token); // Debug: Check if token is available
 
     // If the token exists, clone the request and add the Authorization header
     if (token) {
@@ -27,8 +28,15 @@ export class AuthInterceptor implements HttpInterceptor {
       catchError((error: HttpErrorResponse) => {
         // Check if the error status is 401 (Unauthorized)
         if (error.status === 401) {
-          // Redirect to the login page without clearing the token (for testing)
+          console.warn('401 Unauthorized error caught in interceptor'); // Debug: Log 401 error
+          // Redirect to the login page without clearing the token (for testing purposes)
           this.router.navigate(['/login']);
+        } else if (error.status === 403) {
+          // Optional: Handle forbidden errors separately if needed
+          console.warn('403 Forbidden - Access Denied');
+        } else {
+          // Log other errors
+          console.error('HTTP Error:', error);
         }
         // Pass the error to the caller
         return throwError(error);

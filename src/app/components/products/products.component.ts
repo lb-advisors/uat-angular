@@ -60,38 +60,37 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    console.log('Loading data...');
+    console.log('Starting data load for page:', this.page); // Debug: Log page number
     this.productService.getProducts(this.page, this.size, this.searchTerm).subscribe({
       next: (products: InventoryItem[]) => {
+        console.log('API Data Received:', products); // Debug: Check received data
         const currentData = this.inventoryItemsSubject.value;
         const newData = products.filter(
           (item) => !currentData.some((currentItem) => currentItem.compItemId === item.compItemId)
         );
-
-        // Apply relevant items filter if toggled on
+  
         const filteredData = this.showRelevantItems
           ? newData.filter((item) => item.tenSales && item.tenSales > 0)
           : newData;
-
-        // Apply additional filters
+  
         const fullyFilteredData = filteredData.filter((item) => 
           (this.originFilter ? item.origin === this.originFilter : true) &&
           (this.unitTypeFilter ? item.unitType === this.unitTypeFilter : true) &&
           (this.packSizeFilter ? item.packSize === this.packSizeFilter : true) &&
           (this.buyerFilter ? item.buyer === this.buyerFilter : true)
         );
-
-        // Populate unique values for dropdowns
+  
         this.populateUniqueDropdowns(products);
-
-        console.log('API Data Received:', products);
+  
+        console.log('Filtered Data:', fullyFilteredData); // Debug: Check filtered data
         this.inventoryItemsSubject.next([...currentData, ...fullyFilteredData]);
       },
       error: (err) => {
-        console.error('Error fetching products:', err);
+        console.error('Error fetching products:', err); // Log any error for troubleshooting
       },
     });
   }
+  
 
   getUnitType(unitType?: number): string {
     switch (unitType) {

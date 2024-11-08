@@ -17,7 +17,7 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { GlobalErrorHandlerService } from './app/services/global-error-handler.service';
 import { ErrorHandler, importProvidersFrom } from '@angular/core';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { HttpLoggingInterceptor } from './app/core/interceptors/http-logging.interceptor';
+import { HttpLoggingInterceptor } from 'src/app/interceptors/http-logging.interceptor';
 import { AuthInterceptor } from './app/interceptors/auth.interceptor';
 import { AuthService } from './app/services/auth.service';
 

@@ -48,15 +48,15 @@ export class LoginComponent {
 
     this.loading = true;
     this.errorMessage = null;
-
     const { username, password } = this.loginForm.value;
 
-    // Login with the plaintext password
+    // Directly send the plaintext password for login
     this.http.post<{ token: string }>(this.loginApiUrl, { username, password }).subscribe({
       next: (loginResponse) => {
         // Save the token to both sessionStorage and localStorage via AuthService
         this.authService.saveToken(loginResponse.token);
-        
+        console.log('Login successful, token saved:', loginResponse.token); // Debug: Log token
+
         // Navigate to the products page
         this.router.navigate(['/products']);
       },
