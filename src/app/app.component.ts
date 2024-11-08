@@ -1,27 +1,33 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { isDevMode } from '@angular/core';
-import { MatIcon } from '@angular/material/icon';
+import { ChangeDetectionStrategy, Component, OnInit, isDevMode } from '@angular/core';
 import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { MatToolbar } from '@angular/material/toolbar';
-import { environment } from 'src/environments/environment';
 import { CommonModule } from '@angular/common';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatIconModule } from '@angular/material/icon';
+import { environment } from 'src/environments/environment';
 
 @Component({
   standalone: true,
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [CommonModule, MatToolbar, RouterLink, RouterLinkActive, MatIcon, RouterOutlet],
+  imports: [
+    CommonModule,
+    MatToolbarModule,
+    RouterLink,
+    RouterLinkActive,
+    MatIconModule,
+    RouterOutlet
+  ],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit { // Renamed to AppComponent
   isDevMode: boolean = isDevMode();
   apiUrl = environment.apiUrl;
   showWarning = false;
   isOrderForm: boolean = false;
 
   constructor(private router: Router) {
-    // check that UAT is not using the prod backend
+    // Check that UAT is not using the prod backend
     if (this.isDevMode && this.apiUrl.includes('prod')) {
       this.showWarning = true;
       alert('WARNING: Angular is in Dev mode but connected to production !!!');
@@ -29,7 +35,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    // check if we are on the order form
+    // Check if we are on the order form
     this.router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         const currentRoute = event.urlAfterRedirects;

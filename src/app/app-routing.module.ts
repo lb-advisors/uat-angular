@@ -1,5 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
+
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrderLinksComponent } from './components/order-links/order-links.component';
@@ -11,10 +14,10 @@ import { OrderExistsComponent } from './components/order-exists/order-exists.com
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { DataComponent } from './components/data/data.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { PreOrdersComponent } from './components/preorders/preorders.component'; // Import the PreOrdersComponent
+import { PreOrdersComponent } from './components/preorders/preorders.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'order-links', pathMatch: 'full' }, // Default route to order-links
+  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route to login
   { path: 'home', component: HomeComponent, title: 'Home' },
   { path: 'driver', component: DriverRouteComponent, title: 'Driver Route' },
   { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },
@@ -26,12 +29,15 @@ const routes: Routes = [
   { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
   { path: 'data', component: DataComponent, title: 'Data' },
   { path: 'orders', component: OrdersComponent, title: 'Orders' },
-  { path: 'preorders', component: PreOrdersComponent, title: 'PreOrders' }, // New PreOrders route
-  { path: '**', redirectTo: 'order-links' }, // Wildcard route to handle unmatched paths
+  { path: 'preorders', component: PreOrdersComponent, title: 'PreOrders' },
+  { path: '**', redirectTo: 'login' } // Wildcard route to handle unmatched paths, redirect to login
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ]
 })
 export class AppRoutingModule {}
