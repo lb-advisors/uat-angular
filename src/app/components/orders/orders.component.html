@@ -9,7 +9,7 @@
       <div class="filter-group">
         <label for="company-filter" class="filter-label">Company:</label>
         <select id="company-filter" formControlName="company">
-          <option *ngFor="let company of companies$ | async" [ngValue]="company">{{ company.name }}</option>
+          <option *ngFor="let company of companies$ | async" [value]="company">{{ company.name }}</option>
         </select>
       </div>
 
@@ -17,7 +17,7 @@
       <div class="filter-group">
         <label for="salesname-filter" class="filter-label">Sales Rep:</label>
         <select id="salesname-filter" formControlName="salesPerson">
-          <option *ngFor="let salesperson of salesPersons$ | async" [ngValue]="salesperson">{{ salesperson.name }}</option>
+          <option *ngFor="let salesperson of salesPersons$ | async" [value]="salesperson">{{ salesperson.name }}</option>
         </select>
       </div>
 
