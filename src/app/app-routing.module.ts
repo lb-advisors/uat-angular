@@ -17,7 +17,7 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { PreOrdersComponent } from './components/preorders/preorders.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' }, // Default route to login
+  { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'Home' },
   { path: 'driver', component: DriverRouteComponent, title: 'Driver Route' },
   { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },

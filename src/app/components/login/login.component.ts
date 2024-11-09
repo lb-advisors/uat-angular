@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/services/auth.service';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -8,7 +8,6 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-// Add this import
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -22,7 +21,8 @@ import { environment } from 'src/environments/environment';
     MatInputModule,
     MatButtonModule,
     ReactiveFormsModule,
-  ]
+    RouterModule, // Added RouterModule here
+  ],
 })
 export class LoginComponent {
   loginForm: FormGroup;
@@ -56,7 +56,7 @@ export class LoginComponent {
       next: (loginResponse) => {
         this.authService.saveToken(loginResponse.token);
         console.log('Login successful, token saved:', loginResponse.token);
-        this.router.navigate(['/products']);
+        this.router.navigate(['/products']); // Navigate to /products on success
       },
       error: (loginError) => {
         this.loading = false;

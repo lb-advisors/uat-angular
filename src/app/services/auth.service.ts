@@ -33,11 +33,13 @@ export class AuthService {
   isTokenValid(): boolean {
     const token = this.getToken();
     if (!token) {
+      console.warn('No token found');
       return false;
     }
 
     const payload = this.decodeToken(token);
     if (!payload || !payload.exp) {
+      console.warn('Invalid token payload');
       return false;
     }
 
@@ -53,7 +55,9 @@ export class AuthService {
     try {
       const payloadPart = token.split('.')[1];
       const decodedPayload = atob(payloadPart);
-      return JSON.parse(decodedPayload);
+      const parsedPayload = JSON.parse(decodedPayload);
+      console.log('Decoded token payload:', parsedPayload); // Debug: Log decoded payload
+      return parsedPayload;
     } catch (error) {
       console.error('Failed to decode token:', error);
       return null;
