@@ -1,7 +1,8 @@
 <div class="container preorders-container">
-  <div class="image-container">
+  <!-- Logo with Navigation to Home -->
+  <a [routerLink]="['/home']">
     <img src="assets/logo.png" alt="PFF Logo" class="logo">
-  </div>
+  </a>
 
   <h2 class="page-title">PreOrders</h2>
 
@@ -16,6 +17,7 @@
     </div>
   </div>
 
+  <!-- PreOrders Table -->
   <table class="table preorders-table order-grid">
     <thead>
       <tr>
@@ -57,7 +59,7 @@
           </div>
         </td>
 
-        <!-- Editable Price column -->
+        <!-- Editable Price column with validation -->
         <td>
           <input
             class="input-number"
@@ -75,5 +77,6 @@
     </tbody>
   </table>
 
+  <!-- Submit Button -->
   <button class="submit-btn" (click)="submitWeights()">Submit</button>
 </div>
