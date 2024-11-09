@@ -31,7 +31,7 @@ export class OrderLinksComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private orderLinksService: OrderLinksService,
+    private orderLinksService: OrderLinksService
   ) {}
 
   ngOnInit(): void {
@@ -41,62 +41,64 @@ export class OrderLinksComponent implements OnInit {
       searchText: '',
     });
 
+    // Load companies and set default to 'PFF'
     this.companies$ = this.orderLinksService.getCompanies().pipe(
       tap((companies) => {
         const defaultCompany = companies.find((company) => company.name === 'PFF');
         if (defaultCompany) {
           this.form.get('company')!.setValue(defaultCompany);
         }
-      }),
+      })
     );
 
-    this.form
-      .get('company')!
-      .valueChanges.pipe(
-        switchMap((company) =>
-          this.orderLinksService.getSalesPersons(company.id).pipe(
-            tap((salesreps) => {
-              salesreps.sort((a, b) => a.name.localeCompare(b.name));
-              this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
-                observer.next(salesreps);
-                observer.complete();
-              });
-              if (salesreps.length > 0) {
-                this.form.get('salesPerson')!.setValue(salesreps[0]);
-              }
-            }),
-          ),
-        ),
+    // Load salespersons based on selected company
+    this.form.get('company')!.valueChanges.pipe(
+      switchMap((company) =>
+        this.orderLinksService.getSalesPersons(company.id).pipe(
+          tap((salesreps) => {
+            salesreps.sort((a, b) => a.name.localeCompare(b.name));
+            this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+              observer.next(salesreps);
+              observer.complete();
+            });
+            if (salesreps.length > 0) {
+              this.form.get('salesPerson')!.setValue(salesreps[0]);
+            }
+          })
+        )
       )
-      .subscribe();
+    ).subscribe();
 
-    this.form
-      .get('salesPerson')!
-      .valueChanges.pipe(
-        switchMap((salesrep) => {
-          const company = this.form.get('company')!.value;
-          return this.orderLinksService.getCustomers(company.id, salesrep.name);
-        }),
-      )
-      .subscribe({
-        next: (customers) => {
-          this.customers = [...customers];
-          this.customers.sort((a, b) => a.name.localeCompare(b.name));
-          this.filteredCustomers = [...this.customers];
-          this.cdr.markForCheck();
-        },
-      });
+    // Load customers based on selected salesperson
+    this.form.get('salesPerson')!.valueChanges.pipe(
+      switchMap((salesrep) => {
+        const company = this.form.get('company')!.value;
+        return this.orderLinksService.getCustomers(company.id, salesrep.name);
+      })
+    ).subscribe({
+      next: (customers) => {
+        this.customers = [...customers];
+        this.customers.sort((a, b) => a.name.localeCompare(b.name));
+        this.filteredCustomers = [...this.customers];
+        this.cdr.markForCheck();
+      }
+    });
 
+    // Apply search filter on customer names
     this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
-      this.filteredCustomers = this.customers.filter((customer) => customer.name.toLowerCase().includes(searchText.toLowerCase()));
+      this.filteredCustomers = this.customers.filter((customer) =>
+        customer.name.toLowerCase().includes(searchText.toLowerCase())
+      );
     });
   }
 
+  // Generate Order Link
   generateLink(customerId: number): string {
     const baseUrl = window.location.href.replace('/order-links', '');
     return `${baseUrl}/customer/${customerId}/order-form`;
   }
 
+  // Copy Order Link to Clipboard
   copyLink(customerId: number): void {
     const link = this.generateLink(customerId);
     navigator.clipboard
