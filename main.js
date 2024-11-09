@@ -4141,33 +4141,34 @@ class AuthInterceptor {
   constructor(authService, router) {
     this.authService = authService;
     this.router = router;
+    // Define paths to exclude from authentication
+    this.excludedPaths = [/order-form/]; // Matches any URL containing "order-form"
   }
   intercept(request, next) {
-    // Get the token from AuthService
-    const token = this.authService.getToken();
-    console.log('Token from AuthService:', token); // Debug: Check if token is available
-    // If the token exists, clone the request and add the Authorization header
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+    // Check if the request URL matches an excluded path
+    const isExcluded = this.excludedPaths.some(pattern => pattern.test(request.url));
+    // If the request is not excluded, add the Authorization header if a token is available
+    if (!isExcluded) {
+      const token = this.authService.getToken();
+      console.log('Token from AuthService:', token); // Debug: Check if token is available
+      if (token) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
     }
     return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
-      // Check if the error status is 401 (Unauthorized)
-      if (error.status === 401) {
+      // Redirect to login on 401 Unauthorized errors, only if the route is not excluded
+      if (error.status === 401 && !isExcluded) {
         console.warn('401 Unauthorized error caught in interceptor'); // Debug: Log 401 error
-        // Redirect to the login page without clearing the token (for testing purposes)
         this.router.navigate(['/login']);
       } else if (error.status === 403) {
-        // Optional: Handle forbidden errors separately if needed
         console.warn('403 Forbidden - Access Denied');
       } else {
-        // Log other errors
         console.error('HTTP Error:', error);
       }
-      // Pass the error to the caller
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.throwError)(error);
     }));
   }
