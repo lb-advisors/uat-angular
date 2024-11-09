@@ -1,3 +1,12 @@
+export interface Profile {
+    profileDescription: string;
+    unitType: string;
+    packSize: number;
+    quantity: number;
+    id: number;
+    salesPrice: number;
+}
+
 export interface Orders {
     id: number;
     customerId: number | null;
@@ -9,12 +18,7 @@ export interface Orders {
     shipToId: number | null;
     shipToName: string | null;
     totalPrice: number;
-    profiles: string | null;
-    profileDescription: string;
-    unitType: string;
-    packSize: number;
-    price: number;
-    quantity: number;
+    profiles: Profile[]; // Array of Profile objects
     createdBy: string;
     createdAt: string; // Date string in ISO format
     lastUpdatedBy: string;

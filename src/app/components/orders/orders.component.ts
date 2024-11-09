@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -25,6 +25,7 @@ export class OrdersComponent implements OnInit {
   salesPersons$!: Observable<SalesRep[]>;
   orders: Orders[] = []; // Array to hold the orders data
   filteredOrders: Orders[] = []; // Array to hold filtered orders data
+  token = 'eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcmV2Iiwicm9sZXMiOlsiUk9MRV9BRE1JTiJdLCJzYWxlc19yZXBfbmFtZSI6IkFyZXYgU2FsZXMiLCJpYXQiOjE3MzExMTEyOTgsImV4cCI6MTczMTM3MDQ5OH0.trzeFkMcPHJEgxcuvZ-pyb98WkLin-derblQCGCYqGM';
 
   constructor(
     private http: HttpClient,
@@ -79,7 +80,13 @@ export class OrdersComponent implements OnInit {
       switchMap((salesrep) => {
         const company = this.form.get('company')!.value;
         const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
-        return this.http.get<Orders[]>(apiUrl);
+
+        // Set headers with the authorization token
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${this.token}`
+        });
+
+        return this.http.get<Orders[]>(apiUrl, { headers });
       }),
       tap((orders) => {
         this.orders = orders;
