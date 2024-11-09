@@ -8,37 +8,40 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
+  // Define paths to exclude from authentication
+  private excludedPaths: RegExp[] = [/order-form/]; // Matches any URL containing "order-form"
+
   constructor(private authService: AuthService, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Get the token from AuthService
-    const token = this.authService.getToken();
-    console.log('Token from AuthService:', token); // Debug: Check if token is available
+    // Check if the request URL matches an excluded path
+    const isExcluded = this.excludedPaths.some((pattern) => pattern.test(request.url));
 
-    // If the token exists, clone the request and add the Authorization header
-    if (token) {
-      request = request.clone({
-        setHeaders: {
-          Authorization: `Bearer ${token}`
-        }
-      });
+    // If the request is not excluded, add the Authorization header if a token is available
+    if (!isExcluded) {
+      const token = this.authService.getToken();
+      console.log('Token from AuthService:', token); // Debug: Check if token is available
+
+      if (token) {
+        request = request.clone({
+          setHeaders: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+      }
     }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
-        // Check if the error status is 401 (Unauthorized)
-        if (error.status === 401) {
+        // Redirect to login on 401 Unauthorized errors, only if the route is not excluded
+        if (error.status === 401 && !isExcluded) {
           console.warn('401 Unauthorized error caught in interceptor'); // Debug: Log 401 error
-          // Redirect to the login page without clearing the token (for testing purposes)
           this.router.navigate(['/login']);
         } else if (error.status === 403) {
-          // Optional: Handle forbidden errors separately if needed
           console.warn('403 Forbidden - Access Denied');
         } else {
-          // Log other errors
           console.error('HTTP Error:', error);
         }
-        // Pass the error to the caller
         return throwError(error);
       })
     );

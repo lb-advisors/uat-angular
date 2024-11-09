@@ -1,70 +1,73 @@
 <form [formGroup]="form">
-    <div class="container">
-      <app-logo [companyId]="form.get('company')?.value?.id"></app-logo>
-  
-      <h2 class="page-title">Orders</h2>
-  
-      <div class="filters">
-        <!-- Company Filter -->
-        <div class="filter-group">
-          <label for="company-filter" class="filter-label">Company:</label>
-          <select id="company-filter" formControlName="company">
-            <option *ngFor="let company of companies$ | async" [ngValue]="company">{{ company.name }}</option>
-          </select>
-        </div>
-  
-        <!-- Sales Rep Filter -->
-        <div class="filter-group">
-          <label for="salesname-filter" class="filter-label">Sales Rep:</label>
-          <select id="salesname-filter" formControlName="salesPerson">
-            <option *ngFor="let salesperson of salesPersons$ | async" [ngValue]="salesperson">{{ salesperson.name }}</option>
-          </select>
-        </div>
-  
-        <!-- Customer Name Filter -->
-        <div class="filter-group">
-          <label for="customer-filter" class="filter-label">Customer Name:</label>
-          <input
-            id="customer-filter"
-            type="text"
-            formControlName="customerName"
-            placeholder="Search Customer Name"
-          />
-        </div>
+  <div class="container">
+    <app-logo [companyId]="form.get('company')?.value?.id"></app-logo>
+
+    <h2 class="page-title">Orders</h2>
+
+    <div class="filters">
+      <!-- Company Filter -->
+      <div class="filter-group">
+        <label for="company-filter" class="filter-label">Company:</label>
+        <select id="company-filter" formControlName="company">
+          <option *ngFor="let company of companies$ | async" [value]="company">{{ company.name }}</option>
+        </select>
       </div>
-  
-      <table class="order-grid">
-        <thead>
-          <tr>
-            <th>Order ID</th>
-            <th>Delivery Date</th>
-            <th>Customer Name</th>
-            <!-- Hidden Columns
-            <th>Ship To Name</th>
-            <th>Profile Description</th>
-            <th>Unit Type</th>
-            <th>Pack Size</th>
-            <th>Quantity</th>
-            -->
-            <th>Total Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let item of filteredOrders">
-            <td>{{ item.id }}</td>
-            <td>{{ item.deliveryDate | date }}</td>
-            <td>{{ item.customerName }}</td>
-            <!-- Hidden Columns
-            <td>{{ item.shipToName }}</td>
-            <td>{{ item.profileDescription }}</td>
-            <td>{{ item.unitType }}</td>
-            <td>{{ item.packSize }}</td>
-            <td>{{ item.quantity }}</td>
-            -->
-            <td>{{ item.totalPrice | currency }}</td>
-          </tr>
-        </tbody>
-      </table>
+
+      <!-- Sales Rep Filter -->
+      <div class="filter-group">
+        <label for="salesname-filter" class="filter-label">Sales Rep:</label>
+        <select id="salesname-filter" formControlName="salesPerson">
+          <option *ngFor="let salesperson of salesPersons$ | async" [value]="salesperson">{{ salesperson.name }}</option>
+        </select>
+      </div>
+
+      <!-- Customer Name Filter -->
+      <div class="filter-group">
+        <label for="customer-filter" class="filter-label">Customer Name:</label>
+        <input
+          id="customer-filter"
+          type="text"
+          formControlName="customerName"
+          placeholder="Search Customer Name"
+        />
+      </div>
     </div>
-  </form>
-  
+
+    <table class="order-grid">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Delivery Date</th>
+          <th>Customer Name</th>
+          <th>Ship To Name</th>
+          <th>Total Price</th>
+          <th *ngFor="let profile of filteredOrders[0]?.profiles">Profile Description</th>
+          <th *ngFor="let profile of filteredOrders[0]?.profiles">Unit Type</th>
+          <th *ngFor="let profile of filteredOrders[0]?.profiles">Pack Size</th>
+          <th *ngFor="let profile of filteredOrders[0]?.profiles">Quantity</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of filteredOrders">
+          <td>{{ item.id }}</td>
+          <td>{{ item.deliveryDate | date }}</td>
+          <td>{{ item.customerName }}</td>
+          <td>{{ item.shipToName }}</td>
+          <td>{{ item.totalPrice | currency }}</td>
+          <td *ngFor="let profile of item.profiles">
+            {{ profile.profileDescription }}
+          </td>
+          <td *ngFor="let profile of item.profiles">
+            {{ profile.unitType }}
+          </td>
+          <td *ngFor="let profile of item.profiles">
+            {{ profile.packSize }}
+          </td>
+          <td *ngFor="let profile of item.profiles">
+            {{ profile.quantity }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</form>
