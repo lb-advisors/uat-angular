@@ -50,9 +50,7 @@ const routes = [{
   path: '',
   redirectTo: 'login',
   pathMatch: 'full'
-},
-// Default route to login
-{
+}, {
   path: 'home',
   component: _components_home_home_component__WEBPACK_IMPORTED_MODULE_3__.HomeComponent,
   title: 'Home'
@@ -1263,6 +1261,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   LoginComponent: () => (/* binding */ LoginComponent)
 /* harmony export */ });
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 5072);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ 4456);
 /* harmony import */ var _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/material/form-field */ 4950);
 /* harmony import */ var _angular_material_input__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material/input */ 5541);
@@ -1271,7 +1270,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/environments/environment */ 5312);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common/http */ 6443);
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 5072);
 /* harmony import */ var src_app_services_auth_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/auth.service */ 4796);
 
 
@@ -1279,7 +1277,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-// Add this import
 
 
 
@@ -1290,9 +1287,24 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function LoginComponent_div_16_Template(rf, ctx) {
+
+function LoginComponent_span_15_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 9);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "Login");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function LoginComponent_span_16_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "span");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1, "Logging in...");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
+  }
+}
+function LoginComponent_div_17_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 10);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
   }
@@ -1333,7 +1345,7 @@ class LoginComponent {
       next: loginResponse => {
         this.authService.saveToken(loginResponse.token);
         console.log('Login successful, token saved:', loginResponse.token);
-        this.router.navigate(['/products']);
+        this.router.navigate(['/products']); // Navigate to /products on success
       },
       error: loginError => {
         this.loading = false;
@@ -1353,9 +1365,9 @@ class LoginComponent {
       selectors: [["app-login"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
-      decls: 17,
-      vars: 3,
-      consts: [[1, "logo-container"], ["src", "assets/logo.png", "alt", "Company Logo", 1, "logo"], [1, "login-container"], [3, "ngSubmit", "formGroup"], ["appearance", "fill"], ["matInput", "", "type", "text", "formControlName", "username", "placeholder", "Enter your username", "autocomplete", "username"], ["matInput", "", "type", "password", "formControlName", "password", "placeholder", "Enter your password", "autocomplete", "current-password"], ["mat-raised-button", "", "color", "primary", "type", "submit", 3, "disabled"], ["class", "error-message", 4, "ngIf"], [1, "error-message"]],
+      decls: 18,
+      vars: 5,
+      consts: [[1, "logo-container"], ["src", "assets/logo.png", "alt", "Company Logo", 1, "logo"], [1, "login-container"], [3, "ngSubmit", "formGroup"], ["appearance", "fill"], ["matInput", "", "type", "text", "formControlName", "username", "placeholder", "Enter your username", "autocomplete", "username"], ["matInput", "", "type", "password", "formControlName", "password", "placeholder", "Enter your password", "autocomplete", "current-password"], ["mat-raised-button", "", "color", "primary", "type", "submit", 3, "disabled"], [4, "ngIf"], ["class", "error-message", 4, "ngIf"], [1, "error-message"]],
       template: function LoginComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0);
@@ -1379,9 +1391,9 @@ class LoginComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](13, "input", 6);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](14, "button", 7);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](15, " Login ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](15, LoginComponent_span_15_Template, 2, 0, "span", 8)(16, LoginComponent_span_16_Template, 2, 0, "span", 8);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](16, LoginComponent_div_16_Template, 2, 1, "div", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](17, LoginComponent_div_17_Template, 2, 1, "div", 9);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]();
         }
         if (rf & 2) {
@@ -1389,11 +1401,15 @@ class LoginComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("formGroup", ctx.loginForm);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](9);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("disabled", ctx.loading);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", !ctx.loading);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.loading);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.errorMessage);
         }
       },
-      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_6__.NgIf, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__.MatFormFieldModule, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__.MatLabel, _angular_material_input__WEBPACK_IMPORTED_MODULE_8__.MatInputModule, _angular_material_input__WEBPACK_IMPORTED_MODULE_8__.MatInput, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatButtonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatButton, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControlName],
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_6__.NgIf, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__.MatFormFieldModule, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__.MatFormField, _angular_material_form_field__WEBPACK_IMPORTED_MODULE_7__.MatLabel, _angular_material_input__WEBPACK_IMPORTED_MODULE_8__.MatInputModule, _angular_material_input__WEBPACK_IMPORTED_MODULE_8__.MatInput, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatButtonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_9__.MatButton, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormControlName, _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule],
       styles: ["\n\n.login-container[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    justify-content: center;\n    height: 100vh; \n\n    margin: 0 auto;\n    padding-top: 0; \n\n}\n\n\n\nh1[_ngcontent-%COMP%] {\n    margin-top: 0;\n    margin-bottom: 20px;\n    text-align: center;\n}\n\n\n\nmat-form-field[_ngcontent-%COMP%] {\n    width: 100%;\n    max-width: 300px;\n    margin-bottom: 16px;\n}\n\n\n\nbutton[_ngcontent-%COMP%] {\n    width: 100%;\n    max-width: 300px;\n    background-color: #003366 !important; \n\n    color: white !important; \n\n    margin-top: 16px;\n}\n\nbutton[_ngcontent-%COMP%]:hover {\n    background-color: #002855 !important; \n\n}\n\n\n\n.logo-container[_ngcontent-%COMP%] {\n    display: flex;\n    justify-content: center;\n    margin-top: 20px;\n    background-color: #003366 !important; \n\n    \n}\n\n.logo[_ngcontent-%COMP%] {\n    height: 100px;\n    width: auto;\n    \n}\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9sb2dpbi9sb2dpbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLHNEQUFzRDtBQUN0RDtJQUNJLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsbUJBQW1CO0lBQ25CLHVCQUF1QjtJQUN2QixhQUFhLEVBQUUsZ0RBQWdEO0lBQy9ELGNBQWM7SUFDZCxjQUFjLEVBQUUsd0NBQXdDO0FBQzVEOztBQUVBLDBCQUEwQjtBQUMxQjtJQUNJLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsa0JBQWtCO0FBQ3RCOztBQUVBLGdFQUFnRTtBQUNoRTtJQUNJLFdBQVc7SUFDWCxnQkFBZ0I7SUFDaEIsbUJBQW1CO0FBQ3ZCOztBQUVBLCtEQUErRDtBQUMvRDtJQUNJLFdBQVc7SUFDWCxnQkFBZ0I7SUFDaEIsb0NBQW9DLEVBQUUsb0NBQW9DO0lBQzFFLHVCQUF1QixFQUFFLCtCQUErQjtJQUN4RCxnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxvQ0FBb0MsRUFBRSxrQ0FBa0M7QUFDNUU7O0FBRUEsb0JBQW9CO0FBQ3BCO0lBQ0ksYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixnQkFBZ0I7SUFDaEIsb0NBQW9DLEVBQUUsb0NBQW9DOztBQUU5RTs7QUFFQTtJQUNJLGFBQWE7SUFDYixXQUFXOztBQUVmIiwic291cmNlc0NvbnRlbnQiOlsiLyogQ2VudGVyIHRoZSBlbnRpcmUgbG9naW4gY29udGFpbmVyIGluIHRoZSB2aWV3cG9ydCAqL1xuLmxvZ2luLWNvbnRhaW5lciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gICAgaGVpZ2h0OiAxMDB2aDsgLyogRnVsbCB2aWV3cG9ydCBoZWlnaHQgZm9yIHZlcnRpY2FsIGNlbnRlcmluZyAqL1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIHBhZGRpbmctdG9wOiAwOyAvKiBSZW1vdmUgZXh0cmEgc3BhY2UgYWJvdmUgbG9naW4gdGV4dCAqL1xufVxuXG4vKiBDZW50ZXIgdGhlIHRpdGxlIHRleHQgKi9cbmgxIHtcbiAgICBtYXJnaW4tdG9wOiAwO1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBTdHlsZSB0aGUgZm9ybSBmaWVsZHMgYW5kIGNlbnRlci1hbGlnbiB0aGVtIGJlbG93IHRoZSB0aXRsZSAqL1xubWF0LWZvcm0tZmllbGQge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIG1heC13aWR0aDogMzAwcHg7XG4gICAgbWFyZ2luLWJvdHRvbTogMTZweDtcbn1cblxuLyogQXBwbHkgdGhlIGRhcmsgYmx1ZSBjb2xvciBhbmQgd2lkdGggc2V0dGluZ3MgdG8gdGhlIGJ1dHRvbiAqL1xuYnV0dG9uIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBtYXgtd2lkdGg6IDMwMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDMzNjYgIWltcG9ydGFudDsgLyogRGFyayBibHVlIGNvbG9yIHdpdGggIWltcG9ydGFudCAqL1xuICAgIGNvbG9yOiB3aGl0ZSAhaW1wb3J0YW50OyAvKiBXaGl0ZSB0ZXh0IHdpdGggIWltcG9ydGFudCAqL1xuICAgIG1hcmdpbi10b3A6IDE2cHg7XG59XG5cbmJ1dHRvbjpob3ZlciB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzAwMjg1NSAhaW1wb3J0YW50OyAvKiBTbGlnaHRseSBkYXJrZXIgYmx1ZSBvbiBob3ZlciAqL1xufVxuXG4vKiBDZW50ZXIgdGhlIGxvZ28gKi9cbi5sb2dvLWNvbnRhaW5lciB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDMzNjYgIWltcG9ydGFudDsgLyogRGFyayBibHVlIGNvbG9yIHdpdGggIWltcG9ydGFudCAqL1xuICAgIFxufVxuXG4ubG9nbyB7XG4gICAgaGVpZ2h0OiAxMDBweDtcbiAgICB3aWR0aDogYXV0bztcbiAgICBcbn1cbiJdLCJzb3VyY2VSb290IjoiIn0= */"]
     });
   }
@@ -4282,10 +4298,12 @@ class AuthService {
   isTokenValid() {
     const token = this.getToken();
     if (!token) {
+      console.warn('No token found');
       return false;
     }
     const payload = this.decodeToken(token);
     if (!payload || !payload.exp) {
+      console.warn('Invalid token payload');
       return false;
     }
     const expiryTime = payload.exp * 1000; // Convert to milliseconds
@@ -4299,7 +4317,9 @@ class AuthService {
     try {
       const payloadPart = token.split('.')[1];
       const decodedPayload = atob(payloadPart);
-      return JSON.parse(decodedPayload);
+      const parsedPayload = JSON.parse(decodedPayload);
+      console.log('Decoded token payload:', parsedPayload); // Debug: Log decoded payload
+      return parsedPayload;
     } catch (error) {
       console.error('Failed to decode token:', error);
       return null;
