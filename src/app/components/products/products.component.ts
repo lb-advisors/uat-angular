@@ -6,7 +6,8 @@ import { InventoryItem } from 'src/app/models/products.model';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // Import FormsModule for ngModel
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // Import RouterModule for routerLink
 import { ProductDetailsDialogComponent } from '../product-details-dialog/product-details-dialog.component';
 
 @Component({
@@ -14,7 +15,7 @@ import { ProductDetailsDialogComponent } from '../product-details-dialog/product
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  imports: [CommonModule, FormsModule, InfiniteScrollDirective],
+  imports: [CommonModule, FormsModule, RouterModule, InfiniteScrollDirective], // Ensure RouterModule and FormsModule are imported
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit, OnDestroy {
@@ -35,7 +36,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   uniquePackSizes: (string | number)[] = [];
   uniqueBuyers: (string | number)[] = [];
 
-  private searchSubject: Subject<string> = new Subject<string>();
+  private searchSubject = new Subject<string>();
   private searchSubscription!: Subscription;
 
   private inventoryItemsSubject = new BehaviorSubject<InventoryItem[]>([]);
@@ -46,80 +47,43 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadData();
 
-    this.searchSubscription = this.searchSubject
-      .pipe(
-        distinctUntilChanged(this.trimComparator),
-        debounceTime(200),
-      )
-      .subscribe((searchTerm) => {
-        this.searchTerm = searchTerm;
-        this.page = 0;
-        this.inventoryItemsSubject.next([]);
-        this.loadData();
-      });
+    this.searchSubscription = this.searchSubject.pipe(
+      distinctUntilChanged(this.trimComparator),
+      debounceTime(200)
+    ).subscribe((searchTerm) => {
+      this.searchTerm = searchTerm;
+      this.page = 0;
+      this.inventoryItemsSubject.next([]);
+      this.loadData();
+    });
   }
 
   loadData(): void {
-    console.log('Starting data load for page:', this.page); // Debug: Log page number
+    console.log('Starting data load for page:', this.page);
     this.productService.getProducts(this.page, this.size, this.searchTerm).subscribe({
       next: (products: InventoryItem[]) => {
-        console.log('API Data Received:', products); // Debug: Check received data
         const currentData = this.inventoryItemsSubject.value;
         const newData = products.filter(
           (item) => !currentData.some((currentItem) => currentItem.compItemId === item.compItemId)
         );
-  
+
         const filteredData = this.showRelevantItems
           ? newData.filter((item) => item.tenSales && item.tenSales > 0)
           : newData;
-  
-        const fullyFilteredData = filteredData.filter((item) => 
+
+        const fullyFilteredData = filteredData.filter((item) =>
           (this.originFilter ? item.origin === this.originFilter : true) &&
           (this.unitTypeFilter ? item.unitType === this.unitTypeFilter : true) &&
           (this.packSizeFilter ? item.packSize === this.packSizeFilter : true) &&
           (this.buyerFilter ? item.buyer === this.buyerFilter : true)
         );
-  
+
         this.populateUniqueDropdowns(products);
-  
-        console.log('Filtered Data:', fullyFilteredData); // Debug: Check filtered data
         this.inventoryItemsSubject.next([...currentData, ...fullyFilteredData]);
       },
-      error: (err) => {
-        console.error('Error fetching products:', err); // Log any error for troubleshooting
-      },
+      error: (err) => console.error('Error fetching products:', err),
     });
   }
-  
-
-  getUnitType(unitType?: number): string {
-    switch (unitType) {
-      case 1: return 'Cs';
-      case 2: return 'Pcs';
-      case 3: return 'Pck';
-      case 4: return 'lbs';
-      case 5: return 'side';
-      default: return 'Unknown';
-    }
-  }
-  populateUniqueDropdowns(products: InventoryItem[]) {
-    // Unique Origins - Alphabetized
-    this.uniqueOrigins = [...new Set(products.map((item) => item.origin))].filter(Boolean).sort() as string[];
-  
-    // Unique Unit Types - Converted and Alphabetized
-    this.uniqueUnitTypes = [
-      ...new Set(products.map((item) => this.getUnitType(item.unitType as number)))
-    ]
-      .filter((v): v is string => v !== 'Unknown')
-      .sort();
-  
-    // Unique Pack Sizes - Alphabetized
-    this.uniquePackSizes = [...new Set(products.map((item) => item.packSize))].filter(Boolean).sort() as (string | number)[];
-  
-    // Unique Buyers - Alphabetized
-    this.uniqueBuyers = [...new Set(products.map((item) => item.buyer))].filter(Boolean).sort() as string[];
-  }
-  
 
   onRowClick(item: InventoryItem): void {
     this.dialog.open(ProductDetailsDialogComponent, {
@@ -135,7 +99,6 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  // Method to update data when any dropdown filter changes
   onFilterChange(): void {
     this.page = 0;
     this.inventoryItemsSubject.next([]);
@@ -147,7 +110,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
-  onSearchChange(event: Event) {
+  onSearchChange(event: Event): void {
     const searchTerm = (event.target as HTMLInputElement).value;
     this.page = 0;
     this.searchSubject.next(searchTerm);
@@ -160,6 +123,24 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     if (this.searchSubscription) {
       this.searchSubscription.unsubscribe();
+    }
+  }
+
+  private populateUniqueDropdowns(products: InventoryItem[]): void {
+    this.uniqueOrigins = [...new Set(products.map((item) => item.origin))].filter(Boolean).sort() as string[];
+    this.uniqueUnitTypes = [...new Set(products.map((item) => this.getUnitType(item.unitType as number)))].filter((v): v is string => v !== 'Unknown').sort();
+    this.uniquePackSizes = [...new Set(products.map((item) => item.packSize))].filter(Boolean).sort() as (string | number)[];
+    this.uniqueBuyers = [...new Set(products.map((item) => item.buyer))].filter(Boolean).sort() as string[];
+  }
+
+  private getUnitType(unitType?: number): string {
+    switch (unitType) {
+      case 1: return 'Cs';
+      case 2: return 'Pcs';
+      case 3: return 'Pck';
+      case 4: return 'lbs';
+      case 5: return 'side';
+      default: return 'Unknown';
     }
   }
 }
