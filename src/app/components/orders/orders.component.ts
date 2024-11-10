@@ -7,7 +7,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Orders } from 'src/app/models/orders.model';
 import { SalesRep } from 'src/app/models/sales-rep.model';
-import { OrderLinksService } from 'src/app/services/order-links.service';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { AuthService } from 'src/app/services/auth.service';
@@ -32,68 +31,81 @@ export class OrdersComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private orderLinksService: OrderLinksService,
-    private authService: AuthService // Inject AuthService to get the token
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
+    // Initialize the form with fields for company, sales person, and customer name
     this.form = this.fb.group({
       company: [],
       salesPerson: [],
       customerName: [''],
     });
 
-    this.loadCompaniesAndSetDefaults();
+    // Load companies and set the default company if available
+    this.loadCompanies();
     this.setupSalesPersonListener();
     this.setupOrdersListener();
     this.setupCustomerNameFilterListener();
   }
 
-  private loadCompaniesAndSetDefaults(): void {
-    this.companies$ = this.orderLinksService.getCompanies().pipe(
+  // Step 1: Load all companies and populate the company filter
+  private loadCompanies(): void {
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    this.companies$ = this.http.get<Company[]>('https://uat-pffc.onrender.com/api/companies', { headers }).pipe(
       tap((companies) => {
-        const defaultCompany = companies.find((company) => company.id === 3);
-        if (defaultCompany) {
-          this.form.get('company')!.setValue(defaultCompany);
+        if (companies && companies.length > 0) {
+          // Set the first company as the default selection
+          this.form.get('company')!.setValue(companies[0]);
         }
       })
     );
   }
 
+  // Step 2: When the company changes, load the relevant sales reps for that company
   private setupSalesPersonListener(): void {
     this.form.get('company')!.valueChanges.pipe(
-      switchMap((company) =>
-        this.orderLinksService.getSalesPersons(company.id).pipe(
-          tap((salesreps) => {
-            salesreps.sort((a, b) => a.name.localeCompare(b.name));
-            this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
-              observer.next(salesreps);
-              observer.complete();
-            });
-
-            const defaultSalesRep = salesreps.find((rep) => rep.name === 'Marcelo');
-            if (defaultSalesRep) {
-              this.form.get('salesPerson')!.setValue(defaultSalesRep);
-            } else if (salesreps.length > 0) {
-              this.form.get('salesPerson')!.setValue(salesreps[0]);
-            }
-          })
-        )
-      )
-    ).subscribe();
-  }
-
-  private setupOrdersListener(): void {
-    this.form.get('salesPerson')!.valueChanges.pipe(
-      switchMap((salesrep) => {
-        const company = this.form.get('company')!.value;
-        const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
-
+      switchMap((company: Company) => {
         const token = this.authService.getToken();
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`
         });
 
+        return this.http.get<SalesRep[]>(`https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps`, { headers });
+      }),
+      tap((salesreps) => {
+        // Set the first sales rep as the default selection if available
+        if (salesreps && salesreps.length > 0) {
+          this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+            observer.next(salesreps);
+            observer.complete();
+          });
+          this.form.get('salesPerson')!.setValue(salesreps[0]);
+        }
+      })
+    ).subscribe({
+      error: (error) => {
+        console.error('Failed to load sales reps:', error);
+        this.snackbarService.showSnackBar('Failed to load sales reps.');
+      }
+    });
+  }
+
+  // Step 3: When the sales rep changes, load the relevant orders for that sales rep and company
+  private setupOrdersListener(): void {
+    this.form.get('salesPerson')!.valueChanges.pipe(
+      switchMap((salesrep: SalesRep) => {
+        const company = this.form.get('company')!.value;
+        const token = this.authService.getToken();
+        const headers = new HttpHeaders({
+          Authorization: `Bearer ${token}`
+        });
+
+        const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
         return this.http.get<Orders[]>(apiUrl, { headers });
       }),
       tap((orders) => {
@@ -102,12 +114,13 @@ export class OrdersComponent implements OnInit {
       })
     ).subscribe({
       error: (error) => {
-        console.error('An error occurred:', error);
+        console.error('Failed to load orders:', error);
         this.snackbarService.showSnackBar('Failed to load orders.');
       }
     });
   }
 
+  // Apply a filter based on customer name
   private setupCustomerNameFilterListener(): void {
     this.form.get('customerName')!.valueChanges.subscribe(() => this.applyFilters());
   }
