@@ -15,11 +15,16 @@ export class AuthInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let isExcluded = false;
 
-    // Method 1: Pathname-based exclusion using URL parsing
+    // Method 1: Pathname-based exclusion using URL parsing and dynamic customer ID
     try {
       const url = new URL(request.url); // Parse URL to get only the pathname
-      isExcluded = this.excludedPaths.some(path => url.pathname.includes(path));
-      console.log(`Request URL: ${url.pathname}, Excluded (by pathname): ${isExcluded}`);
+      const dynamicExcludedPaths = [
+        /^https:\/\/lb-advisors\.github\.io\/uat-angular\/customer\/\d+\/order-form$/,
+        /^https:\/\/lb-advisors\.github\.io\/uat-angular\/customer\/\d+\/order-exists$/,
+        /^https:\/\/lb-advisors\.github\.io\/uat-angular\/customer\/\d+\/order-confirmation$/,
+      ];
+      isExcluded = dynamicExcludedPaths.some(pattern => pattern.test(url.href));
+      console.log(`Request URL: ${url.href}, Excluded (by dynamic URL): ${isExcluded}`);
     } catch (error) {
       console.error("Invalid URL format:", request.url);
     }
