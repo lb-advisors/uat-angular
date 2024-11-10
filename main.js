@@ -4125,15 +4125,23 @@ class AuthInterceptor {
     this.authService = authService;
     this.router = router;
     // Define paths to exclude from authentication
-    this.excludedPaths = [/order-form/]; // Matches any URL containing "order-form"
+    this.excludedPaths = [/gs-fish\.com\/customer\/.*\/order-form/,
+    // Matches production URLs for order-form
+    /gs-fish\.com\/customer\/.*\/order-exists/,
+    // Matches production URLs for order-exists
+    /gs-fish\.com\/customer\/.*\/order-confirmation/ // Matches production URLs for order-confirmation
+    ];
   }
   intercept(request, next) {
-    // Check if the request URL matches an excluded path
-    const isExcluded = this.excludedPaths.some(pattern => pattern.test(request.url));
+    // Check if the request URL matches any excluded path
+    const isExcluded = this.excludedPaths.some(pattern => {
+      const isMatch = pattern.test(request.url);
+      console.log(`Testing ${request.url} against ${pattern}: ${isMatch}`); // Debug logging
+      return isMatch;
+    });
     // If the request is not excluded, add the Authorization header if a token is available
     if (!isExcluded) {
       const token = this.authService.getToken();
-      console.log('Token from AuthService:', token); // Debug: Check if token is available
       if (token) {
         request = request.clone({
           setHeaders: {
@@ -4145,12 +4153,9 @@ class AuthInterceptor {
     return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
       // Redirect to login on 401 Unauthorized errors, only if the route is not excluded
       if (error.status === 401 && !isExcluded) {
-        console.warn('401 Unauthorized error caught in interceptor'); // Debug: Log 401 error
         this.router.navigate(['/login']);
       } else if (error.status === 403) {
         console.warn('403 Forbidden - Access Denied');
-      } else {
-        console.error('HTTP Error:', error);
       }
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.throwError)(error);
     }));
