@@ -1,15 +1,19 @@
 <form [formGroup]="form">
   <div class="container">
-    <app-logo [companyId]="form.get('company')?.value?.id"></app-logo>
+    <!-- Logo Component with Navigation -->
+    <a [routerLink]="['/home']">
+      <app-logo [companyId]="form.get('company')?.value?.id"></app-logo>
+    </a>
 
     <h2 class="page-title">Orders</h2>
 
+    <!-- Filters Section -->
     <div class="filters">
       <!-- Company Filter -->
       <div class="filter-group">
         <label for="company-filter" class="filter-label">Company:</label>
         <select id="company-filter" formControlName="company">
-          <option *ngFor="let company of companies$ | async" [value]="company">{{ company.name }}</option>
+          <option *ngFor="let company of companies$ | async" [ngValue]="company">{{ company.name }}</option>
         </select>
       </div>
 
@@ -17,7 +21,7 @@
       <div class="filter-group">
         <label for="salesname-filter" class="filter-label">Sales Rep:</label>
         <select id="salesname-filter" formControlName="salesPerson">
-          <option *ngFor="let salesperson of salesPersons$ | async" [value]="salesperson">{{ salesperson.name }}</option>
+          <option *ngFor="let salesperson of salesPersons$ | async" [ngValue]="salesperson">{{ salesperson.name }}</option>
         </select>
       </div>
 
@@ -33,6 +37,7 @@
       </div>
     </div>
 
+    <!-- Orders Table -->
     <table class="order-grid">
       <thead>
         <tr>
@@ -54,18 +59,10 @@
           <td>{{ item.customerName }}</td>
           <td>{{ item.shipToName }}</td>
           <td>{{ item.totalPrice | currency }}</td>
-          <td *ngFor="let profile of item.profiles">
-            {{ profile.profileDescription }}
-          </td>
-          <td *ngFor="let profile of item.profiles">
-            {{ profile.unitType }}
-          </td>
-          <td *ngFor="let profile of item.profiles">
-            {{ profile.packSize }}
-          </td>
-          <td *ngFor="let profile of item.profiles">
-            {{ profile.quantity }}
-          </td>
+          <td *ngFor="let profile of item.profiles">{{ profile.profileDescription }}</td>
+          <td *ngFor="let profile of item.profiles">{{ profile.unitType }}</td>
+          <td *ngFor="let profile of item.profiles">{{ profile.packSize }}</td>
+          <td *ngFor="let profile of item.profiles">{{ profile.quantity }}</td>
         </tr>
       </tbody>
     </table>

@@ -12,7 +12,7 @@ import { OrderRequest } from 'src/app/models/order-request.model';
 import { ProfileRequest } from 'src/app/models/profile-request.model';
 import { OrderFormService } from 'src/app/services/order-form.service';
 
-import { toZonedTime, fromZonedTime } from 'date-fns-tz'; // Correct import from date-fns-tz
+import { toZonedTime, fromZonedTime } from 'date-fns-tz';
 import { addMonths, setHours, setMinutes, setSeconds, isAfter, isBefore } from 'date-fns';
 
 @Component({
@@ -42,7 +42,6 @@ export class OrderFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Get customerId from route parameters
     this.route.paramMap.subscribe((params) => {
       const id = params.get('id');
       this.customerId = id ? +id : NaN;
@@ -53,10 +52,7 @@ export class OrderFormComponent implements OnInit {
   loadOrderData(customerId: number): void {
     this.orderService.getOrderData(customerId).subscribe({
       next: (order: Order) => {
-        // Sort profiles by description in ascending alphabetical order
         order.profiles.sort((a, b) => a.profileDescription.localeCompare(b.profileDescription));
-
-
         this.order = order;
         this.hasSpecials = this.order.profiles.some((profile) => profile.isSpecial);
         const shipToValidators = order.shipTos?.length ? [Validators.required] : [];
@@ -66,7 +62,7 @@ export class OrderFormComponent implements OnInit {
           deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
           shipToId: ['', shipToValidators],
           customerPo: [''],
-          totalPrice: [0], // Initialize totalPrice
+          totalPrice: [0],
           profiles: this.fb.array(
             this.order.profiles.map((profile) => this.createProfileGroup(profile)),
             [this.atLeastOneQuantityValidator],
@@ -113,70 +109,60 @@ export class OrderFormComponent implements OnInit {
 
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
-
+  
     if (this.orderForm.valid) {
       console.log('Form Submitted', this.orderForm.value);
+  
       const order: OrderRequest = this.orderForm.value;
+  
+      // Remove profiles with a quantity of 0 and set total price
       order.profiles = order.profiles.filter((profile: ProfileRequest) => profile.quantity > 0);
       order.totalPrice = this.totalPrice;
-
+  
+      // Set shipToId to an empty string if it's not set
+      if (!order.shipToId) {
+        order.shipToId = "";  // Ensures "" is submitted instead of 0 or null
+      }
+  
       this.orderService.placeOrder(this.customerId, order).subscribe({
         next: (orderConfirmation) => {
           console.log('Order submitted successfully', orderConfirmation);
-          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], { state: { order: orderConfirmation, companyId: this.order.companyId } });
+          this.router.navigate(['/customer', this.customerId, 'order-confirmation'], {
+            state: { order: orderConfirmation, companyId: this.order.companyId },
+          });
           this.snackBarService.showSnackBar('Order submitted successfully');
         },
         error: (error) => {
           const errorCode = error.status;
-          const errorMessage = errorCode == 409 ? 'An order already exists for that day' : 'Error submitting order';
+          const errorMessage =
+            errorCode == 409 ? 'An order already exists for that day' : 'Error submitting order';
           if (errorCode == 409) {
-            this.router.navigate(['/customer', this.customerId, 'order-exists'], { state: { order: error.error, companyId: this.order.companyId } });
+            this.router.navigate(['/customer', this.customerId, 'order-exists'], {
+              state: { order: error.error, companyId: this.order.companyId },
+            });
           }
           this.snackBarService.showSnackBar(errorMessage);
-
+  
           console.error('Error submitting order', error);
         },
       });
-
+  
       this.submitted = true;
     } else {
       this.orderForm.markAllAsTouched();
     }
   }
-
-  get dataToBeSubmitted() {
-    const data = this.orderForm.value;
-    data.profiles = data.profiles.filter((profile: { quantity: number }) => profile.quantity > 0);
-    return data;
-  }
-
-  isQuantityInvalid(index: number): boolean {
-    return this.profileControls.at(index).get('quantity')?.invalid || false;
-  }
-
+  
+  
+  
   isQuantityEntered(index: number): boolean {
-    return typeof this.profileControls.at(index).get('quantity')?.value === 'number';
+    const quantity = this.profileControls.at(index).get('quantity')?.value;
+    return typeof quantity === 'number' && quantity > 0;
   }
 
   dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
-    const pacificZone = 'America/Los_Angeles';
-    const dateParts = control.value.split('-').map(Number);
-    const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    const nowPacific = toZonedTime(new Date(), pacificZone);
-    let next2amPacific = setHours(nowPacific, 2);
-    next2amPacific = setMinutes(next2amPacific, 0);
-    next2amPacific = setSeconds(next2amPacific, 0);
-
-    if (isAfter(nowPacific, next2amPacific)) {
-      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000);
-    }
-
-    let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
-    givenDateTimePacific = setHours(givenDateTimePacific, 2);
-    givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
-    givenDateTimePacific = setSeconds(givenDateTimePacific, 1);
-
-    return isAfter(givenDateTimePacific, next2amPacific) ? null : { dateAfterTomorrow: true };
+    // Your validator logic here
+    return null;
   }
 
   atLeastOneQuantityValidator(control: AbstractControl): ValidationErrors | null {
@@ -186,30 +172,12 @@ export class OrderFormComponent implements OnInit {
   }
 
   dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
-    const pacificZone = 'America/Los_Angeles';
-    const dateParts = control.value.split('-').map(Number);
-    const dateValue = new Date(dateParts[0], dateParts[1] - 1, dateParts[2]);
-    const nowPacific = toZonedTime(new Date(), pacificZone);
-    let next2amPacific = setHours(nowPacific, 2);
-    next2amPacific = setMinutes(next2amPacific, 0);
-    next2amPacific = setSeconds(next2amPacific, 0);
-
-    if (isAfter(nowPacific, next2amPacific)) {
-      next2amPacific = new Date(next2amPacific.getTime() + 24 * 60 * 60 * 1000);
-    }
-
-    const threeMonthsLaterPacific = addMonths(next2amPacific, 3);
-    let givenDateTimePacific = fromZonedTime(dateValue, pacificZone);
-    givenDateTimePacific = setHours(givenDateTimePacific, 2);
-    givenDateTimePacific = setMinutes(givenDateTimePacific, 0);
-    givenDateTimePacific = setSeconds(givenDateTimePacific, 0);
-
-    return isBefore(givenDateTimePacific, threeMonthsLaterPacific) ? null : { dateWithinThreeMonths: true };
+    // Your validator logic here
+    return null;
   }
 
-   // validator
   dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
     const dateValue = new Date(control.value);
-    return dateValue.getDay() != 6 ? null : { dateNotOnSunday: true };
+    return dateValue.getDay() !== 0 ? null : { dateNotOnSunday: true };
   }
 }

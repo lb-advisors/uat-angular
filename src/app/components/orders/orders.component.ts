@@ -89,7 +89,7 @@ export class OrdersComponent implements OnInit {
         const company = this.form.get('company')!.value;
         const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
 
-        const token = this.authService.getToken(); // Get token from AuthService
+        const token = this.authService.getToken();
         const headers = new HttpHeaders({
           Authorization: `Bearer ${token}`
         });
@@ -103,6 +103,7 @@ export class OrdersComponent implements OnInit {
     ).subscribe({
       error: (error) => {
         console.error('An error occurred:', error);
+        this.snackbarService.showSnackBar('Failed to load orders.');
       }
     });
   }

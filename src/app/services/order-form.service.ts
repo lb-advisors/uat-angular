@@ -32,11 +32,8 @@ export class OrderFormService {
     );
   }
 
-  placeOrder(customerId: number, orderData: OrderRequest): Observable<OrderConfirmation> {
-    return this.http.post<OrderConfirmation>(
-      `${this.apiUrl}/customers/${customerId}/orders`, 
-      orderData,
-      { headers: this.getHeaders() }
-    );
+  placeOrder(customerId: number, order: OrderRequest): Observable<OrderConfirmation> {
+    const url = `${this.apiUrl}/public/customers/${customerId}/orders`;
+    return this.http.post<OrderConfirmation>(url, order, { headers: this.getHeaders() });
   }
 }
