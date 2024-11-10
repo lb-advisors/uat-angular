@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -9,9 +10,9 @@ import { AuthService } from '../services/auth.service';
 export class AuthInterceptor implements HttpInterceptor {
   // Define paths to exclude from authentication
   private excludedPaths: RegExp[] = [
-    /\/api\/customers\/.*\/order-form/,
-    /\/api\/customers\/.*\/order-exists/,
-    /\/api\/customers\/.*\/order-confirmation/
+    /order-form/,
+    /order-exists/,
+    /order-confirmation/
   ];
 
   constructor(private authService: AuthService, private router: Router) {}
