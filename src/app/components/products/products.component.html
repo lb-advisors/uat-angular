@@ -1,11 +1,9 @@
 <div class="content" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
   <div class="container">
-    <div class="image-container">
-      <!-- Wrap the logo image in a router link to navigate to the 'home' route -->
-      <a [routerLink]="['/home']">
-        <img src="assets/logo.png" alt="Company Logo">
-      </a>
-    </div>
+    <!-- Make the entire image-container clickable by wrapping in a link -->
+    <a [routerLink]="['/home']" class="image-container">
+      <img src="assets/logo.png" alt="Company Logo">
+    </a>
     
     <h2 class="inventory-title">Products</h2>
 
@@ -14,13 +12,31 @@
       <input type="text" placeholder="Search Products" (input)="onSearchChange($event)">
     </div>
 
-    <!-- Filters Section -->
-    <div class="filters">
+    <!-- Button Row for Relevant Items and Additional Filters -->
+    <div class="button-row" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
       <!-- Relevant Items Toggle Button -->
       <button (click)="toggleRelevantItemsFilter()" class="relevant-items-btn">
         {{ showRelevantItems ? 'Show All Items' : 'Relevant Items' }}
       </button>
 
+      <!-- Sixty Sales Filter Button -->
+      <button (click)="toggleSixtySalesFilter()" class="filter-btn">
+        {{ showSixtySales ? 'Show All Sixty Sales' : 'Sixty Sales > 0' }}
+      </button>
+
+      <!-- WOH Filter Button -->
+      <button (click)="toggleWohFilter()" class="filter-btn">
+        {{ showWoh ? 'Show All WOH' : 'WOH > 0' }}
+      </button>
+
+      <!-- Yield Filter Button -->
+      <button (click)="toggleYieldFilter()" class="filter-btn">
+        {{ showYield ? 'Show All Yield' : 'Yield < 100%' }}
+      </button>
+    </div>
+
+    <!-- Centered Filters Section -->
+    <div class="filters" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
       <!-- Origin Filter Dropdown -->
       <div class="filter-group">
         <label for="originFilter">Origin</label>
@@ -30,13 +46,16 @@
         </select>
       </div>
 
-      <!-- Unit Type Filter Dropdown -->
-      <div class="filter-group">
-        <label for="unitTypeFilter">Unit Type</label>
-        <select id="unitTypeFilter" (change)="onFilterChange()" [(ngModel)]="unitTypeFilter">
-          <option value="">All Unit Types</option>
-          <option *ngFor="let unitType of uniqueUnitTypes" [value]="unitType">{{ unitType }}</option>
-        </select>
+      <!-- CompCost Min Filter -->
+      <div class="filter-group minfilter">
+        <label for="comp-cost-min">Min CompCost</label>
+        <input
+          type="number"
+          id="comp-cost-min"
+          [(ngModel)]="minCompCost"
+          (input)="onCompCostChange()"
+          placeholder="Min"
+        />
       </div>
 
       <!-- Pack Size Filter Dropdown -->

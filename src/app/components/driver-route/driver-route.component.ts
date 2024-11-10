@@ -9,6 +9,7 @@ import { HttpEventType } from '@angular/common/http';
 import { ImageThumbnailComponent } from '../image-thumbnail/image-thumbnail.component';
 import { MatTableModule } from '@angular/material/table';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; // Import RouterModule
 
 interface Driver {
   name: string;
@@ -19,7 +20,7 @@ interface Driver {
   selector: 'app-driver-route',
   templateUrl: './driver-route.component.html',
   styleUrls: ['./driver-route.component.css'],
-  imports: [CommonModule, MatTableModule, ImageThumbnailComponent],
+  imports: [CommonModule, MatTableModule, ImageThumbnailComponent, RouterModule], // Add RouterModule here
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DriverRouteComponent implements OnInit {

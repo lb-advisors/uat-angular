@@ -1,75 +1,15 @@
-<div class="container">
-    <div class="header-container">
-        <h1 class="date">{{ today | date:'fullDate' }}</h1>
-    </div>
-
-    <div class="kpi-container">
-        <div class="kpi">
-            <h2>Online Orders</h2>
-            <p>42</p>
-        </div>
-        <div class="kpi">
-            <h2>Deliveries</h2>
-            <p>12/20</p>
-        </div>
-        <div class="kpi">
-            <h2>Deliveries Ahead of Schedule</h2>
-            <p>67%</p>
-        </div>
-    </div>
-
-    <div class="grid-container">
-        <div class="grid">
-            <h2>Items</h2>
-            <table class="item-grid">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Status</th>
-                        <th>Ordered</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let item of items">
-                        <td>{{ item.description }}</td>
-                        <td class="status-cell">
-                            <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor(item.status)}">{{ getStatusIcon(item.status) }}</mat-icon>
-                            {{ item.status | titlecase }}
-                        </td>
-                        <td class="ordered-cell">
-                            <ng-container *ngIf="item.ordered">
-                                <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor('ordered')}">circle</mat-icon>
-                                Ordered
-                            </ng-container>
-                            <ng-container *ngIf="!item.ordered">
-                                <!-- Empty cell content for unordered items -->
-                                &nbsp;
-                            </ng-container>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-
-        <div class="grid">
-            <h2>Employees</h2>
-            <table class="employee-grid">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let employee of employees">
-                        <td>{{ employee.name }}</td>
-                        <td class="status-cell">
-                            <mat-icon class="status-icon" [ngStyle]="{'color': getStatusColor(employee.status)}">{{ getStatusIcon(employee.status) }}</mat-icon>
-                            {{ employee.status | titlecase }}
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<div class="button-container">
+    <button class="nav-button" (click)="navigateTo('products')">Products</button>
+    <button class="nav-button" (click)="navigateTo('order-links')">Order Links</button>
+    <button class="nav-button" (click)="navigateTo('orders')">Orders</button>
+    <button class="nav-button" (click)="navigateTo('preorders')">PreOrders</button>
+    <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
+  </div>
+  
+  <div class="image-grid">
+    <img src="assets/goldenstateseafood.jpeg" alt="GS Image" class="grid-image image1">
+    <img src="assets/smalllogo.png" alt="Logo Image" class="grid-image image2">
+    <img src="assets/fogriver2.png" alt="Fog River Image" class="grid-image image3">
+    <img src="assets/naturecure.png" alt="Nature Cure Image" class="grid-image image4">
+  </div>
+  

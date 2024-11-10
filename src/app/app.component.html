@@ -1,36 +1,3 @@
-@if (!isOrderForm) {
-    <mat-toolbar color="primary" class="header" [ngClass]="{'warning': showWarning}">
-        <div class="nav-links-center">
-            <a mat-button routerLink="/products" routerLinkActive="active-link">
-                <mat-icon>inventory</mat-icon>
-                Products
-            </a>
-            <a mat-button routerLink="/order-links" routerLinkActive="active-link">
-                <mat-icon>description</mat-icon>
-                Order Links
-            </a>
-            <a mat-button routerLink="/orders" routerLinkActive="active-link">
-                <mat-icon>assignment</mat-icon>
-                Orders
-            </a>
-            <a mat-button routerLink="/preorders" routerLinkActive="active-link">
-                <mat-icon>event_note</mat-icon>
-                PreOrders
-            </a>
-            <a mat-button routerLink="/driver" routerLinkActive="active-link">
-                <mat-icon>local_shipping</mat-icon>
-                Routes
-            </a>
-            <a mat-button routerLink="/login" routerLinkActive="active-link"> <!-- Login link -->
-                <mat-icon>login</mat-icon>
-                Login
-            </a>
-        </div>
-    </mat-toolbar>
-}
-
-<div class="underline"></div> <!-- Thinner black line underlining the nav bar -->
-
 <main>
     <router-outlet></router-outlet>
 </main>
@@ -40,8 +7,8 @@
     <div class="container">
         <div class="text-align-center">
             © 2024 - Pacific Fresh Fish Company
-            @if (isDevMode) {<div class="dev-mode">UAT ENVIRONMENT</div>
-            <div class="dev-mode">{{apiUrl}}</div>}
+            <div *ngIf="isDevMode" class="dev-mode">UAT ENVIRONMENT</div>
+            <div *ngIf="isDevMode" class="dev-mode">{{apiUrl}}</div>
         </div>
     </div>
 </footer>
