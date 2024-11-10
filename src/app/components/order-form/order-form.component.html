@@ -1,5 +1,4 @@
-@if (order) {
-<form [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
+<form *ngIf="order" [formGroup]="orderForm" (ngSubmit)="onSubmit()" class="order-form">
     <div class="container">
         <app-logo [companyId]="order.companyId"></app-logo>
         <h2 class="page-title">Order Form</h2>
@@ -14,8 +13,7 @@
             </div>
         </div>
 
-        @if (order.shipTos) {
-        <div class="shipto-dropdown">
+        <div *ngIf="order.shipTos" class="shipto-dropdown">
             <label for="ship-to"><strong>Ship to:</strong></label>
             <select id="ship-to" formControlName="shipToId" class="input-select">
                 <option *ngFor="let shipTo of order.shipTos" [value]="shipTo.id">{{ shipTo.shipToName }}</option>
@@ -24,40 +22,39 @@
                 Ship to is required.
             </div>
         </div>
-        }
 
-        @if (hasSpecials) {
-        <h3 class="section-title">Specials</h3>
-        <div formArrayName="profiles" class="profiles">
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th>Description</th>
-                        <th>Qty</th>
-                        <th>Unit Type</th>
-                        <th>Pack Size</th>
-                        <th>Price</th>
-                        <th>Total</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <ng-container *ngFor="let profile of profileControls.controls; let i = index">
-                        <tr *ngIf="order.profiles[i].isSpecial" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
-                            <input type="text" formControlName="profileDid" class="input-text hidden-column">
-                            <td>{{ order.profiles[i].profileDescription }}</td>
-                            <td><input type="number" formControlName="quantity" class="input-number">
-                                <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
-                            </td>
-                            <td>{{ order.profiles[i].unitType }}</td>
-                            <td>{{ order.profiles[i].packSize }}</td>
-                            <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
-                            <td>{{ getRowTotalPrice(i) | currency:'USD':'symbol':'1.2-2' }}</td>
+        <div *ngIf="hasSpecials">
+            <h3 class="section-title">Specials</h3>
+            <div formArrayName="profiles" class="profiles">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Description</th>
+                            <th>Qty</th>
+                            <th>Unit Type</th>
+                            <th>Pack Size</th>
+                            <th>Price</th>
+                            <th>Total</th>
                         </tr>
-                    </ng-container>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <ng-container *ngFor="let profile of profileControls.controls; let i = index">
+                            <tr *ngIf="order.profiles[i].isSpecial" [formGroupName]="i" [ngStyle]="{'background-color': isQuantityEntered(i) ? 'lightgrey' : 'white'}">
+                                <input type="text" formControlName="profileDid" class="input-text hidden-column">
+                                <td>{{ order.profiles[i].profileDescription }}</td>
+                                <td><input type="number" formControlName="quantity" class="input-number">
+                                    <div *ngIf="profile.get('quantity')?.errors?.['min']" class="error">The number must be greater than zero.</div>
+                                </td>
+                                <td>{{ order.profiles[i].unitType }}</td>
+                                <td>{{ order.profiles[i].packSize }}</td>
+                                <td>{{ order.profiles[i].salesPrice | currency:'USD':'symbol':'1.2-2'}}</td>
+                                <td>{{ getRowTotalPrice(i) | currency:'USD':'symbol':'1.2-2' }}</td>
+                            </tr>
+                        </ng-container>
+                    </tbody>
+                </table>
+            </div>
         </div>
-        }
 
         <h3 class="section-title">Products</h3>
         <div formArrayName="profiles" class="profiles">
@@ -114,7 +111,7 @@
                 Delivery date is required.
             </div>
             <div *ngIf="formControls['deliveryDate'].dirty && formControls['deliveryDate'].errors?.['dateAfterTomorrow']" class="error">
-                Delivery date must cannot be in past, or after 2am of todays date. 
+                Delivery date cannot be in the past or after 2am of today's date.
             </div>
             <div *ngIf="formControls['deliveryDate'].dirty && formControls['deliveryDate'].errors?.['dateWithinThreeMonths']" class="error">
                 Delivery date must be within 3 months.
@@ -127,4 +124,3 @@
         <br><button type="submit" [disabled]="!orderForm.valid" class="submit-btn">Submit</button>
     </div>
 </form>
-}

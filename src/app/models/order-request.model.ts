@@ -4,7 +4,7 @@ export interface OrderRequest {
   id: number;
   customerId: number;
   deliveryDate: string;
-  shipToId: number;
+  shipToId: number | string; // Accepts number or empty string
   totalPrice: number;
   profiles: ProfileRequest[];
 }
