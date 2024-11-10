@@ -4082,14 +4082,27 @@ class AuthInterceptor {
   }
   intercept(request, next) {
     let isExcluded = false;
+    // Method 1: Pathname-based exclusion using URL parsing
     try {
       const url = new URL(request.url); // Parse URL to get only the pathname
       isExcluded = this.excludedPaths.some(path => url.pathname.includes(path));
-      console.log(`Request URL: ${url.pathname}, Excluded: ${isExcluded}`);
+      console.log(`Request URL: ${url.pathname}, Excluded (by pathname): ${isExcluded}`);
     } catch (error) {
       console.error("Invalid URL format:", request.url);
     }
-    // If the request is not excluded, add the Authorization header if a token is available
+    // Method 2: Custom Header exclusion (X-Skip-Auth header)
+    const skipAuth = request.headers.has('X-Skip-Auth');
+    if (skipAuth) {
+      isExcluded = true;
+      console.log('Skipping auth based on custom header for:', request.url);
+    }
+    // Method 3: Original exclusion path matching logic as a fallback
+    const isExcludedByPath = this.excludedPaths.some(pattern => request.url.includes(pattern));
+    isExcluded = isExcluded || isExcludedByPath;
+    if (isExcluded) {
+      console.log('Request is excluded from authentication:', request.url);
+    }
+    // Add Authorization header if token is available and request is not excluded
     if (!isExcluded) {
       const token = this.authService.getToken();
       if (token) {
@@ -4099,11 +4112,10 @@ class AuthInterceptor {
           }
         });
       }
-    } else {
-      console.log('Request excluded from authentication:', request.url);
     }
     return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
       if (error.status === 401 && !isExcluded) {
+        console.warn('Unauthorized access detected. Redirecting to login.');
         this.router.navigate(['/login']);
       }
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.throwError)(() => error);
