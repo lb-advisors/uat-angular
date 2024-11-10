@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 
 @Injectable({
@@ -5,6 +6,13 @@ import { Injectable } from '@angular/core';
 })
 export class AuthService {
   private tokenKey = 'authToken';
+
+  // Paths to exclude from authentication
+  private excludedPaths: RegExp[] = [
+    /order-form/i,
+    /order-exists/i,
+    /order-confirmation/i
+  ];
 
   constructor() {}
 
@@ -16,7 +24,13 @@ export class AuthService {
   }
 
   // Retrieve the token (from sessionStorage first, then fallback to localStorage)
-  getToken(): string | null {
+  getToken(url?: string): string | null {
+    // Skip token retrieval if the URL matches an excluded path
+    if (url && this.isExcludedPath(url)) {
+      console.log('URL is excluded from authentication:', url);
+      return null;
+    }
+
     const token = sessionStorage.getItem(this.tokenKey) || localStorage.getItem(this.tokenKey);
     console.log('Retrieved token:', token); // Debug: Log retrieved token
     return token;
@@ -30,7 +44,13 @@ export class AuthService {
   }
 
   // Check if token exists and is not expired
-  isTokenValid(): boolean {
+  isTokenValid(url?: string): boolean {
+    // Skip token validation if the URL matches an excluded path
+    if (url && this.isExcludedPath(url)) {
+      console.log('URL is excluded from authentication, skipping token validation:', url);
+      return true;
+    }
+
     const token = this.getToken();
     if (!token) {
       console.warn('No token found');
@@ -62,5 +82,10 @@ export class AuthService {
       console.error('Failed to decode token:', error);
       return null;
     }
+  }
+
+  // Check if the URL matches any excluded path pattern
+  private isExcludedPath(url: string): boolean {
+    return this.excludedPaths.some((pattern) => pattern.test(url));
   }
 }
