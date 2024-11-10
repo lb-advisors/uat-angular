@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpRequest, HttpHandler, HttpEvent, HttpInterceptor, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
@@ -8,27 +9,23 @@ import { AuthService } from '../services/auth.service';
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
   // Define paths to exclude from authentication
-  private excludedPaths: string[] = [
-    '/order-form',
-    '/order-exists',
-    '/order-confirmation'
+  private excludedPaths: RegExp[] = [
+    /order-form/i,
+    /order-exists/i,
+    /order-confirmation/i
   ];
 
   constructor(private authService: AuthService, private router: Router) {}
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // Get the full URL path
-    const fullUrl = new URL(request.url, window.location.origin);
-    const pathname = fullUrl.pathname;
-
-    // Check if the request URL contains any excluded path
-    const isExcluded = this.excludedPaths.some(path => {
-      const isMatch = pathname.includes(path);
-      console.log(`URL: ${pathname}, Excluded Path: ${path}, Is Excluded: ${isMatch}`);
+    // Check if the request URL matches any excluded path
+    const isExcluded = this.excludedPaths.some((pattern) => {
+      const isMatch = pattern.test(request.url);
+      console.log(`URL: ${request.url}, Pattern: ${pattern}, Excluded: ${isMatch}`);
       return isMatch;
     });
 
-    // If the request is not excluded and we have a token, add the Authorization header
+    // If the request is not excluded, add the Authorization header if a token is available
     if (!isExcluded) {
       const token = this.authService.getToken();
       
@@ -40,14 +37,16 @@ export class AuthInterceptor implements HttpInterceptor {
         });
       }
     } else {
-      console.log('Request excluded from authentication:', pathname);
+      console.log('Request excluded from authentication:', request.url);
     }
 
     return next.handle(request).pipe(
       catchError((error: HttpErrorResponse) => {
         if (error.status === 401 && !isExcluded) {
-          console.log('Unauthorized access detected. Redirecting to login.');
+          console.warn('Unauthorized access detected. Redirecting to login.');
           this.router.navigate(['/login']);
+        } else if (error.status === 401 && isExcluded) {
+          console.warn('Unauthorized request to excluded path, not redirecting');
         }
         return throwError(() => error);
       })
