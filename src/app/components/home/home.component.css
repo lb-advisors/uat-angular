@@ -54,6 +54,7 @@
   background-color: rgba(0, 16, 46, 1);
   transform: scale(2); /* Scales up the nature cure image slightly */
   margin-left: -50px;
+  border: none;
 }
 
 /* Media Queries for Mobile Optimization */
