@@ -4078,16 +4078,17 @@ class AuthInterceptor {
   constructor(authService, router) {
     this.authService = authService;
     this.router = router;
-    // Define paths to exclude from authentication
-    this.excludedPaths = [/order-form/i, /order-exists/i, /order-confirmation/i];
+    this.excludedPaths = ['/order-form', '/order-exists', '/order-confirmation'];
   }
   intercept(request, next) {
-    // Check if the request URL matches any excluded path
-    const isExcluded = this.excludedPaths.some(pattern => {
-      const isMatch = pattern.test(request.url);
-      console.log(`URL: ${request.url}, Pattern: ${pattern}, Excluded: ${isMatch}`);
-      return isMatch;
-    });
+    let isExcluded = false;
+    try {
+      const url = new URL(request.url); // Parse URL to get only the pathname
+      isExcluded = this.excludedPaths.some(path => url.pathname.includes(path));
+      console.log(`Request URL: ${url.pathname}, Excluded: ${isExcluded}`);
+    } catch (error) {
+      console.error("Invalid URL format:", request.url);
+    }
     // If the request is not excluded, add the Authorization header if a token is available
     if (!isExcluded) {
       const token = this.authService.getToken();
@@ -4103,10 +4104,7 @@ class AuthInterceptor {
     }
     return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
       if (error.status === 401 && !isExcluded) {
-        console.warn('Unauthorized access detected. Redirecting to login.');
         this.router.navigate(['/login']);
-      } else if (error.status === 401 && isExcluded) {
-        console.warn('Unauthorized request to excluded path, not redirecting');
       }
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.throwError)(() => error);
     }));
