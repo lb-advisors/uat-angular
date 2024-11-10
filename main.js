@@ -1472,49 +1472,42 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function OrderDetailsDialogComponent_div_31_Template(rf, ctx) {
+function OrderDetailsDialogComponent_tr_47_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div")(1, "p")(2, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Description:");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr")(1, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "td", 2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "p")(6, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "Unit Type:");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "p")(10, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](11, "Pack Size:");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "td");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "p")(14, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Quantity:");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "p")(18, "strong");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](19, "Sales Price:");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](21, "currency");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](22, "hr");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](13, "currency");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
     const profile_r1 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", profile_r1.profileDescription, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", profile_r1.unitType, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", profile_r1.packSize, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", profile_r1.quantity, "");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](21, 5, profile_r1.salesPrice), "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](profile_r1.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](profile_r1.profileDescription);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](profile_r1.unitType);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](profile_r1.packSize);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](profile_r1.quantity);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](13, 6, profile_r1.salesPrice));
   }
 }
 class OrderDetailsDialogComponent {
@@ -1536,9 +1529,9 @@ class OrderDetailsDialogComponent {
       selectors: [["app-order-details-dialog"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
-      decls: 35,
+      decls: 51,
       vars: 11,
-      consts: [["mat-dialog-title", ""], [4, "ngFor", "ngForOf"], ["align", "end"], ["mat-button", "", "mat-dialog-close", ""]],
+      consts: [["mat-dialog-title", ""], [1, "profile-table"], [1, "description-column"], [4, "ngFor", "ngForOf"], ["align", "end"], ["mat-button", "", "mat-dialog-close", ""]],
       template: function OrderDetailsDialogComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "h2", 0);
@@ -1579,10 +1572,29 @@ class OrderDetailsDialogComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "h3");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, "Profiles");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](31, OrderDetailsDialogComponent_div_31_Template, 23, 7, "div", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "table", 1)(32, "thead")(33, "tr")(34, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](35, "ID");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](32, "mat-dialog-actions", 2)(33, "button", 3);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](34, "Close");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "th", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](37, "Description");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](38, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](39, "Unit Type");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](41, "Pack Size");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](42, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](43, "Quantity");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](44, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](45, "Sales Price");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](46, "tbody");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](47, OrderDetailsDialogComponent_tr_47_Template, 14, 8, "tr", 3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](48, "mat-dialog-actions", 4)(49, "button", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, "Close");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
         }
         if (rf & 2) {
@@ -1598,12 +1610,12 @@ class OrderDetailsDialogComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", ctx.order.shipToName, "");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"](" ", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](28, 9, ctx.order.totalPrice), "");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](20);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.order.profiles);
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_2__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_2__.CurrencyPipe, _angular_common__WEBPACK_IMPORTED_MODULE_2__.DatePipe, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__.MatDialogModule, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__.MatDialogClose, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__.MatDialogTitle, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__.MatDialogActions, _angular_material_dialog__WEBPACK_IMPORTED_MODULE_1__.MatDialogContent, _angular_material_button__WEBPACK_IMPORTED_MODULE_3__.MatButtonModule, _angular_material_button__WEBPACK_IMPORTED_MODULE_3__.MatButton],
-      styles: ["/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
+      styles: [".profile-table[_ngcontent-%COMP%] {\n    width: 100%;\n    border-collapse: collapse;\n    margin-top: 15px;\n  }\n  \n  .profile-table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], .profile-table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n    padding: 8px;\n    border: 1px solid #ddd;\n    text-align: left;\n  }\n  \n  \n\n  .description-column[_ngcontent-%COMP%] {\n    width: 50%; \n\n  }\n  \n  .profile-table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    background-color: #f2f2f2;\n    font-weight: bold;\n  }\n  \n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9vcmRlci1kZXRhaWxzLWRpYWxvZy9vcmRlci1kZXRhaWxzLWRpYWxvZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksV0FBVztJQUNYLHlCQUF5QjtJQUN6QixnQkFBZ0I7RUFDbEI7O0VBRUE7SUFDRSxZQUFZO0lBQ1osc0JBQXNCO0lBQ3RCLGdCQUFnQjtFQUNsQjs7RUFFQSw4Q0FBOEM7RUFDOUM7SUFDRSxVQUFVLEVBQUUsc0RBQXNEO0VBQ3BFOztFQUVBO0lBQ0UseUJBQXlCO0lBQ3pCLGlCQUFpQjtFQUNuQiIsInNvdXJjZXNDb250ZW50IjpbIi5wcm9maWxlLXRhYmxlIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIG1hcmdpbi10b3A6IDE1cHg7XG4gIH1cbiAgXG4gIC5wcm9maWxlLXRhYmxlIHRoLCAucHJvZmlsZS10YWJsZSB0ZCB7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gICAgdGV4dC1hbGlnbjogbGVmdDtcbiAgfVxuICBcbiAgLyogR2l2ZSBtb3JlIHNwYWNlIHRvIHRoZSBEZXNjcmlwdGlvbiBjb2x1bW4gKi9cbiAgLmRlc2NyaXB0aW9uLWNvbHVtbiB7XG4gICAgd2lkdGg6IDUwJTsgLyogSW5jcmVhc2Ugd2lkdGggZnVydGhlciBmb3IgdGhlIERlc2NyaXB0aW9uIGNvbHVtbiAqL1xuICB9XG4gIFxuICAucHJvZmlsZS10YWJsZSB0aCB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2YyZjJmMjtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgfVxuICAiXSwic291cmNlUm9vdCI6IiJ9 */"]
     });
   }
 }
@@ -2620,7 +2632,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Import the dialog component
+
 
 
 
@@ -2632,7 +2644,7 @@ __webpack_require__.r(__webpack_exports__);
 const _c0 = () => ["/home"];
 function OrdersComponent_option_11_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "option", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "option", 16);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
   }
@@ -2645,7 +2657,7 @@ function OrdersComponent_option_11_Template(rf, ctx) {
 }
 function OrdersComponent_option_17_Template(rf, ctx) {
   if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "option", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "option", 16);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
   }
@@ -2656,87 +2668,11 @@ function OrdersComponent_option_17_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](salesperson_r2.name);
   }
 }
-function OrdersComponent_th_36_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "th");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1, "Profile Description");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-}
-function OrdersComponent_th_37_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "th");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1, "Unit Type");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-}
-function OrdersComponent_th_38_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "th");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1, "Pack Size");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-}
-function OrdersComponent_th_39_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "th");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1, "Quantity");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-}
-function OrdersComponent_tr_41_td_13_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const profile_r6 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](profile_r6.profileDescription);
-  }
-}
-function OrdersComponent_tr_41_td_14_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const profile_r7 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](profile_r7.unitType);
-  }
-}
-function OrdersComponent_tr_41_td_15_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const profile_r8 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](profile_r8.packSize);
-  }
-}
-function OrdersComponent_tr_41_td_16_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-  }
-  if (rf & 2) {
-    const profile_r9 = ctx.$implicit;
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](profile_r9.quantity);
-  }
-}
-function OrdersComponent_tr_41_Template(rf, ctx) {
+function OrdersComponent_tr_37_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "tr", 18);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("click", function OrdersComponent_tr_41_Template_tr_click_0_listener() {
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "tr", 17);
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("click", function OrdersComponent_tr_37_Template_tr_click_0_listener() {
       const item_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r3).$implicit;
       const ctx_r4 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx_r4.onRowClick(item_r4));
@@ -2757,35 +2693,24 @@ function OrdersComponent_tr_41_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](10, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](11);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipe"](12, "currency");
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](13, OrdersComponent_tr_41_td_13_Template, 2, 1, "td", 15)(14, OrdersComponent_tr_41_td_14_Template, 2, 1, "td", 15)(15, OrdersComponent_tr_41_td_15_Template, 2, 1, "td", 15)(16, OrdersComponent_tr_41_td_16_Template, 2, 1, "td", 15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
   }
   if (rf & 2) {
     const item_r4 = ctx.$implicit;
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](item_r4.id);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](5, 9, item_r4.deliveryDate));
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](5, 5, item_r4.deliveryDate));
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](3);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](item_r4.customerName);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](item_r4.shipToName);
     _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](12, 11, item_r4.totalPrice));
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", item_r4.profiles);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", item_r4.profiles);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", item_r4.profiles);
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", item_r4.profiles);
+    _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](12, 7, item_r4.totalPrice));
   }
 }
 class OrdersComponent {
-  constructor(http, fb, cdr, snackbarService, authService, dialog // Inject MatDialog
-  ) {
+  constructor(http, fb, cdr, snackbarService, authService, dialog) {
     this.http = http;
     this.fb = fb;
     this.cdr = cdr;
@@ -2808,7 +2733,7 @@ class OrdersComponent {
     this.setupOrdersListener();
     this.setupCustomerNameFilterListener();
   }
-  // Step 1: Load all companies and populate the company filter
+  // Load all companies and populate the company filter
   loadCompanies() {
     const token = this.authService.getToken();
     const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpHeaders({
@@ -2818,12 +2743,12 @@ class OrdersComponent {
       headers
     }).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_6__.tap)(companies => {
       if (companies && companies.length > 0) {
-        // Set the first company as the default selection
+        // Automatically set the first company in the list as the default selection
         this.form.get('company').setValue(companies[0]);
       }
     }));
   }
-  // Step 2: When the company changes, load the relevant sales reps for that company
+  // When the company changes, load the relevant sales reps for that company
   setupSalesPersonListener() {
     this.form.get('company').valueChanges.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_7__.switchMap)(company => {
       const token = this.authService.getToken();
@@ -2834,14 +2759,17 @@ class OrdersComponent {
         headers
       });
     }), (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.tap)(salesreps => {
-      // Set the first sales rep as the default selection if available
+      // Update salesPersons$ observable with the new list
+      this.salesPersons$ = new rxjs__WEBPACK_IMPORTED_MODULE_8__.Observable(observer => {
+        observer.next(salesreps);
+        observer.complete();
+      });
+      // Automatically set the first sales rep as the default selection if available
       if (salesreps && salesreps.length > 0) {
-        this.salesPersons$ = new rxjs__WEBPACK_IMPORTED_MODULE_8__.Observable(observer => {
-          observer.next(salesreps);
-          observer.complete();
-        });
         this.form.get('salesPerson').setValue(salesreps[0]);
       }
+      // Trigger orders to reload when sales reps are loaded
+      this.loadOrders();
     })).subscribe({
       error: error => {
         console.error('Failed to load sales reps:', error);
@@ -2849,22 +2777,31 @@ class OrdersComponent {
       }
     });
   }
-  // Step 3: When the sales rep changes, load the relevant orders for that sales rep and company
+  // Load orders when the sales rep changes or a filter is applied
   setupOrdersListener() {
-    this.form.get('salesPerson').valueChanges.pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_7__.switchMap)(salesrep => {
-      const company = this.form.get('company').value;
-      const token = this.authService.getToken();
-      const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpHeaders({
-        Authorization: `Bearer ${token}`
-      });
-      const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
-      return this.http.get(apiUrl, {
-        headers
-      });
-    }), (0,rxjs__WEBPACK_IMPORTED_MODULE_6__.tap)(orders => {
-      this.orders = orders;
-      this.applyFilters();
-    })).subscribe({
+    this.form.get('salesPerson').valueChanges.subscribe(() => {
+      this.loadOrders();
+    });
+  }
+  // Fetch orders based on selected company and sales rep
+  loadOrders() {
+    const company = this.form.get('company').value;
+    const salesrep = this.form.get('salesPerson').value;
+    if (!company || !salesrep) {
+      return; // Exit if either company or sales rep is not selected
+    }
+    const token = this.authService.getToken();
+    const headers = new _angular_common_http__WEBPACK_IMPORTED_MODULE_5__.HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+    const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
+    this.http.get(apiUrl, {
+      headers
+    }).subscribe({
+      next: orders => {
+        this.orders = orders;
+        this.applyFilters();
+      },
       error: error => {
         console.error('Failed to load orders:', error);
         this.snackbarService.showSnackBar('Failed to load orders.');
@@ -2884,7 +2821,7 @@ class OrdersComponent {
   onRowClick(order) {
     this.dialog.open(src_app_components_order_details_dialog_order_details_dialog_component__WEBPACK_IMPORTED_MODULE_1__.OrderDetailsDialogComponent, {
       data: order,
-      width: '400px' // Adjust width as needed
+      width: '800px' // Set a wider dialog width to avoid scrollbars
     });
   }
   static {
@@ -2898,9 +2835,9 @@ class OrdersComponent {
       selectors: [["app-orders"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵStandaloneFeature"]],
-      decls: 42,
-      vars: 15,
-      consts: [[3, "formGroup"], [1, "container"], [3, "routerLink"], [3, "companyId"], [1, "page-title"], [1, "filters"], [1, "filter-group"], ["for", "company-filter", 1, "filter-label"], ["id", "company-filter", "formControlName", "company"], [3, "ngValue", 4, "ngFor", "ngForOf"], ["for", "salesname-filter", 1, "filter-label"], ["id", "salesname-filter", "formControlName", "salesPerson"], ["for", "customer-filter", 1, "filter-label"], ["id", "customer-filter", "type", "text", "formControlName", "customerName", "placeholder", "Search Customer Name"], [1, "order-grid"], [4, "ngFor", "ngForOf"], ["class", "clickable-row", 3, "click", 4, "ngFor", "ngForOf"], [3, "ngValue"], [1, "clickable-row", 3, "click"]],
+      decls: 38,
+      vars: 11,
+      consts: [[3, "formGroup"], [1, "container"], [3, "routerLink"], [3, "companyId"], [1, "page-title"], [1, "filters"], [1, "filter-group"], ["for", "company-filter", 1, "filter-label"], ["id", "company-filter", "formControlName", "company"], [3, "ngValue", 4, "ngFor", "ngForOf"], ["for", "salesname-filter", 1, "filter-label"], ["id", "salesname-filter", "formControlName", "salesPerson"], ["for", "customer-filter", 1, "filter-label"], ["id", "customer-filter", "type", "text", "formControlName", "customerName", "placeholder", "Search Customer Name"], [1, "order-grid"], ["class", "clickable-row", 3, "click", 4, "ngFor", "ngForOf"], [3, "ngValue"], [1, "clickable-row", 3, "click"]],
       template: function OrdersComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "form", 0)(1, "div", 1)(2, "a", 2);
@@ -2938,37 +2875,27 @@ class OrdersComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](31, "Customer Name");
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](32, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](33, "Ship To Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](33, "Ship To");
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](34, "th");
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](35, "Total Price");
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](36, OrdersComponent_th_36_Template, 2, 0, "th", 15)(37, OrdersComponent_th_37_Template, 2, 0, "th", 15)(38, OrdersComponent_th_38_Template, 2, 0, "th", 15)(39, OrdersComponent_th_39_Template, 2, 0, "th", 15);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](40, "tbody");
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](41, OrdersComponent_tr_41_Template, 17, 13, "tr", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](36, "tbody");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtemplate"](37, OrdersComponent_tr_37_Template, 13, 9, "tr", 15);
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()()()();
         }
         if (rf & 2) {
           let tmp_2_0;
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("formGroup", ctx.form);
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpureFunction0"](14, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpureFunction0"](10, _c0));
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("companyId", (tmp_2_0 = ctx.form.get("company")) == null ? null : tmp_2_0.value == null ? null : tmp_2_0.value.id);
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](12, 10, ctx.companies$));
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](12, 6, ctx.companies$));
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](6);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](18, 12, ctx.salesPersons$));
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](19);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx.filteredOrders[0] == null ? null : ctx.filteredOrders[0].profiles);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx.filteredOrders[0] == null ? null : ctx.filteredOrders[0].profiles);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx.filteredOrders[0] == null ? null : ctx.filteredOrders[0].profiles);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx.filteredOrders[0] == null ? null : ctx.filteredOrders[0].profiles);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpipeBind1"](18, 8, ctx.salesPersons$));
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](20);
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("ngForOf", ctx.filteredOrders);
         }
       },
