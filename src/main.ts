@@ -1,6 +1,6 @@
+
 import { AppComponent } from './app/app.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
-import { InfiniteScrollDirective } from 'ngx-infinite-scroll'; 
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatMenuModule } from '@angular/material/menu';
 import { MatListModule } from '@angular/material/list';
@@ -37,7 +37,7 @@ bootstrapApplication(AppComponent, {
       MatListModule,
       MatMenuModule,
       MatSnackBarModule,
-      ModalModule.forRoot() // Removed InfiniteScrollDirective from here
+      ModalModule.forRoot()
     ),
     {
       provide: HTTP_INTERCEPTORS,
