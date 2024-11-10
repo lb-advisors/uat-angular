@@ -44,12 +44,8 @@
           <th>Order ID</th>
           <th>Delivery Date</th>
           <th>Customer Name</th>
-          <th>Ship To Name</th>
+          <th>Ship To</th>
           <th>Total Price</th>
-          <th *ngFor="let profile of filteredOrders[0]?.profiles">Profile Description</th>
-          <th *ngFor="let profile of filteredOrders[0]?.profiles">Unit Type</th>
-          <th *ngFor="let profile of filteredOrders[0]?.profiles">Pack Size</th>
-          <th *ngFor="let profile of filteredOrders[0]?.profiles">Quantity</th>
         </tr>
       </thead>
       <tbody>
@@ -59,10 +55,6 @@
           <td>{{ item.customerName }}</td>
           <td>{{ item.shipToName }}</td>
           <td>{{ item.totalPrice | currency }}</td>
-          <td *ngFor="let profile of item.profiles">{{ profile.profileDescription }}</td>
-          <td *ngFor="let profile of item.profiles">{{ profile.unitType }}</td>
-          <td *ngFor="let profile of item.profiles">{{ profile.packSize }}</td>
-          <td *ngFor="let profile of item.profiles">{{ profile.quantity }}</td>
         </tr>
       </tbody>
     </table>

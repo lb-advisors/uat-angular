@@ -3,7 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
+import { MatDialog } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Orders } from 'src/app/models/orders.model';
@@ -11,7 +11,7 @@ import { SalesRep } from 'src/app/models/sales-rep.model';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { AuthService } from 'src/app/services/auth.service';
-import { OrderDetailsDialogComponent } from 'src/app/components/order-details-dialog/order-details-dialog.component'; // Import the dialog component
+import { OrderDetailsDialogComponent } from 'src/app/components/order-details-dialog/order-details-dialog.component';
 
 @Component({
   standalone: true,
@@ -34,7 +34,7 @@ export class OrdersComponent implements OnInit {
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
     private authService: AuthService,
-    private dialog: MatDialog // Inject MatDialog
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -52,7 +52,7 @@ export class OrdersComponent implements OnInit {
     this.setupCustomerNameFilterListener();
   }
 
-  // Step 1: Load all companies and populate the company filter
+  // Load all companies and populate the company filter
   private loadCompanies(): void {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
@@ -62,14 +62,14 @@ export class OrdersComponent implements OnInit {
     this.companies$ = this.http.get<Company[]>('https://uat-pffc.onrender.com/api/companies', { headers }).pipe(
       tap((companies) => {
         if (companies && companies.length > 0) {
-          // Set the first company as the default selection
+          // Automatically set the first company in the list as the default selection
           this.form.get('company')!.setValue(companies[0]);
         }
       })
     );
   }
 
-  // Step 2: When the company changes, load the relevant sales reps for that company
+  // When the company changes, load the relevant sales reps for that company
   private setupSalesPersonListener(): void {
     this.form.get('company')!.valueChanges.pipe(
       switchMap((company: Company) => {
@@ -81,14 +81,19 @@ export class OrdersComponent implements OnInit {
         return this.http.get<SalesRep[]>(`https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps`, { headers });
       }),
       tap((salesreps) => {
-        // Set the first sales rep as the default selection if available
+        // Update salesPersons$ observable with the new list
+        this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+          observer.next(salesreps);
+          observer.complete();
+        });
+        
+        // Automatically set the first sales rep as the default selection if available
         if (salesreps && salesreps.length > 0) {
-          this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
-            observer.next(salesreps);
-            observer.complete();
-          });
           this.form.get('salesPerson')!.setValue(salesreps[0]);
         }
+
+        // Trigger orders to reload when sales reps are loaded
+        this.loadOrders();
       })
     ).subscribe({
       error: (error) => {
@@ -98,24 +103,33 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  // Step 3: When the sales rep changes, load the relevant orders for that sales rep and company
+  // Load orders when the sales rep changes or a filter is applied
   private setupOrdersListener(): void {
-    this.form.get('salesPerson')!.valueChanges.pipe(
-      switchMap((salesrep: SalesRep) => {
-        const company = this.form.get('company')!.value;
-        const token = this.authService.getToken();
-        const headers = new HttpHeaders({
-          Authorization: `Bearer ${token}`
-        });
+    this.form.get('salesPerson')!.valueChanges.subscribe(() => {
+      this.loadOrders();
+    });
+  }
 
-        const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
-        return this.http.get<Orders[]>(apiUrl, { headers });
-      }),
-      tap((orders) => {
+  // Fetch orders based on selected company and sales rep
+  private loadOrders(): void {
+    const company = this.form.get('company')!.value;
+    const salesrep = this.form.get('salesPerson')!.value;
+
+    if (!company || !salesrep) {
+      return; // Exit if either company or sales rep is not selected
+    }
+
+    const token = this.authService.getToken();
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${token}`
+    });
+
+    const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
+    this.http.get<Orders[]>(apiUrl, { headers }).subscribe({
+      next: (orders) => {
         this.orders = orders;
         this.applyFilters();
-      })
-    ).subscribe({
+      },
       error: (error) => {
         console.error('Failed to load orders:', error);
         this.snackbarService.showSnackBar('Failed to load orders.');
@@ -140,7 +154,8 @@ export class OrdersComponent implements OnInit {
   onRowClick(order: Orders): void {
     this.dialog.open(OrderDetailsDialogComponent, {
       data: order,
-      width: '400px' // Adjust width as needed
+      width: '800px', // Set a wider dialog width to avoid scrollbars
     });
   }
+  
 }
