@@ -4215,6 +4215,8 @@ __webpack_require__.r(__webpack_exports__);
 class AuthService {
   constructor() {
     this.tokenKey = 'authToken';
+    // Paths to exclude from authentication
+    this.excludedPaths = [/order-form/i, /order-exists/i, /order-confirmation/i];
   }
   // Save the token to both sessionStorage and localStorage
   saveToken(token) {
@@ -4223,7 +4225,12 @@ class AuthService {
     console.log('Token saved:', token); // Debug: Log saved token
   }
   // Retrieve the token (from sessionStorage first, then fallback to localStorage)
-  getToken() {
+  getToken(url) {
+    // Skip token retrieval if the URL matches an excluded path
+    if (url && this.isExcludedPath(url)) {
+      console.log('URL is excluded from authentication:', url);
+      return null;
+    }
     const token = sessionStorage.getItem(this.tokenKey) || localStorage.getItem(this.tokenKey);
     console.log('Retrieved token:', token); // Debug: Log retrieved token
     return token;
@@ -4235,7 +4242,12 @@ class AuthService {
     console.log('Token cleared'); // Debug: Confirm token clearance
   }
   // Check if token exists and is not expired
-  isTokenValid() {
+  isTokenValid(url) {
+    // Skip token validation if the URL matches an excluded path
+    if (url && this.isExcludedPath(url)) {
+      console.log('URL is excluded from authentication, skipping token validation:', url);
+      return true;
+    }
     const token = this.getToken();
     if (!token) {
       console.warn('No token found');
@@ -4264,6 +4276,10 @@ class AuthService {
       console.error('Failed to decode token:', error);
       return null;
     }
+  }
+  // Check if the URL matches any excluded path pattern
+  isExcludedPath(url) {
+    return this.excludedPaths.some(pattern => pattern.test(url));
   }
   static {
     this.ɵfac = function AuthService_Factory(__ngFactoryType__) {
