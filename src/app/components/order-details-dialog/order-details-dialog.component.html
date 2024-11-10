@@ -1,0 +1,23 @@
+<h2 mat-dialog-title>Order Details</h2>
+<mat-dialog-content>
+  <p><strong>Customer Name:</strong> {{ order.customerName }}</p>
+  <p><strong>Order Date:</strong> {{ order.deliveryDate | date }}</p>
+  <p><strong>Customer PO:</strong> {{ order.customerPo }}</p>
+  <p><strong>Sales Rep:</strong> {{ order.salesRepName }}</p>
+  <p><strong>Ship To:</strong> {{ order.shipToName }}</p>
+  <p><strong>Total Price:</strong> {{ order.totalPrice | currency }}</p>
+  
+  <!-- Profiles section -->
+  <h3>Profiles</h3>
+  <div *ngFor="let profile of order.profiles">
+    <p><strong>Description:</strong> {{ profile.profileDescription }}</p>
+    <p><strong>Unit Type:</strong> {{ profile.unitType }}</p>
+    <p><strong>Pack Size:</strong> {{ profile.packSize }}</p>
+    <p><strong>Quantity:</strong> {{ profile.quantity }}</p>
+    <p><strong>Sales Price:</strong> {{ profile.salesPrice | currency }}</p>
+    <hr>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

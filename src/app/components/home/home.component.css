@@ -1,3 +1,4 @@
+
 .button-container {
   display: flex;
   justify-content: center;
@@ -51,10 +52,15 @@
 }
 
 .image3 {
-  background-color: rgba(0, 16, 46, 1);
   transform: scale(2); /* Scales up the nature cure image slightly */
   margin-left: -50px;
   border: none;
+}
+
+body {
+  background-color: white; /* Beige color for entire page background */
+  margin: 0;
+  padding: 0;
 }
 
 /* Media Queries for Mobile Optimization */

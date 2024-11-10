@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { MatDialog } from '@angular/material/dialog'; // Import MatDialog
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
 import { Orders } from 'src/app/models/orders.model';
@@ -10,6 +11,7 @@ import { SalesRep } from 'src/app/models/sales-rep.model';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { AuthService } from 'src/app/services/auth.service';
+import { OrderDetailsDialogComponent } from 'src/app/components/order-details-dialog/order-details-dialog.component'; // Import the dialog component
 
 @Component({
   standalone: true,
@@ -31,7 +33,8 @@ export class OrdersComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private authService: AuthService
+    private authService: AuthService,
+    private dialog: MatDialog // Inject MatDialog
   ) {}
 
   ngOnInit(): void {
@@ -131,5 +134,13 @@ export class OrdersComponent implements OnInit {
       order.customerName.toLowerCase().includes(customerName)
     );
     this.cdr.markForCheck();
+  }
+
+  // Method to open dialog with order details on row click
+  onRowClick(order: Orders): void {
+    this.dialog.open(OrderDetailsDialogComponent, {
+      data: order,
+      width: '400px' // Adjust width as needed
+    });
   }
 }
