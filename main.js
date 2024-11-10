@@ -4079,19 +4079,16 @@ class AuthInterceptor {
     this.authService = authService;
     this.router = router;
     // Define paths to exclude from authentication
-    this.excludedPaths = ['/order-form', '/order-exists', '/order-confirmation'];
+    this.excludedPaths = [/order-form/i, /order-exists/i, /order-confirmation/i];
   }
   intercept(request, next) {
-    // Get the full URL path
-    const fullUrl = new URL(request.url, window.location.origin);
-    const pathname = fullUrl.pathname;
-    // Check if the request URL contains any excluded path
-    const isExcluded = this.excludedPaths.some(path => {
-      const isMatch = pathname.includes(path);
-      console.log(`URL: ${pathname}, Excluded Path: ${path}, Is Excluded: ${isMatch}`);
+    // Check if the request URL matches any excluded path
+    const isExcluded = this.excludedPaths.some(pattern => {
+      const isMatch = pattern.test(request.url);
+      console.log(`URL: ${request.url}, Pattern: ${pattern}, Excluded: ${isMatch}`);
       return isMatch;
     });
-    // If the request is not excluded and we have a token, add the Authorization header
+    // If the request is not excluded, add the Authorization header if a token is available
     if (!isExcluded) {
       const token = this.authService.getToken();
       if (token) {
@@ -4102,12 +4099,14 @@ class AuthInterceptor {
         });
       }
     } else {
-      console.log('Request excluded from authentication:', pathname);
+      console.log('Request excluded from authentication:', request.url);
     }
     return next.handle(request).pipe((0,rxjs_operators__WEBPACK_IMPORTED_MODULE_1__.catchError)(error => {
       if (error.status === 401 && !isExcluded) {
-        console.log('Unauthorized access detected. Redirecting to login.');
+        console.warn('Unauthorized access detected. Redirecting to login.');
         this.router.navigate(['/login']);
+      } else if (error.status === 401 && isExcluded) {
+        console.warn('Unauthorized request to excluded path, not redirecting');
       }
       return (0,rxjs__WEBPACK_IMPORTED_MODULE_2__.throwError)(() => error);
     }));
