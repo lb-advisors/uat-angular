@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { AuthService } from 'src/app/services/auth.service';
 import { OrderDetailsDialogComponent } from 'src/app/components/order-details-dialog/order-details-dialog.component';
+import { environment } from 'src/environments/environment'; // Import the environment
 
 @Component({
   standalone: true,
@@ -38,38 +39,33 @@ export class OrdersComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Initialize the form with fields for company, sales person, and customer name
     this.form = this.fb.group({
       company: [],
       salesPerson: [],
       customerName: [''],
     });
 
-    // Load companies and set the default company if available
     this.loadCompanies();
     this.setupSalesPersonListener();
     this.setupOrdersListener();
     this.setupCustomerNameFilterListener();
   }
 
-  // Load all companies and populate the company filter
   private loadCompanies(): void {
     const token = this.authService.getToken();
     const headers = new HttpHeaders({
       Authorization: `Bearer ${token}`
     });
 
-    this.companies$ = this.http.get<Company[]>('https://uat-pffc.onrender.com/api/companies', { headers }).pipe(
+    this.companies$ = this.http.get<Company[]>(`${environment.apiUrl}/companies`, { headers }).pipe(
       tap((companies) => {
         if (companies && companies.length > 0) {
-          // Automatically set the first company in the list as the default selection
           this.form.get('company')!.setValue(companies[0]);
         }
       })
     );
   }
 
-  // When the company changes, load the relevant sales reps for that company
   private setupSalesPersonListener(): void {
     this.form.get('company')!.valueChanges.pipe(
       switchMap((company: Company) => {
@@ -78,21 +74,18 @@ export class OrdersComponent implements OnInit {
           Authorization: `Bearer ${token}`
         });
 
-        return this.http.get<SalesRep[]>(`https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps`, { headers });
+        return this.http.get<SalesRep[]>(`${environment.apiUrl}/companies/${company.id}/sales-reps`, { headers });
       }),
       tap((salesreps) => {
-        // Update salesPersons$ observable with the new list
         this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
           observer.next(salesreps);
           observer.complete();
         });
-        
-        // Automatically set the first sales rep as the default selection if available
+
         if (salesreps && salesreps.length > 0) {
           this.form.get('salesPerson')!.setValue(salesreps[0]);
         }
 
-        // Trigger orders to reload when sales reps are loaded
         this.loadOrders();
       })
     ).subscribe({
@@ -103,20 +96,18 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  // Load orders when the sales rep changes or a filter is applied
   private setupOrdersListener(): void {
     this.form.get('salesPerson')!.valueChanges.subscribe(() => {
       this.loadOrders();
     });
   }
 
-  // Fetch orders based on selected company and sales rep
   private loadOrders(): void {
     const company = this.form.get('company')!.value;
     const salesrep = this.form.get('salesPerson')!.value;
 
     if (!company || !salesrep) {
-      return; // Exit if either company or sales rep is not selected
+      return;
     }
 
     const token = this.authService.getToken();
@@ -124,7 +115,7 @@ export class OrdersComponent implements OnInit {
       Authorization: `Bearer ${token}`
     });
 
-    const apiUrl = `https://uat-pffc.onrender.com/api/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
+    const apiUrl = `${environment.apiUrl}/companies/${company.id}/sales-reps/${salesrep.name}/orders?pastHours=72`;
     this.http.get<Orders[]>(apiUrl, { headers }).subscribe({
       next: (orders) => {
         this.orders = orders;
@@ -137,7 +128,6 @@ export class OrdersComponent implements OnInit {
     });
   }
 
-  // Apply a filter based on customer name
   private setupCustomerNameFilterListener(): void {
     this.form.get('customerName')!.valueChanges.subscribe(() => this.applyFilters());
   }
@@ -150,12 +140,10 @@ export class OrdersComponent implements OnInit {
     this.cdr.markForCheck();
   }
 
-  // Method to open dialog with order details on row click
   onRowClick(order: Orders): void {
     this.dialog.open(OrderDetailsDialogComponent, {
       data: order,
-      width: '800px', // Set a wider dialog width to avoid scrollbars
+      width: '800px',
     });
   }
-  
 }
