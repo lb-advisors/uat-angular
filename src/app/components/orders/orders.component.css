@@ -90,6 +90,14 @@ body {
     text-decoration: underline;
 }
 
+.clickable-row {
+    cursor: pointer;
+  }
+  .clickable-row:hover {
+    background-color: #f0f0f0;
+  }
+  
+
 @media (min-width: 601px) {
     .filters {
         flex-direction: row;

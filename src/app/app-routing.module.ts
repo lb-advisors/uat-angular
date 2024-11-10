@@ -1,8 +1,10 @@
+
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
 import { HttpLoggingInterceptor } from 'src/app/interceptors/http-logging.interceptor';
+import { ExemptGuard } from './guards/exempt.guard';
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrderLinksComponent } from './components/order-links/order-links.component';
@@ -24,9 +26,24 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'logout', component: LogoutComponent, title: 'Logout' },
   { path: 'products', component: ProductsComponent, title: 'Products' },
-  { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
-  { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },
-  { path: 'customer/:id/order-form', component: OrderFormComponent, title: 'Order Form' },
+  { 
+    path: 'customer/:id/order-confirmation', 
+    component: OrderConfirmationComponent, 
+    title: 'Order Confirmation', 
+    canActivate: [ExemptGuard] 
+  },
+  { 
+    path: 'customer/:id/order-exists', 
+    component: OrderExistsComponent, 
+    title: 'Order Exists', 
+    canActivate: [ExemptGuard] 
+  },
+  { 
+    path: 'customer/:id/order-form', 
+    component: OrderFormComponent, 
+    title: 'Order Form', 
+    canActivate: [ExemptGuard] 
+  },
   { path: 'data', component: DataComponent, title: 'Data' },
   { path: 'orders', component: OrdersComponent, title: 'Orders' },
   { path: 'preorders', component: PreOrdersComponent, title: 'PreOrders' },

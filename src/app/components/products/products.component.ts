@@ -6,8 +6,8 @@ import { InventoryItem } from 'src/app/models/products.model';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router'; // Import RouterModule for routerLink
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { ProductDetailsDialogComponent } from '../product-details-dialog/product-details-dialog.component';
 
 @Component({
@@ -15,7 +15,7 @@ import { ProductDetailsDialogComponent } from '../product-details-dialog/product
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.css'],
-  imports: [CommonModule, FormsModule, RouterModule, InfiniteScrollDirective], // Ensure RouterModule and FormsModule are imported
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, RouterModule, InfiniteScrollDirective],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProductsComponent implements OnInit, OnDestroy {
@@ -23,16 +23,23 @@ export class ProductsComponent implements OnInit, OnDestroy {
   size = 50;
   searchTerm = '';
   showRelevantItems = false;
+  showSixtySales = false;
+  showWoh = false;
+  showYield = false;
 
   // Filter dropdowns
   originFilter: string = '';
-  unitTypeFilter: string | number = '';
   packSizeFilter: string | number = '';
   buyerFilter: string | number = '';
 
+  // Min CompCost property
+  minCompCost: number = 0;
+
+  // Form control
+  minCompCostControl = new FormControl('');
+
   // Unique dropdown options
   uniqueOrigins: string[] = [];
-  uniqueUnitTypes: (string | number)[] = [];
   uniquePackSizes: (string | number)[] = [];
   uniqueBuyers: (string | number)[] = [];
 
@@ -56,6 +63,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
       this.inventoryItemsSubject.next([]);
       this.loadData();
     });
+
+    // Listen to changes in min compCost input
+    this.minCompCostControl.valueChanges.subscribe((value) => {
+      this.minCompCost = value ? parseFloat(value) : 0;
+      this.onCompCostChange();
+    });
   }
 
   loadData(): void {
@@ -67,16 +80,31 @@ export class ProductsComponent implements OnInit, OnDestroy {
           (item) => !currentData.some((currentItem) => currentItem.compItemId === item.compItemId)
         );
 
-        const filteredData = this.showRelevantItems
+        let filteredData = this.showRelevantItems
           ? newData.filter((item) => item.tenSales && item.tenSales > 0)
           : newData;
 
-        const fullyFilteredData = filteredData.filter((item) =>
-          (this.originFilter ? item.origin === this.originFilter : true) &&
-          (this.unitTypeFilter ? item.unitType === this.unitTypeFilter : true) &&
-          (this.packSizeFilter ? item.packSize === this.packSizeFilter : true) &&
-          (this.buyerFilter ? item.buyer === this.buyerFilter : true)
-        );
+        if (this.showSixtySales) {
+          filteredData = filteredData.filter((item) => item.sixtySales && item.sixtySales > 0);
+        }
+
+        if (this.showWoh) {
+          filteredData = filteredData.filter((item) => item.woh && item.woh > 0);
+        }
+
+        if (this.showYield) {
+          filteredData = filteredData.filter((item) => item.yield && item.yield < 1);
+        }
+
+        const fullyFilteredData = filteredData.filter((item) => {
+          const compCost = item.compCost ?? 0;
+          return (
+            (this.originFilter ? item.origin === this.originFilter : true) &&
+            (this.packSizeFilter ? item.packSize === this.packSizeFilter : true) &&
+            (this.buyerFilter ? item.buyer === this.buyerFilter : true) &&
+            (compCost >= this.minCompCost)
+          );
+        });
 
         this.populateUniqueDropdowns(products);
         this.inventoryItemsSubject.next([...currentData, ...fullyFilteredData]);
@@ -99,7 +127,34 @@ export class ProductsComponent implements OnInit, OnDestroy {
     this.loadData();
   }
 
+  toggleSixtySalesFilter(): void {
+    this.showSixtySales = !this.showSixtySales;
+    this.page = 0;
+    this.inventoryItemsSubject.next([]);
+    this.loadData();
+  }
+
+  toggleWohFilter(): void {
+    this.showWoh = !this.showWoh;
+    this.page = 0;
+    this.inventoryItemsSubject.next([]);
+    this.loadData();
+  }
+
+  toggleYieldFilter(): void {
+    this.showYield = !this.showYield;
+    this.page = 0;
+    this.inventoryItemsSubject.next([]);
+    this.loadData();
+  }
+
   onFilterChange(): void {
+    this.page = 0;
+    this.inventoryItemsSubject.next([]);
+    this.loadData();
+  }
+
+  onCompCostChange(): void {
     this.page = 0;
     this.inventoryItemsSubject.next([]);
     this.loadData();
@@ -128,19 +183,9 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private populateUniqueDropdowns(products: InventoryItem[]): void {
     this.uniqueOrigins = [...new Set(products.map((item) => item.origin))].filter(Boolean).sort() as string[];
-    this.uniqueUnitTypes = [...new Set(products.map((item) => this.getUnitType(item.unitType as number)))].filter((v): v is string => v !== 'Unknown').sort();
-    this.uniquePackSizes = [...new Set(products.map((item) => item.packSize))].filter(Boolean).sort() as (string | number)[];
+    this.uniquePackSizes = [...new Set(products.map((item) => item.packSize))]
+        .filter(Boolean)
+        .sort((a, b) => Number(a) - Number(b)) as (string | number)[];
     this.uniqueBuyers = [...new Set(products.map((item) => item.buyer))].filter(Boolean).sort() as string[];
-  }
-
-  private getUnitType(unitType?: number): string {
-    switch (unitType) {
-      case 1: return 'Cs';
-      case 2: return 'Pcs';
-      case 3: return 'Pck';
-      case 4: return 'lbs';
-      case 5: return 'side';
-      default: return 'Unknown';
-    }
   }
 }
