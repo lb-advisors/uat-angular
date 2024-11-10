@@ -849,19 +849,19 @@ class HomeComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_5_listener() {
             return ctx.navigateTo("order-links");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Order Links");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "New Order");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_7_listener() {
             return ctx.navigateTo("orders");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Orders");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Existing Orders");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_9_listener() {
             return ctx.navigateTo("preorders");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "PreOrders");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "Vendor PreOrders");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_11_listener() {
@@ -2844,7 +2844,7 @@ class OrdersComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](3, "app-logo", 3);
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](4, "h2", 4);
-          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](5, "Orders");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](5, "Existing Orders");
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](6, "div", 5)(7, "div", 6)(8, "label", 7);
           _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](9, "Company:");
@@ -3234,7 +3234,7 @@ class PreOrdersComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 3);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "h2", 4);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "PreOrders");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Vendor PreOrders");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "div", 5)(7, "div", 6)(8, "label", 7);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Vendor Name:");
