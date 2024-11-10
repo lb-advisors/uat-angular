@@ -1,0 +1,100 @@
+<div class="content" infiniteScroll [infiniteScrollDistance]="2" [infiniteScrollThrottle]="50" (scrolled)="onScroll()">
+  <div class="container">
+    <!-- Make the entire image-container clickable by wrapping in a link -->
+    <a [routerLink]="['/home']" class="image-container">
+      <img src="assets/logo.png" alt="Company Logo">
+    </a>
+    
+    <h2 class="inventory-title">Products</h2>
+
+    <!-- Search Bar Section -->
+    <div class="search-bar">
+      <input type="text" placeholder="Search Products" (input)="onSearchChange($event)">
+    </div>
+
+    <!-- Button Row for Relevant Items and Additional Filters -->
+    <div class="button-row" style="display: flex; justify-content: center; gap: 10px; margin-bottom: 20px;">
+      <!-- Relevant Items Toggle Button -->
+      <button (click)="toggleRelevantItemsFilter()" class="relevant-items-btn">
+        {{ showRelevantItems ? 'Show All Items' : 'Relevant Items' }}
+      </button>
+
+      <!-- Sixty Sales Filter Button -->
+      <button (click)="toggleSixtySalesFilter()" class="filter-btn">
+        {{ showSixtySales ? 'Show All Sixty Sales' : 'Sixty Sales > 0' }}
+      </button>
+
+      <!-- WOH Filter Button -->
+      <button (click)="toggleWohFilter()" class="filter-btn">
+        {{ showWoh ? 'Show All WOH' : 'WOH > 0' }}
+      </button>
+
+      <!-- Yield Filter Button -->
+      <button (click)="toggleYieldFilter()" class="filter-btn">
+        {{ showYield ? 'Show All Yield' : 'Yield < 100%' }}
+      </button>
+    </div>
+
+    <!-- Centered Filters Section -->
+    <div class="filters" style="display: flex; justify-content: center; gap: 20px; margin-bottom: 20px;">
+      <!-- Origin Filter Dropdown -->
+      <div class="filter-group">
+        <label for="originFilter">Origin</label>
+        <select id="originFilter" (change)="onFilterChange()" [(ngModel)]="originFilter">
+          <option value="">All Origins</option>
+          <option *ngFor="let origin of uniqueOrigins" [value]="origin">{{ origin }}</option>
+        </select>
+      </div>
+
+      <!-- CompCost Min Filter -->
+      <div class="filter-group minfilter">
+        <label for="comp-cost-min">Min CompCost</label>
+        <input
+          type="number"
+          id="comp-cost-min"
+          [(ngModel)]="minCompCost"
+          (input)="onCompCostChange()"
+          placeholder="Min"
+        />
+      </div>
+
+      <!-- Pack Size Filter Dropdown -->
+      <div class="filter-group">
+        <label for="packSizeFilter">Pack Size</label>
+        <select id="packSizeFilter" (change)="onFilterChange()" [(ngModel)]="packSizeFilter">
+          <option value="">All Pack Sizes</option>
+          <option *ngFor="let packSize of uniquePackSizes" [value]="packSize">{{ packSize }}</option>
+        </select>
+      </div>
+
+      <!-- Buyer Filter Dropdown -->
+      <div class="filter-group">
+        <label for="buyerFilter">Buyer</label>
+        <select id="buyerFilter" (change)="onFilterChange()" [(ngModel)]="buyerFilter">
+          <option value="">All Buyers</option>
+          <option *ngFor="let buyer of uniqueBuyers" [value]="buyer">{{ buyer }}</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Inventory Grid Table -->
+    <table class="inventory-grid">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>WOH</th>
+          <th>Sixty Sales</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of inventoryItems$ | async" (click)="onRowClick(item)">
+          <td>{{ item.compItemId }}</td>
+          <td>{{ item.compDescription }}</td>
+          <td>{{ item.woh }}</td>
+          <td>{{ item.sixtySales }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

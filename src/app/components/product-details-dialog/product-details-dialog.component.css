@@ -1,0 +1,59 @@
+h2 {
+    background-color: #f0f0f0;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 18px;
+    margin-bottom: 0;
+}
+
+.special-instructions {
+    font-size: 14px;
+    background-color: #f0f0f0;
+    text-align: center;
+    color: #666;
+    margin: 0; /* No margin */
+    padding: 4px 0; /* Reduced padding */
+}
+
+mat-dialog-content {
+    font-size: 16px;
+    padding: 0 16px 16px 16px; /* Removed top padding */
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    max-width: 90vw;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+
+.margins {
+    margin-top: 4px; /* Reduced top margin */
+    font-weight: bold;
+}
+
+.margin-values {
+    background-color: #f0f0f0;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+.margin-group, .field-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* Vertically aligns each field */
+    padding: 4px;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers each field on the y-axis */
+    padding: 4px; /* Reduced padding */
+}
+
+.field-label {
+    font-weight: bold;
+    text-decoration: underline;
+    margin-bottom: 2px; /* Slightly reduced space under label */
+}

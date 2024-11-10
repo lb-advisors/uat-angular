@@ -1,0 +1,112 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-color: #f0f0f0;
+    color: #000000;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    padding: 20px 0;
+    background-color: rgba(0, 16, 46, 1);
+}
+
+.logo-container a {
+    display: inline-block;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    background-color: rgba(0, 16, 46, 1);
+}
+
+.logo-container a:hover {
+    opacity: 0.8;
+}
+
+.logo {
+    height: 80px;
+    width: auto;
+}
+
+.login-container {
+    width: 100%;
+    padding: 20px;
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    
+}
+
+h1 {
+    font-size: 24px;
+    margin: 0 0 20px;
+}
+
+mat-form-field {
+    width: 100%;
+    margin-bottom: 16px;
+}
+
+button[mat-raised-button] {
+    width: 100%;
+    padding: 12px;
+    font-size: 18px;
+    background-color: #003366;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 16px;
+}
+
+button[mat-raised-button]:hover {
+    background-color: #002855;
+}
+
+button[mat-raised-button]:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+}
+
+.error-message {
+    color: #ff0000;
+    margin-top: 16px;
+    font-size: 14px;
+    text-align: center;
+}
+
+@media (max-width: 600px) {
+    .container {
+        width: 100%;
+        padding: 0 10px;
+    }
+
+    .login-container {
+        width: 100%;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+
+    mat-form-field {
+        font-size: 16px;
+    }
+}

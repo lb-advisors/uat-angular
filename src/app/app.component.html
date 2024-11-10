@@ -1,48 +1,14 @@
-@if (!isOrderForm) {
-    <mat-toolbar color="primary" class="header" [ngClass]="{'warning': showWarning}">
-        <div class="nav-links-center">
-            <a mat-button routerLink="/inventory" routerLinkActive="active-link">
-                <mat-icon>inventory</mat-icon>
-                Inventory
-            </a>
-            <a mat-button routerLink="/order-links" routerLinkActive="active-link">
-                <mat-icon>description</mat-icon>
-                Order Links
-            </a>
-            <!--a mat-button routerLink="/order-form" routerLinkActive="active-link">
-                <mat-icon>add_shopping_cart</mat-icon>
-                New Order
-            </a-->
-            <a mat-button routerLink="/driver" routerLinkActive="active-link">
-                <mat-icon>local_shipping</mat-icon>
-                Routes
-            </a>
-            <a mat-button routerLink="/data" routerLinkActive="active-link">
-                <mat-icon>cloud_upload</mat-icon>
-                Data
-            </a>
+<main>
+    <router-outlet></router-outlet>
+</main>
+
+<!-- Footer with Navigation and Social Icons-->
+<footer class="mat-drawer-container">
+    <div class="container">
+        <div class="text-align-center">
+            © 2024 - Pacific Fresh Fish Company
+            <div *ngIf="isDevMode" class="dev-mode">UAT ENVIRONMENT</div>
+            <div *ngIf="isDevMode" class="dev-mode">{{apiUrl}}</div>
         </div>
-    
-      <!--  <a routerLink="/home" class="logo">
-            <img src="assets/gs.png" alt="GS Logo" class="gs-logo">
-        </a> -->
-    </mat-toolbar>
-    }
-    
-    <div class="underline"></div> <!-- Thinner black line underlining the nav bar -->
-    
-    <main>
-        <router-outlet></router-outlet>
-    </main>
-    
-    <!-- Footer with Navigation and Social Icons-->
-    <footer class="mat-drawer-container">
-        <div class="container">
-            <div class="text-align-center">
-                © 2024 - Pacific Fresh Fish Company
-                @if (isDevMode) {<div class="dev-mode">UAT ENVIRONMENT</div>
-                <div class="dev-mode">{{apiUrl}}</div>}
-            </div>
-        </div>
-    </footer>
-    
+    </div>
+</footer>
