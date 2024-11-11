@@ -1,5 +1,5 @@
 export const environment = {
   production: false,
   apiKey: 'devKey',
-  apiUrl: 'http://localhost:8080/api',
+  apiUrl: 'https://uat-pffc.onrender.com/api',
 };
