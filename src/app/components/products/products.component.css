@@ -168,7 +168,7 @@ body {
 
 /* Hover effect on table rows */
 .inventory-grid tr:hover {
-    background-color: #e0e0e0; /* Light grey on hover */
+    background-color: #e0e0e0; 
     cursor: pointer;
 }
     

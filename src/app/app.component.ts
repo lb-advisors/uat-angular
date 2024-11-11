@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit, isDevMode } from '@angular/core';
-import { NavigationEnd, Router, RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
+import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,17 +10,10 @@ import { environment } from 'src/environments/environment';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css'],
-  imports: [
-    CommonModule,
-    MatToolbarModule,
-    RouterLink,
-    RouterLinkActive,
-    MatIconModule,
-    RouterOutlet
-  ],
+  imports: [CommonModule, MatToolbarModule, MatIconModule, RouterOutlet],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AppComponent implements OnInit { // Renamed to AppComponent
+export class AppComponent implements OnInit {
   isDevMode: boolean = isDevMode();
   apiUrl = environment.apiUrl;
   showWarning = false;

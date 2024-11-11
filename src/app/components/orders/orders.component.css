@@ -81,7 +81,7 @@ body {
 }
 
 .order-grid tbody tr:hover {
-    background-color: #f9f9f9; /* Light hover effect */
+    background-color: #e0e0e0 /* #f9f9f9; Light hover effect */
 }
 
 .copy-link {

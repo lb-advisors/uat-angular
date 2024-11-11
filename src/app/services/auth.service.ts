@@ -1,49 +1,47 @@
-
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { LoginResponse } from '../models/login-response.model ';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private tokenKey = 'authToken';
 
-  // Paths to exclude from authentication
-  private excludedPaths: RegExp[] = [
-    /order-form/i,
-    /order-exists/i,
-    /order-confirmation/i
-  ];
+  constructor(private http: HttpClient, private router: Router) {}
 
-  constructor() {}
+  login(username: string, password: string): Observable<LoginResponse> {
+    username = username.toLowerCase();
+    return this.http.post<LoginResponse>(`${environment.apiUrl}/public/auth/login`, { username, password });
+  }
 
-  // Save the token to both sessionStorage and localStorage
   saveToken(token: string): void {
-    sessionStorage.setItem(this.tokenKey, token);
     localStorage.setItem(this.tokenKey, token);
-    console.log('Token saved:', token); // Debug: Log saved token
   }
 
   // Retrieve the token (from sessionStorage first, then fallback to localStorage)
-  getToken(url?: string): string | null {
-    // Skip token retrieval if the URL matches an excluded path
-    if (url && this.isExcludedPath(url)) {
-      console.log('URL is excluded from authentication:', url);
-      return null;
-    }
-
-    const token = sessionStorage.getItem(this.tokenKey) || localStorage.getItem(this.tokenKey);
-    console.log('Retrieved token:', token); // Debug: Log retrieved token
+  getToken(): string | null {
+    const token = localStorage.getItem(this.tokenKey);
     return token;
   }
 
-  // Clear the token from both storages (useful for logout)
-  clearToken(): void {
-    sessionStorage.removeItem(this.tokenKey);
+  // Check if the user is logged in by verifying if a token exists
+  isLoggedIn(): boolean {
+    const token = localStorage.getItem(this.tokenKey);
+    return !!token;
+  }
+
+  // Optional: method to log out
+  logout(): void {
     localStorage.removeItem(this.tokenKey);
-    console.log('Token cleared'); // Debug: Confirm token clearance
+    this.router.navigate(['/login']);
   }
 
   // Check if token exists and is not expired
+  /*
   isTokenValid(url?: string): boolean {
     // Skip token validation if the URL matches an excluded path
     if (url && this.isExcludedPath(url)) {
@@ -83,9 +81,5 @@ export class AuthService {
       return null;
     }
   }
-
-  // Check if the URL matches any excluded path pattern
-  private isExcludedPath(url: string): boolean {
-    return this.excludedPaths.some((pattern) => pattern.test(url));
-  }
+*/
 }

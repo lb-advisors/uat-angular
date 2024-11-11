@@ -1,4 +1,4 @@
-import { HttpClient, HttpParams, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -12,41 +12,18 @@ import { AuthService } from './auth.service';
 export class ProductService {
   private apiUrl = environment.apiUrl;
 
-  constructor(
-    private http: HttpClient,
-    private authService: AuthService
-  ) {}
+  constructor(private http: HttpClient, private authService: AuthService) {}
 
-  private getHeaders(): HttpHeaders {
-    const token = this.authService.getToken();
-    return new HttpHeaders({
-      'Authorization': `Bearer ${token}`
-    });
+  getProductDetails(compItemId: number): Observable<InventoryItem[]> {
+    return this.http.get<InventoryItem[]>(`${this.apiUrl}/products/${compItemId}`);
   }
 
-  getProductDetails(compItemId: number): Observable<any> {
-    return this.http.get<any>(
-      `${this.apiUrl}/products/${compItemId}`,
-      { headers: this.getHeaders() }
-    );
-  }
-
-  getProducts(
-    page: number,
-    size: number,
-    searchTerm: string,
-  ): Observable<InventoryItem[]> {
-    const params = new HttpParams()
-      .set('page', page.toString())
-      .set('size', size.toString())
-      .set('search', searchTerm);
-
-    console.log('Fetching products with token:', this.authService.getToken()); // Debug log
+  getProducts(page: number, size: number, searchTerm: string): Observable<InventoryItem[]> {
+    const params = new HttpParams().set('page', page.toString()).set('size', size.toString()).set('search', searchTerm);
 
     return this.http
       .get<{ content: InventoryItem[] }>(`${this.apiUrl}/products`, {
         params,
-        headers: this.getHeaders()
       })
       .pipe(
         map((response) =>
@@ -67,8 +44,8 @@ export class ProductService {
             sixtySales: item.sixtySales,
             tenSales: item.tenSales,
             preOrderHours: item.preOrderHours,
-          }))
-        )
+          })),
+        ),
       );
   }
 }

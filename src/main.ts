@@ -1,4 +1,3 @@
-
 import { AppComponent } from './app/app.component';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
@@ -16,10 +15,8 @@ import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { GlobalErrorHandlerService } from './app/services/global-error-handler.service';
 import { ErrorHandler, importProvidersFrom } from '@angular/core';
-import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
-import { HttpLoggingInterceptor } from 'src/app/interceptors/http-logging.interceptor';
+import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AuthInterceptor } from './app/interceptors/auth.interceptor';
-import { AuthService } from './app/services/auth.service';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -37,21 +34,11 @@ bootstrapApplication(AppComponent, {
       MatListModule,
       MatMenuModule,
       MatSnackBarModule,
-      ModalModule.forRoot()
+      ModalModule.forRoot(),
     ),
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HttpLoggingInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
-    AuthService,
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
-    provideHttpClient(),
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
+    provideHttpClient(withInterceptorsFromDi()),
     provideAnimations(),
   ],
 }).catch((err) => console.error(err));
