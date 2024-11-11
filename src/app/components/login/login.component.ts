@@ -40,7 +40,7 @@ export class LoginComponent {
     this.authService.login(username, password).subscribe({
       next: (loginResponse) => {
         this.authService.saveToken(loginResponse.token);
-        this.router.navigate(['/products']); // Navigate to /products on success
+        this.router.navigate(['/home']); // Navigate to /home on success
       },
       error: (loginError) => {
         this.loading = false;
