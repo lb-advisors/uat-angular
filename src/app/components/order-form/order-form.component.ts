@@ -1,8 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule, ValidationErrors, Validators } from '@angular/forms';
-import { environment } from 'src/environments/environment';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LogoComponent } from '../logo/logo.component';
@@ -11,9 +9,6 @@ import { Order } from 'src/app/models/order.model';
 import { OrderRequest } from 'src/app/models/order-request.model';
 import { ProfileRequest } from 'src/app/models/profile-request.model';
 import { OrderFormService } from 'src/app/services/order-form.service';
-
-import { toZonedTime, fromZonedTime } from 'date-fns-tz';
-import { addMonths, setHours, setMinutes, setSeconds, isAfter, isBefore } from 'date-fns';
 
 @Component({
   standalone: true,
@@ -24,7 +19,6 @@ import { addMonths, setHours, setMinutes, setSeconds, isAfter, isBefore } from '
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OrderFormComponent implements OnInit {
-  private apiUrl = environment.apiUrl;
   order!: Order;
   hasSpecials = false;
   orderForm!: FormGroup;
@@ -32,7 +26,6 @@ export class OrderFormComponent implements OnInit {
   customerId!: number;
 
   constructor(
-    private http: HttpClient,
     private fb: FormBuilder,
     private router: Router,
     private snackBarService: SnackbarService,
@@ -56,7 +49,7 @@ export class OrderFormComponent implements OnInit {
         this.order = order;
         this.hasSpecials = this.order.profiles.some((profile) => profile.isSpecial);
         const shipToValidators = order.shipTos?.length ? [Validators.required] : [];
-        
+
         this.orderForm = this.fb.group({
           customerId: [order.customerId],
           deliveryDate: ['', [Validators.required, this.dateAfterTomorrowValidator, this.dateWithinThreeMonthsValidator, this.dateNotOnSundayValidator]],
@@ -109,24 +102,21 @@ export class OrderFormComponent implements OnInit {
 
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
-  
+
     if (this.orderForm.valid) {
-      console.log('Form Submitted', this.orderForm.value);
-  
       const order: OrderRequest = this.orderForm.value;
-  
+
       // Remove profiles with a quantity of 0 and set total price
       order.profiles = order.profiles.filter((profile: ProfileRequest) => profile.quantity > 0);
       order.totalPrice = this.totalPrice;
-  
+
       // Set shipToId to an empty string if it's not set
       if (!order.shipToId) {
-        order.shipToId = "";  // Ensures "" is submitted instead of 0 or null
+        order.shipToId = ''; // Ensures "" is submitted instead of 0 or null
       }
-  
+
       this.orderService.placeOrder(this.customerId, order).subscribe({
         next: (orderConfirmation) => {
-          console.log('Order submitted successfully', orderConfirmation);
           this.router.navigate(['/customer', this.customerId, 'order-confirmation'], {
             state: { order: orderConfirmation, companyId: this.order.companyId },
           });
@@ -134,33 +124,30 @@ export class OrderFormComponent implements OnInit {
         },
         error: (error) => {
           const errorCode = error.status;
-          const errorMessage =
-            errorCode == 409 ? 'An order already exists for that day' : 'Error submitting order';
+          const errorMessage = errorCode == 409 ? 'An order already exists for that day' : 'Error submitting order';
           if (errorCode == 409) {
             this.router.navigate(['/customer', this.customerId, 'order-exists'], {
               state: { order: error.error, companyId: this.order.companyId },
             });
           }
           this.snackBarService.showSnackBar(errorMessage);
-  
+
           console.error('Error submitting order', error);
         },
       });
-  
+
       this.submitted = true;
     } else {
       this.orderForm.markAllAsTouched();
     }
   }
-  
-  
-  
+
   isQuantityEntered(index: number): boolean {
     const quantity = this.profileControls.at(index).get('quantity')?.value;
     return typeof quantity === 'number' && quantity > 0;
   }
 
-  dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
+  dateAfterTomorrowValidator(): ValidationErrors | null {
     // Your validator logic here
     return null;
   }
@@ -171,7 +158,7 @@ export class OrderFormComponent implements OnInit {
     return hasAtLeastOneQuantity ? null : { atLeastOneQuantity: true };
   }
 
-  dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
+  dateWithinThreeMonthsValidator(): ValidationErrors | null {
     // Your validator logic here
     return null;
   }

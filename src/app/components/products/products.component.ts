@@ -54,10 +54,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.loadData();
 
-    this.searchSubscription = this.searchSubject.pipe(
-      distinctUntilChanged(this.trimComparator),
-      debounceTime(200)
-    ).subscribe((searchTerm) => {
+    this.searchSubscription = this.searchSubject.pipe(distinctUntilChanged(this.trimComparator), debounceTime(200)).subscribe((searchTerm) => {
       this.searchTerm = searchTerm;
       this.page = 0;
       this.inventoryItemsSubject.next([]);
@@ -72,17 +69,12 @@ export class ProductsComponent implements OnInit, OnDestroy {
   }
 
   loadData(): void {
-    console.log('Starting data load for page:', this.page);
     this.productService.getProducts(this.page, this.size, this.searchTerm).subscribe({
       next: (products: InventoryItem[]) => {
         const currentData = this.inventoryItemsSubject.value;
-        const newData = products.filter(
-          (item) => !currentData.some((currentItem) => currentItem.compItemId === item.compItemId)
-        );
+        const newData = products.filter((item) => !currentData.some((currentItem) => currentItem.compItemId === item.compItemId));
 
-        let filteredData = this.showRelevantItems
-          ? newData.filter((item) => item.tenSales && item.tenSales > 0)
-          : newData;
+        let filteredData = this.showRelevantItems ? newData.filter((item) => item.tenSales && item.tenSales > 0) : newData;
 
         if (this.showSixtySales) {
           filteredData = filteredData.filter((item) => item.sixtySales && item.sixtySales > 0);
@@ -102,14 +94,13 @@ export class ProductsComponent implements OnInit, OnDestroy {
             (this.originFilter ? item.origin === this.originFilter : true) &&
             (this.packSizeFilter ? item.packSize === this.packSizeFilter : true) &&
             (this.buyerFilter ? item.buyer === this.buyerFilter : true) &&
-            (compCost >= this.minCompCost)
+            compCost >= this.minCompCost
           );
         });
 
         this.populateUniqueDropdowns(products);
         this.inventoryItemsSubject.next([...currentData, ...fullyFilteredData]);
       },
-      error: (err) => console.error('Error fetching products:', err),
     });
   }
 
@@ -183,9 +174,7 @@ export class ProductsComponent implements OnInit, OnDestroy {
 
   private populateUniqueDropdowns(products: InventoryItem[]): void {
     this.uniqueOrigins = [...new Set(products.map((item) => item.origin))].filter(Boolean).sort() as string[];
-    this.uniquePackSizes = [...new Set(products.map((item) => item.packSize))]
-        .filter(Boolean)
-        .sort((a, b) => Number(a) - Number(b)) as (string | number)[];
+    this.uniquePackSizes = [...new Set(products.map((item) => item.packSize))].filter(Boolean).sort((a, b) => Number(a) - Number(b)) as (string | number)[];
     this.uniqueBuyers = [...new Set(products.map((item) => item.buyer))].filter(Boolean).sort() as string[];
   }
 }

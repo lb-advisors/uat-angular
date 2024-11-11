@@ -29,12 +29,7 @@ interface ProductDetails {
   imports: [CommonModule, MatDialogModule], // Import MatDialogModule here
 })
 export class ProductDetailsDialogComponent {
-  constructor(
-    public dialogRef: MatDialogRef<ProductDetailsDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: ProductDetails
-  ) {
-    console.log('Product Details Data:', this.data); // Debugging log to verify fields
-  }
+  constructor(public dialogRef: MatDialogRef<ProductDetailsDialogComponent>, @Inject(MAT_DIALOG_DATA) public data: ProductDetails) {}
 
   close(): void {
     this.dialogRef.close();
@@ -42,12 +37,18 @@ export class ProductDetailsDialogComponent {
 
   getUnitType(unitType?: number): string {
     switch (unitType) {
-      case 1: return 'Cs';
-      case 2: return 'Pcs';
-      case 3: return 'Pck';
-      case 4: return 'lbs';
-      case 5: return 'side';
-      default: return 'Unknown';
+      case 1:
+        return 'Cs';
+      case 2:
+        return 'Pcs';
+      case 3:
+        return 'Pck';
+      case 4:
+        return 'lbs';
+      case 5:
+        return 'side';
+      default:
+        return 'Unknown';
     }
   }
 }

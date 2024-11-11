@@ -8,13 +8,9 @@ import { AuthService } from './auth.service';
   providedIn: 'root',
 })
 export class GlobalErrorHandlerService implements ErrorHandler {
-  constructor(
-    private snackBarService: SnackbarService,
-    private router: Router,
-    private authService: AuthService
-  ) {}
+  constructor(private snackBarService: SnackbarService, private router: Router, private authService: AuthService) {}
 
-  handleError(error: any) {
+  handleError(error: unknown) {
     if (error instanceof HttpErrorResponse) {
       // Check network connectivity
       if (!navigator.onLine) {
@@ -32,7 +28,7 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       switch (error.status) {
         case 401:
           this.snackBarService.showSnackBar('Session expired. Please login again');
-          this.authService.clearToken();
+          this.authService.logout();
           this.router.navigate(['/login']);
           break;
 
@@ -52,10 +48,11 @@ export class GlobalErrorHandlerService implements ErrorHandler {
           this.snackBarService.showSnackBar('Server error. Please try again later');
           break;
 
-        default:
+        default: {
           console.error('An error occurred:', error);
           const errorMessage = error.error?.message || 'An unexpected error occurred';
           this.snackBarService.showSnackBar(`Error: ${errorMessage}`);
+        }
       }
 
       // Log the full error for debugging

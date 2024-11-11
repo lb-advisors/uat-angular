@@ -10,7 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
   selector: 'app-preorders',
   templateUrl: './preorders.component.html',
   styleUrls: ['./preorders.component.css'],
-  imports: [FormsModule, CommonModule, RouterModule] // Include RouterModule here
+  imports: [FormsModule, CommonModule, RouterModule], // Include RouterModule here
 })
 export class PreOrdersComponent {
   preOrders: PreOrders[] = [
@@ -28,7 +28,7 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 2.5
+      price: 2.5,
     },
     {
       dispatchDate: '11/6/2024 0:00',
@@ -44,7 +44,7 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 4.83
+      price: 4.83,
     },
     {
       dispatchDate: '11/6/2024 0:00',
@@ -60,7 +60,7 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 1.80
+      price: 1.8,
     },
     {
       dispatchDate: '11/6/2024 0:00',
@@ -76,7 +76,7 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 2.00
+      price: 2.0,
     },
     {
       dispatchDate: '11/6/2024 0:00',
@@ -92,7 +92,7 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 3.50
+      price: 3.5,
     },
     {
       dispatchDate: '11/6/2024 0:00',
@@ -108,7 +108,7 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 1.64
+      price: 1.64,
     },
     {
       dispatchDate: '11/6/2024 0:00',
@@ -124,8 +124,8 @@ export class PreOrdersComponent {
       webAppPreOrderQ_VendorID: 1687,
       vendor_VendorID: 1687,
       vendorName: 'COMMODITY FOOD SALES',
-      price: 1.73
-    }
+      price: 1.73,
+    },
   ];
 
   // Properties for filtering and validation
@@ -142,13 +142,11 @@ export class PreOrdersComponent {
   }
 
   getUniqueVendors() {
-    this.uniqueVendors = [...new Set(this.preOrders.map(order => order.vendorName))];
+    this.uniqueVendors = [...new Set(this.preOrders.map((order) => order.vendorName))];
   }
 
   filterByVendor() {
-    this.filteredPreOrders = this.selectedVendor
-      ? this.preOrders.filter(order => order.vendorName === this.selectedVendor)
-      : [...this.preOrders];
+    this.filteredPreOrders = this.selectedVendor ? this.preOrders.filter((order) => order.vendorName === this.selectedVendor) : [...this.preOrders];
   }
 
   validateWeight(index: number) {
@@ -175,7 +173,6 @@ export class PreOrdersComponent {
       this.snackBar.open('Please fix the errors before submitting.', 'Close', { duration: 3000 });
     } else {
       this.snackBar.open('PreOrder saved!', 'Close', { duration: 3000 });
-      console.log('Saved PreOrders:', this.preOrders);
     }
   }
 

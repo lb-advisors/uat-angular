@@ -1,5 +1,4 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { Observable, switchMap, tap } from 'rxjs';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -27,11 +26,10 @@ export class OrderLinksComponent implements OnInit {
   filteredCustomers: Customer[] = [];
 
   constructor(
-    private http: HttpClient,
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private orderLinksService: OrderLinksService
+    private orderLinksService: OrderLinksService,
   ) {}
 
   ngOnInit(): void {
@@ -48,47 +46,51 @@ export class OrderLinksComponent implements OnInit {
         if (defaultCompany) {
           this.form.get('company')!.setValue(defaultCompany);
         }
-      })
+      }),
     );
 
     // Load salespersons based on selected company
-    this.form.get('company')!.valueChanges.pipe(
-      switchMap((company) =>
-        this.orderLinksService.getSalesPersons(company.id).pipe(
-          tap((salesreps) => {
-            salesreps.sort((a, b) => a.name.localeCompare(b.name));
-            this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
-              observer.next(salesreps);
-              observer.complete();
-            });
-            if (salesreps.length > 0) {
-              this.form.get('salesPerson')!.setValue(salesreps[0]);
-            }
-          })
-        )
+    this.form
+      .get('company')!
+      .valueChanges.pipe(
+        switchMap((company) =>
+          this.orderLinksService.getSalesPersons(company.id).pipe(
+            tap((salesreps) => {
+              salesreps.sort((a, b) => a.name.localeCompare(b.name));
+              this.salesPersons$ = new Observable<SalesRep[]>((observer) => {
+                observer.next(salesreps);
+                observer.complete();
+              });
+              if (salesreps.length > 0) {
+                this.form.get('salesPerson')!.setValue(salesreps[0]);
+              }
+            }),
+          ),
+        ),
       )
-    ).subscribe();
+      .subscribe();
 
     // Load customers based on selected salesperson
-    this.form.get('salesPerson')!.valueChanges.pipe(
-      switchMap((salesrep) => {
-        const company = this.form.get('company')!.value;
-        return this.orderLinksService.getCustomers(company.id, salesrep.name);
-      })
-    ).subscribe({
-      next: (customers) => {
-        this.customers = [...customers];
-        this.customers.sort((a, b) => a.name.localeCompare(b.name));
-        this.filteredCustomers = [...this.customers];
-        this.cdr.markForCheck();
-      }
-    });
+    this.form
+      .get('salesPerson')!
+      .valueChanges.pipe(
+        switchMap((salesrep) => {
+          const company = this.form.get('company')!.value;
+          return this.orderLinksService.getCustomers(company.id, salesrep.name);
+        }),
+      )
+      .subscribe({
+        next: (customers) => {
+          this.customers = [...customers];
+          this.customers.sort((a, b) => a.name.localeCompare(b.name));
+          this.filteredCustomers = [...this.customers];
+          this.cdr.markForCheck();
+        },
+      });
 
     // Apply search filter on customer names
     this.form.get('searchText')!.valueChanges.subscribe((searchText: string) => {
-      this.filteredCustomers = this.customers.filter((customer) =>
-        customer.name.toLowerCase().includes(searchText.toLowerCase())
-      );
+      this.filteredCustomers = this.customers.filter((customer) => customer.name.toLowerCase().includes(searchText.toLowerCase()));
     });
   }
 

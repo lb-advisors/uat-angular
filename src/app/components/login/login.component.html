@@ -4,37 +4,26 @@
             <img src="assets/logo.png" alt="Company Logo" class="logo">
         </a>
     </div>
-    
+
     <div class="login-container">
         <h1>Login</h1>
         <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
             <mat-form-field appearance="fill">
                 <mat-label>Username</mat-label>
-                <input matInput 
-                       type="text" 
-                       formControlName="username" 
-                       placeholder="Enter your username" 
-                       autocomplete="username">
+                <input matInput type="text" formControlName="username" placeholder="Enter your username" autocomplete="username">
             </mat-form-field>
-            
+
             <mat-form-field appearance="fill">
                 <mat-label>Password</mat-label>
-                <input matInput 
-                       type="password" 
-                       formControlName="password" 
-                       placeholder="Enter your password" 
-                       autocomplete="current-password">
+                <input matInput type="password" formControlName="password" placeholder="Enter your password" autocomplete="current-password">
             </mat-form-field>
-            
-            <button mat-raised-button 
-                    color="primary" 
-                    type="submit" 
-                    [disabled]="loading">
+
+            <button mat-raised-button color="primary" type="submit" [disabled]="loading || loginForm.invalid">
                 <span *ngIf="!loading">Login</span>
                 <span *ngIf="loading">Logging in...</span>
             </button>
         </form>
-        
+
         <div *ngIf="errorMessage" class="error-message">
             {{ errorMessage }}
         </div>
