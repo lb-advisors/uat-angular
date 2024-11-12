@@ -25,6 +25,10 @@ export class OrderFormComponent implements OnInit {
   submitted: boolean = false;
   customerId!: number;
 
+  // New properties for modal functionality
+  showModal = false;
+  currentOrderItems: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -99,7 +103,7 @@ export class OrderFormComponent implements OnInit {
       quantity: ['', Validators.min(1)],
     });
   }
-
+  
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
 
@@ -145,6 +149,22 @@ export class OrderFormComponent implements OnInit {
   isQuantityEntered(index: number): boolean {
     const quantity = this.profileControls.at(index).get('quantity')?.value;
     return typeof quantity === 'number' && quantity > 0;
+  }
+
+  showCurrentOrder() {
+    this.currentOrderItems = this.order.profiles
+      .map((profile, index) => ({
+        ...profile,
+        quantity: this.profileControls.at(index).get('quantity')?.value
+      }))
+      .filter(item => item.quantity > 0);
+    this.showModal = true;
+    this.cdr.markForCheck(); // Ensure change detection picks up changes for OnPush strategy
+  }
+
+  // New method to close the modal
+  closeModal() {
+    this.showModal = false;
   }
 
   dateAfterTomorrowValidator(): ValidationErrors | null {
