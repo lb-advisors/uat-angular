@@ -155,7 +155,10 @@ export class OrderFormComponent implements OnInit {
     this.currentOrderItems = this.order.profiles
       .map((profile, index) => ({
         ...profile,
-        quantity: this.profileControls.at(index).get('quantity')?.value
+        quantity: this.profileControls.at(index).get('quantity')?.value,
+        totalPrice: (this.profileControls.at(index).get('quantity')?.value || 0) *
+                    (profile.packSize || 0) * 
+                    (profile.salesPrice || 0)
       }))
       .filter(item => item.quantity > 0);
     this.showModal = true;
