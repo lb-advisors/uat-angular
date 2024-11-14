@@ -11,9 +11,19 @@ import { CommonModule } from '@angular/common';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeComponent {
-  constructor(private router: Router) {}
+  username: string | null = null;
+
+  constructor(private router: Router) {
+    this.username = localStorage.getItem('username') || sessionStorage.getItem('username');
+  }
 
   navigateTo(page: string): void {
     this.router.navigate([`/${page}`]);
+  }
+
+  logout(): void {
+    localStorage.removeItem('authToken');
+    sessionStorage.removeItem('authToken');
+    this.router.navigate(['/login']);
   }
 }
