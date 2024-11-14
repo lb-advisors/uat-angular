@@ -1845,9 +1845,9 @@ function OrderFormComponent_form_0_div_5_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵnextContext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", ctx_r1.order.customerName, "");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate"](ctx_r1.order.customerName);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](5);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"](" ", ctx_r1.order.salesRepName, " ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtextInterpolate1"]("", ctx_r1.order.salesRepName, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("href", "tel:" + ctx_r1.order.salesRepPhone, _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵsanitizeUrl"]);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
@@ -1891,7 +1891,7 @@ function OrderFormComponent_form_0_div_6_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"](5);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngForOf", ctx_r1.order.shipTos);
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵadvance"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", (((tmp_3_0 = ctx_r1.orderForm.get("shipToId")) == null ? null : tmp_3_0.touched) || ((tmp_3_0 = ctx_r1.orderForm.get("shipToId")) == null ? null : tmp_3_0.dirty)) && ((tmp_3_0 = ctx_r1.orderForm.get("shipToId")) == null ? null : tmp_3_0.errors == null ? null : tmp_3_0.errors["required"]));
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵproperty"]("ngIf", ((tmp_3_0 = ctx_r1.orderForm.get("shipToId")) == null ? null : tmp_3_0.touched) && ((tmp_3_0 = ctx_r1.orderForm.get("shipToId")) == null ? null : tmp_3_0.errors == null ? null : tmp_3_0.errors["required"]));
   }
 }
 function OrderFormComponent_form_0_div_7_ng_container_20_tr_1_div_6_Template(rf, ctx) {
@@ -2064,21 +2064,21 @@ function OrderFormComponent_form_0_ng_container_27_Template(rf, ctx) {
 function OrderFormComponent_form_0_div_28_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " At least one quantity is required ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " At least one quantity is required. ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
 }
 function OrderFormComponent_form_0_div_29_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " Enter at least one quantity ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, " Enter at least one quantity. ");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
 }
 function OrderFormComponent_form_0_div_34_Template(rf, ctx) {
   if (rf & 1) {
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementStart"](0, "div", 30);
-    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "The total has to be less than $10,000");
+    _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵtext"](1, "The total has to be less than $10,000.");
     _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵelementEnd"]();
   }
 }
@@ -2426,9 +2426,17 @@ class OrderFormComponent {
   closeModal() {
     this.showModal = false;
   }
-  dateAfterTomorrowValidator() {
-    // Your validator logic here
-    return null;
+  dateAfterTomorrowValidator(control) {
+    const dateValue = new Date(control.value);
+    const now = new Date();
+    const twoAmToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 2, 0, 0);
+    // Check if the date is valid and after 2 AM of today
+    if (!isNaN(dateValue.getTime()) && dateValue < twoAmToday) {
+      return {
+        dateAfterTomorrow: true
+      }; // Return error key if date is invalid
+    }
+    return null; // Return null if date is valid
   }
   atLeastOneQuantityValidator(control) {
     const formArray = control;
@@ -2437,15 +2445,30 @@ class OrderFormComponent {
       atLeastOneQuantity: true
     };
   }
-  dateWithinThreeMonthsValidator() {
-    // Your validator logic here
-    return null;
+  dateWithinThreeMonthsValidator(control) {
+    const dateValue = new Date(control.value);
+    const now = new Date();
+    const threeMonthsFromNow = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
+    // Check if the date is within three months
+    if (!isNaN(dateValue.getTime()) && dateValue > threeMonthsFromNow) {
+      return {
+        dateWithinThreeMonths: true
+      }; // Return error key if date is out of range
+    }
+    return null; // Return null if date is valid
   }
   dateNotOnSundayValidator(control) {
+    if (!control.value) {
+      return null; // If there's no date, validation passes
+    }
     const dateValue = new Date(control.value);
-    return dateValue.getDay() !== 0 ? null : {
-      dateNotOnSunday: true
-    };
+    // Check if the parsed date is valid and if it's a Sunday
+    if (!isNaN(dateValue.getTime()) && dateValue.getUTCDay() === 0) {
+      return {
+        dateNotOnSunday: true
+      }; // Trigger error if Sunday
+    }
+    return null; // Otherwise, validation passes
   }
   static {
     this.ɵfac = function OrderFormComponent_Factory(__ngFactoryType__) {
