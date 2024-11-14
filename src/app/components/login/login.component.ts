@@ -21,7 +21,12 @@ export class LoginComponent {
   loading = false;
   errorMessage: string | null = null;
 
-  constructor(private router: Router, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private authService: AuthService) {
+  constructor(
+    private router: Router,
+    private cdr: ChangeDetectorRef,
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+  ) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -39,8 +44,12 @@ export class LoginComponent {
 
     this.authService.login(username, password).subscribe({
       next: (loginResponse) => {
+        // Save the token and username in localStorage
         this.authService.saveToken(loginResponse.token);
-        this.router.navigate(['/home']); // Navigate to /home on success
+        localStorage.setItem('username', username);
+
+        // Navigate to /home on success
+        this.router.navigate(['/home']);
       },
       error: (loginError) => {
         this.loading = false;

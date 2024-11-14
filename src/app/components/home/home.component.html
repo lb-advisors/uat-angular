@@ -1,35 +1,38 @@
 <body>
-  
+  <div class="page">
+    <div class="button-container">
+      <button class="nav-button" (click)="navigateTo('products')">Products</button>
+      <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
+      <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
+      <button class="nav-button" (click)="navigateTo('preorders')">Vendor PreOrders</button>
+      <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
+      <button class="nav-button logout-button" (click)="logout()">Logout</button>
+    </div>
 
-<div class="page">
-
-<div class="button-container">
-    <button class="nav-button" (click)="navigateTo('products')">Products</button>
-    <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
-    <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
-    <button class="nav-button" (click)="navigateTo('preorders')">Vendor PreOrders</button>
-    <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
+    <div class="user-info">
+      User: {{ username }}
+    </div>
+    
+    <div class="image-grid">
+      <img src="assets/goldenstateseafood.png" alt="GS Image" class="grid-image image1">
+      <img src="assets/logo.png" alt="Logo Image" class="grid-image image2">
+      <img src="assets/fogriver3.png" alt="Fog River Image" class="grid-image image3">
+      <img src="assets/naturecure.png" alt="Nature Cure Image" class="grid-image image4">
+    </div>
   </div>
-  
-  <div class="image-grid">
-    <img src="assets/goldenstateseafood.png" alt="GS Image" class="grid-image image1">
-    <img src="assets/logo.png" alt="Logo Image" class="grid-image image2">
-    <img src="assets/fogriver3.png" alt="Fog River Image" class="grid-image image3">
-    <img src="assets/naturecure.png" alt="Nature Cure Image" class="grid-image image4">
-  </div>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-
-
-</div>
 </body>
+
+
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+
