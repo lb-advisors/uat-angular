@@ -10,6 +10,7 @@ import { environment } from 'src/environments/environment';
 })
 export class AuthService {
   private tokenKey = 'authToken';
+  private fullnameKey = 'fullname';
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -18,13 +19,19 @@ export class AuthService {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/public/auth/login`, { username, password });
   }
 
-  saveToken(token: string): void {
+  saveFullnameAndToken(fullname: string, token: string): void {
     localStorage.setItem(this.tokenKey, token);
+    localStorage.setItem(this.fullnameKey, fullname);
   }
 
   // Retrieve the token (from sessionStorage first, then fallback to localStorage)
   getToken(): string | null {
     const token = localStorage.getItem(this.tokenKey);
+    return token;
+  }
+
+  getFullname(): string | null {
+    const token = localStorage.getItem(this.fullnameKey);
     return token;
   }
 

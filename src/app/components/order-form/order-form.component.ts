@@ -25,6 +25,10 @@ export class OrderFormComponent implements OnInit {
   submitted: boolean = false;
   customerId!: number;
 
+  // New properties for modal functionality
+  showModal = false;
+  currentOrderItems: any[] = [];
+
   constructor(
     private fb: FormBuilder,
     private router: Router,
@@ -99,7 +103,7 @@ export class OrderFormComponent implements OnInit {
       quantity: ['', Validators.min(1)],
     });
   }
-
+  
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
 
@@ -147,9 +151,35 @@ export class OrderFormComponent implements OnInit {
     return typeof quantity === 'number' && quantity > 0;
   }
 
-  dateAfterTomorrowValidator(): ValidationErrors | null {
-    // Your validator logic here
-    return null;
+  showCurrentOrder() {
+    this.currentOrderItems = this.order.profiles
+      .map((profile, index) => ({
+        ...profile,
+        quantity: this.profileControls.at(index).get('quantity')?.value,
+        totalPrice: (this.profileControls.at(index).get('quantity')?.value || 0) *
+                    (profile.packSize || 0) * 
+                    (profile.salesPrice || 0)
+      }))
+      .filter(item => item.quantity > 0);
+    this.showModal = true;
+    this.cdr.markForCheck(); // Ensure change detection picks up changes for OnPush strategy
+  }
+
+  // New method to close the modal
+  closeModal() {
+    this.showModal = false;
+  }
+
+  dateAfterTomorrowValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
+    const now = new Date();
+    const twoAmToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 2, 0, 0);
+    
+    // Check if the date is valid and after 2 AM of today
+    if (!isNaN(dateValue.getTime()) && dateValue < twoAmToday) {
+      return { dateAfterTomorrow: true }; // Return error key if date is invalid
+    }
+    return null; // Return null if date is valid
   }
 
   atLeastOneQuantityValidator(control: AbstractControl): ValidationErrors | null {
@@ -158,13 +188,30 @@ export class OrderFormComponent implements OnInit {
     return hasAtLeastOneQuantity ? null : { atLeastOneQuantity: true };
   }
 
-  dateWithinThreeMonthsValidator(): ValidationErrors | null {
-    // Your validator logic here
-    return null;
+  dateWithinThreeMonthsValidator(control: AbstractControl): ValidationErrors | null {
+    const dateValue = new Date(control.value);
+    const now = new Date();
+    const threeMonthsFromNow = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
+  
+    // Check if the date is within three months
+    if (!isNaN(dateValue.getTime()) && dateValue > threeMonthsFromNow) {
+      return { dateWithinThreeMonths: true }; // Return error key if date is out of range
+    }
+    return null; // Return null if date is valid
   }
 
   dateNotOnSundayValidator(control: AbstractControl): ValidationErrors | null {
+    if (!control.value) {
+      return null; // If there's no date, validation passes
+    }
+  
     const dateValue = new Date(control.value);
-    return dateValue.getDay() !== 0 ? null : { dateNotOnSunday: true };
-  }
+    
+    // Check if the parsed date is valid and if it's a Sunday
+    if (!isNaN(dateValue.getTime()) && dateValue.getUTCDay() === 0) {
+      return { dateNotOnSunday: true }; // Trigger error if Sunday
+    }
+  
+    return null; // Otherwise, validation passes
+  }  
 }

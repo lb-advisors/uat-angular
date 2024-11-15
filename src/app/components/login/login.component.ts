@@ -42,7 +42,7 @@ export class LoginComponent {
       .login(username, password)
       .pipe(
         catchError((loginError) => {
-          const errorCode = null; // loginError.status;
+          const errorCode = loginError.status;
           let errorMessage = loginError.error?.message || 'Please check your username and password';
           if (errorCode == 401) {
             errorMessage = 'Please check your username and password';
@@ -57,7 +57,8 @@ export class LoginComponent {
       )
       .subscribe({
         next: (loginResponse) => {
-          this.authService.saveToken(loginResponse.token);
+          const fullname = `${loginResponse.firstName ?? ''} ${loginResponse.lastName ?? ''}`.trim();
+          this.authService.saveFullnameAndToken(fullname, loginResponse.token);
           this.router.navigate(['/products']); // Navigate to /products on success
         },
       });

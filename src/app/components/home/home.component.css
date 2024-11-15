@@ -1,4 +1,3 @@
-
 .button-container {
   display: flex;
   justify-content: center;
@@ -21,6 +20,13 @@
   background-color: rgba(0, 16, 46, 1);
 }
 
+.user-info {
+  margin-left: 20px; /* Indents the user-info text */
+  font-size: 1.1em;
+  color: rgba(0, 16, 46, 1); /* Matches button color for consistency */
+  padding: 10px 0;
+}
+
 .image-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -33,7 +39,6 @@
 .grid-image {
   width: 100%;
   height: auto;
- 
 }
 
 /* Adjustments for individual images */
@@ -47,7 +52,7 @@
 
 .image4 {
   transform: scale(1.3); /* Scales up the nature cure image slightly */
-  margin-top: 10px;   
+  margin-top: 10px;
   margin-left: 50px;
 }
 
@@ -58,7 +63,7 @@
 }
 
 body {
-  background-color: white; /* Beige color for entire page background */
+  background-color: white;
   margin: 0;
   padding: 0;
 }
