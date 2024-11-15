@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -37,17 +38,28 @@ export class LoginComponent {
     this.errorMessage = null;
     const { username, password } = this.loginForm.value;
 
-    this.authService.login(username, password).subscribe({
-      next: (loginResponse) => {
-        this.authService.saveToken(loginResponse.token);
-        this.router.navigate(['/products']); // Navigate to /products on success
-      },
-      error: (loginError) => {
-        this.loading = false;
-        this.errorMessage = 'Login failed. Please check your username and password.';
-        console.error('Login error:', loginError);
-        this.cdr.markForCheck();
-      },
-    });
+    this.authService
+      .login(username, password)
+      .pipe(
+        catchError((loginError) => {
+          const errorCode = null; // loginError.status;
+          let errorMessage = loginError.error?.message || 'Please check your username and password';
+          if (errorCode == 401) {
+            errorMessage = 'Please check your username and password';
+          }
+          this.loading = false;
+          this.errorMessage = `Login failed. ${errorMessage}.`;
+          this.cdr.markForCheck();
+
+          // Rethrow the error for the global error handler
+          return throwError(() => loginError);
+        }),
+      )
+      .subscribe({
+        next: (loginResponse) => {
+          this.authService.saveToken(loginResponse.token);
+          this.router.navigate(['/products']); // Navigate to /products on success
+        },
+      });
   }
 }
