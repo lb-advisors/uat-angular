@@ -15,7 +15,7 @@ import { PreOrdersComponent } from './components/preorders/preorders.component';
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'Home', canActivate: [AuthGuard] },
   { path: 'driver', component: DriverRouteComponent, title: 'Driver Route', canActivate: [AuthGuard] },
   { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },
