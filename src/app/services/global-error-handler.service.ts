@@ -27,30 +27,38 @@ export class GlobalErrorHandlerService implements ErrorHandler {
       // Handle specific HTTP status codes
       switch (error.status) {
         case 401:
-          this.snackBarService.showSnackBar('Session expired. Please login again');
           this.authService.logout();
+          this.snackBarService.showSnackBar('Unauthorized. Please enter your credentials.');
           this.router.navigate(['/login']);
           break;
 
-        case 403:
-          this.snackBarService.showSnackBar('Access denied');
+        case 403: {
+          this.authService.logout();
+          const errorMessage = error.error?.message || 'Try again.';
+          this.snackBarService.showSnackBar(`Access denied. ${errorMessage}.`);
           break;
-
+        }
+        case 423: {
+          this.authService.logout();
+          const errorMessage = error.error?.message || 'Try again.';
+          this.snackBarService.showSnackBar(`Access denied. ${errorMessage}.`);
+          break;
+        }
         case 404:
-          this.snackBarService.showSnackBar('Resource not found');
+          this.snackBarService.showSnackBar('Resource not found.');
           break;
 
         case 413:
-          this.snackBarService.showSnackBar('File too large');
+          this.snackBarService.showSnackBar('File too large.');
           break;
 
         case 500:
-          this.snackBarService.showSnackBar('Server error. Please try again later');
+          this.snackBarService.showSnackBar('Server error. Please try again later.');
           break;
 
         default: {
           console.error('An error occurred:', error);
-          const errorMessage = error.error?.message || 'An unexpected error occurred';
+          const errorMessage = error.error?.message || 'An unexpected error occurred.';
           this.snackBarService.showSnackBar(`Error: ${errorMessage}`);
         }
       }

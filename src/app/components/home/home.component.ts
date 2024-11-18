@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   standalone: true,
@@ -10,11 +11,13 @@ import { CommonModule } from '@angular/common';
   imports: [CommonModule],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeComponent {
-  username: string | null = null;
+export class HomeComponent implements OnInit {
+  username!: string | null;
 
-  constructor(private router: Router) {
-    this.username = localStorage.getItem('username') || sessionStorage.getItem('username');
+  constructor(private router: Router, private authService: AuthService) {}
+
+  ngOnInit(): void {
+    this.username = this.authService.getFullname();
   }
 
   navigateTo(page: string): void {
@@ -22,8 +25,6 @@ export class HomeComponent {
   }
 
   logout(): void {
-    localStorage.removeItem('authToken');
-    sessionStorage.removeItem('authToken');
-    this.router.navigate(['/login']);
+    this.authService.logout();
   }
 }

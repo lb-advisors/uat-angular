@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { catchError, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -21,12 +22,7 @@ export class LoginComponent {
   loading = false;
   errorMessage: string | null = null;
 
-  constructor(
-    private router: Router,
-    private cdr: ChangeDetectorRef,
-    private formBuilder: FormBuilder,
-    private authService: AuthService
-  ) {
+  constructor(private router: Router, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private authService: AuthService) {
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required],
@@ -42,21 +38,29 @@ export class LoginComponent {
     this.errorMessage = null;
     const { username, password } = this.loginForm.value;
 
-    this.authService.login(username, password).subscribe({
-      next: (loginResponse) => {
-        // Save the token and username in localStorage
-        this.authService.saveToken(loginResponse.token);
-        localStorage.setItem('username', username);
+    this.authService
+      .login(username, password)
+      .pipe(
+        catchError((loginError) => {
+          const errorCode = loginError.status;
+          let errorMessage = loginError.error?.message || 'Please check your username and password';
+          if (errorCode == 401) {
+            errorMessage = 'Please check your username and password';
+          }
+          this.loading = false;
+          this.errorMessage = `Login failed. ${errorMessage}.`;
+          this.cdr.markForCheck();
 
-        // Navigate to /home on success
-        this.router.navigate(['/home']);
-      },
-      error: (loginError) => {
-        this.loading = false;
-        this.errorMessage = 'Login failed. Please check your username and password.';
-        console.error('Login error:', loginError);
-        this.cdr.markForCheck();
-      },
-    });
+          // Rethrow the error for the global error handler
+          return throwError(() => loginError);
+        }),
+      )
+      .subscribe({
+        next: (loginResponse) => {
+          const fullname = `${loginResponse.firstName ?? ''} ${loginResponse.lastName ?? ''}`.trim();
+          this.authService.saveFullnameAndToken(fullname, loginResponse.token);
+          this.router.navigate(['/products']); // Navigate to /products on success
+        },
+      });
   }
 }

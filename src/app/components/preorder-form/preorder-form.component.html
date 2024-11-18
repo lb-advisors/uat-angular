@@ -1,0 +1,56 @@
+<div class="container">
+  <!-- Header Section -->
+  <div class="header-section">
+    <a [routerLink]="['/home']">
+      <img src="assets/logo.png" alt="Company Logo" />
+    </a>
+  </div>
+
+  <!-- Page Title -->
+  <h2 class="page-title">PreOrders</h2>
+
+  <!-- PreOrders Table -->
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Dispatch Date</th>
+        <th>Customer Name</th>
+        <th>Description</th>
+        <th>Unit Size</th>
+        <th>Unit Type</th>
+        <th>Weight (Lbs)</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of preOrders; trackBy: trackByOrderId">
+        <td>{{ order.id }}</td>
+        <td>{{ order.dispatchDate | date: 'mediumDate' }}</td>
+        <td>{{ order.customerName }}</td>
+        <td>{{ order.descriptionMemo }}</td>
+        <td>{{ order.unitSize }}</td>
+        <td>{{ getUnitType(order.unitType) }}</td>
+        <td>
+          <input type="number" [(ngModel)]="order.weight" />
+          <div class="error-text" *ngIf="order.weight <= 0">Weight must be greater than 0</div>
+        </td>
+        <td>
+          <input type="number" [(ngModel)]="order.price" step="0.01" />
+          <div class="error-text" *ngIf="order.price <= 0">Price must be greater than 0</div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Submit Button -->
+  <div class="text-center">
+    <button
+      class="btn btn-primary mt-3"
+      [disabled]="hasErrors()"
+      (click)="submitAll()"
+    >
+      Submit
+    </button>
+  </div>
+</div>
