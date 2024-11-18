@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RouterModule } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { VendorsService, Vendor } from 'src/app/services/vendors.service'; // Import Vendor type
 import { CommonModule } from '@angular/common';
@@ -26,7 +26,8 @@ export class VendorLinksComponent implements OnInit {
     private fb: FormBuilder,
     private cdr: ChangeDetectorRef,
     private snackbarService: SnackbarService,
-    private vendorsService: VendorsService
+    private vendorsService: VendorsService,
+    private router: Router // Inject Router
   ) {}
 
   ngOnInit(): void {
@@ -62,15 +63,14 @@ export class VendorLinksComponent implements OnInit {
     });
   }
 
-  // Generate Vendor Link
-  generateLink(vendorId: number): string {
-    const baseUrl = window.location.href.replace('/vendor-links', ''); // Base URL adjustment
-    return `${baseUrl}/vendor/${vendorId}/details`; // Adjust URL structure as needed
+  // Navigate to Preorder Form for the selected vendor
+  navigateToPreorderForm(vendorId: number): void {
+    this.router.navigate(['/preorder-form', vendorId]); // Navigate with vendorId as route parameter
   }
 
   // Copy Vendor Link to Clipboard
   copyLink(vendorId: number): void {
-    const link = this.generateLink(vendorId);
+    const link = `${window.location.origin}/preorder-form/${vendorId}`; // Generate link for preorder form
     navigator.clipboard
       .writeText(link)
       .then(() => {

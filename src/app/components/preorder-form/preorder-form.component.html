@@ -1,0 +1,31 @@
+<div class="container">
+    <h2>PreOrders for {{ vendorName }}</h2>
+  
+  
+    <!-- PreOrders Table -->
+    <table *ngIf="!loading && preOrders.length > 0" class="table">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Dispatch Date</th>
+          <th>Customer Name</th>
+          <th>Description</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of preOrders; trackBy: trackByOrderId">
+          <td>{{ order.id }}</td>
+          <td>{{ order.dispatchDate | date:'mediumDate' }}</td>
+          <td>{{ order.customerName }}</td>
+          <td>{{ order.descriptionMemo }}</td>
+          <td>{{ order.price | currency }}</td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- No Data Message -->
+    <div *ngIf="!loading && preOrders.length === 0" class="alert alert-info">
+      No preorders available.
+    </div>
+  </div>

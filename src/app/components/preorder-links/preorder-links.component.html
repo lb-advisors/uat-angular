@@ -2,7 +2,7 @@
     <!-- Logo Component -->
     <a [routerLink]="['/home']">
       <div class="image-container">
-        <app-logo></app-logo>
+          <img src="assets/logo.png" alt="Company Logo">
       </div>
     </a>
   
@@ -21,9 +21,11 @@
         <tr *ngFor="let vendor of vendors$ | async">
           <td>{{ vendor.vendorName }}</td>
           <td>
-            <a [routerLink]="['/vendor', vendor.vendorId, 'preorder-form']" target="_blank">Preorder Form</a>
+            <!-- Navigate to the PreordersComponent -->
+            <a [routerLink]="['/preorder-form', vendor.vendorId]" target="_blank">Preorder Form</a>
           </td>
           <td>
+            <!-- Copy Link Functionality -->
             <span class="copy-link" (click)="copyLink(vendor.vendorId)">Copy Link</span>
           </td>
         </tr>

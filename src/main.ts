@@ -8,7 +8,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatTableModule } from '@angular/material/table';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'; // Import CommonModule
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app/app-routing.module';
@@ -16,6 +16,7 @@ import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { GlobalErrorHandlerService } from './app/services/global-error-handler.service';
 import { ErrorHandler, importProvidersFrom } from '@angular/core';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './app/interceptors/auth.interceptor';
 
 bootstrapApplication(AppComponent, {
@@ -23,9 +24,10 @@ bootstrapApplication(AppComponent, {
     importProvidersFrom(
       BrowserModule,
       AppRoutingModule,
+      RouterModule,
+      CommonModule, // Add CommonModule here
       FormsModule,
       ReactiveFormsModule,
-      CommonModule,
       MatSlideToggleModule,
       MatTableModule,
       MatSidenavModule,

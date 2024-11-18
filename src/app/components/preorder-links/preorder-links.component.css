@@ -28,7 +28,7 @@ body {
     align-items: center;
     padding: 10px;
     border-radius: 8px;
-    background-color: var(--image-background-color);
+    background-color:  rgba(0, 16, 46, 1);;
 }
 
 .image-container img {
