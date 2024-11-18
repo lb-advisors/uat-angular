@@ -182,4 +182,15 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
   trackByOrderId(index: number, order: PreOrder): number {
     return order.id;
   }
+  getUnitType(unitType: string): string {
+    const unitTypeMap: { [key: string]: string } = {
+      "1": "Case",
+      "2": "Piece",
+      "3": "Pack",
+      "4": "Pound",
+      "5": "Side"
+    };
+    return unitTypeMap[unitType] || "Unknown";
+  }
+  
 }
