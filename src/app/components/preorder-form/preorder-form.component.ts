@@ -107,4 +107,26 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
     };
     return unitTypeMap[unitType] || "Unknown";
   }
+  submitAll(): void {
+    const requests = this.preOrders.map((order) => {
+      const patchUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
+      const body = {
+        weight: order.weight,
+        price: order.price,
+      };
+  
+      return this.http.patch(patchUrl, body).toPromise();
+    });
+  
+    // Execute all PATCH requests
+    Promise.all(requests)
+      .then((responses) => {
+        console.log('All updates successful:', responses);
+        alert('All changes saved successfully!');
+      })
+      .catch((error) => {
+        console.error('One or more updates failed:', error);
+        alert('Failed to save some changes. Please try again.');
+      });
+  }
 }
