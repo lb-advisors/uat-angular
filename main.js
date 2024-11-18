@@ -840,7 +840,7 @@ class HomeComponent {
       selectors: [["app-home"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
-      decls: 36,
+      decls: 34,
       vars: 1,
       consts: [[1, "page"], [1, "button-container"], [1, "nav-button", 3, "click"], [1, "nav-button", "logout-button", 3, "click"], [1, "user-info"], [1, "image-grid"], ["src", "assets/goldenstateseafood.png", "alt", "GS Image", 1, "grid-image", "image1"], ["src", "assets/logo.png", "alt", "Logo Image", 1, "grid-image", "image2"], ["src", "assets/fogriver3.png", "alt", "Fog River Image", 1, "grid-image", "image3"], ["src", "assets/naturecure.png", "alt", "Nature Cure Image", 1, "grid-image", "image4"]],
       template: function HomeComponent_Template(rf, ctx) {
@@ -865,38 +865,32 @@ class HomeComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_9_listener() {
-            return ctx.navigateTo("preorders");
+            return ctx.navigateTo("preorder-links");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Vendor PreOrders");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Preorders");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_11_listener() {
-            return ctx.navigateTo("preorder-links");
-          });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "Preorder Links");
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_13_listener() {
             return ctx.navigateTo("driver");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, "Routes");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "Routes");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](15, "button", 3);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_15_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_13_listener() {
             return ctx.logout();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16, "Logout");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, "Logout");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "div", 4);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](15, "div", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](16);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "div", 5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](20, "img", 6)(21, "img", 7)(22, "img", 8)(23, "img", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](17, "div", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "img", 6)(19, "img", 7)(20, "img", 8)(21, "img", 9);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](24, "br")(25, "br")(26, "br")(27, "br")(28, "br")(29, "br")(30, "br")(31, "br")(32, "br")(33, "br")(34, "br")(35, "br");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](22, "br")(23, "br")(24, "br")(25, "br")(26, "br")(27, "br")(28, "br")(29, "br")(30, "br")(31, "br")(32, "br")(33, "br");
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](16);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" User: ", ctx.username, " ");
         }
       },
@@ -3232,6 +3226,16 @@ class PreorderFormComponent {
   }
   trackByOrderId(index, order) {
     return order.id;
+  }
+  getUnitType(unitType) {
+    const unitTypeMap = {
+      "1": "Case",
+      "2": "Piece",
+      "3": "Pack",
+      "4": "Pound",
+      "5": "Side"
+    };
+    return unitTypeMap[unitType] || "Unknown";
   }
   static {
     this.ɵfac = function PreorderFormComponent_Factory(__ngFactoryType__) {
