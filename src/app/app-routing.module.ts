@@ -12,6 +12,7 @@ import { OrderFormComponent } from './components/order-form/order-form.component
 import { DataComponent } from './components/data/data.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { PreOrdersComponent } from './components/preorders/preorders.component';
+import { VendorLinksComponent } from './components/preorder-links/preorder-links.component'; // Update the import to match the renamed component
 import { AuthGuard } from './guards/auth.guard';
 
 const routes: Routes = [
@@ -28,6 +29,7 @@ const routes: Routes = [
   { path: 'data', component: DataComponent, title: 'Data', canActivate: [AuthGuard] },
   { path: 'orders', component: OrdersComponent, title: 'Orders', canActivate: [AuthGuard] },
   { path: 'preorders', component: PreOrdersComponent, title: 'PreOrders', canActivate: [AuthGuard] },
+  { path: 'preorder-links', component: VendorLinksComponent, title: 'Vendor Links', canActivate: [AuthGuard] }, // Updated the route to use VendorLinksComponent
   { path: '**', redirectTo: 'login' }, // Wildcard route to handle unmatched paths, redirect to login
 ];
 
