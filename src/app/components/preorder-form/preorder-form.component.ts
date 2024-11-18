@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
 import { FormsModule } from '@angular/forms'; // Import FormsModule
+import { environment } from '../../../environments/environment'; // Import environment configuration
 
 interface PreOrder {
   id: number;
@@ -26,7 +27,7 @@ interface PreOrder {
 
 @Component({
   standalone: true,
-  imports: [CommonModule, RouterModule, FormsModule], // Include FormsModule
+  imports: [CommonModule, RouterModule, FormsModule],
   selector: 'app-preorder-form',
   templateUrl: './preorder-form.component.html',
   styleUrls: ['./preorder-form.component.css']
@@ -39,6 +40,8 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
   loading: boolean = true;
   private subscription = new Subscription();
 
+  private apiUrl = environment.apiUrl; // Use dynamic environment variable
+
   constructor(
     private route: ActivatedRoute,
     private http: HttpClient,
@@ -49,7 +52,7 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
     this.subscription.add(
       this.route.params.subscribe((params) => {
         this.vendorId = +params['vendorId'];
-        console.log('Vendor ID:', this.vendorId); // Debug Vendor ID
+        console.log('Vendor ID:', this.vendorId);
         if (this.vendorId) {
           this.fetchPreOrders();
         } else {
@@ -66,14 +69,14 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
   }
 
   fetchPreOrders(): void {
-    const apiUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders`;
-    console.log('Fetching PreOrders from:', apiUrl);
+    const fetchUrl = `${this.apiUrl}/public/vendor/${this.vendorId}/pre_orders`;
+    console.log('Fetching PreOrders from:', fetchUrl);
     this.subscription.add(
-      this.http.get<PreOrder[]>(apiUrl).subscribe({
+      this.http.get<PreOrder[]>(fetchUrl).subscribe({
         next: (data) => {
           console.log('PreOrders fetched:', data);
           this.preOrders = data;
-          this.sortByIdAsc(); // Sort the preOrders by ID in ascending order
+          this.sortByIdAsc();
           this.cdr.detectChanges();
         },
         error: (err) => {
@@ -85,16 +88,15 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
       })
     );
   }
-  
 
   updatePreOrder(order: PreOrder): void {
-    const patchUrl = `https://uat-pffc.onrender.com/api/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
+    const patchUrl = `${this.apiUrl}/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
     const body = {
       weight: order.weight,
       price: order.price,
     };
 
-    console.log('Updating Order:', { patchUrl, body }); // Debug API Call Details
+    console.log('Updating Order:', { patchUrl, body });
 
     this.http.patch(patchUrl, body).subscribe({
       next: (response) => {
@@ -110,25 +112,24 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
 
   submitAll(): void {
     const requests = this.preOrders.map((order) => {
-      const patchUrl = `https://uat-pffc.onrender.com/api/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
+      const patchUrl = `${this.apiUrl}/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
       const body = {
         weight: order.weight,
         price: order.price,
       };
 
-      console.log('Submitting PATCH Request:', { patchUrl, body }); // Debug Individual Requests
+      console.log('Submitting PATCH Request:', { patchUrl, body });
 
       return this.http.patch(patchUrl, body).toPromise();
     });
 
-    // Execute all PATCH requests
     Promise.all(requests)
       .then((responses) => {
-        console.log('All updates successful:', responses); // Debug Success Responses
+        console.log('All updates successful:', responses);
         alert('All changes saved successfully!');
       })
       .catch((error) => {
-        console.error('One or more updates failed:', error); // Debug Errors
+        console.error('One or more updates failed:', error);
         alert('Failed to save some changes. Please try again.');
       });
   }
