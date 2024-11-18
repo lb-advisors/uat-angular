@@ -3032,18 +3032,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 5072);
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 316);
 /* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! rxjs */ 2510);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/forms */ 4456);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common/http */ 6443);
 
 
 
+ // Import FormsModule
 
 
 
 
-const _c0 = () => ["/home"];
-function PreorderFormComponent_tr_24_Template(rf, ctx) {
+
+function PreorderFormComponent_tr_22_Template(rf, ctx) {
   if (rf & 1) {
+    const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "tr")(1, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
@@ -3063,40 +3066,48 @@ function PreorderFormComponent_tr_24_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](12, "td");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](13);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "td");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "td", 7);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipe"](18, "currency");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](14, "td")(15, "input", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function PreorderFormComponent_tr_22_Template_input_ngModelChange_15_listener($event) {
+      const order_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r1).$implicit;
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](order_r2.weight, $event) || (order_r2.weight = $event);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
+    });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "td")(17, "input", 3);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function PreorderFormComponent_tr_22_Template_input_ngModelChange_17_listener($event) {
+      const order_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r1).$implicit;
+      _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](order_r2.price, $event) || (order_r2.price = $event);
+      return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "td")(19, "button", 4);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function PreorderFormComponent_tr_22_Template_button_click_19_listener() {
+      const order_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r1).$implicit;
+      const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"](ctx_r2.updatePreOrder(order_r2));
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, " Save ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
   }
   if (rf & 2) {
-    const order_r1 = ctx.$implicit;
-    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
+    const order_r2 = ctx.$implicit;
+    const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r1.id);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r2.id);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](5, 8, order_r1.dispatchDate, "mediumDate"));
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind2"](5, 8, order_r2.dispatchDate, "mediumDate"));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r1.customerName);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r2.customerName);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r1.descriptionMemo);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r2.descriptionMemo);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r1.unitSize);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](order_r2.unitSize);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r1.getUnitType(order_r1.unitType));
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](ctx_r2.getUnitType(order_r2.unitType));
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate1"]("", order_r1.weight || "N/A", " lbs");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", order_r2.weight);
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtextInterpolate"](_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpipeBind1"](18, 11, order_r1.price));
-  }
-}
-function PreorderFormComponent_div_25_Template(rf, ctx) {
-  if (rf & 1) {
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](1, " No preorders available. ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", order_r2.price);
   }
 }
 class PreorderFormComponent {
@@ -3109,28 +3120,14 @@ class PreorderFormComponent {
     this.errorMessage = '';
     this.loading = true;
     this.subscription = new rxjs__WEBPACK_IMPORTED_MODULE_1__.Subscription();
-    console.log('[Constructor] PreOrder Component created');
   }
   ngOnInit() {
-    console.log('[ngOnInit] Component initialization started');
-    this.subscription.add(this.route.params.subscribe({
-      next: params => {
-        console.log('[Route Params]', params);
-        this.vendorId = +params['vendorId'];
-        console.log('[Vendor ID] Parsed:', this.vendorId, 'Original:', params['vendorId']);
-        if (this.vendorId) {
-          this.fetchPreOrders();
-        } else {
-          console.error('[Error] Invalid Vendor ID:', params['vendorId']);
-          console.log('[PreOrders with Weight]', this.preOrders);
-          this.errorMessage = 'Invalid Vendor ID';
-          this.loading = false;
-          this.cdr.detectChanges();
-        }
-      },
-      error: err => {
-        console.error('[Route Error]', err);
-        this.errorMessage = 'Error loading vendor information';
+    this.subscription.add(this.route.params.subscribe(params => {
+      this.vendorId = +params['vendorId'];
+      if (this.vendorId) {
+        this.fetchPreOrders();
+      } else {
+        this.errorMessage = 'Invalid Vendor ID';
         this.loading = false;
         this.cdr.detectChanges();
       }
@@ -3138,47 +3135,30 @@ class PreorderFormComponent {
   }
   ngOnDestroy() {
     this.subscription.unsubscribe();
-    console.log('[Destroy] Component cleanup completed');
   }
   fetchPreOrders() {
-    console.log('[Fetch] Starting to fetch preorders');
-    this.loading = true;
-    this.errorMessage = '';
-    this.cdr.detectChanges();
     const apiUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders`;
-    console.log('[API] Calling:', apiUrl);
-    this.subscription.add(this.http.get(apiUrl).subscribe({
-      next: data => {
-        console.log('[API Response] Raw data:', data);
-        console.log('[Data Length]:', data.length);
-        if (Array.isArray(data)) {
-          this.preOrders = [...data];
-          console.log('[PreOrders] Assigned', this.preOrders.length, 'orders');
-          if (data.length > 0) {
-            this.vendorName = data[0].vendorName;
-            console.log('[Vendor Name] Set to:', this.vendorName);
-          }
-        } else {
-          console.error('[Data Error] Response is not an array:', data);
-          this.errorMessage = 'Invalid data format received';
-        }
-        this.loading = false;
-        console.log('[State] Loading:', this.loading, 'Orders:', this.preOrders.length);
-        this.cdr.detectChanges();
-      },
-      error: err => {
-        console.error('[API Error] Details:', err);
-        this.errorMessage = 'Failed to load preorders. Please try again later.';
-        this.loading = false;
-        this.preOrders = [];
-        console.log('[State] Error state - Loading:', this.loading);
-        this.cdr.detectChanges();
-      }
+    this.subscription.add(this.http.get(apiUrl).subscribe(data => {
+      this.preOrders = data;
+      this.cdr.detectChanges();
     }));
   }
-  handleImageError(event) {
-    console.error('[Image Error] Failed to load logo');
-    event.target.style.display = 'none';
+  updatePreOrder(order) {
+    const patchUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
+    const body = {
+      weight: order.weight,
+      price: order.price
+    };
+    this.http.patch(patchUrl, body).subscribe({
+      next: response => {
+        console.log('Update successful:', response);
+        alert('Order updated successfully!');
+      },
+      error: error => {
+        console.error('Update failed:', error);
+        alert('Failed to update order. Please try again.');
+      }
+    });
   }
   trackByOrderId(index, order) {
     return order.id;
@@ -3204,54 +3184,48 @@ class PreorderFormComponent {
       selectors: [["app-preorder-form"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
-      decls: 26,
-      vars: 5,
-      consts: [[1, "container"], [1, "header-section"], [1, "image-container", 3, "routerLink"], ["src", "assets/logo.png", "alt", "Company Logo"], [1, "table"], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["class", "alert alert-info", 4, "ngIf"], [1, "text-right"], [1, "alert", "alert-info"]],
+      decls: 23,
+      vars: 2,
+      consts: [[1, "table"], [4, "ngFor", "ngForOf", "ngForTrackBy"], ["type", "number", "min", "0", 3, "ngModelChange", "ngModel"], ["type", "number", "step", "0.01", "min", "0", 3, "ngModelChange", "ngModel"], [1, "btn", "btn-primary", 3, "click"]],
       template: function PreorderFormComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "a", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](3, "img", 3);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "table", 4)(5, "thead")(6, "tr")(7, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "ID");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "table", 0)(1, "thead")(2, "tr")(3, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "ID");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](5, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Dispatch Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "th");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](8, "Customer Name");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](9, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "Dispatch Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "Description");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Customer Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Unit Size");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Description");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Unit Type");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](15, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Unit Size");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](16, "Weight (kg)");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](17, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Unit Type");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Price");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Weight");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "th");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "Price");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Actions");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "tbody");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](24, PreorderFormComponent_tr_24_Template, 19, 13, "tr", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "tbody");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](22, PreorderFormComponent_tr_22_Template, 21, 11, "tr", 1);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](25, PreorderFormComponent_div_25_Template, 2, 0, "div", 6);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵpureFunction0"](4, _c0));
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](22);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngForOf", ctx.preOrders)("ngForTrackBy", ctx.trackByOrderId);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", !ctx.loading && ctx.preOrders.length === 0);
         }
       },
-      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_4__.CurrencyPipe, _angular_common__WEBPACK_IMPORTED_MODULE_4__.DatePipe, _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule, _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterLink],
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_4__.DatePipe, _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.MinValidator, _angular_forms__WEBPACK_IMPORTED_MODULE_5__.NgModel],
       styles: ["body[_ngcontent-%COMP%] {\n  font-family: Arial, sans-serif;\n  margin: 0;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  background-color: #f0f0f0;\n  color: #000000;\n}\n\n.content[_ngcontent-%COMP%] {\n  flex-grow: 1;\n  padding: 20px;\n}\n\n.container[_ngcontent-%COMP%] {\n  width: 90%;\n  max-width: 800px;\n  margin: 20px auto;\n  padding: 20px;\n  background-color: #ffffff;\n  color: #000000;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n}\n\n\n\n.header-section[_ngcontent-%COMP%] {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  margin-bottom: 20px;\n  background-color:  rgba(0, 16, 46, 1);\n}\n\n.header-section[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n  font-size: 24px;\n  margin: 0;\n}\n\n.header-section[_ngcontent-%COMP%]   .image-container[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 5px;\n  border-radius: 8px;\n  text-decoration: none; \n\n  background-color:  rgba(0, 16, 46, 1);\n}\n\n.header-section[_ngcontent-%COMP%]   .image-container[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  max-height: 50px;\n  width: auto;\n  border-radius: 8px;\n  border: none;\n}\n\n\n\n.table[_ngcontent-%COMP%] {\n  width: 100%;\n  border-collapse: collapse;\n  margin-bottom: 20px;\n}\n\n.table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], .table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n  border: 1px solid #ccc;\n  padding: 8px;\n  text-align: center;\n}\n\n.table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n  background-color: #d3d3d3;\n  color: #333;\n}\n\n.table[_ngcontent-%COMP%]   tbody[_ngcontent-%COMP%]   tr[_ngcontent-%COMP%]:hover {\n  background-color: #e0e0e0;\n  cursor: pointer;\n}\n\n\n\n.alert-info[_ngcontent-%COMP%] {\n  padding: 10px;\n  margin-top: 20px;\n  background-color: #e7f3fe;\n  border: 1px solid #b3d4fc;\n  border-radius: 4px;\n  color: #31708f;\n  text-align: center;\n}\n\n\n\n@media (max-width: 500px) {\n  .container[_ngcontent-%COMP%] {\n    padding: 10px;\n  }\n\n  .header-section[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: flex-start;\n  }\n\n  .header-section[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n    margin-bottom: 10px;\n    font-size: 20px;\n  }\n\n  .header-section[_ngcontent-%COMP%]   .image-container[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n    max-height: 40px;\n  }\n\n  .table[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], .table[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n    font-size: 14px;\n  }\n}\n\n.header-section[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  margin-bottom: 20px;\n}\n\n.header-section[_ngcontent-%COMP%]   .image-container[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n  max-height: 100px; \n\n  width: auto;       \n\n  display: block;\n}\n\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9wcmVvcmRlci1mb3JtL3ByZW9yZGVyLWZvcm0uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLDhCQUE4QjtFQUM5QixTQUFTO0VBQ1QsVUFBVTtFQUNWLGFBQWE7RUFDYix1QkFBdUI7RUFDdkIseUJBQXlCO0VBQ3pCLGNBQWM7QUFDaEI7O0FBRUE7RUFDRSxZQUFZO0VBQ1osYUFBYTtBQUNmOztBQUVBO0VBQ0UsVUFBVTtFQUNWLGdCQUFnQjtFQUNoQixpQkFBaUI7RUFDakIsYUFBYTtFQUNiLHlCQUF5QjtFQUN6QixjQUFjO0VBQ2Qsc0JBQXNCO0VBQ3RCLGtCQUFrQjtFQUNsQix1Q0FBdUM7QUFDekM7O0FBRUEsbUJBQW1CO0FBQ25CO0VBQ0UsYUFBYTtFQUNiLG1CQUFtQjtFQUNuQiw4QkFBOEI7RUFDOUIsbUJBQW1CO0VBQ25CLHFDQUFxQztBQUN2Qzs7QUFFQTtFQUNFLGVBQWU7RUFDZixTQUFTO0FBQ1g7O0FBRUE7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixZQUFZO0VBQ1osa0JBQWtCO0VBQ2xCLHFCQUFxQixFQUFFLHFCQUFxQjtFQUM1QyxxQ0FBcUM7QUFDdkM7O0FBRUE7RUFDRSxnQkFBZ0I7RUFDaEIsV0FBVztFQUNYLGtCQUFrQjtFQUNsQixZQUFZO0FBQ2Q7O0FBRUEsb0JBQW9CO0FBQ3BCO0VBQ0UsV0FBVztFQUNYLHlCQUF5QjtFQUN6QixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxzQkFBc0I7RUFDdEIsWUFBWTtFQUNaLGtCQUFrQjtBQUNwQjs7QUFFQTtFQUNFLHlCQUF5QjtFQUN6QixXQUFXO0FBQ2I7O0FBRUE7RUFDRSx5QkFBeUI7RUFDekIsZUFBZTtBQUNqQjs7QUFFQSxvQkFBb0I7QUFDcEI7RUFDRSxhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLHlCQUF5QjtFQUN6Qix5QkFBeUI7RUFDekIsa0JBQWtCO0VBQ2xCLGNBQWM7RUFDZCxrQkFBa0I7QUFDcEI7O0FBRUEsc0JBQXNCO0FBQ3RCO0VBQ0U7SUFDRSxhQUFhO0VBQ2Y7O0VBRUE7SUFDRSxzQkFBc0I7SUFDdEIsdUJBQXVCO0VBQ3pCOztFQUVBO0lBQ0UsbUJBQW1CO0lBQ25CLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxnQkFBZ0I7RUFDbEI7O0VBRUE7SUFDRSxlQUFlO0VBQ2pCO0FBQ0Y7O0FBRUE7RUFDRSxhQUFhO0VBQ2IsdUJBQXVCO0VBQ3ZCLG1CQUFtQjtFQUNuQixtQkFBbUI7QUFDckI7O0FBRUE7RUFDRSxpQkFBaUIsRUFBRSxnQ0FBZ0M7RUFDbkQsV0FBVyxRQUFRLDBCQUEwQjtFQUM3QyxjQUFjO0FBQ2hCIiwic291cmNlc0NvbnRlbnQiOlsiYm9keSB7XG4gIGZvbnQtZmFtaWx5OiBBcmlhbCwgc2Fucy1zZXJpZjtcbiAgbWFyZ2luOiAwO1xuICBwYWRkaW5nOiAwO1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2YwZjBmMDtcbiAgY29sb3I6ICMwMDAwMDA7XG59XG5cbi5jb250ZW50IHtcbiAgZmxleC1ncm93OiAxO1xuICBwYWRkaW5nOiAyMHB4O1xufVxuXG4uY29udGFpbmVyIHtcbiAgd2lkdGg6IDkwJTtcbiAgbWF4LXdpZHRoOiA4MDBweDtcbiAgbWFyZ2luOiAyMHB4IGF1dG87XG4gIHBhZGRpbmc6IDIwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XG4gIGNvbG9yOiAjMDAwMDAwO1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICBib3JkZXItcmFkaXVzOiA4cHg7XG4gIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbn1cblxuLyogSGVhZGVyIFNlY3Rpb24gKi9cbi5oZWFkZXItc2VjdGlvbiB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogIHJnYmEoMCwgMTYsIDQ2LCAxKTtcbn1cblxuLmhlYWRlci1zZWN0aW9uIGgyIHtcbiAgZm9udC1zaXplOiAyNHB4O1xuICBtYXJnaW46IDA7XG59XG5cbi5oZWFkZXItc2VjdGlvbiAuaW1hZ2UtY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIHBhZGRpbmc6IDVweDtcbiAgYm9yZGVyLXJhZGl1czogOHB4O1xuICB0ZXh0LWRlY29yYXRpb246IG5vbmU7IC8qIFJlbW92ZSB1bmRlcmxpbmUgKi9cbiAgYmFja2dyb3VuZC1jb2xvcjogIHJnYmEoMCwgMTYsIDQ2LCAxKTtcbn1cblxuLmhlYWRlci1zZWN0aW9uIC5pbWFnZS1jb250YWluZXIgaW1nIHtcbiAgbWF4LWhlaWdodDogNTBweDtcbiAgd2lkdGg6IGF1dG87XG4gIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgYm9yZGVyOiBub25lO1xufVxuXG4vKiBQcmVPcmRlcnMgVGFibGUgKi9cbi50YWJsZSB7XG4gIHdpZHRoOiAxMDAlO1xuICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICBtYXJnaW4tYm90dG9tOiAyMHB4O1xufVxuXG4udGFibGUgdGgsIC50YWJsZSB0ZCB7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gIHBhZGRpbmc6IDhweDtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4udGFibGUgdGgge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZDNkM2QzO1xuICBjb2xvcjogIzMzMztcbn1cblxuLnRhYmxlIHRib2R5IHRyOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2UwZTBlMDtcbiAgY3Vyc29yOiBwb2ludGVyO1xufVxuXG4vKiBObyBEYXRhIE1lc3NhZ2UgKi9cbi5hbGVydC1pbmZvIHtcbiAgcGFkZGluZzogMTBweDtcbiAgbWFyZ2luLXRvcDogMjBweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2U3ZjNmZTtcbiAgYm9yZGVyOiAxcHggc29saWQgI2IzZDRmYztcbiAgYm9yZGVyLXJhZGl1czogNHB4O1xuICBjb2xvcjogIzMxNzA4ZjtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBSZXNwb25zaXZlIERlc2lnbiAqL1xuQG1lZGlhIChtYXgtd2lkdGg6IDUwMHB4KSB7XG4gIC5jb250YWluZXIge1xuICAgIHBhZGRpbmc6IDEwcHg7XG4gIH1cblxuICAuaGVhZGVyLXNlY3Rpb24ge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG4gIH1cblxuICAuaGVhZGVyLXNlY3Rpb24gaDIge1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gICAgZm9udC1zaXplOiAyMHB4O1xuICB9XG5cbiAgLmhlYWRlci1zZWN0aW9uIC5pbWFnZS1jb250YWluZXIgaW1nIHtcbiAgICBtYXgtaGVpZ2h0OiA0MHB4O1xuICB9XG5cbiAgLnRhYmxlIHRoLCAudGFibGUgdGQge1xuICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgfVxufVxuXG4uaGVhZGVyLXNlY3Rpb24ge1xuICBkaXNwbGF5OiBmbGV4O1xuICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgbWFyZ2luLWJvdHRvbTogMjBweDtcbn1cblxuLmhlYWRlci1zZWN0aW9uIC5pbWFnZS1jb250YWluZXIgaW1nIHtcbiAgbWF4LWhlaWdodDogMTAwcHg7IC8qIEFkanVzdCB0aGUgaGVpZ2h0IGFzIG5lZWRlZCAqL1xuICB3aWR0aDogYXV0bzsgICAgICAgLyogTWFpbnRhaW4gYXNwZWN0IHJhdGlvICovXG4gIGRpc3BsYXk6IGJsb2NrO1xufVxuIl0sInNvdXJjZVJvb3QiOiIifQ== */"]
     });
   }
