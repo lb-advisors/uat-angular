@@ -33,7 +33,6 @@ body {
   align-items: center;
   padding: 10px;
   background-color: rgba(0, 16, 46, 1);
-  text-decoration: none; /* Remove underline for clickable link */
   cursor: pointer; /* Make header clickable */
 }
 
@@ -73,11 +72,6 @@ body {
   color: #333;
 }
 
-.table tbody tr:hover {
-  background-color: #e0e0e0;
-  cursor: pointer;
-}
-
 /* Adjust column widths */
 .table td,
 .table th {
@@ -88,23 +82,38 @@ body {
   width: 40%;
 }
 
-.table td:nth-child(7), /* Weight column */
+.table td:nth-child(7) { /* Weight column */
+  width: 5%;
+}
+
 .table td:nth-child(8) { /* Price column */
   width: 10%;
 }
 
+/* Add hover hand only for weight and price inputs */
+.table td:nth-child(7):hover input,
+.table td:nth-child(8):hover input {
+  cursor: pointer; /* Hover hand */
+}
+
+/* Style for editable inputs (price and weight) */
 input[type="number"] {
   width: 100%; /* Ensure inputs fit within the column */
-  border: none; /* Remove default border */
+  border: 1px solid #ccc; /* Thin border for editable fields */
   background-color: transparent; /* Transparent background */
   text-align: center; /* Center-align text */
-  outline: none; /* Remove focus outline */
+  border-radius: 4px; /* Slightly rounded edges */
 }
 
 input[type="number"]:hover,
 input[type="number"]:focus {
-  border-bottom: 1px solid #000; /* Add border on hover/focus */
+  border: 1px solid #000; /* Darker border on hover/focus */
   outline: none; /* Remove focus outline */
+}
+
+/* Hover effect for entire row, excluding inputs */
+.table tbody tr:hover {
+  background-color: #e0e0e0;
 }
 
 /* No Data Message */
@@ -126,10 +135,11 @@ input[type="number"]:focus {
 }
 
 .error-text {
-color: red;
-
+  color: red;
+  font-size: 12px;
+  text-align: left;
+  margin-top: 5px;
 }
-
 
 /* Responsive Design */
 @media (max-width: 500px) {

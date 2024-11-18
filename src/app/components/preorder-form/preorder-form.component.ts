@@ -66,17 +66,18 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
   }
 
   fetchPreOrders(): void {
-    const apiUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders`; // Use correct URL
-    console.log('Fetching PreOrders from:', apiUrl); // Debug API URL
+    const apiUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders`;
+    console.log('Fetching PreOrders from:', apiUrl);
     this.subscription.add(
       this.http.get<PreOrder[]>(apiUrl).subscribe({
         next: (data) => {
-          console.log('PreOrders fetched:', data); // Debug Response
+          console.log('PreOrders fetched:', data);
           this.preOrders = data;
+          this.sortByIdAsc(); // Sort the preOrders by ID in ascending order
           this.cdr.detectChanges();
         },
         error: (err) => {
-          console.error('Error fetching PreOrders:', err); // Debug Error
+          console.error('Error fetching PreOrders:', err);
           this.errorMessage = 'Failed to fetch preorders. Please try again.';
           this.loading = false;
           this.cdr.detectChanges();
@@ -84,6 +85,7 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
       })
     );
   }
+  
 
   updatePreOrder(order: PreOrder): void {
     const patchUrl = `https://uat-pffc.onrender.com/api/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
@@ -148,5 +150,9 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
 
   hasErrors(): boolean {
     return this.preOrders.some(order => order.weight <= 0 || order.price <= 0);
+  }
+
+  sortByIdAsc(): void {
+    this.preOrders.sort((a, b) => a.id - b.id);
   }
 }
