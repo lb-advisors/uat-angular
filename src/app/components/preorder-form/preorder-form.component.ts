@@ -145,4 +145,8 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
     };
     return unitTypeMap[unitType] || "Unknown";
   }
+
+  hasErrors(): boolean {
+    return this.preOrders.some(order => order.weight <= 0 || order.price <= 0);
+  }
 }

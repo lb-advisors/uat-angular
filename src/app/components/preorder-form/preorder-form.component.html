@@ -33,9 +33,11 @@
         <td>{{ getUnitType(order.unitType) }}</td>
         <td>
           <input type="number" [(ngModel)]="order.weight" />
+          <div class="error-text" *ngIf="order.weight <= 0">Weight must be greater than 0</div>
         </td>
         <td>
           <input type="number" [(ngModel)]="order.price" step="0.01" />
+          <div class="error-text" *ngIf="order.price <= 0">Price must be greater than 0</div>
         </td>
       </tr>
     </tbody>
@@ -43,6 +45,12 @@
 
   <!-- Submit Button -->
   <div class="text-center">
-    <button class="btn btn-primary mt-3" (click)="submitAll()">Submit</button>
+    <button
+      class="btn btn-primary mt-3"
+      [disabled]="hasErrors()"
+      (click)="submitAll()"
+    >
+      Submit
+    </button>
   </div>
 </div>

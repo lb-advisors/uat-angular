@@ -125,6 +125,11 @@ input[type="number"]:focus {
   color: #000000; /* Title color */
 }
 
+.error-text {
+color: red;
+
+}
+
 
 /* Responsive Design */
 @media (max-width: 500px) {
