@@ -3117,6 +3117,7 @@ class PreorderFormComponent {
   ngOnInit() {
     this.subscription.add(this.route.params.subscribe(params => {
       this.vendorId = +params['vendorId'];
+      console.log('Vendor ID:', this.vendorId); // Debug Vendor ID
       if (this.vendorId) {
         this.fetchPreOrders();
       } else {
@@ -3130,27 +3131,63 @@ class PreorderFormComponent {
     this.subscription.unsubscribe();
   }
   fetchPreOrders() {
-    const apiUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders`;
-    this.subscription.add(this.http.get(apiUrl).subscribe(data => {
-      this.preOrders = data;
-      this.cdr.detectChanges();
+    const apiUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders`; // Use correct URL
+    console.log('Fetching PreOrders from:', apiUrl); // Debug API URL
+    this.subscription.add(this.http.get(apiUrl).subscribe({
+      next: data => {
+        console.log('PreOrders fetched:', data); // Debug Response
+        this.preOrders = data;
+        this.cdr.detectChanges();
+      },
+      error: err => {
+        console.error('Error fetching PreOrders:', err); // Debug Error
+        this.errorMessage = 'Failed to fetch preorders. Please try again.';
+        this.loading = false;
+        this.cdr.detectChanges();
+      }
     }));
   }
   updatePreOrder(order) {
-    const patchUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
+    const patchUrl = `https://uat-pffc.onrender.com/api/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
     const body = {
       weight: order.weight,
       price: order.price
     };
+    console.log('Updating Order:', {
+      patchUrl,
+      body
+    }); // Debug API Call Details
     this.http.patch(patchUrl, body).subscribe({
       next: response => {
-        console.log('Update successful:', response);
-        alert('Order updated successfully!');
+        console.log('Update successful for Order:', order.id, response);
+        alert(`Order ${order.id} updated successfully!`);
       },
       error: error => {
-        console.error('Update failed:', error);
-        alert('Failed to update order. Please try again.');
+        console.error('Update failed for Order:', order.id, error);
+        alert(`Failed to update Order ${order.id}. Please try again.`);
       }
+    });
+  }
+  submitAll() {
+    const requests = this.preOrders.map(order => {
+      const patchUrl = `https://uat-pffc.onrender.com/api/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
+      const body = {
+        weight: order.weight,
+        price: order.price
+      };
+      console.log('Submitting PATCH Request:', {
+        patchUrl,
+        body
+      }); // Debug Individual Requests
+      return this.http.patch(patchUrl, body).toPromise();
+    });
+    // Execute all PATCH requests
+    Promise.all(requests).then(responses => {
+      console.log('All updates successful:', responses); // Debug Success Responses
+      alert('All changes saved successfully!');
+    }).catch(error => {
+      console.error('One or more updates failed:', error); // Debug Errors
+      alert('Failed to save some changes. Please try again.');
     });
   }
   trackByOrderId(index, order) {
@@ -3165,24 +3202,6 @@ class PreorderFormComponent {
       "5": "Side"
     };
     return unitTypeMap[unitType] || "Unknown";
-  }
-  submitAll() {
-    const requests = this.preOrders.map(order => {
-      const patchUrl = `https://uat-pffc.onrender.com/api/public/vendor/${this.vendorId}/pre_orders/${order.sodId}`;
-      const body = {
-        weight: order.weight,
-        price: order.price
-      };
-      return this.http.patch(patchUrl, body).toPromise();
-    });
-    // Execute all PATCH requests
-    Promise.all(requests).then(responses => {
-      console.log('All updates successful:', responses);
-      alert('All changes saved successfully!');
-    }).catch(error => {
-      console.error('One or more updates failed:', error);
-      alert('Failed to save some changes. Please try again.');
-    });
   }
   static {
     this.ɵfac = function PreorderFormComponent_Factory(__ngFactoryType__) {
