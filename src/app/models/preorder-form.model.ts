@@ -14,5 +14,6 @@ export interface PreOrder {
     vendorId: number;
     vendorName: string;
     price: number;
+    weight: number;
   }
   

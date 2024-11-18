@@ -16,6 +16,7 @@
         <th>Description</th>
         <th>Unit Size</th>
         <th>Unit Type</th>
+        <th>Weight</th> <!-- Added Weight Column -->
         <th>Price</th>
       </tr>
     </thead>
@@ -30,6 +31,8 @@
         <td>{{ order.unitSize }}</td>
         <!-- Display Unit Type with Mapping -->
         <td>{{ getUnitType(order.unitType) }}</td>
+        <!-- Display Weight -->
+        <td>{{ order.weight || 'N/A' }} lbs</td>
         <!-- Display Price -->
         <td class="text-right">{{ order.price | currency }}</td>
       </tr>

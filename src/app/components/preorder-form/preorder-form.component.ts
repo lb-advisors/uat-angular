@@ -10,6 +10,7 @@ interface PreOrder {
   customerName: string;
   descriptionMemo: string;
   price: number;
+  weight: number;
   vendorName: string;
   customerId: number;
   sodId: number;
@@ -58,6 +59,7 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
             this.fetchPreOrders();
           } else {
             console.error('[Error] Invalid Vendor ID:', params['vendorId']);
+            console.log('[PreOrders with Weight]', this.preOrders);
             this.errorMessage = 'Invalid Vendor ID';
             this.loading = false;
             this.cdr.detectChanges();
