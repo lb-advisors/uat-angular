@@ -53,6 +53,7 @@ body {
   max-height: 50px;
   width: auto;
   border-radius: 8px;
+  border: none;
 }
 
 /* PreOrders Table */

@@ -26,59 +26,7 @@ interface PreOrder {
   standalone: true,
   imports: [CommonModule, RouterModule],
   selector: 'app-preorder-form',
-  template: `
-    <div class="container">
-      <!-- Header Section -->
-      <div class="header-section">
-        <a [routerLink]="['/home']" class="image-container">
-          <img src="assets/logo.png" alt="Company Logo" (error)="handleImageError($event)">
-        </a>
-      </div>
-
-      <!-- Loading Indicator -->
-      <div *ngIf="loading" class="loading">
-        <div class="spinner"></div>
-        <div>Loading preorders...</div>
-      </div>
-
-      <!-- PreOrders Table -->
-      <div *ngIf="!loading && preOrders.length > 0" class="table-container">
-        <p>Found {{preOrders.length}} preorders</p>
-        <table class="table">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Dispatch Date</th>
-              <th>Customer</th>
-              <th>Description</th>
-              <th>Units</th>
-              <th>Price</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let order of preOrders; trackBy: trackByOrderId">
-              <td>{{ order.id }}</td>
-              <td>{{ order.dispatchDate | date:'MMM d, y' }}</td>
-              <td>{{ order.customerName }}</td>
-              <td>{{ order.descriptionMemo }}</td>
-              <td>{{ order.orderedUnits }} x {{ order.unitSize }}{{ order.unitType }}</td>
-              <td class="text-right">{{ order.price | currency }}</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-      <!-- No Data Message -->
-      <div *ngIf="!loading && preOrders.length === 0" class="alert alert-info">
-        No preorders available.
-      </div>
-
-      <!-- Error Message -->
-      <div *ngIf="errorMessage" class="alert alert-danger">
-        {{ errorMessage }}
-      </div>
-    </div>
-  `,
+  templateUrl: './preorder-form.component.html',
   styleUrls: ['./preorder-form.component.css']
 })
 export class PreorderFormComponent implements OnInit, OnDestroy {
@@ -182,6 +130,7 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
   trackByOrderId(index: number, order: PreOrder): number {
     return order.id;
   }
+  
   getUnitType(unitType: string): string {
     const unitTypeMap: { [key: string]: string } = {
       "1": "Case",
@@ -192,5 +141,4 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
     };
     return unitTypeMap[unitType] || "Unknown";
   }
-  
 }
