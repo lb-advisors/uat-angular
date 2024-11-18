@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterModule } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
 import { Subscription } from 'rxjs';
@@ -24,25 +24,16 @@ interface PreOrder {
 
 @Component({
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   selector: 'app-preorder-form',
   template: `
     <div class="container">
-      <!-- Debug Info 
-      <div class="debug-info">
-        Debug: 
-        VendorID: {{vendorId}} | 
-        Orders Count: {{preOrders.length}} | 
-        Loading: {{loading}} | 
-        Has Error: {{!!errorMessage}}
+      <!-- Header Section -->
+      <div class="header-section">
+        <a [routerLink]="['/home']" class="image-container">
+          <img src="assets/logo.png" alt="Company Logo" (error)="handleImageError($event)">
+        </a>
       </div>
-
-      <h2>PreOrders for {{ vendorName || 'Loading...' }}</h2>
-
-       Error Message 
-      <div *ngIf="errorMessage" class="alert alert-danger">
-        {{ errorMessage }}
-      </div>-->
 
       <!-- Loading Indicator -->
       <div *ngIf="loading" class="loading">
@@ -81,79 +72,14 @@ interface PreOrder {
       <div *ngIf="!loading && preOrders.length === 0" class="alert alert-info">
         No preorders available.
       </div>
+
+      <!-- Error Message -->
+      <div *ngIf="errorMessage" class="alert alert-danger">
+        {{ errorMessage }}
+      </div>
     </div>
   `,
-  styles: [`
-    .container { 
-      padding: 20px; 
-      max-width: 1200px; 
-      margin: 0 auto;
-    }
-    .debug-info {
-      background: #f8f9fa;
-      padding: 10px;
-      margin-bottom: 10px;
-      font-family: monospace;
-      border: 1px solid #ddd;
-    }
-    .table-container {
-      overflow-x: auto;
-      margin-top: 20px;
-    }
-    .table { 
-      width: 100%;
-      border-collapse: collapse;
-      min-width: 800px;
-    }
-    .table th, .table td {
-      padding: 12px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-    .table th {
-      background-color: #f8f9fa;
-      font-weight: 600;
-    }
-    .table tbody tr:hover {
-      background-color: #f5f5f5;
-    }
-    .text-right {
-      text-align: right;
-    }
-    .alert { 
-      padding: 15px; 
-      margin: 20px 0;
-      border-radius: 4px; 
-    }
-    .alert-danger { 
-      background-color: #f8d7da; 
-      border: 1px solid #f5c6cb; 
-      color: #721c24; 
-    }
-    .alert-info { 
-      background-color: #d1ecf1; 
-      border: 1px solid #bee5eb; 
-      color: #0c5460; 
-    }
-    .loading {
-      text-align: center;
-      padding: 40px;
-      color: #666;
-    }
-    .spinner {
-      border: 4px solid #f3f3f3;
-      border-top: 4px solid #3498db;
-      border-radius: 50%;
-      width: 40px;
-      height: 40px;
-      animation: spin 1s linear infinite;
-      margin: 0 auto 10px;
-    }
-    @keyframes spin {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
-    }
-  `]
+  styleUrls: ['./preorder-form.component.css']
 })
 export class PreorderFormComponent implements OnInit, OnDestroy {
   vendorId!: number;
@@ -220,7 +146,7 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
           console.log('[Data Length]:', data.length);
           
           if (Array.isArray(data)) {
-            this.preOrders = [...data]; // Create new array reference
+            this.preOrders = [...data];
             console.log('[PreOrders] Assigned', this.preOrders.length, 'orders');
             
             if (data.length > 0) {
@@ -234,7 +160,7 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
           
           this.loading = false;
           console.log('[State] Loading:', this.loading, 'Orders:', this.preOrders.length);
-          this.cdr.detectChanges(); // Force change detection
+          this.cdr.detectChanges();
         },
         error: (err) => {
           console.error('[API Error] Details:', err);
@@ -242,10 +168,15 @@ export class PreorderFormComponent implements OnInit, OnDestroy {
           this.loading = false;
           this.preOrders = [];
           console.log('[State] Error state - Loading:', this.loading);
-          this.cdr.detectChanges(); // Force change detection
+          this.cdr.detectChanges();
         }
       })
     );
+  }
+
+  handleImageError(event: any): void {
+    console.error('[Image Error] Failed to load logo');
+    event.target.style.display = 'none';
   }
 
   trackByOrderId(index: number, order: PreOrder): number {
