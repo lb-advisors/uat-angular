@@ -1,35 +1,30 @@
 <div class="container">
-    <!-- Logo Component -->
-    <a [routerLink]="['/home']">
-      <div class="image-container">
-          <img src="assets/logo.png" alt="Company Logo">
-      </div>
-    </a>
-  
-    <h2 class="underlined">Vendors</h2>
-  
-    <!-- Vendor Grid Table -->
-    <table class="order-grid">
-      <thead>
-        <tr>
-          <th>Vendor Name</th>
-          <th>Preorder Form</th>
-          <th>Copy Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let vendor of vendors$ | async">
-          <td>{{ vendor.vendorName }}</td>
-          <td>
-            <!-- Navigate to the PreordersComponent -->
-            <a [routerLink]="['/preorder-form', vendor.vendorId]" target="_blank">Preorder Form</a>
-          </td>
-          <td>
-            <!-- Copy Link Functionality -->
-            <span class="copy-link" (click)="copyLink(vendor.vendorId)">Copy Link</span>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  
+  <a [routerLink]="['/home']">
+    <div class="image-container">
+      <img src="assets/logo.png" alt="Company Logo">
+    </div>
+  </a>
+
+  <h2 class="underlined">Vendors</h2>
+
+  <table class="order-grid">
+    <thead>
+      <tr>
+        <th>Vendor Name</th>
+        <th>Preorder Form</th>
+        <th>Copy Link</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let vendor of vendors$ | async">
+        <td>{{ vendor.name }}</td>
+        <td>
+          <a [routerLink]="['/preorder-form', vendor.id]">Preorder Form</a>
+        </td>
+        <td>
+          <a href="javascript:void(0)" (click)="copyLink(vendor.id)" (keyup)="copyLink(vendor.id)">Copy Link</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

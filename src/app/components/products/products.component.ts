@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/
 import { MatDialog } from '@angular/material/dialog';
 import { ProductService } from '../../services/products.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
-import { InventoryItem } from 'src/app/models/products.model';
+import { InventoryItem } from 'src/app/models/product.model';
 import { BehaviorSubject, Subject, Subscription } from 'rxjs';
 import { InfiniteScrollDirective } from 'ngx-infinite-scroll';
 import { CommonModule } from '@angular/common';

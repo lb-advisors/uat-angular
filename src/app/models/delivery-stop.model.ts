@@ -9,5 +9,5 @@ export interface DeliveryStop {
   actualArrivalTime: string;
   priority: number;
   plannedTravelTime: string;
-  timeDifference?: number; // Added timeDifference property
+  timeDifference?: number;
 }

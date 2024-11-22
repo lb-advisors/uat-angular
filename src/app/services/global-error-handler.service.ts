@@ -51,11 +51,11 @@ export class GlobalErrorHandlerService implements ErrorHandler {
         case 413:
           this.snackBarService.showSnackBar('File too large.');
           break;
-
-        case 500:
-          this.snackBarService.showSnackBar('Server error. Please try again later.');
+        case 500: {
+          const errorMessage = error.error?.message || 'Please try again later.';
+          this.snackBarService.showSnackBar(`Error: ${errorMessage}`);
           break;
-
+        }
         default: {
           console.error('An error occurred:', error);
           const errorMessage = error.error?.message || 'An unexpected error occurred.';

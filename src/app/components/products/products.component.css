@@ -10,7 +10,6 @@ body {
 
 .content {
     flex-grow: 1;
-    padding: 20px;
 }
 
 .container {
@@ -168,7 +167,7 @@ body {
 
 /* Hover effect on table rows */
 .inventory-grid tr:hover {
-    background-color: #e0e0e0; 
+    background-color: whitesmoke; 
     cursor: pointer;
 }
     

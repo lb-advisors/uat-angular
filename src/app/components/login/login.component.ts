@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { catchError, throwError } from 'rxjs';
+import { LoginResponse } from 'src/app/models/login-response.model ';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +25,7 @@ export class LoginComponent {
 
   constructor(private router: Router, private cdr: ChangeDetectorRef, private formBuilder: FormBuilder, private authService: AuthService) {
     this.loginForm = this.formBuilder.group({
-      username: ['', Validators.required],
+      username: ['', [Validators.required]],
       password: ['', Validators.required],
     });
   }
@@ -56,10 +57,10 @@ export class LoginComponent {
         }),
       )
       .subscribe({
-        next: (loginResponse) => {
+        next: (loginResponse: LoginResponse) => {
           const fullname = `${loginResponse.firstName ?? ''} ${loginResponse.lastName ?? ''}`.trim();
           this.authService.saveFullnameAndToken(fullname, loginResponse.token);
-          this.router.navigate(['/products']); // Navigate to /products on success
+          this.router.navigate(['/products']);
         },
       });
   }

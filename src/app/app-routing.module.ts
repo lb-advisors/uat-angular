@@ -14,6 +14,8 @@ import { OrdersComponent } from './components/orders/orders.component';
 import { VendorLinksComponent } from './components/preorder-links/preorder-links.component'; // Updated the import to match the renamed component
 import { PreorderFormComponent } from './components/preorder-form/preorder-form.component'; // Import the new PreorderFormComponent
 import { AuthGuard } from './guards/auth.guard';
+import { PasswordRequestComponent } from './components/password-request/password-request.component';
+import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -22,6 +24,8 @@ const routes: Routes = [
   { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'logout', component: LogoutComponent, title: 'Logout' },
+  { path: 'password-request', component: PasswordRequestComponent, title: 'Password Request' },
+  { path: 'password-reset/:token', component: PasswordResetComponent, title: 'Password Reset' },
   { path: 'products', component: ProductsComponent, title: 'Products', canActivate: [AuthGuard] },
   { path: 'customer/:id/order-confirmation', component: OrderConfirmationComponent, title: 'Order Confirmation' },
   { path: 'customer/:id/order-exists', component: OrderExistsComponent, title: 'Order Exists' },

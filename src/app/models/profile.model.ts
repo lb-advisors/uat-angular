@@ -2,9 +2,9 @@ export interface Profile {
   profileDescription: string;
   unitType: string;
   packSize: number;
-  price: number;
+  salesPrice: number;
   quantity: number;
   id: number;
   isSpecial: boolean;
-  profile_did: number; 
+  profile_did: number;
 }

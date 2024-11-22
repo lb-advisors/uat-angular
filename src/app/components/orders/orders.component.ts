@@ -5,12 +5,12 @@ import { RouterModule } from '@angular/router';
 import { MatDialog } from '@angular/material/dialog';
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { Company } from 'src/app/models/company.model';
-import { Orders } from 'src/app/models/orders.model';
 import { SalesRep } from 'src/app/models/sales-rep.model';
 import { CommonModule } from '@angular/common';
 import { LogoComponent } from '../logo/logo.component';
 import { OrderDetailsDialogComponent } from 'src/app/components/order-details-dialog/order-details-dialog.component';
 import { OrderService } from 'src/app/services/order.services';
+import { Order } from 'src/app/models/order.model';
 
 @Component({
   standalone: true,
@@ -24,8 +24,8 @@ export class OrdersComponent implements OnInit {
   form!: FormGroup;
   companies$!: Observable<Company[]>;
   salesPersons$!: Observable<SalesRep[]>;
-  orders: Orders[] = [];
-  filteredOrders: Orders[] = [];
+  orders: Order[] = [];
+  filteredOrders: Order[] = [];
 
   constructor(
     private fb: FormBuilder,
@@ -121,7 +121,7 @@ export class OrdersComponent implements OnInit {
     this.cdr.markForCheck();
   }
 
-  onRowClick(order: Orders): void {
+  onRowClick(order: Order): void {
     this.dialog.open(OrderDetailsDialogComponent, {
       data: order,
       width: '800px',
