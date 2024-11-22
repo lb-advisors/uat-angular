@@ -20,7 +20,6 @@ import { SnackbarService } from 'src/app/services/snackbar.service';
 export class PasswordResetComponent implements OnInit {
   passwordResetForm: FormGroup;
   token: string = '';
-  statusMessage: string = '';
   mismatchedPassword: boolean = false;
 
   constructor(
