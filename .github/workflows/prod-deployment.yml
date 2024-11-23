@@ -72,11 +72,6 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-node-
 
-      - name: Install dependencies with legacy-peer-deps
-        run: |
-          echo "Installing dependencies with --legacy-peer-deps..."
-          npm install --legacy-peer-deps
-
       - name: Install dependencies
         run: npm ci
 
