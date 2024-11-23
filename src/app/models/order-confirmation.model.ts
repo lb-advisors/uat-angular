@@ -9,6 +9,7 @@ export interface OrderConfirmation {
   deliveryDate: string;
   shipToId: number;
   shipToName: string;
+  customerPo: string;
   totalPrice: number;
   profiles: ProfileConfirmation[];
 }

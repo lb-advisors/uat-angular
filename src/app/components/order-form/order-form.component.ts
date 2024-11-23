@@ -4,11 +4,12 @@ import { AbstractControl, FormArray, FormBuilder, FormGroup, ReactiveFormsModule
 import { SnackbarService } from 'src/app/services/snackbar.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { LogoComponent } from '../logo/logo.component';
-import { Profile } from 'src/app/models/profile-model';
 import { Order } from 'src/app/models/order.model';
 import { OrderRequest } from 'src/app/models/order-request.model';
 import { ProfileRequest } from 'src/app/models/profile-request.model';
 import { OrderFormService } from 'src/app/services/order-form.service';
+import { Profile } from 'src/app/models/profile.model';
+import { ParamMap } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -39,7 +40,7 @@ export class OrderFormComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe((params) => {
+    this.route.paramMap.subscribe((params: ParamMap) => {
       const id = params.get('id');
       this.customerId = id ? +id : NaN;
       this.loadOrderData(this.customerId);
@@ -65,7 +66,6 @@ export class OrderFormComponent implements OnInit {
             [this.atLeastOneQuantityValidator],
           ),
         });
-
         this.cdr.markForCheck();
       },
     });
@@ -103,7 +103,7 @@ export class OrderFormComponent implements OnInit {
       quantity: ['', Validators.min(1)],
     });
   }
-  
+
   onSubmit() {
     this.snackBarService.showSnackBar('Submitting Order...');
 
@@ -156,13 +156,12 @@ export class OrderFormComponent implements OnInit {
       .map((profile, index) => ({
         ...profile,
         quantity: this.profileControls.at(index).get('quantity')?.value,
-        totalPrice: (this.profileControls.at(index).get('quantity')?.value || 0) *
-                    (profile.packSize || 0) * 
-                    (profile.salesPrice || 0)
+        totalPrice: (this.profileControls.at(index).get('quantity')?.value || 0) * (profile.packSize || 0) * (profile.salesPrice || 0),
       }))
-      .filter(item => item.quantity > 0);
+      .filter((item) => item.quantity > 0);
     this.showModal = true;
-    this.cdr.markForCheck(); // Ensure change detection picks up changes for OnPush strategy
+    this.cdr.markForCheck();
+    console.error(this.currentOrderItems);
   }
 
   // New method to close the modal
@@ -174,7 +173,7 @@ export class OrderFormComponent implements OnInit {
     const dateValue = new Date(control.value);
     const now = new Date();
     const twoAmToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(), 2, 0, 0);
-    
+
     // Check if the date is valid and after 2 AM of today
     if (!isNaN(dateValue.getTime()) && dateValue < twoAmToday) {
       return { dateAfterTomorrow: true }; // Return error key if date is invalid
@@ -192,7 +191,7 @@ export class OrderFormComponent implements OnInit {
     const dateValue = new Date(control.value);
     const now = new Date();
     const threeMonthsFromNow = new Date(now.getFullYear(), now.getMonth() + 3, now.getDate());
-  
+
     // Check if the date is within three months
     if (!isNaN(dateValue.getTime()) && dateValue > threeMonthsFromNow) {
       return { dateWithinThreeMonths: true }; // Return error key if date is out of range
@@ -204,14 +203,14 @@ export class OrderFormComponent implements OnInit {
     if (!control.value) {
       return null; // If there's no date, validation passes
     }
-  
+
     const dateValue = new Date(control.value);
-    
+
     // Check if the parsed date is valid and if it's a Sunday
     if (!isNaN(dateValue.getTime()) && dateValue.getUTCDay() === 0) {
       return { dateNotOnSunday: true }; // Trigger error if Sunday
     }
-  
+
     return null; // Otherwise, validation passes
-  }  
+  }
 }

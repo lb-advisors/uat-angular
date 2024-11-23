@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { LoginResponse } from '../models/login-response.model ';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { User } from '../models/user.model ';
 
 @Injectable({
   providedIn: 'root',
@@ -14,9 +14,16 @@ export class AuthService {
 
   constructor(private http: HttpClient, private router: Router) {}
 
-  login(username: string, password: string): Observable<LoginResponse> {
-    username = username.toLowerCase();
-    return this.http.post<LoginResponse>(`${environment.apiUrl}/public/auth/login`, { username, password });
+  login(username: string, password: string): Observable<User> {
+    return this.http.post<User>(`${environment.apiUrl}/public/auth/login`, { username, password });
+  }
+
+  passwordRequest(username: string): Observable<unknown> {
+    return this.http.post<unknown>(`${environment.apiUrl}/public/auth/password-request`, { username });
+  }
+
+  passwordReset(password: string, token: string): Observable<unknown> {
+    return this.http.post<unknown>(`${environment.apiUrl}/public/auth/password-reset`, { password, token });
   }
 
   saveFullnameAndToken(fullname: string, token: string): void {

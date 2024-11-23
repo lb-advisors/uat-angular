@@ -1,4 +1,4 @@
-import { Profile } from './profile-model';
+import { Profile } from './profile.model';
 import { ShipTo } from './ship-to.model';
 
 export interface Order {

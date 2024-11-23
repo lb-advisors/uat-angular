@@ -1,10 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, Input, OnChanges } from '@angular/core';
+import { Router, RouterLink, RouterModule } from '@angular/router';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-logo',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './logo.component.html',
   styleUrls: ['./logo.component.css'],
 })
@@ -13,6 +15,11 @@ export class LogoComponent implements OnChanges {
 
   imageSrc = 'assets/fogriver.png';
   imageBackgroundColor = '#000000';
+  isLoggedIn: boolean = false;
+
+  constructor(private authService: AuthService) {
+    this.isLoggedIn = authService.isLoggedIn();
+  }
 
   ngOnChanges(): void {
     if (this.companyId === 14) {

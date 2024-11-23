@@ -62,10 +62,17 @@
   border: none;
 }
 
-body {
-  background-color: white;
-  margin: 0;
-  padding: 0;
+.container {
+  width: 90%;
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
 /* Media Queries for Mobile Optimization */

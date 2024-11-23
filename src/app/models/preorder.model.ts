@@ -1,4 +1,4 @@
-export interface PreOrders {
+export interface PreOrder {
   id: number;
   dispatchDate: string;
   customerId: number;
@@ -14,6 +14,7 @@ export interface PreOrders {
   vendorId: number;
   vendorName: string;
   price: number;
+  weight: number;
   createdBy: string;
   createdAt: string;
   lastUpdatedBy: string;

@@ -48,18 +48,20 @@ jobs:
         id: cache-node-modules
         uses: actions/cache@v4
         with:
-          path: |
-            node_modules
-            package-lock.json
+          path: node_modules
           key: ${{ runner.os }}-node-modules-${{ hashFiles('package-lock.json') }}
           restore-keys: |
             ${{ runner.os }}-node-modules-
 
-      - name: Clean install dependencies
-        run: |
-          rm -rf node_modules
-          rm -f package-lock.json
-          npm install
+      #- name: Clean install dependencies
+      #        run: |
+      #          rm -rf node_modules
+      #          rm -f package-lock.json
+      #          npm install
+
+      # Install dependencies with npm ci
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build Angular app
         run: npm run builddev

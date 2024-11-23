@@ -77,10 +77,8 @@ jobs:
           echo "Installing dependencies with --legacy-peer-deps..."
           npm install --legacy-peer-deps
 
-      - name: Verify Angular Versions
-        run: |
-          echo "Verifying Angular versions..."
-          npm ls @angular/core @angular/animations @angular/material
+      - name: Install dependencies
+        run: npm ci
 
       - name: Build Angular app
         run: |

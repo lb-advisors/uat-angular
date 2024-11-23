@@ -1,9 +1,9 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
-import { InventoryItem } from '../models/products.model';
+import { InventoryItem } from '../models/product.model';
 import { AuthService } from './auth.service';
 
 @Injectable({
