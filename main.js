@@ -5131,7 +5131,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 const environment = {
   production: false,
-  apiKey: 'devKey',
   apiUrl: 'https://uat-pffc.onrender.com/api'
 };
 
