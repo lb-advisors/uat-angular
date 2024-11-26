@@ -4342,7 +4342,7 @@ class ProductsComponent {
     });
   }
   triggerFileInput(itemId, event) {
-    event.stopPropagation(); // Prevents row click from firing
+    // event.stopPropagation(); // Prevents row click from firing
     console.log('Upload button clicked for itemId:', itemId);
     const fileInput = document.getElementById(`file-${itemId}`);
     if (fileInput) {
