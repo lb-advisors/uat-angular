@@ -103,7 +103,14 @@
                 accept="image/*"
                 hidden
               />
-              <button type="button" class="button" (click)="onButtonClick($event)">Upload Image</button>
+              <button
+              type="button"
+              class="button"
+              (click)="triggerFileInput(item.compItemId.toString(), $event)"
+            >
+              Upload Image
+            </button>
+            
             </div>
             <ng-template #uploadedImageBlock>
               <div class="image-container">
@@ -111,7 +118,7 @@
               </div>
             </ng-template>
           </td>
-        </tr>
+        </tr>        
       </tbody>
     </table>
 
