@@ -4264,8 +4264,10 @@ class ProductsComponent {
     });
   }
   onRowClick(item, event) {
-    const tagName = event.target.tagName;
-    if (tagName !== 'BUTTON' && tagName !== 'INPUT') {
+    const target = event.target;
+    const tagName = target.tagName;
+    // Prevent pop-up for button, input, or delete-icon clicks
+    if (tagName !== 'BUTTON' && tagName !== 'INPUT' && !target.classList.contains('delete-icon')) {
       this.dialog.open(_product_details_dialog_product_details_dialog_component__WEBPACK_IMPORTED_MODULE_0__.ProductDetailsDialogComponent, {
         data: {
           ...item
