@@ -4099,7 +4099,7 @@ function ProductsComponent_table_43_tr_14_div_10_Template(rf, ctx) {
       const ctx_r6 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"](3);
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r6.triggerFileInput(fileInput_r9));
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, " Upload Image ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](4, " Upload ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -4246,10 +4246,10 @@ class ProductsComponent {
         const newData = response.filter(item => !currentData.some(currentItem => currentItem.compItemId === item.compItemId));
         let filteredData = this.showRelevantItems ? newData.filter(item => item.tenSales && item.tenSales > 0) : newData;
         if (this.showSixtySales) {
-          filteredData = filteredData.filter(item => item.sixtySales && item.sixtySales > 0);
+          filteredData = filteredData.filter(item => item.sixtySales !== null && item.sixtySales !== undefined && item.sixtySales > 0);
         }
         if (this.showWoh) {
-          filteredData = filteredData.filter(item => item.woh && item.woh > 0);
+          filteredData = filteredData.filter(item => item.woh !== null && item.woh !== undefined && item.woh > 0);
         }
         if (this.showYield) {
           filteredData = filteredData.filter(item => item.yield && item.yield < 1);
