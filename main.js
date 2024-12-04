@@ -3792,7 +3792,7 @@ function ProductDetailsDialogComponent_ng_container_6_Template(rf, ctx) {
   if (rf & 2) {
     const ctx_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("src", ctx_r2.data.photoUrl || ctx_r2.data.thumbnailUrl, _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeUrl"]);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("src", ctx_r2.data.photoUrl, _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵsanitizeUrl"]);
   }
 }
 function ProductDetailsDialogComponent_ng_template_7_Template(rf, ctx) {
@@ -3947,7 +3947,7 @@ class ProductDetailsDialogComponent {
         const imageBase64 = reader.result;
         // Compress the image
         console.log('Size in bytes of the uploaded image was:', this.imageCompress.byteCount(imageBase64));
-        this.imageCompress.compressFile(imageBase64, ngx_image_compress__WEBPACK_IMPORTED_MODULE_3__.DOC_ORIENTATION.Default, 50, 50, 1920, 1080).then(compressedImage => {
+        this.imageCompress.compressFile(imageBase64, ngx_image_compress__WEBPACK_IMPORTED_MODULE_3__.DOC_ORIENTATION.Default, 50, 50, 960, 540).then(compressedImage => {
           // Convert base64 back to Blob
           const blob = this.dataURItoBlob(compressedImage);
           console.log('Size in bytes of the uploaded image was:', this.imageCompress.byteCount(compressedImage));
@@ -3960,7 +3960,6 @@ class ProductDetailsDialogComponent {
               if (event.type === _angular_common_http__WEBPACK_IMPORTED_MODULE_4__.HttpEventType.Response) {
                 const updatedItem = event.body;
                 this.data.photoUrl = updatedItem.photoUrl;
-                this.data.thumbnailUrl = updatedItem.thumbnailUrl;
                 this.snackBarService.showSuccess('File uploaded successfully');
               }
             }
@@ -3974,7 +3973,6 @@ class ProductDetailsDialogComponent {
       this.productService.deleteProductPhoto(this.data.compItemId).subscribe({
         next: () => {
           this.data.photoUrl = undefined;
-          this.data.thumbnailUrl = undefined;
           this.snackBarService.showSuccess('Photo deleted successfully.');
         }
       });
@@ -4090,7 +4088,7 @@ class ProductDetailsDialogComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](ctx.data.compInstructions || "N/A");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.data.photoUrl || ctx.data.thumbnailUrl)("ngIfElse", uploadButton_r6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", ctx.data.photoUrl)("ngIfElse", uploadButton_r6);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](4);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", ctx.showInfo ? "Hide Info" : "Show Info", " ");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"]();
@@ -4231,7 +4229,7 @@ function ProductsComponent_table_45_tr_12_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate"](item_r6.compItemId);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", item_r6.photoUrl || item_r6.thumbnailUrl);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵproperty"]("ngIf", item_r6.photoUrl);
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"](" ", item_r6.compDescription, " ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
@@ -4329,7 +4327,7 @@ class ProductsComponent {
           filteredData = filteredData.filter(item => item.yield && item.yield < 1);
         }
         if (this.showWithImages) {
-          filteredData = filteredData.filter(item => item.photoUrl || item.thumbnailUrl);
+          filteredData = filteredData.filter(item => item.photoUrl);
         }
         const fullyFilteredData = filteredData.filter(item => {
           const compCost = item.compCost ?? 0;
