@@ -302,6 +302,7 @@ class AppInstallPromptComponent {
     this.platform = platform;
     this.snackbarService = snackbarService;
     this.deferredPrompt = null;
+    this.userAgent = window.navigator.userAgent.toLowerCase();
     this.isPwa$ = this.pwaService.isPwa$;
     this.isPwa = this.isRunningAsPWA();
     this.isIosButNotPwa = this.isIOS() && !this.isRunningAsPWA();
@@ -355,8 +356,8 @@ class AppInstallPromptComponent {
       selectors: [["app-install-prompt"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
-      decls: 6,
-      vars: 5,
+      decls: 10,
+      vars: 6,
       consts: [[1, "install-banner"], ["mat-raised-button", "", "color", "primary", 3, "click"]],
       template: function AppInstallPromptComponent_Template(rf, ctx) {
         if (rf & 1) {
@@ -366,11 +367,19 @@ class AppInstallPromptComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "\nJust a test 4\n");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](4, "br");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](6, "br");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](8, "br");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](9);
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 3, ctx.isPwa$) === true ? 0 : ctx.isIosButNotPwa ? 2 : -1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 4, ctx.isPwa$) === true ? 0 : ctx.isIosButNotPwa ? 2 : -1);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate2"]("\nisPwa: ", ctx.isPwa, "\nisIos: ", ctx.plat, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nisPwa: ", ctx.isPwa, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nisIos: ", ctx.plat, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nuserAgent: ", ctx.userAgent, "");
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
