@@ -304,7 +304,7 @@ class AppInstallPromptComponent {
     this.deferredPrompt = null;
     this.isPwa$ = this.pwaService.isPwa$;
     this.isStandalone = window.matchMedia('(display-mode: standalone)').matches;
-    this.isIosButNotStandalone = this.isIOS() && !this.isStandalone;
+    this.isIosButNotPwa = this.isIOS() && !this.isRunningAsPWA();
     this.plat = this.isIOS();
   }
   ngOnInit() {
@@ -338,6 +338,12 @@ class AppInstallPromptComponent {
     const userAgent = window.navigator.userAgent.toLowerCase();
     return /iphone|ipad|ipod/.test(userAgent);
   }
+  isRunningAsPWA() {
+    const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    const isIOSStandalone = navigator.standalone === true;
+    const isFullscreen = window.innerHeight === screen.height;
+    return isStandalone || isIOSStandalone || isFullscreen;
+  }
   static {
     this.ɵfac = function AppInstallPromptComponent_Factory(__ngFactoryType__) {
       return new (__ngFactoryType__ || AppInstallPromptComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_pwa_service__WEBPACK_IMPORTED_MODULE_0__.PwaService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_cdk_platform__WEBPACK_IMPORTED_MODULE_3__.Platform), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_snackbar_service__WEBPACK_IMPORTED_MODULE_1__.SnackbarService));
@@ -362,7 +368,7 @@ class AppInstallPromptComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 3, ctx.isPwa$) === true ? 0 : ctx.isIosButNotStandalone ? 2 : -1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 3, ctx.isPwa$) === true ? 0 : ctx.isIosButNotPwa ? 2 : -1);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate2"]("\nisPwa: ", ctx.isStandalone, "\nisIos: ", ctx.plat, "");
         }
