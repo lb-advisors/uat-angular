@@ -279,7 +279,7 @@ function AppInstallPromptComponent_Conditional_0_Template(rf, ctx) {
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.promptInstall());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 1 ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -292,7 +292,7 @@ function AppInstallPromptComponent_Conditional_2_Template(rf, ctx) {
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.showIosInstructions());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 2 ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -356,39 +356,17 @@ class AppInstallPromptComponent {
       selectors: [["app-install-prompt"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
-      decls: 15,
-      vars: 8,
+      decls: 3,
+      vars: 3,
       consts: [[1, "install-banner"], ["mat-raised-button", "", "color", "primary", 3, "click"]],
       template: function AppInstallPromptComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](0, AppInstallPromptComponent_Conditional_0_Template, 3, 0, "div", 0);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](1, "async");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, AppInstallPromptComponent_Conditional_2_Template, 3, 0, "div", 0);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "\nJust a test 4\n");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](4, "br");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](6, "br");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](7);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](8, "br");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](9);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](10, "br");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](11);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](12, "br");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](13);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](14, "br");
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 6, ctx.isPwa$) === true ? 0 : ctx.isIosButNotPwa ? 2 : -1);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nisPwa: ", ctx.isPwa, "");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nisIos: ", ctx.plat, "");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nuserAgent: ", ctx.userAgent, "");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nplatform IOS: ", ctx.platform.IOS, "");
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nplatform ANDROID: ", ctx.platform.ANDROID, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 1, ctx.isPwa$) === true ? 0 : ctx.isIosButNotPwa ? 2 : -1);
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
