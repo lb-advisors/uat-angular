@@ -303,9 +303,8 @@ class AppInstallPromptComponent {
     this.snackbarService = snackbarService;
     this.deferredPrompt = null;
     this.isPwa$ = this.pwaService.isPwa$;
-    const isStandalone = 'standalone' in window.navigator && window.navigator['standalone'];
-    this.isIosButNotStandalone = !isStandalone && platform.IOS;
-    console.log(platform.IOS);
+    this.isPwa = !!navigator.serviceWorker.controller;
+    this.isIosButNotStandalone = !this.isPwa && platform.IOS;
   }
   ngOnInit() {
     console.log('ngOnInit');
@@ -346,17 +345,19 @@ class AppInstallPromptComponent {
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
       decls: 4,
-      vars: 3,
+      vars: 4,
       consts: [[1, "install-banner"], ["mat-raised-button", "", "color", "primary", 3, "click"]],
       template: function AppInstallPromptComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](0, AppInstallPromptComponent_Conditional_0_Template, 3, 0, "div", 0);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](1, "async");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, AppInstallPromptComponent_Conditional_2_Template, 3, 0, "div", 0);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "\nJust a test 2");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3);
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 1, ctx.isPwa$) === true ? 0 : ctx.isIosButNotStandalone ? 2 : -1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 2, ctx.isPwa$) === true ? 0 : ctx.isIosButNotStandalone ? 2 : -1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate1"]("\nJust a test 2\n", ctx.isPwa, "");
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
