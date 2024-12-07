@@ -303,7 +303,7 @@ class AppInstallPromptComponent {
     this.snackbarService = snackbarService;
     this.deferredPrompt = null;
     this.isPwa$ = this.pwaService.isPwa$;
-    this.isStandalone = window.matchMedia('(display-mode: standalone)').matches;
+    this.isPwa = this.isRunningAsPWA();
     this.isIosButNotPwa = this.isIOS() && !this.isRunningAsPWA();
     this.plat = this.isIOS();
   }
@@ -370,7 +370,7 @@ class AppInstallPromptComponent {
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 3, ctx.isPwa$) === true ? 0 : ctx.isIosButNotPwa ? 2 : -1);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate2"]("\nisPwa: ", ctx.isStandalone, "\nisIos: ", ctx.plat, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate2"]("\nisPwa: ", ctx.isPwa, "\nisIos: ", ctx.plat, "");
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
