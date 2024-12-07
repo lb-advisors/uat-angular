@@ -259,31 +259,51 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppInstallPromptComponent: () => (/* binding */ AppInstallPromptComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 316);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ 7580);
 /* harmony import */ var src_app_services_pwa_service__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! src/app/services/pwa.service */ 366);
+/* harmony import */ var _angular_cdk_platform__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/cdk/platform */ 7699);
+/* harmony import */ var src_app_services_snackbar_service__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! src/app/services/snackbar.service */ 2365);
+
+
 
 
 
 
 function AppInstallPromptComponent_Conditional_0_Template(rf, ctx) {
   if (rf & 1) {
-    const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0)(1, "button", 1);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function AppInstallPromptComponent_Conditional_0_Template_button_click_1_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
-      const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
-      return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.promptInstall());
+    const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "button", 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function AppInstallPromptComponent_Conditional_0_Template_button_click_1_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r1);
+      const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.promptInstall());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, " Install as an Application ");
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 1 ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
+  }
+}
+function AppInstallPromptComponent_Conditional_2_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementStart"](0, "div", 0)(1, "button", 1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵlistener"]("click", function AppInstallPromptComponent_Conditional_2_Template_button_click_1_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵrestoreView"](_r3);
+      const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.showIosInstructions());
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 2 ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
 class AppInstallPromptComponent {
-  constructor(cdr, pwaService) {
-    this.cdr = cdr;
+  constructor(pwaService, platform, snackbarService) {
     this.pwaService = pwaService;
+    this.platform = platform;
+    this.snackbarService = snackbarService;
     this.isPwa$ = this.pwaService.isPwa$;
+    const isStandalone = 'standalone' in window.navigator && window.navigator['standalone'];
+    this.isIosButNotStandalone = !isStandalone && platform.IOS;
   }
   ngOnInit() {
     console.log('ngOnInit');
@@ -293,7 +313,6 @@ class AppInstallPromptComponent {
       event.preventDefault();
       this.deferredPrompt = event;
       this.pwaService.updateValue(true);
-      this.cdr.markForCheck();
     };
     window.addEventListener('beforeinstallprompt', this.beforeInstallPromptHandler);
   }
@@ -310,30 +329,34 @@ class AppInstallPromptComponent {
       });
     }
   }
+  showIosInstructions() {
+    this.snackbarService.showInfo("To install this web app on your device, tap the Menu button and then 'Add to Home Screen' button");
+  }
   static {
     this.ɵfac = function AppInstallPromptComponent_Factory(__ngFactoryType__) {
-      return new (__ngFactoryType__ || AppInstallPromptComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_core__WEBPACK_IMPORTED_MODULE_1__.ChangeDetectorRef), _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](src_app_services_pwa_service__WEBPACK_IMPORTED_MODULE_0__.PwaService));
+      return new (__ngFactoryType__ || AppInstallPromptComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_pwa_service__WEBPACK_IMPORTED_MODULE_0__.PwaService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_cdk_platform__WEBPACK_IMPORTED_MODULE_3__.Platform), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_snackbar_service__WEBPACK_IMPORTED_MODULE_1__.SnackbarService));
     };
   }
   static {
-    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdefineComponent"]({
       type: AppInstallPromptComponent,
       selectors: [["app-install-prompt"]],
       standalone: true,
-      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
-      decls: 2,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
+      decls: 3,
       vars: 3,
       consts: [[1, "install-banner"], ["mat-raised-button", "", "color", "primary", 3, "click"]],
       template: function AppInstallPromptComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, AppInstallPromptComponent_Conditional_0_Template, 3, 0, "div", 0);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](1, "async");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](0, AppInstallPromptComponent_Conditional_0_Template, 3, 0, "div", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](1, "async");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, AppInstallPromptComponent_Conditional_2_Template, 3, 0, "div", 0);
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](1, 1, ctx.isPwa$) === true ? 0 : -1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 1, ctx.isPwa$) === true ? 0 : !ctx.isIosButNotStandalone ? 2 : -1);
         }
       },
-      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_2__.AsyncPipe],
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
       styles: [".install-banner[_ngcontent-%COMP%] {\n     text-align: center;\n     padding-top: 0px;\n     padding-bottom: 10px;\n }\n\n button[mat-raised-button][_ngcontent-%COMP%] {\n     font-size: 14px;\n     font-family: inherit;\n     background-color: #003366;\n     padding: 8px;\n     color: white;\n     border: none;\n     border-radius: 4px;\n     cursor: pointer;\n }\n\n button[mat-raised-button][_ngcontent-%COMP%]:hover {\n     background-color: #002855;\n }\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9hcHAtaW5zdGFsbC1wcm9tcHQvYXBwLWluc3RhbGwtcHJvbXB0LmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkNBQUM7S0FDSSxrQkFBa0I7S0FDbEIsZ0JBQWdCO0tBQ2hCLG9CQUFvQjtDQUN4Qjs7Q0FFQTtLQUNJLGVBQWU7S0FDZixvQkFBb0I7S0FDcEIseUJBQXlCO0tBQ3pCLFlBQVk7S0FDWixZQUFZO0tBQ1osWUFBWTtLQUNaLGtCQUFrQjtLQUNsQixlQUFlO0NBQ25COztDQUVBO0tBQ0kseUJBQXlCO0NBQzdCIiwic291cmNlc0NvbnRlbnQiOlsiIC5pbnN0YWxsLWJhbm5lciB7XG4gICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICAgcGFkZGluZy10b3A6IDBweDtcbiAgICAgcGFkZGluZy1ib3R0b206IDEwcHg7XG4gfVxuXG4gYnV0dG9uW21hdC1yYWlzZWQtYnV0dG9uXSB7XG4gICAgIGZvbnQtc2l6ZTogMTRweDtcbiAgICAgZm9udC1mYW1pbHk6IGluaGVyaXQ7XG4gICAgIGJhY2tncm91bmQtY29sb3I6ICMwMDMzNjY7XG4gICAgIHBhZGRpbmc6IDhweDtcbiAgICAgY29sb3I6IHdoaXRlO1xuICAgICBib3JkZXI6IG5vbmU7XG4gICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICAgY3Vyc29yOiBwb2ludGVyO1xuIH1cblxuIGJ1dHRvblttYXQtcmFpc2VkLWJ1dHRvbl06aG92ZXIge1xuICAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjMDAyODU1O1xuIH0iXSwic291cmNlUm9vdCI6IiJ9 */"],
       changeDetection: 0
     });
