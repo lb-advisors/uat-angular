@@ -1,0 +1,97 @@
+{
+  "configVersion": 1,
+  "timestamp": 1733541302832,
+  "index": "./index.html",
+  "assetGroups": [
+    {
+      "name": "app",
+      "installMode": "prefetch",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "./favicon.ico",
+        "./index.html",
+        "./main.js",
+        "./polyfills.js",
+        "./runtime.js",
+        "./styles.css",
+        "./vendor.js"
+      ],
+      "patterns": []
+    },
+    {
+      "name": "assets",
+      "installMode": "lazy",
+      "updateMode": "prefetch",
+      "cacheQueryOptions": {
+        "ignoreVary": true
+      },
+      "urls": [
+        "./assets/fogriver.png",
+        "./assets/fogriver2.png",
+        "./assets/fogriver3.png",
+        "./assets/goldenstateseafood.png",
+        "./assets/gs.png",
+        "./assets/logo.png",
+        "./assets/naturecure.png",
+        "./assets/smalllogo.png",
+        "./public/icons/icon-128x128.png",
+        "./public/icons/icon-144x144.png",
+        "./public/icons/icon-152x152.png",
+        "./public/icons/icon-192x192.png",
+        "./public/icons/icon-384x384.png",
+        "./public/icons/icon-512x512.png",
+        "./public/icons/icon-72x72.png",
+        "./public/icons/icon-96x96.png"
+      ],
+      "patterns": []
+    }
+  ],
+  "dataGroups": [],
+  "hashTable": {
+    "./assets/fogriver.png": "8031d94472a9b7720ed8568ace9e16f1c2c46fe4",
+    "./assets/fogriver2.png": "0a61c8843fa23c58625340d4dc81a29f4a83785f",
+    "./assets/fogriver3.png": "487df9f828821bf8c55481a06bdce774c15d9c08",
+    "./assets/goldenstateseafood.png": "9ccfd6a267203721c340a134abad837ad73f20bb",
+    "./assets/gs.png": "2675fec53ce45b49dba42ed8e3044773eebaaee1",
+    "./assets/logo.png": "56a193f2944150ec852d683032b51822e9618d1e",
+    "./assets/naturecure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
+    "./assets/smalllogo.png": "9d977e9177b291588929cc7e1e341aea6abf77c7",
+    "./favicon.ico": "9d6cadf65d2305f9978156de1fae0815f8387672",
+    "./index.html": "e7b372e75c3c8ddb123a032b7008be0cc02ee55f",
+    "./main.js": "e9bed8bf0e61a0784a3390fa7a09d761d6e2507d",
+    "./polyfills.js": "0752ffc70f6d061acb9ed665e2028904fb8b11be",
+    "./public/icons/icon-128x128.png": "bfcb04534481cb1159f1442f32275072998abe7e",
+    "./public/icons/icon-144x144.png": "e73f5f0f63e6a5cc9fb53cf64404a0e7981dfa45",
+    "./public/icons/icon-152x152.png": "dfee29f8e3d608761b838a6c672c5a5fbb6ba356",
+    "./public/icons/icon-192x192.png": "e200a0a45c480112daf2b7b69221fb66688c12b6",
+    "./public/icons/icon-384x384.png": "0355a19c60723e0396a1fcd09ea42f74e1520699",
+    "./public/icons/icon-512x512.png": "5f0a455d2828a0e613504a2d4e921cd4ab3c007b",
+    "./public/icons/icon-72x72.png": "1133650dabf71ee2c2309db2a1a8969c81d23a82",
+    "./public/icons/icon-96x96.png": "bd7e61e1729a438d707cbcda9d33d28c0cb08543",
+    "./runtime.js": "205bbe2c49f3701a8c6c3fc379f2e6d431b61c83",
+    "./styles.css": "fcad2ba8d58a28f6231b15175c38d1d3535c9812",
+    "./vendor.js": "3f03725e70a89c5abcfbcdd1c11ad3454144171a"
+  },
+  "navigationUrls": [
+    {
+      "positive": true,
+      "regex": "^\\/.*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+    },
+    {
+      "positive": false,
+      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+    }
+  ],
+  "navigationRequestStrategy": "performance"
+}
