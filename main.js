@@ -303,9 +303,9 @@ class AppInstallPromptComponent {
     this.snackbarService = snackbarService;
     this.deferredPrompt = null;
     this.isPwa$ = this.pwaService.isPwa$;
-    this.isPwa = !!navigator.serviceWorker.controller;
-    this.isIosButNotStandalone = !this.isPwa && platform.IOS;
-    this.plat = platform.IOS;
+    this.isStandalone = !!navigator.serviceWorker.controller;
+    this.isIosButNotStandalone = this.isIOS() && !this.isStandalone;
+    this.plat = this.isIOS();
   }
   ngOnInit() {
     console.log('ngOnInit');
@@ -334,6 +334,10 @@ class AppInstallPromptComponent {
   showIosInstructions() {
     this.snackbarService.showInfo("To install this web app on your device, tap the Menu button and then 'Add to Home Screen' button", 20000);
   }
+  isIOS() {
+    const userAgent = window.navigator.userAgent.toLowerCase();
+    return /iphone|ipad|ipod/.test(userAgent);
+  }
   static {
     this.ɵfac = function AppInstallPromptComponent_Factory(__ngFactoryType__) {
       return new (__ngFactoryType__ || AppInstallPromptComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_pwa_service__WEBPACK_IMPORTED_MODULE_0__.PwaService), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](_angular_cdk_platform__WEBPACK_IMPORTED_MODULE_3__.Platform), _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵdirectiveInject"](src_app_services_snackbar_service__WEBPACK_IMPORTED_MODULE_1__.SnackbarService));
@@ -360,7 +364,7 @@ class AppInstallPromptComponent {
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 3, ctx.isPwa$) === true ? 0 : ctx.isIosButNotStandalone ? 2 : -1);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵadvance"](5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate2"]("\nisPwa: ", ctx.isPwa, "\nisIos: ", ctx.plat, "");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtextInterpolate2"]("\nisPwa: ", ctx.isStandalone, "\nisIos: ", ctx.plat, "");
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
