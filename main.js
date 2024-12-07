@@ -303,7 +303,7 @@ class AppInstallPromptComponent {
     this.snackbarService = snackbarService;
     this.deferredPrompt = null;
     this.isPwa$ = this.pwaService.isPwa$;
-    this.isStandalone = !!navigator.serviceWorker.controller;
+    this.isStandalone = window.matchMedia('(display-mode: standalone)').matches;
     this.isIosButNotStandalone = this.isIOS() && !this.isStandalone;
     this.plat = this.isIOS();
   }
@@ -357,7 +357,7 @@ class AppInstallPromptComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](0, AppInstallPromptComponent_Conditional_0_Template, 3, 0, "div", 0);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](1, "async");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, AppInstallPromptComponent_Conditional_2_Template, 3, 0, "div", 0);
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "\nJust a test 2\n");
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "\nJust a test 3\n");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelement"](4, "br");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](5);
         }
