@@ -279,7 +279,7 @@ function AppInstallPromptComponent_Conditional_0_Template(rf, ctx) {
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.promptInstall());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 1 ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -292,7 +292,7 @@ function AppInstallPromptComponent_Conditional_2_Template(rf, ctx) {
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.showIosInstructions());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 2 ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -305,6 +305,7 @@ class AppInstallPromptComponent {
     this.isPwa$ = this.pwaService.isPwa$;
     const isStandalone = 'standalone' in window.navigator && window.navigator['standalone'];
     this.isIosButNotStandalone = !isStandalone && platform.IOS;
+    console.log(platform.IOS);
   }
   ngOnInit() {
     console.log('ngOnInit');
@@ -344,7 +345,7 @@ class AppInstallPromptComponent {
       selectors: [["app-install-prompt"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵStandaloneFeature"]],
-      decls: 3,
+      decls: 4,
       vars: 3,
       consts: [[1, "install-banner"], ["mat-raised-button", "", "color", "primary", 3, "click"]],
       template: function AppInstallPromptComponent_Template(rf, ctx) {
@@ -352,9 +353,10 @@ class AppInstallPromptComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](0, AppInstallPromptComponent_Conditional_0_Template, 3, 0, "div", 0);
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipe"](1, "async");
           _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtemplate"](2, AppInstallPromptComponent_Conditional_2_Template, 3, 0, "div", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](3, "\nJust a test");
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 1, ctx.isPwa$) === true ? 0 : !ctx.isIosButNotStandalone ? 2 : -1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵconditional"](_angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵpipeBind1"](1, 1, ctx.isPwa$) === true ? 0 : ctx.isIosButNotStandalone ? 2 : -1);
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_4__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_4__.AsyncPipe],
