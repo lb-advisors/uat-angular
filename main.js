@@ -279,7 +279,7 @@ function AppInstallPromptComponent_Conditional_0_Template(rf, ctx) {
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.promptInstall());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 1 ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -292,7 +292,7 @@ function AppInstallPromptComponent_Conditional_2_Template(rf, ctx) {
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵresetView"](ctx_r1.showIosInstructions());
     });
-    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application 2 ");
+    _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵtext"](2, " Install as an Application ");
     _angular_core__WEBPACK_IMPORTED_MODULE_2__["ɵɵelementEnd"]()();
   }
 }
@@ -301,6 +301,7 @@ class AppInstallPromptComponent {
     this.pwaService = pwaService;
     this.platform = platform;
     this.snackbarService = snackbarService;
+    this.deferredPrompt = null;
     this.isPwa$ = this.pwaService.isPwa$;
     const isStandalone = 'standalone' in window.navigator && window.navigator['standalone'];
     this.isIosButNotStandalone = !isStandalone && platform.IOS;
@@ -330,7 +331,7 @@ class AppInstallPromptComponent {
     }
   }
   showIosInstructions() {
-    this.snackbarService.showInfo("To install this web app on your device, tap the Menu button and then 'Add to Home Screen' button");
+    this.snackbarService.showInfo("To install this web app on your device, tap the Menu button and then 'Add to Home Screen' button", 20000);
   }
   static {
     this.ɵfac = function AppInstallPromptComponent_Factory(__ngFactoryType__) {
