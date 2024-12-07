@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1733588336256,
+  "timestamp": 1733591070847,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -13,11 +13,10 @@
       "urls": [
         "./favicon.ico",
         "./index.html",
-        "./main.js",
-        "./polyfills.js",
-        "./runtime.js",
-        "./styles.css",
-        "./vendor.js"
+        "./main.32629e846c185514.js",
+        "./polyfills.332984d3fae7f6bb.js",
+        "./runtime.cd50726cd4cf99a4.js",
+        "./styles.97430d4a13741964.css"
       ],
       "patterns": []
     },
@@ -100,9 +99,9 @@
     "./assets/naturecure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
     "./assets/smalllogo.png": "9d977e9177b291588929cc7e1e341aea6abf77c7",
     "./favicon.ico": "9d6cadf65d2305f9978156de1fae0815f8387672",
-    "./index.html": "8aba327270d311679e8631093a2780f09218c37b",
-    "./main.js": "60d35b4b71e4cb5149e0173b454289bc8c233eb1",
-    "./polyfills.js": "0752ffc70f6d061acb9ed665e2028904fb8b11be",
+    "./index.html": "da6eadc55533345189b1bc2b75cbefd556a6c87e",
+    "./main.32629e846c185514.js": "139463b4bb7de6f1b99b2a85744721249a99057d",
+    "./polyfills.332984d3fae7f6bb.js": "445df3b25cc5bf85d9dbc76ab909499ba623cab5",
     "./public/icons/Backup/icon-128x128.png": "bfcb04534481cb1159f1442f32275072998abe7e",
     "./public/icons/Backup/icon-144x144.png": "e73f5f0f63e6a5cc9fb53cf64404a0e7981dfa45",
     "./public/icons/Backup/icon-152x152.png": "dfee29f8e3d608761b838a6c672c5a5fbb6ba356",
@@ -151,9 +150,8 @@
     "./public/icons/ms-icon-150x150.png": "b1827d72e06fbf43a8b31de6fca5bd1b52db59fb",
     "./public/icons/ms-icon-310x310.png": "a3ea26e63e6cb1c2cf00d1f3537fef0e24e32e44",
     "./public/icons/ms-icon-70x70.png": "1c582b2d486d1d340e709485318c8e50a676a8c5",
-    "./runtime.js": "205bbe2c49f3701a8c6c3fc379f2e6d431b61c83",
-    "./styles.css": "fcad2ba8d58a28f6231b15175c38d1d3535c9812",
-    "./vendor.js": "3f03725e70a89c5abcfbcdd1c11ad3454144171a"
+    "./runtime.cd50726cd4cf99a4.js": "1cfa5e0016b68f48b934c40da801964a94f27aba",
+    "./styles.97430d4a13741964.css": "260ad73e09d43346578950abbc9b123e33f582c7"
   },
   "navigationUrls": [
     {
