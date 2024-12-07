@@ -337,7 +337,7 @@ class AppInstallPromptComponent {
   }
   isIOS() {
     const userAgent = window.navigator.userAgent.toLowerCase();
-    return /iphone|ipad|ipod/.test(userAgent);
+    return /iphone|ipad|ipod|mac/.test(userAgent) || this.platform.IOS;
   }
   isRunningAsPWA() {
     const isStandalone = window.matchMedia('(display-mode: standalone)').matches;
