@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1733586473782,
+  "timestamp": 1733588336256,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -100,7 +100,7 @@
     "./assets/naturecure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
     "./assets/smalllogo.png": "9d977e9177b291588929cc7e1e341aea6abf77c7",
     "./favicon.ico": "9d6cadf65d2305f9978156de1fae0815f8387672",
-    "./index.html": "e7b372e75c3c8ddb123a032b7008be0cc02ee55f",
+    "./index.html": "8aba327270d311679e8631093a2780f09218c37b",
     "./main.js": "60d35b4b71e4cb5149e0173b454289bc8c233eb1",
     "./polyfills.js": "0752ffc70f6d061acb9ed665e2028904fb8b11be",
     "./public/icons/Backup/icon-128x128.png": "bfcb04534481cb1159f1442f32275072998abe7e",
