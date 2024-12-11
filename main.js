@@ -4815,10 +4815,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ReportsComponent: () => (/* binding */ ReportsComponent)
 /* harmony export */ });
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ 5072);
-/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ng2-charts */ 6045);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ 5072);
 /* harmony import */ var _components_logo_logo_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../components/logo/logo.component */ 3721);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _sales_per_day_chart_sales_per_day_chart_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../sales-per-day-chart/sales-per-day-chart.component */ 9888);
+/* harmony import */ var _sales_per_sales_rep_chart_sales_per_sales_rep_chart_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../sales-per-sales-rep-chart/sales-per-sales-rep-chart.component */ 3332);
+/* harmony import */ var _sales_per_customer_sales_per_customer_chart_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../sales-per-customer/sales-per-customer-chart.component */ 9665);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
+
 
 
 
@@ -4828,6 +4834,7 @@ const _c0 = () => ["/home"];
 class ReportsComponent {
   constructor() {
     this.companyId = 1; // TODO: don't hard-code company id
+    this.pastMonths = 3;
     //////////////////////////////////
     // Line
     this.lineChartLegend = true;
@@ -4855,7 +4862,12 @@ class ReportsComponent {
     //////////////////////////////////
     // Pie
     this.pieChartOptions = {
-      responsive: false
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom' // Positions the legend at the bottom
+        }
+      }
     };
     this.pieChartLabels = [['Download', 'Sales'], ['In', 'Store', 'Sales'], 'Mail Sales'];
     this.pieChartDatasets = [{
@@ -4877,9 +4889,6 @@ class ReportsComponent {
         label: 'Series B'
       }]
     };
-    this.barChartOptions = {
-      responsive: false
-    };
     //////////////////////////////////
     // Doughnut
     this.doughnutChartLabels = ['Download Sales', 'In-Store Sales', 'Mail-Order Sales'];
@@ -4897,52 +4906,464 @@ class ReportsComponent {
       responsive: false
     };
   }
+  ngOnInit() {
+    this.fetchChartData('6');
+  }
+  fetchChartData(months) {
+    this.pastMonths = Number(months);
+  }
   static {
     this.ɵfac = function ReportsComponent_Factory(__ngFactoryType__) {
       return new (__ngFactoryType__ || ReportsComponent)();
     };
   }
   static {
-    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵdefineComponent"]({
       type: ReportsComponent,
       selectors: [["app-reports"]],
       standalone: true,
-      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
-      decls: 12,
-      vars: 23,
-      consts: [[1, "container"], [3, "routerLink"], [3, "companyId"], [1, "inventory-title"], [1, "charts"], ["baseChart", "", "width", "350", "height", "350", 3, "type", "data", "options", "legend"], ["baseChart", "", "width", "350", "height", "350", 3, "type", "datasets", "labels", "options", "plugins", "legend"], ["baseChart", "", "width", "350", "height", "350", 3, "data", "options", "plugins", "legend", "type"], ["baseChart", "", "width", "350", "height", "350", 3, "labels", "datasets", "options", "legend", "type"]],
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵStandaloneFeature"]],
+      decls: 21,
+      vars: 6,
+      consts: [["months", ""], [1, "container"], [3, "routerLink"], [3, "companyId"], [1, "inventory-title"], ["for", "months"], ["id", "months", 3, "change"], ["value", "1"], ["value", "3", "selected", ""], ["value", "6"], ["value", "12"], [3, "pastMonths"], [1, "charts"]],
       template: function ReportsComponent_Template(rf, ctx) {
         if (rf & 1) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0)(1, "a", 1);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](2, "app-logo", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "h2", 3);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, "Reports");
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "div");
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Some sample charts available in Angular");
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "div", 4);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](8, "canvas", 5)(9, "canvas", 6)(10, "canvas", 7)(11, "canvas", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵgetCurrentView"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](0, "div", 1)(1, "a", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](2, "app-logo", 3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](3, "h2", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](4, "Reports");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](5, "label", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](6, "Total sales for the ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](7, "select", 6, 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵlistener"]("change", function ReportsComponent_Template_select_change_7_listener() {
+            _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵrestoreView"](_r1);
+            const months_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵreference"](8);
+            return _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵresetView"](ctx.fetchChartData(months_r2.value));
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](9, "option", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](10, "Last 1 month");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](11, "option", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](12, "Last 3 months");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](13, "option", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](14, "Last 6 months");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](15, "option", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵtext"](16, "Last 12 months");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](17, "app-sales-per-day-chart", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementStart"](18, "div", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelement"](19, "app-sales-per-sales-rep-chart", 11)(20, "app-sales-per-customer-chart", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵelementEnd"]()();
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpureFunction0"](22, _c0));
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("companyId", ctx.companyId);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "line")("data", ctx.lineChartData)("options", ctx.lineChartOptions)("legend", ctx.lineChartLegend);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "pie")("datasets", ctx.pieChartDatasets)("labels", ctx.pieChartLabels)("options", ctx.pieChartOptions)("plugins", ctx.pieChartPlugins)("legend", ctx.pieChartLegend);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", ctx.barChartData)("options", ctx.barChartOptions)("plugins", ctx.barChartPlugins)("legend", ctx.barChartLegend)("type", "bar");
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("labels", ctx.doughnutChartLabels)("datasets", ctx.doughnutChartDatasets)("options", ctx.doughnutChartOptions)("legend", true)("type", "doughnut");
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("routerLink", _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵpureFunction0"](5, _c0));
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("companyId", ctx.companyId);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("pastMonths", ctx.pastMonths);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"](2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("pastMonths", ctx.pastMonths);
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵadvance"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_4__["ɵɵproperty"]("pastMonths", ctx.pastMonths);
         }
       },
-      dependencies: [_angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterModule, _angular_router__WEBPACK_IMPORTED_MODULE_2__.RouterLink, ng2_charts__WEBPACK_IMPORTED_MODULE_3__.BaseChartDirective, _components_logo_logo_component__WEBPACK_IMPORTED_MODULE_0__.LogoComponent],
-      styles: [".container[_ngcontent-%COMP%] {\n    width: fit-content;\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #ffffff;\n    color: #000000;\n    border: 1px solid #ccc;\n    border-radius: 8px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    text-align: center;\n}\n\n.charts[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    \n\n    gap: 16px;\n    \n\n}\n\n@media (max-width: 600px) {\n\n    .container[_ngcontent-%COMP%] {\n        width: 100%;\n        margin: 0px 0px 10px 0px;\n        padding: 0px 0px 10px 0px;\n        border: 1px solid #ccc;\n        border-radius: 8px;\n        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        text-align: center;\n    }\n\n    \n\n    .charts[_ngcontent-%COMP%] {\n        grid-template-columns: 1fr;\n        \n\n        justify-items: center;\n    }\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcmVwb3J0cy9yZXBvcnRzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixhQUFhO0lBQ2IseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLHVDQUF1QztJQUN2QyxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsOEJBQThCO0lBQzlCLG1DQUFtQztJQUNuQyxTQUFTO0lBQ1QsNkJBQTZCO0FBQ2pDOztBQUVBOztJQUVJO1FBQ0ksV0FBVztRQUNYLHdCQUF3QjtRQUN4Qix5QkFBeUI7UUFDekIsc0JBQXNCO1FBQ3RCLGtCQUFrQjtRQUNsQix1Q0FBdUM7UUFDdkMsa0JBQWtCO0lBQ3RCOztJQUVBLGdDQUFnQztJQUNoQztRQUNJLDBCQUEwQjtRQUMxQixxQ0FBcUM7UUFDckMscUJBQXFCO0lBQ3pCO0FBQ0oiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyIHtcbiAgICB3aWR0aDogZml0LWNvbnRlbnQ7XG4gICAgbWF4LXdpZHRoOiA4MDBweDtcbiAgICBtYXJnaW46IDIwcHggYXV0bztcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XG4gICAgY29sb3I6ICMwMDAwMDA7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgYm94LXNoYWRvdzogMCAwIDEwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmNoYXJ0cyB7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7XG4gICAgLyogVHdvIGNvbHVtbnMgZm9yIGxhcmdlciBzY3JlZW5zICovXG4gICAgZ2FwOiAxNnB4O1xuICAgIC8qIFNwYWNlIGJldHdlZW4gY29tcG9uZW50cyAqL1xufVxuXG5AbWVkaWEgKG1heC13aWR0aDogNjAwcHgpIHtcblxuICAgIC5jb250YWluZXIge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgbWFyZ2luOiAwcHggMHB4IDEwcHggMHB4O1xuICAgICAgICBwYWRkaW5nOiAwcHggMHB4IDEwcHggMHB4O1xuICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgICAgIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIH1cblxuICAgIC8qIEFkanVzdCBicmVha3BvaW50IGFzIG5lZWRlZCAqL1xuICAgIC5jaGFydHMge1xuICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmcjtcbiAgICAgICAgLyogU2luZ2xlIGNvbHVtbiBvbiBzbWFsbGVyIHNjcmVlbnMgKi9cbiAgICAgICAganVzdGlmeS1pdGVtczogY2VudGVyO1xuICAgIH1cbn0iXSwic291cmNlUm9vdCI6IiJ9 */"]
+      dependencies: [_angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterModule, _angular_router__WEBPACK_IMPORTED_MODULE_5__.RouterLink, _angular_common__WEBPACK_IMPORTED_MODULE_6__.CommonModule, _components_logo_logo_component__WEBPACK_IMPORTED_MODULE_0__.LogoComponent, _sales_per_day_chart_sales_per_day_chart_component__WEBPACK_IMPORTED_MODULE_1__.SalesPerDayChartComponent, _sales_per_sales_rep_chart_sales_per_sales_rep_chart_component__WEBPACK_IMPORTED_MODULE_2__.SalesPerSalesRepChartComponent, _sales_per_customer_sales_per_customer_chart_component__WEBPACK_IMPORTED_MODULE_3__.SalesPerSalesRepCustomerComponent],
+      styles: [".container[_ngcontent-%COMP%] {\n    width: fit-content;\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #ffffff;\n    color: #000000;\n    border: 1px solid #ccc;\n    border-radius: 8px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    text-align: center;\n}\n\n.charts[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr 1fr;\n    \n\n    gap: 16px;\n    \n\n}\n\n@media (max-width: 600px) {\n\n    .container[_ngcontent-%COMP%] {\n        width: 100%;\n        margin: 0px 0px 10px 0px;\n        padding: 0px 0px 10px 0px;\n        border: 1px solid #ccc;\n        border-radius: 8px;\n        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n        text-align: center;\n    }\n\n    \n\n    .charts[_ngcontent-%COMP%] {\n        grid-template-columns: 1fr;\n        \n\n        justify-items: center;\n    }\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvcmVwb3J0cy9yZXBvcnRzLmNvbXBvbmVudC5jc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7SUFDSSxrQkFBa0I7SUFDbEIsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixhQUFhO0lBQ2IseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLHVDQUF1QztJQUN2QyxrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSxhQUFhO0lBQ2IsOEJBQThCO0lBQzlCLG1DQUFtQztJQUNuQyxTQUFTO0lBQ1QsNkJBQTZCO0FBQ2pDOztBQUVBOztJQUVJO1FBQ0ksV0FBVztRQUNYLHdCQUF3QjtRQUN4Qix5QkFBeUI7UUFDekIsc0JBQXNCO1FBQ3RCLGtCQUFrQjtRQUNsQix1Q0FBdUM7UUFDdkMsa0JBQWtCO0lBQ3RCOztJQUVBLGdDQUFnQztJQUNoQztRQUNJLDBCQUEwQjtRQUMxQixxQ0FBcUM7UUFDckMscUJBQXFCO0lBQ3pCO0FBQ0oiLCJzb3VyY2VzQ29udGVudCI6WyIuY29udGFpbmVyIHtcbiAgICB3aWR0aDogZml0LWNvbnRlbnQ7XG4gICAgbWF4LXdpZHRoOiA4MDBweDtcbiAgICBtYXJnaW46IDIwcHggYXV0bztcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XG4gICAgY29sb3I6ICMwMDAwMDA7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgYm94LXNoYWRvdzogMCAwIDEwcHggcmdiYSgwLCAwLCAwLCAwLjEpO1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLmNoYXJ0cyB7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmciAxZnI7XG4gICAgLyogVHdvIGNvbHVtbnMgZm9yIGxhcmdlciBzY3JlZW5zICovXG4gICAgZ2FwOiAxNnB4O1xuICAgIC8qIFNwYWNlIGJldHdlZW4gY29tcG9uZW50cyAqL1xufVxuXG5AbWVkaWEgKG1heC13aWR0aDogNjAwcHgpIHtcblxuICAgIC5jb250YWluZXIge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgbWFyZ2luOiAwcHggMHB4IDEwcHggMHB4O1xuICAgICAgICBwYWRkaW5nOiAwcHggMHB4IDEwcHggMHB4O1xuICAgICAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICAgICAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgICAgIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgICAgICAgdGV4dC1hbGlnbjogY2VudGVyO1xuICAgIH1cblxuICAgIC8qIEFkanVzdCBicmVha3BvaW50IGFzIG5lZWRlZCAqL1xuICAgIC5jaGFydHMge1xuICAgICAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IDFmcjtcbiAgICAgICAgLyogU2luZ2xlIGNvbHVtbiBvbiBzbWFsbGVyIHNjcmVlbnMgKi9cbiAgICAgICAganVzdGlmeS1pdGVtczogY2VudGVyO1xuICAgIH1cbn0iXSwic291cmNlUm9vdCI6IiJ9 */"],
+      changeDetection: 0
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 9665:
+/*!**************************************************************************!*\
+  !*** ./src/app/sales-per-customer/sales-per-customer-chart.component.ts ***!
+  \**************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SalesPerSalesRepCustomerComponent: () => (/* binding */ SalesPerSalesRepCustomerComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng2-charts */ 6045);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 8764);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _services_order_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/order.services */ 3193);
+
+
+
+
+
+
+function SalesPerSalesRepCustomerComponent_canvas_0_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "canvas", 2);
+  }
+  if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "pie")("datasets", ctx_r0.pieChartDatasets)("labels", ctx_r0.pieChartLabels)("options", ctx_r0.pieChartOptions)("plugins", ctx_r0.pieChartPlugins)("legend", ctx_r0.pieChartLegend);
+  }
+}
+function SalesPerSalesRepCustomerComponent_ng_template_2_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "canvas", 3);
+  }
+  if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "pie")("options", ctx_r0.pieChartOptions);
+  }
+}
+class SalesPerSalesRepCustomerComponent {
+  constructor(orderService) {
+    this.orderService = orderService;
+    this.pastMonths = 3;
+    this.pieChartLabels = [];
+    this.pieChartDatasets = [];
+    this.pieChartOptions = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom' // Positions the legend at the bottom
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const value = context.raw; // The raw data value
+              return ` $${value.toLocaleString()}`; // Format with $ sign and thousands separator
+            }
+          }
+        }
+      }
+    };
+    /*
+    public pieChartLabels = ['Download', 'In', 'Mail Sales'];
+    public pieChartDatasets = [
+      {
+        data: [300, 500, 100],
+      },
+    ];
+    */
+    this.pieChartLegend = true;
+    this.pieChartPlugins = [];
+  }
+  ngOnInit() {
+    this.fetchChartData(this.pastMonths);
+  }
+  ngOnChanges(changes) {
+    if (changes['pastMonths']) {
+      this.fetchChartData(this.pastMonths);
+    }
+  }
+  fetchChartData(pastMonths) {
+    this.chartData$ = this.orderService.getTotalAmountPerCustomer(pastMonths).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.tap)(data => {
+      this.pieChartLabels = data.map(item => item.customerName);
+      this.pieChartDatasets = [{
+        data: data.map(item => item.totalAmount)
+      }];
+    }));
+  }
+  static {
+    this.ɵfac = function SalesPerSalesRepCustomerComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || SalesPerSalesRepCustomerComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_order_services__WEBPACK_IMPORTED_MODULE_0__.OrderService));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+      type: SalesPerSalesRepCustomerComponent,
+      selectors: [["app-sales-per-customer-chart"]],
+      inputs: {
+        pastMonths: "pastMonths"
+      },
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
+      decls: 5,
+      vars: 4,
+      consts: [["loading", ""], ["baseChart", "", 3, "type", "datasets", "labels", "options", "plugins", "legend", 4, "ngIf", "ngIfElse"], ["baseChart", "", 3, "type", "datasets", "labels", "options", "plugins", "legend"], ["baseChart", "", 3, "data", "type", "options"]],
+      template: function SalesPerSalesRepCustomerComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, SalesPerSalesRepCustomerComponent_canvas_0_Template, 1, 6, "canvas", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](1, "async");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SalesPerSalesRepCustomerComponent_ng_template_2_Template, 1, 2, "ng-template", null, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, " Sales per Customer (top 5)");
+        }
+        if (rf & 2) {
+          const loading_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](1, 2, ctx.chartData$))("ngIfElse", loading_r2);
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_3__.AsyncPipe, ng2_charts__WEBPACK_IMPORTED_MODULE_4__.BaseChartDirective],
+      styles: ["/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 9888:
+/*!**********************************************************************!*\
+  !*** ./src/app/sales-per-day-chart/sales-per-day-chart.component.ts ***!
+  \**********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SalesPerDayChartComponent: () => (/* binding */ SalesPerDayChartComponent)
+/* harmony export */ });
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng2-charts */ 6045);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 271);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _services_order_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/order.services */ 3193);
+
+
+
+
+
+
+function SalesPerDayChartComponent_canvas_0_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "canvas", 2);
+  }
+  if (rf & 2) {
+    const chartData_r1 = ctx.ngIf;
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("data", chartData_r1)("type", "bar")("options", ctx_r1.barChartOptions);
+  }
+}
+function SalesPerDayChartComponent_ng_template_2_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "canvas", 2);
+  }
+  if (rf & 2) {
+    const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "bar")("options", ctx_r1.barChartOptions);
+  }
+}
+class SalesPerDayChartComponent {
+  constructor(orderService) {
+    this.orderService = orderService;
+    this.pastMonths = 3;
+    this.barChartOptions = {
+      responsive: true,
+      scales: {
+        y: {
+          beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return `$${value.toLocaleString()}`;
+            }
+          }
+        }
+      },
+      plugins: {
+        legend: {
+          display: false // Disable the legend
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const value = context.raw; // The raw data value
+              return ` $${value.toLocaleString()}`; // Format with $ sign and thousands separator
+            }
+          }
+        }
+      }
+    };
+  }
+  ngOnInit() {
+    this.fetchChartData(this.pastMonths);
+  }
+  ngOnChanges(changes) {
+    if (changes['pastMonths']) {
+      this.fetchChartData(this.pastMonths);
+    }
+  }
+  fetchChartData(pastMonths) {
+    this.chartData$ = this.orderService.getTotalAmountPerDay(pastMonths).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.map)(data => ({
+      labels: data.map(entry => this.convertDateFormat(entry.date)),
+      datasets: [{
+        data: data.map(entry => entry.totalAmount),
+        label: 'Total Sales ($)'
+      }]
+    })));
+  }
+  convertDateFormat(dateString) {
+    if (!dateString) return '';
+    const parts = dateString.split('-');
+    if (parts.length === 3) {
+      const year = parts[0];
+      const month = parts[1];
+      const day = parts[2];
+      return `${month}/${day}/${year}`;
+    }
+    return '';
+  }
+  static {
+    this.ɵfac = function SalesPerDayChartComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || SalesPerDayChartComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_order_services__WEBPACK_IMPORTED_MODULE_0__.OrderService));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+      type: SalesPerDayChartComponent,
+      selectors: [["app-sales-per-day-chart"]],
+      inputs: {
+        pastMonths: "pastMonths"
+      },
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
+      decls: 5,
+      vars: 4,
+      consts: [["loading", ""], ["baseChart", "", 3, "data", "type", "options", 4, "ngIf", "ngIfElse"], ["baseChart", "", 3, "data", "type", "options"]],
+      template: function SalesPerDayChartComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, SalesPerDayChartComponent_canvas_0_Template, 1, 3, "canvas", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](1, "async");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SalesPerDayChartComponent_ng_template_2_Template, 1, 2, "ng-template", null, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, "\nSales per Day");
+        }
+        if (rf & 2) {
+          const loading_r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](1, 2, ctx.chartData$))("ngIfElse", loading_r3);
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_3__.AsyncPipe, ng2_charts__WEBPACK_IMPORTED_MODULE_4__.BaseChartDirective],
+      styles: ["/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"],
+      changeDetection: 0
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 3332:
+/*!**********************************************************************************!*\
+  !*** ./src/app/sales-per-sales-rep-chart/sales-per-sales-rep-chart.component.ts ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   SalesPerSalesRepChartComponent: () => (/* binding */ SalesPerSalesRepChartComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var ng2_charts__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ng2-charts */ 6045);
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ 8764);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _services_order_services__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../services/order.services */ 3193);
+
+
+
+
+
+
+function SalesPerSalesRepChartComponent_canvas_0_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "canvas", 2);
+  }
+  if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "pie")("datasets", ctx_r0.pieChartDatasets)("labels", ctx_r0.pieChartLabels)("options", ctx_r0.pieChartOptions)("plugins", ctx_r0.pieChartPlugins)("legend", ctx_r0.pieChartLegend);
+  }
+}
+function SalesPerSalesRepChartComponent_ng_template_2_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](0, "canvas", 3);
+  }
+  if (rf & 2) {
+    const ctx_r0 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("type", "pie")("options", ctx_r0.pieChartOptions);
+  }
+}
+class SalesPerSalesRepChartComponent {
+  constructor(orderService) {
+    this.orderService = orderService;
+    this.pastMonths = 3;
+    this.pieChartLabels = [];
+    this.pieChartDatasets = [];
+    this.pieChartOptions = {
+      responsive: true,
+      plugins: {
+        legend: {
+          position: 'bottom' // Positions the legend at the bottom
+        },
+        tooltip: {
+          callbacks: {
+            label: function (context) {
+              const value = context.raw; // The raw data value
+              return ` $${value.toLocaleString()}`; // Format with $ sign and thousands separator
+            }
+          }
+        }
+      }
+    };
+    /*
+    public pieChartLabels = ['Download', 'In', 'Mail Sales'];
+    public pieChartDatasets = [
+      {
+        data: [300, 500, 100],
+      },
+    ];
+    */
+    this.pieChartLegend = true;
+    this.pieChartPlugins = [];
+  }
+  ngOnInit() {
+    this.fetchChartData(this.pastMonths);
+  }
+  ngOnChanges(changes) {
+    if (changes['pastMonths']) {
+      this.fetchChartData(this.pastMonths);
+    }
+  }
+  fetchChartData(pastMonths) {
+    this.chartData$ = this.orderService.getTotalAmountPerSalesRep(pastMonths).pipe((0,rxjs__WEBPACK_IMPORTED_MODULE_2__.tap)(data => {
+      this.pieChartLabels = data.map(item => item.salesRepName);
+      this.pieChartDatasets = [{
+        data: data.map(item => item.totalAmount)
+      }];
+    }));
+  }
+  static {
+    this.ɵfac = function SalesPerSalesRepChartComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || SalesPerSalesRepChartComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_services_order_services__WEBPACK_IMPORTED_MODULE_0__.OrderService));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+      type: SalesPerSalesRepChartComponent,
+      selectors: [["app-sales-per-sales-rep-chart"]],
+      inputs: {
+        pastMonths: "pastMonths"
+      },
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
+      decls: 5,
+      vars: 4,
+      consts: [["loading", ""], ["baseChart", "", 3, "type", "datasets", "labels", "options", "plugins", "legend", 4, "ngIf", "ngIfElse"], ["baseChart", "", 3, "type", "datasets", "labels", "options", "plugins", "legend"], ["baseChart", "", 3, "data", "type", "options"]],
+      template: function SalesPerSalesRepChartComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, SalesPerSalesRepChartComponent_canvas_0_Template, 1, 6, "canvas", 1);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipe"](1, "async");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](2, SalesPerSalesRepChartComponent_ng_template_2_Template, 1, 2, "ng-template", null, 0, _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplateRefExtractor"]);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, " Sales per Rep");
+        }
+        if (rf & 2) {
+          const loading_r2 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵreference"](3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵpipeBind1"](1, 2, ctx.chartData$))("ngIfElse", loading_r2);
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_3__.AsyncPipe, ng2_charts__WEBPACK_IMPORTED_MODULE_4__.BaseChartDirective],
+      styles: ["/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IiIsInNvdXJjZVJvb3QiOiIifQ== */"]
     });
   }
 }
@@ -5323,6 +5744,15 @@ class OrderService {
   }
   loadSalesRep(company_id) {
     return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl}/companies/${company_id}/sales-reps`);
+  }
+  getTotalAmountPerDay(months) {
+    return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl}/sales-per-days?months=${months}`);
+  }
+  getTotalAmountPerSalesRep(months) {
+    return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl}/sales-per-sales-reps?months=${months}`);
+  }
+  getTotalAmountPerCustomer(months) {
+    return this.http.get(`${src_environments_environment__WEBPACK_IMPORTED_MODULE_0__.environment.apiUrl}/sales-per-top-5-customers?months=${months}`);
   }
   static {
     this.ɵfac = function OrderService_Factory(__ngFactoryType__) {
