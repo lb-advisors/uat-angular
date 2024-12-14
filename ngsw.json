@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1734134309408,
+  "timestamp": 1734136157452,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -11,6 +11,7 @@
         "ignoreVary": true
       },
       "urls": [
+        "./404.html",
         "./favicon.ico",
         "./index.html",
         "./main.js",
@@ -91,6 +92,7 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "./404.html": "8eb79cc68106bd3bfc34aca27be143513b052e1e",
     "./assets/fogriver.png": "8031d94472a9b7720ed8568ace9e16f1c2c46fe4",
     "./assets/fogriver2.png": "0a61c8843fa23c58625340d4dc81a29f4a83785f",
     "./assets/fogriver3.png": "487df9f828821bf8c55481a06bdce774c15d9c08",
@@ -162,15 +164,15 @@
     },
     {
       "positive": false,
-      "regex": "^\\/(?:.+\\/)?[^/]*\\.[^/]*$"
+      "regex": "^\\/api\\/.*$"
     },
     {
       "positive": false,
-      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*$"
+      "regex": "^\\/(?:.+\\/)?customer\\/.*$"
     },
     {
       "positive": false,
-      "regex": "^\\/(?:.+\\/)?[^/]*__[^/]*\\/.*$"
+      "regex": "^\\/(?:.+\\/)?preorder-form\\/.*$"
     }
   ],
   "navigationRequestStrategy": "performance"
