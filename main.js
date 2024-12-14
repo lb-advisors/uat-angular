@@ -2894,6 +2894,7 @@ class OrderLinksComponent {
     navigator.clipboard.writeText(link).then(() => {
       this.snackbarService.showSuccess('Link copied to clipboard!');
     }).catch(err => {
+      this.snackbarService.showError('Failed to copy link: ', err);
       console.error('Failed to copy link: ', err);
     });
   }
@@ -3863,7 +3864,9 @@ class VendorLinksComponent {
   }
   // Copy Vendor Link to Clipboard
   copyLink(vendorId) {
-    const link = `${window.location.origin}/preorder-form/${vendorId}`;
+    const baseUrl = window.location.href.replace('/preorder-links', '');
+    const link = `${baseUrl}/preorder-form/${vendorId}`;
+    window.location.href.replace('/order-links', '');
     navigator.clipboard.writeText(link).then(() => {
       this.snackbarService.showSuccess('Link copied to clipboard!');
     }).catch(err => {
