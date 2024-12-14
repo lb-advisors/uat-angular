@@ -1474,18 +1474,15 @@ class LogoComponent {
       },
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵNgOnChangesFeature"], _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
-      decls: 3,
-      vars: 2,
+      decls: 2,
+      vars: 1,
       consts: [[3, "routerLink"], [1, "image-container", 3, "ngStyle"], ["class", "image-container", 3, "ngStyle", 4, "ngIf"], ["alt", "Company Logo", 3, "src"]],
       template: function LogoComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](0, LogoComponent_Conditional_0_Template, 2, 3, "a", 0)(1, LogoComponent_Conditional_1_Template, 1, 1, "div", 1);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2);
         }
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵconditional"](ctx.isLoggedIn ? 0 : 1);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" ", ctx.companyId, "");
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_2__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_2__.NgStyle, _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterModule, _angular_router__WEBPACK_IMPORTED_MODULE_3__.RouterLink],
