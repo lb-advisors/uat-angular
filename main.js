@@ -119,8 +119,7 @@ const routes = [{
 }, {
   path: 'preorder-form/:vendorId',
   component: _components_preorder_form_preorder_form_component__WEBPACK_IMPORTED_MODULE_12__.PreorderFormComponent,
-  title: 'Preorder Form',
-  canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
+  title: 'Preorder Form'
 }, {
   path: 'reports',
   component: _reports_reports_component__WEBPACK_IMPORTED_MODULE_16__.ReportsComponent,
@@ -128,7 +127,7 @@ const routes = [{
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
 }, {
   path: '**',
-  redirectTo: 'login'
+  redirectTo: 'home'
 } // Wildcard route to handle unmatched paths, redirect to login
 ];
 class AppRoutingModule {
