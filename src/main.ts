@@ -28,7 +28,7 @@ bootstrapApplication(AppComponent, {
       AppRoutingModule,
       RouterModule,
       CommonModule, 
-      FormsModule,
+      FormsModule,  // Ensure FormsModule is imported for ngModel
       ReactiveFormsModule,
       MatSlideToggleModule,
       MatTableModule,
@@ -43,9 +43,11 @@ bootstrapApplication(AppComponent, {
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(), provideServiceWorker('ngsw-worker.js', {
-            enabled: !isDevMode(),
-            registrationStrategy: 'registerWhenStable:30000'
-          }), provideCharts(withDefaultRegisterables()),
+    provideAnimations(), 
+    provideServiceWorker('ngsw-worker.js', {
+      enabled: !isDevMode(),
+      registrationStrategy: 'registerWhenStable:30000'
+    }), 
+    provideCharts(withDefaultRegisterables()),
   ],
 }).catch((err) => console.error(err));
