@@ -14,10 +14,12 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app/app-routing.module';
 import { BrowserModule, bootstrapApplication } from '@angular/platform-browser';
 import { GlobalErrorHandlerService } from './app/services/global-error-handler.service';
-import { ErrorHandler, importProvidersFrom } from '@angular/core';
+import { ErrorHandler, importProvidersFrom, isDevMode } from '@angular/core';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { AuthInterceptor } from './app/interceptors/auth.interceptor';
+import { provideServiceWorker } from '@angular/service-worker';
+import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 
 bootstrapApplication(AppComponent, {
   providers: [
@@ -41,6 +43,9 @@ bootstrapApplication(AppComponent, {
     { provide: ErrorHandler, useClass: GlobalErrorHandlerService },
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
     provideHttpClient(withInterceptorsFromDi()),
-    provideAnimations(),
+    provideAnimations(), provideServiceWorker('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            registrationStrategy: 'registerWhenStable:30000'
+          }), provideCharts(withDefaultRegisterables()),
   ],
 }).catch((err) => console.error(err));

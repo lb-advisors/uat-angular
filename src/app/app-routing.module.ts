@@ -16,12 +16,13 @@ import { PreorderFormComponent } from './components/preorder-form/preorder-form.
 import { AuthGuard } from './guards/auth.guard';
 import { PasswordRequestComponent } from './components/password-request/password-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
+import { ReportsComponent } from './reports/reports.component';
 import { EmployeeApplicationComponent } from './components/employee-application/employee-application.component'; // Import the new EmployeeApplicationComponent
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'Home', canActivate: [AuthGuard] },
-  { path: 'driver', component: DriverRouteComponent, title: 'Driver Route', canActivate: [AuthGuard] },
+  { path: 'driver', component: DriverRouteComponent, title: "Drivers' Routes", canActivate: [AuthGuard] },
   { path: 'order-links', component: OrderLinksComponent, title: 'Order Links' },
   { path: 'login', component: LoginComponent, title: 'Login' },
   { path: 'logout', component: LogoutComponent, title: 'Logout' },
@@ -34,6 +35,9 @@ const routes: Routes = [
   { path: 'data', component: DataComponent, title: 'Data', canActivate: [AuthGuard] },
   { path: 'orders', component: OrdersComponent, title: 'Orders', canActivate: [AuthGuard] },
   { path: 'preorder-links', component: VendorLinksComponent, title: 'Vendor Links', canActivate: [AuthGuard] },
+  { path: 'preorder-form/:vendorId', component: PreorderFormComponent, title: 'Preorder Form' },
+  { path: 'reports', component: ReportsComponent, title: 'Reports', canActivate: [AuthGuard] },
+  { path: '**', redirectTo: 'home' }, // Wildcard route to handle unmatched paths, redirect to login
   { path: 'preorder-form/:vendorId', component: PreorderFormComponent, title: 'Preorder Form', canActivate: [AuthGuard] },
   { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] }, // New route for EmployeeApplicationComponent
   { path: '**', redirectTo: 'login' }, // Wildcard route to handle unmatched paths, redirect to login
