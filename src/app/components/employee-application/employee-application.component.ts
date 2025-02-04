@@ -37,11 +37,28 @@ export class EmployeeApplicationComponent {
       { fullName: '', relationship: '', company: '', phone: '', address: '' },
       { fullName: '', relationship: '', company: '', phone: '', address: '' },
       { fullName: '', relationship: '', company: '', phone: '', address: '' }
-    ]
+    ],
+    previousEmployment: [
+      { company: '', phone: '', address: '', supervisor: '', jobTitle: '', startingSalary: '', endingSalary: '', responsibilities: '', from: '', to: '', reasonForLeaving: '', contactSupervisor: false },
+      { company: '', phone: '', address: '', supervisor: '', jobTitle: '', startingSalary: '', endingSalary: '', responsibilities: '', from: '', to: '', reasonForLeaving: '', contactSupervisor: false },
+      { company: '', phone: '', address: '', supervisor: '', jobTitle: '', startingSalary: '', endingSalary: '', responsibilities: '', from: '', to: '', reasonForLeaving: '', contactSupervisor: false }
+    ],
+    militaryService: {
+      branch: '',
+      from: '',
+      to: '',
+      rankAtDischarge: '',
+      typeOfDischarge: '',
+      explanation: ''
+    },
+    disclaimer: {
+      signature: '',
+      date: ''
+    }
   };
 
   nextStep() {
-    if (this.currentStep < 4) {
+    if (this.currentStep < 6) {
       this.currentStep++;
     }
   }
