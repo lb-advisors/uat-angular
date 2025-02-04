@@ -128,11 +128,6 @@ const routes = [{
   title: 'Reports',
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
 }, {
-  path: '**',
-  redirectTo: 'home'
-},
-// Wildcard route to handle unmatched paths, redirect to login
-{
   path: 'preorder-form/:vendorId',
   component: _components_preorder_form_preorder_form_component__WEBPACK_IMPORTED_MODULE_12__.PreorderFormComponent,
   title: 'Preorder Form',
