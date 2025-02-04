@@ -37,7 +37,6 @@ const routes: Routes = [
   { path: 'preorder-links', component: VendorLinksComponent, title: 'Vendor Links', canActivate: [AuthGuard] },
   { path: 'preorder-form/:vendorId', component: PreorderFormComponent, title: 'Preorder Form' },
   { path: 'reports', component: ReportsComponent, title: 'Reports', canActivate: [AuthGuard] },
-  { path: 'preorder-form/:vendorId', component: PreorderFormComponent, title: 'Preorder Form', canActivate: [AuthGuard] },
   { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] }, // New route for EmployeeApplicationComponent
   { path: '**', redirectTo: 'login' }, // Wildcard route to handle unmatched paths, redirect to login
 ];
