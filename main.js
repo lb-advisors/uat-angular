@@ -128,11 +128,6 @@ const routes = [{
   title: 'Reports',
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
 }, {
-  path: 'preorder-form/:vendorId',
-  component: _components_preorder_form_preorder_form_component__WEBPACK_IMPORTED_MODULE_12__.PreorderFormComponent,
-  title: 'Preorder Form',
-  canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
-}, {
   path: 'employee-application',
   component: _components_employee_application_employee_application_component__WEBPACK_IMPORTED_MODULE_17__.EmployeeApplicationComponent,
   title: 'Employee Application',
