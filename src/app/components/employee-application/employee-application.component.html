@@ -18,20 +18,6 @@
     </div>
   
     <div class="container">
-        <h2>Employment Application</h2>
-    
-        <div class="home-button-container">
-            <button class="home-button" (click)="goToHome()">Back to Home</button>
-        </div>
-    
-        <div class="step-indicator">
-            <div [class.active]="currentStep === 1" (click)="goToStep(1)">Personal Info</div>
-            <div [class.active]="currentStep === 2" (click)="goToStep(2)">Education</div>
-            <div [class.active]="currentStep === 3" (click)="goToStep(3)">References</div>
-            <div [class.active]="currentStep === 4" (click)="goToStep(4)">Previous Employment</div>
-            <div [class.active]="currentStep === 5" (click)="goToStep(5)">Military Service</div>
-            <div [class.active]="currentStep === 6" (click)="goToStep(6)">Review & Submit</div>
-        </div>
     
         <!-- Step 1: Personal Information -->
         <div class="step" [class.active]="currentStep === 1">
@@ -89,6 +75,7 @@
       <label>Degree</label>
       <input type="text" [(ngModel)]="employee.education.highSchool.degree" />
     </div>
+    <hr>
     <div class="form-group">
       <label>College Name</label>
       <input type="text" [(ngModel)]="employee.education.college.name" />
@@ -104,6 +91,7 @@
       <label>Degree</label>
       <input type="text" [(ngModel)]="employee.education.college.degree" />
     </div>
+    <hr>
     <div class="form-group">
       <label>Other Education</label>
       <input type="text" [(ngModel)]="employee.education.other.name" />
@@ -125,6 +113,7 @@
   <div class="step" [class.active]="currentStep === 3">
     <h3>References</h3>
     <div *ngFor="let reference of employee.references; let i = index" class="reference-section">
+      <hr>
       <label>Full Name</label>
       <input type="text" [(ngModel)]="reference.fullName" />
       <label>Relationship</label>
@@ -142,6 +131,7 @@
     <div class="step" [class.active]="currentStep === 4">
       <h3>Previous Employment</h3>
       <div *ngFor="let job of employee.previousEmployment; let i = index" class="form-group">
+        <hr>
         <label>Company</label>
         <input type="text" [(ngModel)]="job.company" />
         <label>Phone</label>

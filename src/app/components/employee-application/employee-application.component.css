@@ -123,7 +123,7 @@ button:hover {
 
 /* Review section */
 .review-section {
-    background-color: #1c294c;
+    background-color: #ccc;
     padding: 15px;
     border-radius: 4px;
 }
@@ -145,4 +145,11 @@ button:hover {
 .error {
     color: red;
     font-size: 0.9em;
+}
+
+hr {
+    border: none;
+    height: 2px;  /* Makes the line thicker */
+    background-color: #1c294c;  /* Matches your form's color scheme */
+    margin: 20px 0;  /* Adds space above and below */
 }
