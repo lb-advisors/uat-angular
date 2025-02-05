@@ -174,9 +174,9 @@
       <input type="text" [(ngModel)]="employee.education.other.degree" />
     </div>
   </div>
-</div>
+
   <!-- Step 3: References -->
-<div class="container">
+
   <div class="step" [class.active]="currentStep === 3">
     <h3>References</h3>
     <div *ngFor="let reference of employee.references; let i = index" class="reference-section">
@@ -193,9 +193,9 @@
       <input type="text" [(ngModel)]="reference.address" />
     </div>
   </div>
-</div>
+
     <!-- Step 4: Previous Employment -->
-<div class="container">
+
     <div class="step" [class.active]="currentStep === 4">
       <h3>Previous Employment</h3>
       <div *ngFor="let job of employee.previousEmployment; let i = index" class="form-group">
@@ -227,10 +227,10 @@
         </label>
       </div>
     </div>
-</div>
+
   
     <!-- Step 5: Military Service -->
-<div class="container">
+
     <div class="step" [class.active]="currentStep === 5">
       <h3>Military Service</h3>
       <div class="form-group">
@@ -248,9 +248,9 @@
         <input type="text" [(ngModel)]="employee.militaryService.explanation" />
       </div>
     </div>
-</div>
+
     <!-- Step 6: Review & Submit -->
-<div class="container">
+
     <div class="step" [class.active]="currentStep === 6">
       <h3>Review Your Application</h3>
       <div class="review-section">
@@ -263,12 +263,12 @@
         <p><strong>Date:</strong> <input type="date" [(ngModel)]="employee.disclaimer.date" /></p>
       </div>
     </div>
-</div>
+
     <!-- Navigation Buttons -->
     <div class="button-group">
       <button (click)="prevStep()" [disabled]="currentStep === 1">Previous</button>
       <button *ngIf="currentStep < 6" (click)="nextStep()">Next</button>
       <button *ngIf="currentStep === 6" (click)="submitApplication()">Submit</button>
     </div>
-
+</div>
   
