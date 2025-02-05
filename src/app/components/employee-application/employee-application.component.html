@@ -15,9 +15,9 @@
     <div [class.active]="currentStep === 6" (click)="goToStep(6)">Review & Submit</div>
   </div>
   
-    <div class="container">
     
-        <!-- Step 1: Personal Information -->
+    
+       
        <!-- Step 1: Personal Information -->
 <div class="step" [class.active]="currentStep === 1">
     <h3>Personal Information</h3>
@@ -264,5 +264,5 @@
       <button *ngIf="currentStep < 6" (click)="nextStep()">Next</button>
       <button *ngIf="currentStep === 6" (click)="submitApplication()">Submit</button>
     </div>
-  </div>
+
   
