@@ -1,11 +1,19 @@
 <div class="page container">
   <div class="button-container">
     <button class="nav-button" (click)="navigateTo('products')">Products</button>
-    <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
-    <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
-    <button class="nav-button" (click)="navigateTo('preorder-links')">Preorders</button>
+
+    <!-- Sales Section -->
+    <div class="sales-section">
+      <button class="nav-button" (click)="toggleSales()">Sales</button>
+      <div class="sales-dropdown" *ngIf="isSalesOpen">
+        <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
+        <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
+        <button class="nav-button" (click)="navigateTo('preorder-links')">Preorders</button>
+      </div>
+    </div>
+
     <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
-    
+
     <!-- HR Section -->
     <div class="hr-section">
       <button class="nav-button" (click)="toggleHR()">HR</button>
@@ -19,7 +27,7 @@
         <button class="nav-button" (click)="navigateTo('self-identification')">Self Identification</button>
       </div>
     </div>
-    
+
     <button class="nav-button" (click)="navigateTo('reports')">Reports</button>
     <button class="nav-button logout-button" (click)="logout()">Logout</button>
   </div>

@@ -11,13 +11,17 @@ import { OrderExistsComponent } from './components/order-exists/order-exists.com
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { DataComponent } from './components/data/data.component';
 import { OrdersComponent } from './components/orders/orders.component';
-import { VendorLinksComponent } from './components/preorder-links/preorder-links.component'; // Updated the import to match the renamed component
-import { PreorderFormComponent } from './components/preorder-form/preorder-form.component'; // Import the new PreorderFormComponent
+import { VendorLinksComponent } from './components/preorder-links/preorder-links.component';
+import { PreorderFormComponent } from './components/preorder-form/preorder-form.component';
 import { AuthGuard } from './guards/auth.guard';
 import { PasswordRequestComponent } from './components/password-request/password-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { ReportsComponent } from './reports/reports.component';
-import { EmployeeApplicationComponent } from './components/employee-application/employee-application.component'; // Import the new EmployeeApplicationComponent
+import { EmployeeApplicationComponent } from './components/employee-application/employee-application.component';
+import { HireChecklistComponent } from './components/hire-checklist/hire-checklist.component';
+import { EmploymentVerificationComponent } from './components/employment-verification/employment-verification.component';
+import { W4FormComponent } from './components/w4-form/w4-form.component';
+import { WithholdingComponent } from './components/withholding/withholding.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -37,8 +41,15 @@ const routes: Routes = [
   { path: 'preorder-links', component: VendorLinksComponent, title: 'Vendor Links', canActivate: [AuthGuard] },
   { path: 'preorder-form/:vendorId', component: PreorderFormComponent, title: 'Preorder Form' },
   { path: 'reports', component: ReportsComponent, title: 'Reports', canActivate: [AuthGuard] },
-  { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] }, // New route for EmployeeApplicationComponent
-  { path: '**', redirectTo: 'login' }, // Wildcard route to handle unmatched paths, redirect to login
+  
+  // HR-related routes
+  { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] },
+  { path: 'new-hire-checklist', component: HireChecklistComponent, title: 'New Hire Checklist', canActivate: [AuthGuard] },
+  { path: 'employment-verification', component: EmploymentVerificationComponent, title: 'Employment Verification', canActivate: [AuthGuard] },
+  { path: 'w4-form', component: W4FormComponent, title: 'W4 Form', canActivate: [AuthGuard] },
+  { path: 'withholding', component: WithholdingComponent, title: 'Withholding', canActivate: [AuthGuard] },
+  
+  { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({

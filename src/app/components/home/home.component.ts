@@ -14,6 +14,7 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent implements OnInit {
   username!: string | null;
   isHROpen: boolean = false;
+  isSalesOpen: boolean = false;
 
   constructor(private router: Router, private authService: AuthService) {}
 
@@ -39,6 +40,15 @@ export class HomeComponent implements OnInit {
     }
   }
 
+  toggleSales() {
+    this.isSalesOpen = !this.isSalesOpen;
+    // Optionally close HR dropdown when opening Sales
+    if (this.isSalesOpen) {
+      this.isHROpen = false;
+    }
+  }
+
+  
   logout(): void {
     this.authService.logout();
   }
