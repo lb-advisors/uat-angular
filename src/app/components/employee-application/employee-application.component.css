@@ -10,7 +10,7 @@
 
 h2 {
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
 /* Form layout */
@@ -104,6 +104,7 @@ button:hover {
 
 .step-indicator .active {
     background-color: #f2b705;
+    color: black;
 }
 
 /* Steps */
@@ -157,11 +158,12 @@ hr {
 
 h3 {
     text-align: center;
+    margin-bottom: 5px;
 }
 
 h2 {
     font-weight: bold;
-    text-decoration: underline;
+    
 }
 
 .logo-container {
