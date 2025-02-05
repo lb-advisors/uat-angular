@@ -56,11 +56,20 @@ export class HireChecklistComponent implements OnInit {
       timeRecords: [false],
       safetyRequirements: [false],
       dressCode: [false],
-      other3: [false]
+      other3: [false],
+
+      // Acknowledgment Section
+      employeeSignature: [''],
+      signatureDate: ['']
     });
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Set default date to today
+    this.checklistForm.patchValue({
+      signatureDate: new Date().toISOString().split('T')[0]
+    });
+  }
 
   onSubmit() {
     if (this.checklistForm.valid) {

@@ -91,3 +91,39 @@
   button:hover {
     opacity: 0.9;
   }
+
+  .acknowledgment-section {
+    margin-top: 40px;
+    border-top: 2px solid #333;
+    padding-top: 20px;
+  }
+  
+  .acknowledgment-header {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 30px;
+    font-size: 1.1em;
+  }
+  
+  .acknowledgment-row {
+    margin-top: 20px;
+    justify-content: space-between;
+  }
+  
+  .acknowledgment-row .form-group {
+    flex: 0 0 45%;
+  }
+  
+  .signature-input, .date-input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+  }
+  
+  .acknowledgment-note {
+    font-style: italic;
+    text-align: center;
+    margin-top: 15px;
+    color: #666;
+  }
