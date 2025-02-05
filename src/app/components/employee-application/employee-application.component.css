@@ -155,6 +155,28 @@ hr {
     margin: 20px 0;  /* Adds space above and below */
 }
 
-.h3 {
+h3 {
     text-align: center;
+}
+
+h2 {
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;  /* Adds some vertical spacing */
+    cursor: pointer;  /* Shows hand cursor on hover */
+}
+
+.logo-image {
+    max-width: 300px;  /* Adjust this value based on your desired image size */
+    height: auto;
+    transition: transform 0.2s;  /* Optional: adds smooth hover effect */
+}
+
+.logo-image:hover {
+    transform: scale(1.05);  /* Optional: slightly enlarges image on hover */
 }
