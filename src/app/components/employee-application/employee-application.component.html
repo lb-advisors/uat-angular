@@ -11,20 +11,130 @@
       <div [class.active]="currentStep === 6">Review & Submit</div>
     </div>
   
-    <!-- Step 1: Personal Information -->
-    <div class="step" [class.active]="currentStep === 1">
-      <!-- Existing personal info fields -->
+      <!-- Step 1: Personal Information -->
+  <div class="step" [class.active]="currentStep === 1">
+    <div class="form-group">
+      <label>Full Name</label>
+      <input type="text" [(ngModel)]="employee.fullName" />
     </div>
-  
-    <!-- Step 2: Education -->
-    <div class="step" [class.active]="currentStep === 2">
-      <!-- Existing education fields -->
+    <div class="form-group">
+      <label>Address</label>
+      <input type="text" [(ngModel)]="employee.address" placeholder="Street Address" />
+      <input type="text" [(ngModel)]="employee.city" placeholder="City" />
+      <input type="text" [(ngModel)]="employee.state" placeholder="State" />
+      <input type="text" [(ngModel)]="employee.zip" placeholder="ZIP Code" />
     </div>
-  
-    <!-- Step 3: References -->
-    <div class="step" [class.active]="currentStep === 3">
-      <!-- Existing references fields -->
+    <div class="form-group">
+      <label>Phone</label>
+      <input type="text" [(ngModel)]="employee.phone" />
     </div>
+    <div class="form-group">
+      <label>Email Address</label>
+      <input type="email" [(ngModel)]="employee.email" />
+    </div>
+    <div class="form-group">
+      <label>Date Available</label>
+      <input type="date" [(ngModel)]="employee.dateAvailable" />
+    </div>
+    <div class="form-group">
+      <label>Social Security Number</label>
+      <input type="text" [(ngModel)]="employee.socialSecurityNumber" />
+    </div>
+    <div class="form-group">
+      <label>Desired Salary</label>
+      <input type="number" [(ngModel)]="employee.desiredSalary" />
+    </div>
+    <div class="form-group">
+      <label>Position Applied For</label>
+      <input type="text" [(ngModel)]="employee.positionApplied" />
+    </div>
+    <div class="form-group">
+      <label>
+        <input type="checkbox" [(ngModel)]="employee.isCitizen" /> Are you a citizen of the United States?
+      </label>
+    </div>
+    <div class="form-group" *ngIf="!employee.isCitizen">
+      <label>
+        <input type="checkbox" [(ngModel)]="employee.authorizedToWork" /> Are you authorized to work in the U.S.?
+      </label>
+    </div>
+    <div class="form-group">
+      <label>
+        <input type="checkbox" [(ngModel)]="employee.workedBefore" /> Have you ever worked for this company?
+      </label>
+    </div>
+    <div class="form-group" *ngIf="employee.workedBefore">
+      <label>If yes, when?</label>
+      <input type="text" [(ngModel)]="employee.workedBeforeWhen" />
+    </div>
+  </div>
+
+  <!-- Step 2: Education -->
+  <div class="step" [class.active]="currentStep === 2">
+    <h3>Education</h3>
+    <div class="form-group">
+      <label>High School Name</label>
+      <input type="text" [(ngModel)]="employee.education.highSchool.name" />
+      <label>Address</label>
+      <input type="text" [(ngModel)]="employee.education.highSchool.address" />
+      <label>From</label>
+      <input type="text" [(ngModel)]="employee.education.highSchool.from" />
+      <label>To</label>
+      <input type="text" [(ngModel)]="employee.education.highSchool.to" />
+      <label>
+        <input type="checkbox" [(ngModel)]="employee.education.highSchool.graduated" /> Did you graduate?
+      </label>
+      <label>Degree</label>
+      <input type="text" [(ngModel)]="employee.education.highSchool.degree" />
+    </div>
+    <div class="form-group">
+      <label>College Name</label>
+      <input type="text" [(ngModel)]="employee.education.college.name" />
+      <label>Address</label>
+      <input type="text" [(ngModel)]="employee.education.college.address" />
+      <label>From</label>
+      <input type="text" [(ngModel)]="employee.education.college.from" />
+      <label>To</label>
+      <input type="text" [(ngModel)]="employee.education.college.to" />
+      <label>
+        <input type="checkbox" [(ngModel)]="employee.education.college.graduated" /> Did you graduate?
+      </label>
+      <label>Degree</label>
+      <input type="text" [(ngModel)]="employee.education.college.degree" />
+    </div>
+    <div class="form-group">
+      <label>Other Education</label>
+      <input type="text" [(ngModel)]="employee.education.other.name" />
+      <label>Address</label>
+      <input type="text" [(ngModel)]="employee.education.other.address" />
+      <label>From</label>
+      <input type="text" [(ngModel)]="employee.education.other.from" />
+      <label>To</label>
+      <input type="text" [(ngModel)]="employee.education.other.to" />
+      <label>
+        <input type="checkbox" [(ngModel)]="employee.education.other.graduated" /> Did you graduate?
+      </label>
+      <label>Degree</label>
+      <input type="text" [(ngModel)]="employee.education.other.degree" />
+    </div>
+  </div>
+
+  <!-- Step 3: References -->
+  <div class="step" [class.active]="currentStep === 3">
+    <h3>References</h3>
+    <div *ngFor="let reference of employee.references; let i = index" class="reference-section">
+      <label>Full Name</label>
+      <input type="text" [(ngModel)]="reference.fullName" />
+      <label>Relationship</label>
+      <input type="text" [(ngModel)]="reference.relationship" />
+      <label>Company</label>
+      <input type="text" [(ngModel)]="reference.company" />
+      <label>Phone</label>
+      <input type="text" [(ngModel)]="reference.phone" />
+      <label>Address</label>
+      <input type="text" [(ngModel)]="reference.address" />
+    </div>
+  </div>
   
     <!-- Step 4: Previous Employment -->
     <div class="step" [class.active]="currentStep === 4">
