@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -13,7 +14,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 export class EmploymentVerificationComponent implements OnInit {
   verificationForm: FormGroup;
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private router: Router
+  ) {
     this.verificationForm = this.fb.group({
       // Section 1: Employee Information
       lastName: ['', Validators.required],
@@ -81,9 +85,14 @@ export class EmploymentVerificationComponent implements OnInit {
     });
   }
 
+  goToHome() {
+    this.router.navigate(['/home']);
+  }
+
   onSubmit() {
     if (this.verificationForm.valid) {
       console.log(this.verificationForm.value);
+      this.goToHome(); // Navigate to home after successful submission
     } else {
       Object.keys(this.verificationForm.controls).forEach(key => {
         const control = this.verificationForm.get(key);
