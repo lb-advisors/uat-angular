@@ -153,3 +153,7 @@ hr {
     background-color: #1c294c;  /* Matches your form's color scheme */
     margin: 20px 0;  /* Adds space above and below */
 }
+
+.h3 {
+    text-align: center;
+}
