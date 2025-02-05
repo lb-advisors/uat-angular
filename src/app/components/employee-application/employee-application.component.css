@@ -86,7 +86,7 @@ button:hover {
 .step-indicator {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 20px;
+    margin-bottom: 5px;
     gap: 10px;
     font-weight: bold;
 }
