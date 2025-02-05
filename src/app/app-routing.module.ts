@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
+// Regular component imports
 import { DriverRouteComponent } from './components/driver-route/driver-route.component';
 import { HomeComponent } from './components/home/home.component';
 import { OrderLinksComponent } from './components/order-links/order-links.component';
@@ -17,11 +19,15 @@ import { AuthGuard } from './guards/auth.guard';
 import { PasswordRequestComponent } from './components/password-request/password-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
 import { ReportsComponent } from './reports/reports.component';
+
+// HR Components
 import { EmployeeApplicationComponent } from './components/employee-application/employee-application.component';
 import { HireChecklistComponent } from './components/hire-checklist/hire-checklist.component';
 import { EmploymentVerificationComponent } from './components/employment-verification/employment-verification.component';
-import { W4FormComponent } from './components/w4-form/w4-form.component';
 import { WithholdingComponent } from './components/withholding/withholding.component';
+
+// Standalone component import
+import { W4FormComponent } from './components/w4-form/w4-form.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -46,14 +52,21 @@ const routes: Routes = [
   { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] },
   { path: 'new-hire-checklist', component: HireChecklistComponent, title: 'New Hire Checklist', canActivate: [AuthGuard] },
   { path: 'employment-verification', component: EmploymentVerificationComponent, title: 'Employment Verification', canActivate: [AuthGuard] },
-  { path: 'w4-form', component: W4FormComponent, title: 'W4 Form', canActivate: [AuthGuard] },
+  { 
+    path: 'w4-form', 
+    component: W4FormComponent,
+    title: 'W4 Form', 
+    canActivate: [AuthGuard]
+  },
   { path: 'withholding', component: WithholdingComponent, title: 'Withholding', canActivate: [AuthGuard] },
   
   { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [
+    RouterModule.forRoot(routes)
+  ],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
