@@ -60,6 +60,16 @@ export class EmployeeApplicationComponent {
 
   constructor(private router: Router) {}
 
+  goToStep(step: number) {
+    // Basic form validation before allowing navigation
+    if (step >= 1 && step <= 6) {
+      // Optional: Add validation logic here if needed
+      // For example, checking if required fields are filled before allowing to proceed
+      
+      this.currentStep = step;
+    }
+  }
+
   nextStep() {
     if (this.currentStep < 6) {
       this.currentStep++;
