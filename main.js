@@ -32,10 +32,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_employee_application_employee_application_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/employee-application/employee-application.component */ 8465);
 /* harmony import */ var _components_hire_checklist_hire_checklist_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/hire-checklist/hire-checklist.component */ 4593);
 /* harmony import */ var _components_employment_verification_employment_verification_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/employment-verification/employment-verification.component */ 7537);
-/* harmony import */ var _components_w4_form_w4_form_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/w4-form/w4-form.component */ 8249);
-/* harmony import */ var _components_withholding_withholding_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/withholding/withholding.component */ 849);
+/* harmony import */ var _components_withholding_withholding_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/withholding/withholding.component */ 849);
+/* harmony import */ var _components_w4_form_w4_form_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/w4-form/w4-form.component */ 8249);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/core */ 7580);
 
+// Regular component imports
 
 
 
@@ -53,10 +54,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+// HR Components
 
 
 
 
+// Standalone component import
 
 
 
@@ -154,12 +157,12 @@ const routes = [{
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
 }, {
   path: 'w4-form',
-  component: _components_w4_form_w4_form_component__WEBPACK_IMPORTED_MODULE_20__.W4FormComponent,
+  component: _components_w4_form_w4_form_component__WEBPACK_IMPORTED_MODULE_21__.W4FormComponent,
   title: 'W4 Form',
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
 }, {
   path: 'withholding',
-  component: _components_withholding_withholding_component__WEBPACK_IMPORTED_MODULE_21__.WithholdingComponent,
+  component: _components_withholding_withholding_component__WEBPACK_IMPORTED_MODULE_20__.WithholdingComponent,
   title: 'Withholding',
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
 }, {
@@ -6633,25 +6636,26 @@ __webpack_require__.r(__webpack_exports__);
 class W4FormComponent {
   constructor(fb) {
     this.fb = fb;
+    this.submitted = false;
     this.w4Form = this.fb.group({
       // Step 1: Personal Information
-      firstName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
-      middleInitial: [''],
-      lastName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
-      socialSecurity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
-      address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
-      cityStateZip: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      firstName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.minLength(2)]],
+      middleInitial: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.maxLength(1)]],
+      lastName: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.minLength(2)]],
+      socialSecurity: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]{9}$')]],
+      address: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.minLength(5)]],
+      cityStateZip: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.minLength(5)]],
       filingStatus: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
       // Step 2: Multiple Jobs
       multipleJobs: [false],
       // Step 3: Claim Dependents
-      qualifyingChildren: ['0'],
-      otherDependents: ['0'],
+      qualifyingChildren: ['0', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.min(0), _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]*$')]],
+      otherDependents: ['0', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.min(0), _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]*$')]],
       totalDependents: ['0'],
       // Step 4: Other Adjustments
-      otherIncome: [''],
-      deductions: [''],
-      extraWithholding: [''],
+      otherIncome: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]*$')]],
+      deductions: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]*$')]],
+      extraWithholding: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]*$')]],
       // Step 5: Signature
       employeeSignature: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
       signatureDate: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
@@ -6659,14 +6663,20 @@ class W4FormComponent {
       employerName: [''],
       employerAddress: [''],
       firstDateEmployment: [''],
-      employerEIN: ['']
+      employerEIN: ['', [_angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.pattern('^[0-9]{9}$')]]
     });
   }
   ngOnInit() {
-    // Set default date
     const today = new Date().toISOString().split('T')[0];
     this.w4Form.patchValue({
       signatureDate: today
+    });
+    // Subscribe to dependent changes
+    this.w4Form.get('qualifyingChildren')?.valueChanges.subscribe(() => {
+      this.calculateDependents();
+    });
+    this.w4Form.get('otherDependents')?.valueChanges.subscribe(() => {
+      this.calculateDependents();
     });
   }
   calculateDependents() {
@@ -6674,20 +6684,51 @@ class W4FormComponent {
     const others = Number(this.w4Form.get('otherDependents')?.value || 0) * 500;
     const total = children + others;
     this.w4Form.patchValue({
-      totalDependents: total
+      totalDependents: total.toString()
+    }, {
+      emitEvent: false
     });
   }
+  getErrorMessage(controlName) {
+    const control = this.w4Form.get(controlName);
+    if (control?.hasError('required')) {
+      return `${controlName.charAt(0).toUpperCase() + controlName.slice(1)} is required`;
+    }
+    if (control?.hasError('pattern')) {
+      return `Invalid ${controlName} format`;
+    }
+    if (control?.hasError('minlength')) {
+      return `${controlName.charAt(0).toUpperCase() + controlName.slice(1)} is too short`;
+    }
+    return '';
+  }
   onSubmit() {
+    this.submitted = true;
     if (this.w4Form.valid) {
-      console.log(this.w4Form.value);
+      const formData = this.w4Form.value;
+      console.log('Form submitted:', formData);
+      // Here you would typically send the data to your backend
     } else {
+      console.log('Form is invalid');
       Object.keys(this.w4Form.controls).forEach(key => {
         const control = this.w4Form.get(key);
         if (control?.invalid) {
           control.markAsTouched();
+          console.log(`${key} is invalid:`, control.errors);
         }
       });
     }
+  }
+  resetForm() {
+    this.submitted = false;
+    this.w4Form.reset();
+    const today = new Date().toISOString().split('T')[0];
+    this.w4Form.patchValue({
+      signatureDate: today,
+      qualifyingChildren: '0',
+      otherDependents: '0',
+      totalDependents: '0'
+    });
   }
   static {
     this.ɵfac = function W4FormComponent_Factory(__ngFactoryType__) {
