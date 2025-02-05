@@ -1,1 +1,249 @@
-<p>employment-verification works!</p>
+<form [formGroup]="verificationForm" (ngSubmit)="onSubmit()" class="i9-form">
+    <div class="form-header">
+      <h2>Employment Eligibility Verification</h2>
+      <p class="form-subtitle">Department of Homeland Security</p>
+      <p class="form-subtitle">U.S. Citizenship and Immigration Services</p>
+    </div>
+  
+    <!-- Section 1: Employee Information -->
+    <div class="section">
+      <h3>Section 1. Employee Information and Attestation</h3>
+      
+      <div class="form-row">
+        <div class="form-group">
+          <label for="lastName">Last Name (Family Name)</label>
+          <input id="lastName" type="text" formControlName="lastName">
+        </div>
+        <div class="form-group">
+          <label for="firstName">First Name</label>
+          <input id="firstName" type="text" formControlName="firstName">
+        </div>
+        <div class="form-group small">
+          <label for="middleInitial">Middle Initial</label>
+          <input id="middleInitial" type="text" formControlName="middleInitial">
+        </div>
+        <div class="form-group">
+          <label for="otherNames">Other Names Used</label>
+          <input id="otherNames" type="text" formControlName="otherNames">
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group large">
+          <label for="address">Address (Street Number and Name)</label>
+          <input id="address" type="text" formControlName="address">
+        </div>
+        <div class="form-group small">
+          <label for="aptNumber">Apt. Number</label>
+          <input id="aptNumber" type="text" formControlName="aptNumber">
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label for="city">City or Town</label>
+          <input id="city" type="text" formControlName="city">
+        </div>
+        <div class="form-group small">
+          <label for="state">State</label>
+          <input id="state" type="text" formControlName="state">
+        </div>
+        <div class="form-group">
+          <label for="zipCode">ZIP Code</label>
+          <input id="zipCode" type="text" formControlName="zipCode">
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group">
+          <label for="dateOfBirth">Date of Birth (mm/dd/yyyy)</label>
+          <input id="dateOfBirth" type="date" formControlName="dateOfBirth">
+        </div>
+        <div class="form-group">
+          <label for="socialSecurity">U.S. Social Security Number</label>
+          <input id="socialSecurity" type="text" formControlName="socialSecurity">
+        </div>
+        <div class="form-group">
+          <label for="email">Employee's Email Address</label>
+          <input id="email" type="email" formControlName="email">
+        </div>
+        <div class="form-group">
+          <label for="telephone">Employee's Telephone Number</label>
+          <input id="telephone" type="tel" formControlName="telephone">
+        </div>
+      </div>
+  
+      <!-- Citizenship Status -->
+      <div class="citizenship-section">
+        <h4>Employee attestation (check one):</h4>
+        <div class="radio-group">
+          <label>
+            <input type="radio" formControlName="citizenshipStatus" value="citizen">
+            A citizen of the United States
+          </label>
+          <label>
+            <input type="radio" formControlName="citizenshipStatus" value="noncitizen">
+            A noncitizen national of the United States
+          </label>
+          <label>
+            <input type="radio" formControlName="citizenshipStatus" value="permanent">
+            A lawful permanent resident
+          </label>
+          <label>
+            <input type="radio" formControlName="citizenshipStatus" value="authorized">
+            An alien authorized to work
+          </label>
+        </div>
+      </div>
+  
+      <!-- Document Numbers Section -->
+      <div class="documents-section" *ngIf="verificationForm.get('citizenshipStatus')?.value === 'permanent'">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="uscisNumber">USCIS Number</label>
+            <input id="uscisNumber" type="text" formControlName="uscisNumber">
+          </div>
+        </div>
+      </div>
+  
+      <!-- Employee Signature -->
+      <div class="signature-section">
+        <div class="form-group">
+          <label for="employeeSignature">Signature of Employee</label>
+          <input id="employeeSignature" type="text" formControlName="employeeSignature">
+        </div>
+        <div class="form-group">
+          <label for="employeeSignatureDate">Today's Date (mm/dd/yyyy)</label>
+          <input id="employeeSignatureDate" type="date" formControlName="employeeSignatureDate">
+        </div>
+      </div>
+    </div>
+  
+    <!-- Section 2: Employer Review -->
+    <div class="section">
+      <h3>Section 2. Employer Review and Verification</h3>
+      
+      <div class="documents-grid">
+        <div class="document-column">
+          <h4>List A</h4>
+          <div class="form-group">
+            <label>Document Title</label>
+            <input type="text" formControlName="documentTitleA">
+          </div>
+          <div class="form-group">
+            <label>Issuing Authority</label>
+            <input type="text" formControlName="issuingAuthorityA">
+          </div>
+          <div class="form-group">
+            <label>Document Number</label>
+            <input type="text" formControlName="documentNumberA">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <input type="date" formControlName="expirationDateA">
+          </div>
+        </div>
+  
+        <div class="document-column">
+          <h4>List B</h4>
+          <div class="form-group">
+            <label>Document Title</label>
+            <input type="text" formControlName="documentTitleB">
+          </div>
+          <div class="form-group">
+            <label>Issuing Authority</label>
+            <input type="text" formControlName="issuingAuthorityB">
+          </div>
+          <div class="form-group">
+            <label>Document Number</label>
+            <input type="text" formControlName="documentNumberB">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <input type="date" formControlName="expirationDateB">
+          </div>
+        </div>
+  
+        <div class="document-column">
+          <h4>List C</h4>
+          <div class="form-group">
+            <label>Document Title</label>
+            <input type="text" formControlName="documentTitleC">
+          </div>
+          <div class="form-group">
+            <label>Issuing Authority</label>
+            <input type="text" formControlName="issuingAuthorityC">
+          </div>
+          <div class="form-group">
+            <label>Document Number</label>
+            <input type="text" formControlName="documentNumberC">
+          </div>
+          <div class="form-group">
+            <label>Expiration Date</label>
+            <input type="date" formControlName="expirationDateC">
+          </div>
+        </div>
+      </div>
+  
+      <div class="additional-info">
+        <div class="form-group">
+          <label for="additionalInformation">Additional Information</label>
+          <textarea id="additionalInformation" formControlName="additionalInformation"></textarea>
+        </div>
+        <div class="form-group checkbox">
+          <label>
+            <input type="checkbox" formControlName="alternativeProcedure">
+            Check here if you used an alternative procedure
+          </label>
+        </div>
+      </div>
+  
+      <!-- Certification -->
+      <div class="certification-section">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Day of Employment (mm/dd/yyyy)</label>
+            <input type="date" formControlName="firstDayOfEmployment">
+          </div>
+        </div>
+        
+        <div class="form-row">
+          <div class="form-group">
+            <label>Employer Title</label>
+            <input type="text" formControlName="employerTitle">
+          </div>
+          <div class="form-group">
+            <label>Last Name, First Name of Employer</label>
+            <input type="text" formControlName="employerName">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label>Signature of Employer</label>
+            <input type="text" formControlName="employerSignature">
+          </div>
+          <div class="form-group">
+            <label>Today's Date</label>
+            <input type="date" formControlName="employerSignatureDate">
+          </div>
+        </div>
+  
+        <div class="form-row">
+          <div class="form-group">
+            <label>Business Name</label>
+            <input type="text" formControlName="businessName">
+          </div>
+          <div class="form-group">
+            <label>Business Address</label>
+            <input type="text" formControlName="businessAddress">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="button-group">
+      <button type="submit">Submit Form</button>
+      <button type="reset">Reset Form</button>
+    </div>
+  </form>
