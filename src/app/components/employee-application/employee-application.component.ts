@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -58,7 +58,7 @@ export class EmployeeApplicationComponent {
     }
   };
 
-  constructor(private router: Router) {}
+  constructor(@Inject(Router) private router: Router) {}
 
   goToStep(step: number) {
     // Basic form validation before allowing navigation

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
@@ -16,7 +16,7 @@ export class EmploymentVerificationComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    @Inject(Router) private router: Router
   ) {
     this.verificationForm = this.fb.group({
       // Section 1: Employee Information

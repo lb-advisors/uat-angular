@@ -15,10 +15,12 @@ import { DataComponent } from './components/data/data.component';
 import { OrdersComponent } from './components/orders/orders.component';
 import { VendorLinksComponent } from './components/preorder-links/preorder-links.component';
 import { PreorderFormComponent } from './components/preorder-form/preorder-form.component';
+import { ReportsComponent } from './reports/reports.component';
+
+// Authentication & Guards
 import { AuthGuard } from './guards/auth.guard';
 import { PasswordRequestComponent } from './components/password-request/password-request.component';
 import { PasswordResetComponent } from './components/password-reset/password-reset.component';
-import { ReportsComponent } from './reports/reports.component';
 
 // HR Components
 import { EmployeeApplicationComponent } from './components/employee-application/employee-application.component';
@@ -29,7 +31,7 @@ import { W4FormComponent } from './components/w4-form/w4-form.component';
 import { AtWillEmploymentComponent } from './components/at-will-employment/at-will-employment.component';
 import { SelfIdentificationComponent } from './components/self-identification/self-identification.component';
 
-const routes: Routes = [
+const appRoutes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent, title: 'Home', canActivate: [AuthGuard] },
   { path: 'driver', component: DriverRouteComponent, title: "Drivers' Routes", canActivate: [AuthGuard] },
@@ -47,7 +49,7 @@ const routes: Routes = [
   { path: 'preorder-links', component: VendorLinksComponent, title: 'Vendor Links', canActivate: [AuthGuard] },
   { path: 'preorder-form/:vendorId', component: PreorderFormComponent, title: 'Preorder Form' },
   { path: 'reports', component: ReportsComponent, title: 'Reports', canActivate: [AuthGuard] },
-  
+
   // HR-related routes
   { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] },
   { path: 'new-hire-checklist', component: HireChecklistComponent, title: 'New Hire Checklist', canActivate: [AuthGuard] },
@@ -56,14 +58,12 @@ const routes: Routes = [
   { path: 'withholding', component: WithholdingComponent, title: 'Withholding', canActivate: [AuthGuard] },
   { path: 'at-will-employment', component: AtWillEmploymentComponent, title: 'At Will Employment', canActivate: [AuthGuard] },
   { path: 'self-identification', component: SelfIdentificationComponent, title: 'Self Identification', canActivate: [AuthGuard] },
-  
+
   { path: '**', redirectTo: 'login' },
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes)
-  ],
+  imports: [RouterModule.forRoot(appRoutes)],
   exports: [RouterModule],
 })
 export class AppRoutingModule {}
