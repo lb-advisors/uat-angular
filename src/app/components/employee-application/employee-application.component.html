@@ -1,6 +1,12 @@
 <div class="container">
     <h2>Employment Application</h2>
   
+
+  <!-- Home Button -->
+  <div class="home-button-container">
+    <button class="home-button" (click)="goToHome()">Back to Home</button>
+  </div>
+
     <!-- Step Indicator -->
     <div class="step-indicator">
       <div [class.active]="currentStep === 1">Personal Info</div>

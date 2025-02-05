@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-employee-application',
@@ -57,6 +58,8 @@ export class EmployeeApplicationComponent {
     }
   };
 
+  constructor(private router: Router) {}
+
   nextStep() {
     if (this.currentStep < 6) {
       this.currentStep++;
@@ -67,6 +70,10 @@ export class EmployeeApplicationComponent {
     if (this.currentStep > 1) {
       this.currentStep--;
     }
+  }
+
+  goToHome() {
+    this.router.navigate(['/home']);
   }
 
   submitApplication() {
