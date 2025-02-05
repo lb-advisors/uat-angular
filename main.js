@@ -997,11 +997,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function EmployeeApplicationComponent_div_85_Template(rf, ctx) {
+function EmployeeApplicationComponent_div_84_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 7)(1, "label")(2, "input", 12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_85_Template_input_ngModelChange_2_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_84_Template_input_ngModelChange_2_listener($event) {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r1);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx_r1.employee.authorizedToWork, $event) || (ctx_r1.employee.authorizedToWork = $event);
@@ -1017,14 +1017,14 @@ function EmployeeApplicationComponent_div_85_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", ctx_r1.employee.authorizedToWork);
   }
 }
-function EmployeeApplicationComponent_div_90_Template(rf, ctx) {
+function EmployeeApplicationComponent_div_89_Template(rf, ctx) {
   if (rf & 1) {
     const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 7)(1, "label");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](2, "If yes, when?");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](3, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_90_Template_input_ngModelChange_3_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_89_Template_input_ngModelChange_3_listener($event) {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx_r1.employee.workedBeforeWhen, $event) || (ctx_r1.employee.workedBeforeWhen = $event);
@@ -1038,7 +1038,7 @@ function EmployeeApplicationComponent_div_90_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", ctx_r1.employee.workedBeforeWhen);
   }
 }
-function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
+function EmployeeApplicationComponent_div_155_Template(rf, ctx) {
   if (rf & 1) {
     const _r4 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 20);
@@ -1047,7 +1047,7 @@ function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Full Name");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_156_Template_input_ngModelChange_4_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_155_Template_input_ngModelChange_4_listener($event) {
       const reference_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](reference_r5.fullName, $event) || (reference_r5.fullName = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1057,7 +1057,7 @@ function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Relationship");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_156_Template_input_ngModelChange_7_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_155_Template_input_ngModelChange_7_listener($event) {
       const reference_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](reference_r5.relationship, $event) || (reference_r5.relationship = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1067,7 +1067,7 @@ function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Company");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_156_Template_input_ngModelChange_10_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_155_Template_input_ngModelChange_10_listener($event) {
       const reference_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](reference_r5.company, $event) || (reference_r5.company = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1077,7 +1077,7 @@ function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Phone");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_156_Template_input_ngModelChange_13_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_155_Template_input_ngModelChange_13_listener($event) {
       const reference_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](reference_r5.phone, $event) || (reference_r5.phone = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1087,7 +1087,7 @@ function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Address");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_156_Template_input_ngModelChange_16_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_155_Template_input_ngModelChange_16_listener($event) {
       const reference_r5 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r4).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](reference_r5.address, $event) || (reference_r5.address = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1108,7 +1108,7 @@ function EmployeeApplicationComponent_div_156_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", reference_r5.address);
   }
 }
-function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
+function EmployeeApplicationComponent_div_159_Template(rf, ctx) {
   if (rf & 1) {
     const _r6 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 7);
@@ -1117,7 +1117,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Company");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_4_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_4_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.company, $event) || (job_r7.company = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1127,7 +1127,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](6, "Phone");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_7_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_7_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.phone, $event) || (job_r7.phone = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1137,7 +1137,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Address");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](10, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_10_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_10_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.address, $event) || (job_r7.address = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1147,7 +1147,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](12, "Supervisor");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](13, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_13_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_13_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.supervisor, $event) || (job_r7.supervisor = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1157,7 +1157,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](15, "Job Title");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_16_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_16_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.jobTitle, $event) || (job_r7.jobTitle = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1167,7 +1167,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Starting Salary");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "input", 11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_19_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_19_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.startingSalary, $event) || (job_r7.startingSalary = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1177,7 +1177,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "Ending Salary");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "input", 11);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_22_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_22_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.endingSalary, $event) || (job_r7.endingSalary = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1187,7 +1187,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Responsibilities");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_25_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_25_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.responsibilities, $event) || (job_r7.responsibilities = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1197,7 +1197,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](27, "From");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](28, "input", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_28_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_28_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.from, $event) || (job_r7.from = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1207,7 +1207,7 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](30, "To");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "input", 10);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_31_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_31_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.to, $event) || (job_r7.to = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1217,14 +1217,14 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](33, "Reason for Leaving");
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "input", 8);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_34_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_34_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.reasonForLeaving, $event) || (job_r7.reasonForLeaving = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "label")(36, "input", 12);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_160_Template_input_ngModelChange_36_listener($event) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_div_159_Template_input_ngModelChange_36_listener($event) {
       const job_r7 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r6).$implicit;
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](job_r7.contactSupervisor, $event) || (job_r7.contactSupervisor = $event);
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"]($event);
@@ -1261,11 +1261,11 @@ function EmployeeApplicationComponent_div_160_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", job_r7.contactSupervisor);
   }
 }
-function EmployeeApplicationComponent_button_218_Template(rf, ctx) {
+function EmployeeApplicationComponent_button_217_Template(rf, ctx) {
   if (rf & 1) {
     const _r8 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EmployeeApplicationComponent_button_218_Template_button_click_0_listener() {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EmployeeApplicationComponent_button_217_Template_button_click_0_listener() {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r8);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"](ctx_r1.nextStep());
@@ -1274,11 +1274,11 @@ function EmployeeApplicationComponent_button_218_Template(rf, ctx) {
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
   }
 }
-function EmployeeApplicationComponent_button_219_Template(rf, ctx) {
+function EmployeeApplicationComponent_button_218_Template(rf, ctx) {
   if (rf & 1) {
     const _r9 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵgetCurrentView"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "button", 4);
-    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EmployeeApplicationComponent_button_219_Template_button_click_0_listener() {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EmployeeApplicationComponent_button_218_Template_button_click_0_listener() {
       _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵrestoreView"](_r9);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵresetView"](ctx_r1.submitApplication());
@@ -1442,7 +1442,7 @@ class EmployeeApplicationComponent {
       selectors: [["app-employee-application"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
-      decls: 220,
+      decls: 219,
       vars: 78,
       consts: [[1, "container"], [1, "logo-container"], ["src", "assets/goldenstateseafood.png", "alt", "GS Image", 1, "logo-image", 3, "click"], [1, "step-indicator"], [3, "click"], [1, "step"], [1, "form-row"], [1, "form-group"], ["type", "text", 3, "ngModelChange", "ngModel"], ["type", "email", 3, "ngModelChange", "ngModel"], ["type", "date", 3, "ngModelChange", "ngModel"], ["type", "number", 3, "ngModelChange", "ngModel"], ["type", "checkbox", 3, "ngModelChange", "ngModel"], ["class", "form-group", 4, "ngIf"], ["class", "reference-section", 4, "ngFor", "ngForOf"], ["class", "form-group", 4, "ngFor", "ngForOf"], [1, "review-section"], [1, "button-group"], [3, "click", "disabled"], [3, "click", 4, "ngIf"], [1, "reference-section"]],
       template: function EmployeeApplicationComponent_Template(rf, ctx) {
@@ -1491,424 +1491,424 @@ class EmployeeApplicationComponent {
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](17, "Review & Submit");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 0)(19, "div", 5)(20, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](21, "Personal Information");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](18, "div", 5)(19, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](20, "Personal Information");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](22, "div", 6)(23, "div", 7)(24, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](25, "Full Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](21, "div", 6)(22, "div", 7)(23, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](24, "Full Name");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_26_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](25, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_25_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.fullName, $event) || (ctx.employee.fullName = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](27, "div", 7)(28, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](29, "Phone");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 7)(27, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "Phone");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_30_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_29_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.phone, $event) || (ctx.employee.phone = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](31, "div", 6)(32, "div", 7)(33, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](34, "Email Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](30, "div", 6)(31, "div", 7)(32, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](33, "Email Address");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "input", 9);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_35_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](34, "input", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_34_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.email, $event) || (ctx.employee.email = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "div", 7)(37, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, "Social Security Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](35, "div", 7)(36, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](37, "Social Security Number");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_39_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](38, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_38_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.socialSecurityNumber, $event) || (ctx.employee.socialSecurityNumber = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](40, "hr");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](41, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](42, "Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](39, "hr");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](40, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](41, "Address");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](43, "div", 6)(44, "div", 7)(45, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](46, "Street Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](42, "div", 6)(43, "div", 7)(44, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](45, "Street Address");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_47_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](46, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_46_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.address, $event) || (ctx.employee.address = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](48, "div", 6)(49, "div", 7)(50, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](51, "City");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](47, "div", 6)(48, "div", 7)(49, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, "City");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](52, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_52_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](51, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_51_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.city, $event) || (ctx.employee.city = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](53, "div", 7)(54, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](55, "State");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](52, "div", 7)(53, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](54, "State");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](56, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_56_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](55, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_55_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.state, $event) || (ctx.employee.state = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](57, "div", 7)(58, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](59, "ZIP Code");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](56, "div", 7)(57, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](58, "ZIP Code");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](60, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_60_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](59, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_59_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.zip, $event) || (ctx.employee.zip = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](61, "hr");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](62, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](63, "Employment Information");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](60, "hr");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](61, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](62, "Employment Information");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](64, "div", 6)(65, "div", 7)(66, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](67, "Position Applied For");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](63, "div", 6)(64, "div", 7)(65, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](66, "Position Applied For");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](68, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_68_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](67, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_67_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.positionApplied, $event) || (ctx.employee.positionApplied = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](69, "div", 7)(70, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](71, "Date Available");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](68, "div", 7)(69, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](70, "Date Available");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](72, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_72_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](71, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_71_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.dateAvailable, $event) || (ctx.employee.dateAvailable = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](73, "div", 6)(74, "div", 7)(75, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](76, "Desired Salary");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](72, "div", 6)(73, "div", 7)(74, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](75, "Desired Salary");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](77, "input", 11);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_77_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](76, "input", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_76_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.desiredSalary, $event) || (ctx.employee.desiredSalary = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](78, "hr");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](79, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](80, "Additional Information");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](77, "hr");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](78, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](79, "Additional Information");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](81, "div", 7)(82, "label")(83, "input", 12);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_83_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](80, "div", 7)(81, "label")(82, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_82_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.isCitizen, $event) || (ctx.employee.isCitizen = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](84, " Are you a citizen of the United States? ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](83, " Are you a citizen of the United States? ");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](85, EmployeeApplicationComponent_div_85_Template, 4, 1, "div", 13);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](86, "div", 7)(87, "label")(88, "input", 12);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_88_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](84, EmployeeApplicationComponent_div_84_Template, 4, 1, "div", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](85, "div", 7)(86, "label")(87, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_87_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.workedBefore, $event) || (ctx.employee.workedBefore = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](89, " Have you ever worked for this company? ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](88, " Have you ever worked for this company? ");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](90, EmployeeApplicationComponent_div_90_Template, 4, 1, "div", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](89, EmployeeApplicationComponent_div_89_Template, 4, 1, "div", 13);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](91, "div", 5)(92, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](93, "Education");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](90, "div", 5)(91, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](92, "Education");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](94, "div", 7)(95, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](96, "High School Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](93, "div", 7)(94, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, "High School Name");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](97, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_97_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](96, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_96_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.highSchool.name, $event) || (ctx.employee.education.highSchool.name = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](98, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](99, "Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](97, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](98, "Address");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](100, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_100_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](99, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_99_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.highSchool.address, $event) || (ctx.employee.education.highSchool.address = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](101, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](102, "From");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](100, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](101, "From");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](103, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_103_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](102, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_102_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.highSchool.from, $event) || (ctx.employee.education.highSchool.from = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](104, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](105, "To");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](103, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](104, "To");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](106, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_106_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](105, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_105_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.highSchool.to, $event) || (ctx.employee.education.highSchool.to = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](107, "label")(108, "input", 12);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_108_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](106, "label")(107, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_107_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.highSchool.graduated, $event) || (ctx.employee.education.highSchool.graduated = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](109, " Did you graduate? ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](108, " Did you graduate? ");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](110, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](111, "Degree");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](109, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](110, "Degree");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](112, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_112_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](111, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_111_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.highSchool.degree, $event) || (ctx.employee.education.highSchool.degree = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](113, "hr");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](114, "div", 7)(115, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](116, "College Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](112, "hr");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](113, "div", 7)(114, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](115, "College Name");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](117, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_117_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](116, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_116_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.college.name, $event) || (ctx.employee.education.college.name = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](118, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](119, "Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](117, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](118, "Address");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](120, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_120_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](119, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_119_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.college.address, $event) || (ctx.employee.education.college.address = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](121, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](122, "From");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](120, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](121, "From");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](123, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_123_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](122, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_122_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.college.from, $event) || (ctx.employee.education.college.from = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](124, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](125, "To");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](123, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](124, "To");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](126, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_126_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](125, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_125_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.college.to, $event) || (ctx.employee.education.college.to = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](127, "label")(128, "input", 12);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_128_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](126, "label")(127, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_127_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.college.graduated, $event) || (ctx.employee.education.college.graduated = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](129, " Did you graduate? ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](128, " Did you graduate? ");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](130, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](131, "Degree");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](129, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](130, "Degree");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](132, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_132_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](131, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_131_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.college.degree, $event) || (ctx.employee.education.college.degree = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](133, "hr");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](134, "div", 7)(135, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](136, "Other Education");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](132, "hr");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](133, "div", 7)(134, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](135, "Other Education");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](137, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_137_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](136, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_136_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.other.name, $event) || (ctx.employee.education.other.name = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](138, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](139, "Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](137, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](138, "Address");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](140, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_140_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](139, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_139_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.other.address, $event) || (ctx.employee.education.other.address = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](141, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](142, "From");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](140, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](141, "From");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](143, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_143_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](142, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_142_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.other.from, $event) || (ctx.employee.education.other.from = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](144, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](145, "To");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](143, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](144, "To");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](146, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_146_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](145, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_145_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.other.to, $event) || (ctx.employee.education.other.to = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](147, "label")(148, "input", 12);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_148_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](146, "label")(147, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_147_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.other.graduated, $event) || (ctx.employee.education.other.graduated = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](149, " Did you graduate? ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](148, " Did you graduate? ");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](150, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](151, "Degree");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](149, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](150, "Degree");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](152, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_152_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](151, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_151_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.education.other.degree, $event) || (ctx.employee.education.other.degree = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](153, "div", 5)(154, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](155, "References");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](152, "div", 5)(153, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](154, "References");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](156, EmployeeApplicationComponent_div_156_Template, 17, 5, "div", 14);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](155, EmployeeApplicationComponent_div_155_Template, 17, 5, "div", 14);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](157, "div", 5)(158, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](159, "Previous Employment");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](156, "div", 5)(157, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](158, "Previous Employment");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](160, EmployeeApplicationComponent_div_160_Template, 38, 12, "div", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](159, EmployeeApplicationComponent_div_159_Template, 38, 12, "div", 15);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](161, "div", 5)(162, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](163, "Military Service");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](160, "div", 5)(161, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](162, "Military Service");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](164, "div", 7)(165, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](166, "Branch");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](163, "div", 7)(164, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](165, "Branch");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](167, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_167_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](166, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_166_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.militaryService.branch, $event) || (ctx.employee.militaryService.branch = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](168, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](169, "From");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](167, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](168, "From");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](170, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_170_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](169, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_169_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.militaryService.from, $event) || (ctx.employee.militaryService.from = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](171, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](172, "To");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](170, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](171, "To");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](173, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_173_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](172, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_172_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.militaryService.to, $event) || (ctx.employee.militaryService.to = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](174, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](175, "Rank at Discharge");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](173, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](174, "Rank at Discharge");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](176, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_176_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](175, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_175_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.militaryService.rankAtDischarge, $event) || (ctx.employee.militaryService.rankAtDischarge = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](177, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](178, "Type of Discharge");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](176, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](177, "Type of Discharge");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](179, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_179_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](178, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_178_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.militaryService.typeOfDischarge, $event) || (ctx.employee.militaryService.typeOfDischarge = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](180, "label");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](181, "If other than honorable, explain:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](179, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](180, "If other than honorable, explain:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](182, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_182_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](181, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_181_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.militaryService.explanation, $event) || (ctx.employee.militaryService.explanation = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](183, "div", 5)(184, "h3");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](185, "Review Your Application");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](182, "div", 5)(183, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](184, "Review Your Application");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](186, "div", 16)(187, "p")(188, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](189, "Full Name:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](185, "div", 16)(186, "p")(187, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](188, "Full Name:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](190);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](189);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](191, "p")(192, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](193, "Address:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](190, "p")(191, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](192, "Address:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](194);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](193);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](195, "p")(196, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](197, "Phone:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](194, "p")(195, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](196, "Phone:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](198);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](197);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](199, "p")(200, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](201, "Email:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](198, "p")(199, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](200, "Email:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](202);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](201);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](203, "p")(204, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](205, "Position Applied:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](202, "p")(203, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](204, "Position Applied:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](206);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](205);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](207, "p")(208, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](209, "Signature:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](206, "p")(207, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](208, "Signature:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](210, "input", 8);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_210_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](209, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_209_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.disclaimer.signature, $event) || (ctx.employee.disclaimer.signature = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](211, "p")(212, "strong");
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](213, "Date:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](210, "p")(211, "strong");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](212, "Date:");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](214, "input", 10);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_214_listener($event) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](213, "input", 10);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayListener"]("ngModelChange", function EmployeeApplicationComponent_Template_input_ngModelChange_213_listener($event) {
             _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayBindingSet"](ctx.employee.disclaimer.date, $event) || (ctx.employee.disclaimer.date = $event);
             return $event;
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](215, "div", 17)(216, "button", 18);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EmployeeApplicationComponent_Template_button_click_216_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](214, "div", 17)(215, "button", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("click", function EmployeeApplicationComponent_Template_button_click_215_listener() {
             return ctx.prevStep();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](217, "Previous");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](216, "Previous");
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](218, EmployeeApplicationComponent_button_218_Template, 2, 0, "button", 19)(219, EmployeeApplicationComponent_button_219_Template, 2, 0, "button", 19);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](217, EmployeeApplicationComponent_button_217_Template, 2, 0, "button", 19)(218, EmployeeApplicationComponent_button_218_Template, 2, 0, "button", 19);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
         }
         if (rf & 2) {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](6);
@@ -1923,7 +1923,7 @@ class EmployeeApplicationComponent {
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("active", ctx.currentStep === 5);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("active", ctx.currentStep === 6);
-          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](3);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](2);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵclassProp"]("active", ctx.currentStep === 1);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](7);
           _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtwoWayProperty"]("ngModel", ctx.employee.fullName);
