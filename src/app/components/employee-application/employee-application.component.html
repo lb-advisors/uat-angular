@@ -8,14 +8,14 @@
   </div>
 
     <!-- Step Indicator -->
-    <div class="step-indicator">
-      <div [class.active]="currentStep === 1">Personal Info</div>
-      <div [class.active]="currentStep === 2">Education</div>
-      <div [class.active]="currentStep === 3">References</div>
-      <div [class.active]="currentStep === 4">Previous Employment</div>
-      <div [class.active]="currentStep === 5">Military Service</div>
-      <div [class.active]="currentStep === 6">Review & Submit</div>
-    </div>
+  <div class="step-indicator">
+    <div [class.active]="currentStep === 1" (click)="goToStep(1)">Personal Info</div>
+    <div [class.active]="currentStep === 2" (click)="goToStep(2)">Education</div>
+    <div [class.active]="currentStep === 3" (click)="goToStep(3)">References</div>
+    <div [class.active]="currentStep === 4" (click)="goToStep(4)">Previous Employment</div>
+    <div [class.active]="currentStep === 5" (click)="goToStep(5)">Military Service</div>
+    <div [class.active]="currentStep === 6" (click)="goToStep(6)">Review & Submit</div>
+  </div>
   
     <div class="container">
     
