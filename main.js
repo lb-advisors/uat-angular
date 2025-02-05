@@ -11,7 +11,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   AppRoutingModule: () => (/* binding */ AppRoutingModule)
 /* harmony export */ });
-/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! @angular/router */ 5072);
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! @angular/router */ 5072);
 /* harmony import */ var _components_driver_route_driver_route_component__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./components/driver-route/driver-route.component */ 1820);
 /* harmony import */ var _components_home_home_component__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/home/home.component */ 2865);
 /* harmony import */ var _components_order_links_order_links_component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/order-links/order-links.component */ 633);
@@ -30,7 +30,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_password_reset_password_reset_component__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/password-reset/password-reset.component */ 6881);
 /* harmony import */ var _reports_reports_component__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./reports/reports.component */ 8952);
 /* harmony import */ var _components_employee_application_employee_application_component__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/employee-application/employee-application.component */ 8465);
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @angular/core */ 7580);
+/* harmony import */ var _components_hire_checklist_hire_checklist_component__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/hire-checklist/hire-checklist.component */ 4593);
+/* harmony import */ var _components_employment_verification_employment_verification_component__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./components/employment-verification/employment-verification.component */ 7537);
+/* harmony import */ var _components_w4_form_w4_form_component__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./components/w4-form/w4-form.component */ 8249);
+/* harmony import */ var _components_withholding_withholding_component__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./components/withholding/withholding.component */ 849);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! @angular/core */ 7580);
 
 
 
@@ -43,13 +47,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
- // Updated the import to match the renamed component
- // Import the new PreorderFormComponent
 
 
 
 
- // Import the new EmployeeApplicationComponent
+
+
+
+
+
+
+
 
 
 const routes = [{
@@ -127,18 +135,37 @@ const routes = [{
   component: _reports_reports_component__WEBPACK_IMPORTED_MODULE_16__.ReportsComponent,
   title: 'Reports',
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
-}, {
+},
+// HR-related routes
+{
   path: 'employee-application',
   component: _components_employee_application_employee_application_component__WEBPACK_IMPORTED_MODULE_17__.EmployeeApplicationComponent,
   title: 'Employee Application',
   canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
-},
-// New route for EmployeeApplicationComponent
-{
+}, {
+  path: 'new-hire-checklist',
+  component: _components_hire_checklist_hire_checklist_component__WEBPACK_IMPORTED_MODULE_18__.HireChecklistComponent,
+  title: 'New Hire Checklist',
+  canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
+}, {
+  path: 'employment-verification',
+  component: _components_employment_verification_employment_verification_component__WEBPACK_IMPORTED_MODULE_19__.EmploymentVerificationComponent,
+  title: 'Employment Verification',
+  canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
+}, {
+  path: 'w4-form',
+  component: _components_w4_form_w4_form_component__WEBPACK_IMPORTED_MODULE_20__.W4FormComponent,
+  title: 'W4 Form',
+  canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
+}, {
+  path: 'withholding',
+  component: _components_withholding_withholding_component__WEBPACK_IMPORTED_MODULE_21__.WithholdingComponent,
+  title: 'Withholding',
+  canActivate: [_guards_auth_guard__WEBPACK_IMPORTED_MODULE_13__.AuthGuard]
+}, {
   path: '**',
   redirectTo: 'login'
-} // Wildcard route to handle unmatched paths, redirect to login
-];
+}];
 class AppRoutingModule {
   static {
     this.ɵfac = function AppRoutingModule_Factory(__ngFactoryType__) {
@@ -146,20 +173,20 @@ class AppRoutingModule {
     };
   }
   static {
-    this.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵdefineNgModule"]({
+    this.ɵmod = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_22__["ɵɵdefineNgModule"]({
       type: AppRoutingModule
     });
   }
   static {
-    this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵdefineInjector"]({
-      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_19__.RouterModule.forRoot(routes), _angular_router__WEBPACK_IMPORTED_MODULE_19__.RouterModule]
+    this.ɵinj = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_22__["ɵɵdefineInjector"]({
+      imports: [_angular_router__WEBPACK_IMPORTED_MODULE_23__.RouterModule.forRoot(routes), _angular_router__WEBPACK_IMPORTED_MODULE_23__.RouterModule]
     });
   }
 }
 (function () {
-  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_18__["ɵɵsetNgModuleScope"](AppRoutingModule, {
-    imports: [_angular_router__WEBPACK_IMPORTED_MODULE_19__.RouterModule],
-    exports: [_angular_router__WEBPACK_IMPORTED_MODULE_19__.RouterModule]
+  (typeof ngJitMode === "undefined" || ngJitMode) && _angular_core__WEBPACK_IMPORTED_MODULE_22__["ɵɵsetNgModuleScope"](AppRoutingModule, {
+    imports: [_angular_router__WEBPACK_IMPORTED_MODULE_23__.RouterModule],
+    exports: [_angular_router__WEBPACK_IMPORTED_MODULE_23__.RouterModule]
   });
 })();
 
@@ -2047,6 +2074,659 @@ class EmployeeApplicationComponent {
 
 /***/ }),
 
+/***/ 7537:
+/*!*****************************************************************************************!*\
+  !*** ./src/app/components/employment-verification/employment-verification.component.ts ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   EmploymentVerificationComponent: () => (/* binding */ EmploymentVerificationComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ 4456);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
+
+
+
+
+function EmploymentVerificationComponent_div_83_Template(rf, ctx) {
+  if (rf & 1) {
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "div", 76)(1, "div", 4)(2, "div", 5)(3, "label", 77);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](4, "USCIS Number");
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](5, "input", 78);
+    _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+  }
+}
+class EmploymentVerificationComponent {
+  constructor(fb) {
+    this.fb = fb;
+    this.verificationForm = this.fb.group({
+      // Section 1: Employee Information
+      lastName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      firstName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      middleInitial: [''],
+      otherNames: [''],
+      address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      aptNumber: [''],
+      city: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      state: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      zipCode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      dateOfBirth: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      socialSecurity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      email: [''],
+      telephone: [''],
+      // Citizenship Status
+      citizenshipStatus: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      uscisNumber: [''],
+      i94Number: [''],
+      passportNumber: [''],
+      countryOfIssuance: [''],
+      // Employee Signature Section
+      employeeSignature: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      employeeSignatureDate: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_1__.Validators.required],
+      // Section 2: Employer Review
+      documentTitleA: [''],
+      issuingAuthorityA: [''],
+      documentNumberA: [''],
+      expirationDateA: [''],
+      documentTitleB: [''],
+      issuingAuthorityB: [''],
+      documentNumberB: [''],
+      expirationDateB: [''],
+      documentTitleC: [''],
+      issuingAuthorityC: [''],
+      documentNumberC: [''],
+      expirationDateC: [''],
+      // Additional Information
+      additionalInformation: [''],
+      alternativeProcedure: [false],
+      // Employer Certification
+      firstDayOfEmployment: [''],
+      employerTitle: [''],
+      employerName: [''],
+      employerSignature: [''],
+      employerSignatureDate: [''],
+      businessName: [''],
+      businessAddress: ['']
+    });
+  }
+  ngOnInit() {
+    // Set default dates
+    const today = new Date().toISOString().split('T')[0];
+    this.verificationForm.patchValue({
+      employeeSignatureDate: today,
+      employerSignatureDate: today
+    });
+  }
+  onSubmit() {
+    if (this.verificationForm.valid) {
+      console.log(this.verificationForm.value);
+    } else {
+      Object.keys(this.verificationForm.controls).forEach(key => {
+        const control = this.verificationForm.get(key);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+    }
+  }
+  static {
+    this.ɵfac = function EmploymentVerificationComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || EmploymentVerificationComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormBuilder));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+      type: EmploymentVerificationComponent,
+      selectors: [["app-employment-verification"]],
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
+      decls: 201,
+      vars: 2,
+      consts: [[1, "i9-form", 3, "ngSubmit", "formGroup"], [1, "form-header"], [1, "form-subtitle"], [1, "section"], [1, "form-row"], [1, "form-group"], ["for", "lastName"], ["id", "lastName", "type", "text", "formControlName", "lastName"], ["for", "firstName"], ["id", "firstName", "type", "text", "formControlName", "firstName"], [1, "form-group", "small"], ["for", "middleInitial"], ["id", "middleInitial", "type", "text", "formControlName", "middleInitial"], ["for", "otherNames"], ["id", "otherNames", "type", "text", "formControlName", "otherNames"], [1, "form-group", "large"], ["for", "address"], ["id", "address", "type", "text", "formControlName", "address"], ["for", "aptNumber"], ["id", "aptNumber", "type", "text", "formControlName", "aptNumber"], ["for", "city"], ["id", "city", "type", "text", "formControlName", "city"], ["for", "state"], ["id", "state", "type", "text", "formControlName", "state"], ["for", "zipCode"], ["id", "zipCode", "type", "text", "formControlName", "zipCode"], ["for", "dateOfBirth"], ["id", "dateOfBirth", "type", "date", "formControlName", "dateOfBirth"], ["for", "socialSecurity"], ["id", "socialSecurity", "type", "text", "formControlName", "socialSecurity"], ["for", "email"], ["id", "email", "type", "email", "formControlName", "email"], ["for", "telephone"], ["id", "telephone", "type", "tel", "formControlName", "telephone"], [1, "citizenship-section"], [1, "radio-group"], ["type", "radio", "formControlName", "citizenshipStatus", "value", "citizen"], ["type", "radio", "formControlName", "citizenshipStatus", "value", "noncitizen"], ["type", "radio", "formControlName", "citizenshipStatus", "value", "permanent"], ["type", "radio", "formControlName", "citizenshipStatus", "value", "authorized"], ["class", "documents-section", 4, "ngIf"], [1, "signature-section"], ["for", "employeeSignature"], ["id", "employeeSignature", "type", "text", "formControlName", "employeeSignature"], ["for", "employeeSignatureDate"], ["id", "employeeSignatureDate", "type", "date", "formControlName", "employeeSignatureDate"], [1, "documents-grid"], [1, "document-column"], ["type", "text", "formControlName", "documentTitleA"], ["type", "text", "formControlName", "issuingAuthorityA"], ["type", "text", "formControlName", "documentNumberA"], ["type", "date", "formControlName", "expirationDateA"], ["type", "text", "formControlName", "documentTitleB"], ["type", "text", "formControlName", "issuingAuthorityB"], ["type", "text", "formControlName", "documentNumberB"], ["type", "date", "formControlName", "expirationDateB"], ["type", "text", "formControlName", "documentTitleC"], ["type", "text", "formControlName", "issuingAuthorityC"], ["type", "text", "formControlName", "documentNumberC"], ["type", "date", "formControlName", "expirationDateC"], [1, "additional-info"], ["for", "additionalInformation"], ["id", "additionalInformation", "formControlName", "additionalInformation"], [1, "form-group", "checkbox"], ["type", "checkbox", "formControlName", "alternativeProcedure"], [1, "certification-section"], ["type", "date", "formControlName", "firstDayOfEmployment"], ["type", "text", "formControlName", "employerTitle"], ["type", "text", "formControlName", "employerName"], ["type", "text", "formControlName", "employerSignature"], ["type", "date", "formControlName", "employerSignatureDate"], ["type", "text", "formControlName", "businessName"], ["type", "text", "formControlName", "businessAddress"], [1, "button-group"], ["type", "submit"], ["type", "reset"], [1, "documents-section"], ["for", "uscisNumber"], ["id", "uscisNumber", "type", "text", "formControlName", "uscisNumber"]],
+      template: function EmploymentVerificationComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "form", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function EmploymentVerificationComponent_Template_form_ngSubmit_0_listener() {
+            return ctx.onSubmit();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1)(2, "h2");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](3, "Employment Eligibility Verification");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](4, "p", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Department of Homeland Security");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](6, "p", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](7, "U.S. Citizenship and Immigration Services");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](8, "div", 3)(9, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](10, "Section 1. Employee Information and Attestation");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 4)(12, "div", 5)(13, "label", 6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Last Name (Family Name)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](15, "input", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 5)(17, "label", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "First Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](19, "input", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](20, "div", 10)(21, "label", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, "Middle Initial");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](23, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](24, "div", 5)(25, "label", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](26, "Other Names Used");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](27, "input", 14);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](28, "div", 4)(29, "div", 15)(30, "label", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](31, "Address (Street Number and Name)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](32, "input", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "div", 10)(34, "label", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](35, "Apt. Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](36, "input", 19);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](37, "div", 4)(38, "div", 5)(39, "label", 20);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](40, "City or Town");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](41, "input", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](42, "div", 10)(43, "label", 22);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](44, "State");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](45, "input", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](46, "div", 5)(47, "label", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](48, "ZIP Code");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](49, "input", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](50, "div", 4)(51, "div", 5)(52, "label", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](53, "Date of Birth (mm/dd/yyyy)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](54, "input", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](55, "div", 5)(56, "label", 28);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](57, "U.S. Social Security Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](58, "input", 29);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](59, "div", 5)(60, "label", 30);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](61, "Employee's Email Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](62, "input", 31);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](63, "div", 5)(64, "label", 32);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](65, "Employee's Telephone Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](66, "input", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](67, "div", 34)(68, "h4");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](69, "Employee attestation (check one):");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](70, "div", 35)(71, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](72, "input", 36);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](73, " A citizen of the United States ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](74, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](75, "input", 37);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](76, " A noncitizen national of the United States ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](77, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](78, "input", 38);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](79, " A lawful permanent resident ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](80, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](81, "input", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](82, " An alien authorized to work ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtemplate"](83, EmploymentVerificationComponent_div_83_Template, 6, 0, "div", 40);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](84, "div", 41)(85, "div", 5)(86, "label", 42);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](87, "Signature of Employee");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](88, "input", 43);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](89, "div", 5)(90, "label", 44);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](91, "Today's Date (mm/dd/yyyy)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](92, "input", 45);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](93, "div", 3)(94, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](95, "Section 2. Employer Review and Verification");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](96, "div", 46)(97, "div", 47)(98, "h4");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](99, "List A");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](100, "div", 5)(101, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](102, "Document Title");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](103, "input", 48);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](104, "div", 5)(105, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](106, "Issuing Authority");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](107, "input", 49);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](108, "div", 5)(109, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](110, "Document Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](111, "input", 50);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](112, "div", 5)(113, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](114, "Expiration Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](115, "input", 51);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](116, "div", 47)(117, "h4");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](118, "List B");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](119, "div", 5)(120, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](121, "Document Title");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](122, "input", 52);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](123, "div", 5)(124, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](125, "Issuing Authority");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](126, "input", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](127, "div", 5)(128, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](129, "Document Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](130, "input", 54);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](131, "div", 5)(132, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](133, "Expiration Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](134, "input", 55);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](135, "div", 47)(136, "h4");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](137, "List C");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](138, "div", 5)(139, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](140, "Document Title");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](141, "input", 56);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](142, "div", 5)(143, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](144, "Issuing Authority");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](145, "input", 57);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](146, "div", 5)(147, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](148, "Document Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](149, "input", 58);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](150, "div", 5)(151, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](152, "Expiration Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](153, "input", 59);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](154, "div", 60)(155, "div", 5)(156, "label", 61);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](157, "Additional Information");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](158, "textarea", 62);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](159, "div", 63)(160, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](161, "input", 64);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](162, " Check here if you used an alternative procedure ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](163, "div", 65)(164, "div", 4)(165, "div", 5)(166, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](167, "First Day of Employment (mm/dd/yyyy)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](168, "input", 66);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](169, "div", 4)(170, "div", 5)(171, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](172, "Employer Title");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](173, "input", 67);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](174, "div", 5)(175, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](176, "Last Name, First Name of Employer");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](177, "input", 68);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](178, "div", 4)(179, "div", 5)(180, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](181, "Signature of Employer");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](182, "input", 69);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](183, "div", 5)(184, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](185, "Today's Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](186, "input", 70);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](187, "div", 4)(188, "div", 5)(189, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](190, "Business Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](191, "input", 71);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](192, "div", 5)(193, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](194, "Business Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](195, "input", 72);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](196, "div", 73)(197, "button", 74);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](198, "Submit Form");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](199, "button", 75);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](200, "Reset Form");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+        }
+        if (rf & 2) {
+          let tmp_1_0;
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.verificationForm);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵadvance"](83);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("ngIf", ((tmp_1_0 = ctx.verificationForm.get("citizenshipStatus")) == null ? null : tmp_1_0.value) === "permanent");
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_2__.NgIf, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.CheckboxControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.RadioControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormControlName],
+      styles: [".i9-form[_ngcontent-%COMP%] {\n    max-width: 900px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #fff;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n  }\n  \n  .form-header[_ngcontent-%COMP%] {\n    text-align: center;\n    margin-bottom: 30px;\n    padding-bottom: 20px;\n    border-bottom: 2px solid #333;\n  }\n  \n  .form-header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n    margin-bottom: 10px;\n  }\n  \n  .form-subtitle[_ngcontent-%COMP%] {\n    margin: 5px 0;\n    color: #666;\n  }\n  \n  .section[_ngcontent-%COMP%] {\n    margin-bottom: 30px;\n    padding: 20px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n  }\n  \n  .section[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n    margin-bottom: 20px;\n    color: #333;\n    font-size: 1.2em;\n  }\n  \n  .form-row[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 20px;\n    margin-bottom: 15px;\n    flex-wrap: wrap;\n  }\n  \n  .form-group[_ngcontent-%COMP%] {\n    flex: 1 1 200px;\n    min-width: 200px;\n  }\n  \n  .form-group.small[_ngcontent-%COMP%] {\n    flex: 0 1 100px;\n    min-width: 100px;\n  }\n  \n  .form-group.large[_ngcontent-%COMP%] {\n    flex: 2 1 400px;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: block;\n    margin-bottom: 5px;\n    font-weight: bold;\n    font-size: 0.9em;\n    color: #444;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%], \n   .form-group[_ngcontent-%COMP%]   textarea[_ngcontent-%COMP%] {\n    width: 100%;\n    padding: 8px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n    font-size: 1em;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   textarea[_ngcontent-%COMP%] {\n    min-height: 100px;\n    resize: vertical;\n  }\n  \n  .citizenship-section[_ngcontent-%COMP%] {\n    margin: 20px 0;\n    padding: 15px;\n    background-color: #f9f9f9;\n    border-radius: 4px;\n  }\n  \n  .radio-group[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-top: 10px;\n  }\n  \n  .radio-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    cursor: pointer;\n  }\n  \n  .documents-grid[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n    gap: 20px;\n    margin: 20px 0;\n  }\n  \n  .document-column[_ngcontent-%COMP%] {\n    padding: 15px;\n    background-color: #f9f9f9;\n    border-radius: 4px;\n  }\n  \n  .document-column[_ngcontent-%COMP%]   h4[_ngcontent-%COMP%] {\n    margin-bottom: 15px;\n    color: #333;\n  }\n  \n  .additional-info[_ngcontent-%COMP%] {\n    margin-top: 20px;\n    padding: 15px;\n    background-color: #f9f9f9;\n    border-radius: 4px;\n  }\n  \n  .checkbox[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    margin-top: 10px;\n  }\n  \n  .checkbox[_ngcontent-%COMP%]   input[type=\"checkbox\"][_ngcontent-%COMP%] {\n    width: auto;\n    margin-right: 10px;\n  }\n  \n  .certification-section[_ngcontent-%COMP%] {\n    margin-top: 30px;\n    padding: 20px;\n    background-color: #f9f9f9;\n    border-radius: 4px;\n  }\n  \n  .button-group[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 15px;\n    justify-content: flex-end;\n    margin-top: 20px;\n  }\n  \n  button[_ngcontent-%COMP%] {\n    padding: 10px 20px;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    font-weight: bold;\n    transition: background-color 0.3s ease;\n  }\n  \n  button[type=\"submit\"][_ngcontent-%COMP%] {\n    background-color: #4CAF50;\n    color: white;\n  }\n  \n  button[type=\"reset\"][_ngcontent-%COMP%] {\n    background-color: #f44336;\n    color: white;\n  }\n  \n  button[_ngcontent-%COMP%]:hover {\n    opacity: 0.9;\n  }\n  \n  \n\n  @media (max-width: 768px) {\n    .form-row[_ngcontent-%COMP%] {\n      flex-direction: column;\n      gap: 10px;\n    }\n    \n    .form-group[_ngcontent-%COMP%] {\n      min-width: 100%;\n    }\n    \n    .documents-grid[_ngcontent-%COMP%] {\n      grid-template-columns: 1fr;\n    }\n  }\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9lbXBsb3ltZW50LXZlcmlmaWNhdGlvbi9lbXBsb3ltZW50LXZlcmlmaWNhdGlvbi5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLG9DQUFvQztFQUN0Qzs7RUFFQTtJQUNFLGtCQUFrQjtJQUNsQixtQkFBbUI7SUFDbkIsb0JBQW9CO0lBQ3BCLDZCQUE2QjtFQUMvQjs7RUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixXQUFXO0VBQ2I7O0VBRUE7SUFDRSxtQkFBbUI7SUFDbkIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixrQkFBa0I7RUFDcEI7O0VBRUE7SUFDRSxtQkFBbUI7SUFDbkIsV0FBVztJQUNYLGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixTQUFTO0lBQ1QsbUJBQW1CO0lBQ25CLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxlQUFlO0lBQ2YsZ0JBQWdCO0VBQ2xCOztFQUVBO0lBQ0UsZUFBZTtJQUNmLGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxjQUFjO0lBQ2Qsa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixnQkFBZ0I7SUFDaEIsV0FBVztFQUNiOztFQUVBOztJQUVFLFdBQVc7SUFDWCxZQUFZO0lBQ1osc0JBQXNCO0lBQ3RCLGtCQUFrQjtJQUNsQixjQUFjO0VBQ2hCOztFQUVBO0lBQ0UsaUJBQWlCO0lBQ2pCLGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGNBQWM7SUFDZCxhQUFhO0lBQ2IseUJBQXlCO0lBQ3pCLGtCQUFrQjtFQUNwQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsU0FBUztJQUNULGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixtQkFBbUI7SUFDbkIsU0FBUztJQUNULGVBQWU7RUFDakI7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsMkRBQTJEO0lBQzNELFNBQVM7SUFDVCxjQUFjO0VBQ2hCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLHlCQUF5QjtJQUN6QixrQkFBa0I7RUFDcEI7O0VBRUE7SUFDRSxtQkFBbUI7SUFDbkIsV0FBVztFQUNiOztFQUVBO0lBQ0UsZ0JBQWdCO0lBQ2hCLGFBQWE7SUFDYix5QkFBeUI7SUFDekIsa0JBQWtCO0VBQ3BCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLG1CQUFtQjtJQUNuQixTQUFTO0lBQ1QsZ0JBQWdCO0VBQ2xCOztFQUVBO0lBQ0UsV0FBVztJQUNYLGtCQUFrQjtFQUNwQjs7RUFFQTtJQUNFLGdCQUFnQjtJQUNoQixhQUFhO0lBQ2IseUJBQXlCO0lBQ3pCLGtCQUFrQjtFQUNwQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixTQUFTO0lBQ1QseUJBQXlCO0lBQ3pCLGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLGVBQWU7SUFDZixpQkFBaUI7SUFDakIsc0NBQXNDO0VBQ3hDOztFQUVBO0lBQ0UseUJBQXlCO0lBQ3pCLFlBQVk7RUFDZDs7RUFFQTtJQUNFLHlCQUF5QjtJQUN6QixZQUFZO0VBQ2Q7O0VBRUE7SUFDRSxZQUFZO0VBQ2Q7O0VBRUEsMkJBQTJCO0VBQzNCO0lBQ0U7TUFDRSxzQkFBc0I7TUFDdEIsU0FBUztJQUNYOztJQUVBO01BQ0UsZUFBZTtJQUNqQjs7SUFFQTtNQUNFLDBCQUEwQjtJQUM1QjtFQUNGIiwic291cmNlc0NvbnRlbnQiOlsiLmk5LWZvcm0ge1xuICAgIG1heC13aWR0aDogOTAwcHg7XG4gICAgbWFyZ2luOiAyMHB4IGF1dG87XG4gICAgcGFkZGluZzogMjBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwwLDAsMC4xKTtcbiAgfVxuICBcbiAgLmZvcm0taGVhZGVyIHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMjBweDtcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgIzMzMztcbiAgfVxuICBcbiAgLmZvcm0taGVhZGVyIGgyIHtcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICB9XG4gIFxuICAuZm9ybS1zdWJ0aXRsZSB7XG4gICAgbWFyZ2luOiA1cHggMDtcbiAgICBjb2xvcjogIzY2NjtcbiAgfVxuICBcbiAgLnNlY3Rpb24ge1xuICAgIG1hcmdpbi1ib3R0b206IDMwcHg7XG4gICAgcGFkZGluZzogMjBweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgfVxuICBcbiAgLnNlY3Rpb24gaDMge1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG4gICAgY29sb3I6ICMzMzM7XG4gICAgZm9udC1zaXplOiAxLjJlbTtcbiAgfVxuICBcbiAgLmZvcm0tcm93IHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGdhcDogMjBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAxNXB4O1xuICAgIGZsZXgtd3JhcDogd3JhcDtcbiAgfVxuICBcbiAgLmZvcm0tZ3JvdXAge1xuICAgIGZsZXg6IDEgMSAyMDBweDtcbiAgICBtaW4td2lkdGg6IDIwMHB4O1xuICB9XG4gIFxuICAuZm9ybS1ncm91cC5zbWFsbCB7XG4gICAgZmxleDogMCAxIDEwMHB4O1xuICAgIG1pbi13aWR0aDogMTAwcHg7XG4gIH1cbiAgXG4gIC5mb3JtLWdyb3VwLmxhcmdlIHtcbiAgICBmbGV4OiAyIDEgNDAwcHg7XG4gIH1cbiAgXG4gIC5mb3JtLWdyb3VwIGxhYmVsIHtcbiAgICBkaXNwbGF5OiBibG9jaztcbiAgICBtYXJnaW4tYm90dG9tOiA1cHg7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgZm9udC1zaXplOiAwLjllbTtcbiAgICBjb2xvcjogIzQ0NDtcbiAgfVxuICBcbiAgLmZvcm0tZ3JvdXAgaW5wdXQsXG4gIC5mb3JtLWdyb3VwIHRleHRhcmVhIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBwYWRkaW5nOiA4cHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgZm9udC1zaXplOiAxZW07XG4gIH1cbiAgXG4gIC5mb3JtLWdyb3VwIHRleHRhcmVhIHtcbiAgICBtaW4taGVpZ2h0OiAxMDBweDtcbiAgICByZXNpemU6IHZlcnRpY2FsO1xuICB9XG4gIFxuICAuY2l0aXplbnNoaXAtc2VjdGlvbiB7XG4gICAgbWFyZ2luOiAyMHB4IDA7XG4gICAgcGFkZGluZzogMTVweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjlmOWY5O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgfVxuICBcbiAgLnJhZGlvLWdyb3VwIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgZ2FwOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG4gIH1cbiAgXG4gIC5yYWRpby1ncm91cCBsYWJlbCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGdhcDogMTBweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gIH1cbiAgXG4gIC5kb2N1bWVudHMtZ3JpZCB7XG4gICAgZGlzcGxheTogZ3JpZDtcbiAgICBncmlkLXRlbXBsYXRlLWNvbHVtbnM6IHJlcGVhdChhdXRvLWZpdCwgbWlubWF4KDI1MHB4LCAxZnIpKTtcbiAgICBnYXA6IDIwcHg7XG4gICAgbWFyZ2luOiAyMHB4IDA7XG4gIH1cbiAgXG4gIC5kb2N1bWVudC1jb2x1bW4ge1xuICAgIHBhZGRpbmc6IDE1cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y5ZjlmOTtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIH1cbiAgXG4gIC5kb2N1bWVudC1jb2x1bW4gaDQge1xuICAgIG1hcmdpbi1ib3R0b206IDE1cHg7XG4gICAgY29sb3I6ICMzMzM7XG4gIH1cbiAgXG4gIC5hZGRpdGlvbmFsLWluZm8ge1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG4gICAgcGFkZGluZzogMTVweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZjlmOWY5O1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgfVxuICBcbiAgLmNoZWNrYm94IHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgZ2FwOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG4gIH1cbiAgXG4gIC5jaGVja2JveCBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl0ge1xuICAgIHdpZHRoOiBhdXRvO1xuICAgIG1hcmdpbi1yaWdodDogMTBweDtcbiAgfVxuICBcbiAgLmNlcnRpZmljYXRpb24tc2VjdGlvbiB7XG4gICAgbWFyZ2luLXRvcDogMzBweDtcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmOWY5Zjk7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICB9XG4gIFxuICAuYnV0dG9uLWdyb3VwIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGdhcDogMTVweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG4gIH1cbiAgXG4gIGJ1dHRvbiB7XG4gICAgcGFkZGluZzogMTBweCAyMHB4O1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICAgIHRyYW5zaXRpb246IGJhY2tncm91bmQtY29sb3IgMC4zcyBlYXNlO1xuICB9XG4gIFxuICBidXR0b25bdHlwZT1cInN1Ym1pdFwiXSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzRDQUY1MDtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH1cbiAgXG4gIGJ1dHRvblt0eXBlPVwicmVzZXRcIl0ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmNDQzMzY7XG4gICAgY29sb3I6IHdoaXRlO1xuICB9XG4gIFxuICBidXR0b246aG92ZXIge1xuICAgIG9wYWNpdHk6IDAuOTtcbiAgfVxuICBcbiAgLyogUmVzcG9uc2l2ZSBhZGp1c3RtZW50cyAqL1xuICBAbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgICAuZm9ybS1yb3cge1xuICAgICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICAgIGdhcDogMTBweDtcbiAgICB9XG4gICAgXG4gICAgLmZvcm0tZ3JvdXAge1xuICAgICAgbWluLXdpZHRoOiAxMDAlO1xuICAgIH1cbiAgICBcbiAgICAuZG9jdW1lbnRzLWdyaWQge1xuICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7XG4gICAgfVxuICB9Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 4593:
+/*!***********************************************************************!*\
+  !*** ./src/app/components/hire-checklist/hire-checklist.component.ts ***!
+  \***********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   HireChecklistComponent: () => (/* binding */ HireChecklistComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/forms */ 4456);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
+
+
+class HireChecklistComponent {
+  constructor(fb) {
+    this.fb = fb;
+    this.checklistForm = this.fb.group({
+      name: [''],
+      title: [''],
+      department: [''],
+      // Forms Completed Section
+      employmentApplication: [false],
+      other1: [false],
+      // New Employee Paperwork Section
+      w4Form: [false],
+      i9Form: [false],
+      directDeposit: [false],
+      statusChange: [false],
+      handbookAcknowledgement: [false],
+      harassmentPolicy: [false],
+      propertyReturn: [false],
+      wageProtection: [false],
+      // New Hire Packet Section
+      employeeHandbook: [false],
+      jobDescription: [false],
+      insuranceInfo: [false],
+      holidaySchedule: [false],
+      brochures: [false],
+      harassmentPamphlet: [false],
+      workersComp: [false],
+      disabilityInfo: [false],
+      phoneList: [false],
+      other2: [false],
+      // Manager Discussion Section
+      companyHistory: [false],
+      orientationPeriod: [false],
+      departmentResponsibilities: [false],
+      positionDuties: [false],
+      workHours: [false],
+      attendance: [false],
+      timeOffProcedure: [false],
+      timeRecords: [false],
+      safetyRequirements: [false],
+      dressCode: [false],
+      other3: [false],
+      // Acknowledgment Section
+      employeeSignature: [''],
+      signatureDate: ['']
+    });
+  }
+  ngOnInit() {
+    // Set default date to today
+    this.checklistForm.patchValue({
+      signatureDate: new Date().toISOString().split('T')[0]
+    });
+  }
+  onSubmit() {
+    if (this.checklistForm.valid) {
+      console.log(this.checklistForm.value);
+    }
+  }
+  static {
+    this.ɵfac = function HireChecklistComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || HireChecklistComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormBuilder));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵdefineComponent"]({
+      type: HireChecklistComponent,
+      selectors: [["app-hire-checklist"]],
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵStandaloneFeature"]],
+      decls: 149,
+      vars: 1,
+      consts: [[1, "checklist-form", 3, "ngSubmit", "formGroup"], [1, "header-info"], [1, "form-row"], [1, "form-group"], ["for", "name"], ["type", "text", "id", "name", "formControlName", "name"], ["for", "title"], ["type", "text", "id", "title", "formControlName", "title"], ["for", "department"], ["type", "text", "id", "department", "formControlName", "department"], [1, "section"], [1, "checkbox-group"], ["type", "checkbox", "formControlName", "employmentApplication"], ["type", "checkbox", "formControlName", "other1"], ["type", "checkbox", "formControlName", "w4Form"], ["type", "checkbox", "formControlName", "i9Form"], ["type", "checkbox", "formControlName", "directDeposit"], ["type", "checkbox", "formControlName", "statusChange"], ["type", "checkbox", "formControlName", "handbookAcknowledgement"], ["type", "checkbox", "formControlName", "harassmentPolicy"], ["type", "checkbox", "formControlName", "propertyReturn"], ["type", "checkbox", "formControlName", "wageProtection"], ["type", "checkbox", "formControlName", "employeeHandbook"], ["type", "checkbox", "formControlName", "jobDescription"], ["type", "checkbox", "formControlName", "insuranceInfo"], ["type", "checkbox", "formControlName", "holidaySchedule"], ["type", "checkbox", "formControlName", "brochures"], ["type", "checkbox", "formControlName", "harassmentPamphlet"], ["type", "checkbox", "formControlName", "workersComp"], ["type", "checkbox", "formControlName", "disabilityInfo"], ["type", "checkbox", "formControlName", "phoneList"], ["type", "checkbox", "formControlName", "other2"], ["type", "checkbox", "formControlName", "companyHistory"], ["type", "checkbox", "formControlName", "orientationPeriod"], ["type", "checkbox", "formControlName", "departmentResponsibilities"], ["type", "checkbox", "formControlName", "positionDuties"], ["type", "checkbox", "formControlName", "workHours"], ["type", "checkbox", "formControlName", "attendance"], ["type", "checkbox", "formControlName", "timeOffProcedure"], ["type", "checkbox", "formControlName", "timeRecords"], ["type", "checkbox", "formControlName", "safetyRequirements"], ["type", "checkbox", "formControlName", "dressCode"], ["type", "checkbox", "formControlName", "other3"], [1, "section", "acknowledgment-section"], [1, "acknowledgment-header"], [1, "form-row", "acknowledgment-row"], ["for", "employeeSignature"], ["type", "text", "id", "employeeSignature", "formControlName", "employeeSignature", 1, "signature-input"], ["for", "signatureDate"], ["type", "date", "id", "signatureDate", "formControlName", "signatureDate", 1, "date-input"], [1, "acknowledgment-note"], [1, "button-group"], ["type", "submit"], ["type", "reset"]],
+      template: function HireChecklistComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](0, "form", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵlistener"]("ngSubmit", function HireChecklistComponent_Template_form_ngSubmit_0_listener() {
+            return ctx.onSubmit();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](1, "div", 1)(2, "div", 2)(3, "div", 3)(4, "label", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](5, "Name:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](6, "input", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](7, "div", 3)(8, "label", 6);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](9, "Title:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](10, "input", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](11, "div", 2)(12, "div", 3)(13, "label", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](14, "Department:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](15, "input", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](16, "div", 10)(17, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](18, "Forms Completed by Job Candidate for Employee File");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](19, "div", 11)(20, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](21, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](22, " Employment application and resume (if any) ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](23, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](24, "input", 13);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](25, " Other ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](26, "div", 10)(27, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](28, "New Employee to Complete New Hire Paperwork and Return to Accounting/HR");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](29, "div", 11)(30, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](31, "input", 14);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](32, " W-4 Form (withholdings) ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](33, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](34, "input", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](35, " I-9 Form (employment eligibility verification to be completed no later than 3 days from hire date) ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](36, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](37, "input", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](38, " Direct deposit authorization ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](39, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](40, "input", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](41, " Employee status change form and new employee information ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](42, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](43, "input", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](44, " Employee handbook acknowledgement & agreement ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](45, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](46, "input", 19);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](47, " Acknowledgement of receipt of Company's policy against harassment ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](48, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](49, "input", 20);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](50, " Employer property return agreement ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](51, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](52, "input", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](53, " Ca. DLSE 2810.5 wage protection/disclosure form ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](54, "div", 10)(55, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](56, "New Employee Given New Hire Packet That Includes");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](57, "div", 11)(58, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](59, "input", 22);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](60, " Employee Handbook ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](61, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](62, "input", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](63, " Job description ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](64, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](65, "input", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](66, " Information on current group insurance plans ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](67, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](68, "input", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](69, " Holiday schedule for current year ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](70, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](71, "input", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](72, " Various brochures and pamphlets ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](73, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](74, "input", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](75, " Sexual harassment pamphlet ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](76, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](77, "input", 28);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](78, " California workers' compensation pamphlet ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](79, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](80, "input", 29);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](81, " EDD's State Disability Insurance and Paid Family Leave pamphlets ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](82, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](83, "input", 30);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](84, " List of telephone extensions and e-mail addresses ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](85, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](86, "input", 31);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](87, " Other ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](88, "div", 10)(89, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](90, "Manager to Discuss with New Employee");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](91, "div", 11)(92, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](93, "input", 32);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](94, " History, mission and purpose of the Company ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](95, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](96, "input", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](97, " 90-day new employee orientation period ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](98, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](99, "input", 34);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](100, " Department's responsibilities and assigned office/workstation ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](101, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](102, "input", 35);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](103, " The responsibilities and duties of the position ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](104, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](105, "input", 36);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](106, " Hours of work, rest breaks, lunch/meal period ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](107, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](108, "input", 37);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](109, " The importance of maintaining regular attendance ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](110, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](111, "input", 38);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](112, " Proper procedure for requesting time off ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](113, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](114, "input", 39);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](115, " Instructions on completing time records ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](116, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](117, "input", 40);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](118, " Workplace safety and security requirements ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](119, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](120, "input", 41);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](121, " Proper dress and grooming requirements ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](122, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](123, "input", 42);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](124, " Other ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](125, "div", 43)(126, "h3", 44);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](127, "EMPLOYEE ACKNOWLEDGES RECEIPT OR DISCUSSION OF THE ABOVE ITEMS");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](128, "div", 45)(129, "div", 3)(130, "label", 46);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](131, "EMPLOYEE:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](132, "input", 47);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](133, "div", 3)(134, "label", 48);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](135, "DATE:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelement"](136, "input", 49);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](137, "p", 50);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](138, "(Please return this form with completed new hire paperwork to Human Resources)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](139, "div", 51)(140, "button", 52);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](141, "Submit");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](142, "button", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](143, "Reset");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](144, "div", 51)(145, "button", 52);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](146, "Submit");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementStart"](147, "button", 53);
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵtext"](148, "Reset");
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵelementEnd"]()()();
+        }
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_0__["ɵɵproperty"]("formGroup", ctx.checklistForm);
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_1__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_1__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.CheckboxControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_1__.FormControlName],
+      styles: [".checklist-form[_ngcontent-%COMP%] {\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #fff;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n  }\n  \n  .header-info[_ngcontent-%COMP%] {\n    margin-bottom: 20px;\n  }\n  \n  .form-row[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 20px;\n    margin-bottom: 10px;\n  }\n  \n  .form-group[_ngcontent-%COMP%] {\n    flex: 1;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: block;\n    margin-bottom: 5px;\n    font-weight: bold;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n    width: 100%;\n    padding: 8px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n  }\n  \n  .section[_ngcontent-%COMP%] {\n    margin-bottom: 30px;\n    border-bottom: 1px solid #eee;\n    padding-bottom: 20px;\n  }\n  \n  .section[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n    margin-bottom: 15px;\n    color: #333;\n    font-size: 1.1em;\n    font-weight: bold;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: flex-start;\n    gap: 10px;\n    cursor: pointer;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%]   input[type=\"checkbox\"][_ngcontent-%COMP%] {\n    margin-top: 3px;\n  }\n  \n  .button-group[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 10px;\n    justify-content: flex-end;\n    margin-top: 20px;\n  }\n  \n  button[_ngcontent-%COMP%] {\n    padding: 10px 20px;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    font-weight: bold;\n  }\n  \n  button[type=\"submit\"][_ngcontent-%COMP%] {\n    background-color: #4CAF50;\n    color: white;\n  }\n  \n  button[type=\"reset\"][_ngcontent-%COMP%] {\n    background-color: #f44336;\n    color: white;\n  }\n  \n  button[_ngcontent-%COMP%]:hover {\n    opacity: 0.9;\n  }\n\n  .acknowledgment-section[_ngcontent-%COMP%] {\n    margin-top: 40px;\n    border-top: 2px solid #333;\n    padding-top: 20px;\n  }\n  \n  .acknowledgment-header[_ngcontent-%COMP%] {\n    text-align: center;\n    font-weight: bold;\n    margin-bottom: 30px;\n    font-size: 1.1em;\n  }\n  \n  .acknowledgment-row[_ngcontent-%COMP%] {\n    margin-top: 20px;\n    justify-content: space-between;\n  }\n  \n  .acknowledgment-row[_ngcontent-%COMP%]   .form-group[_ngcontent-%COMP%] {\n    flex: 0 0 45%;\n  }\n  \n  .signature-input[_ngcontent-%COMP%], .date-input[_ngcontent-%COMP%] {\n    width: 100%;\n    padding: 8px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n  }\n  \n  .acknowledgment-note[_ngcontent-%COMP%] {\n    font-style: italic;\n    text-align: center;\n    margin-top: 15px;\n    color: #666;\n  }\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9oaXJlLWNoZWNrbGlzdC9oaXJlLWNoZWNrbGlzdC5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLG9DQUFvQztFQUN0Qzs7RUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixTQUFTO0lBQ1QsbUJBQW1CO0VBQ3JCOztFQUVBO0lBQ0UsT0FBTztFQUNUOztFQUVBO0lBQ0UsY0FBYztJQUNkLGtCQUFrQjtJQUNsQixpQkFBaUI7RUFDbkI7O0VBRUE7SUFDRSxXQUFXO0lBQ1gsWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixrQkFBa0I7RUFDcEI7O0VBRUE7SUFDRSxtQkFBbUI7SUFDbkIsNkJBQTZCO0lBQzdCLG9CQUFvQjtFQUN0Qjs7RUFFQTtJQUNFLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtFQUNuQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsU0FBUztFQUNYOztFQUVBO0lBQ0UsYUFBYTtJQUNiLHVCQUF1QjtJQUN2QixTQUFTO0lBQ1QsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsU0FBUztJQUNULHlCQUF5QjtJQUN6QixnQkFBZ0I7RUFDbEI7O0VBRUE7SUFDRSxrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLGtCQUFrQjtJQUNsQixlQUFlO0lBQ2YsaUJBQWlCO0VBQ25COztFQUVBO0lBQ0UseUJBQXlCO0lBQ3pCLFlBQVk7RUFDZDs7RUFFQTtJQUNFLHlCQUF5QjtJQUN6QixZQUFZO0VBQ2Q7O0VBRUE7SUFDRSxZQUFZO0VBQ2Q7O0VBRUE7SUFDRSxnQkFBZ0I7SUFDaEIsMEJBQTBCO0lBQzFCLGlCQUFpQjtFQUNuQjs7RUFFQTtJQUNFLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsbUJBQW1CO0lBQ25CLGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGdCQUFnQjtJQUNoQiw4QkFBOEI7RUFDaEM7O0VBRUE7SUFDRSxhQUFhO0VBQ2Y7O0VBRUE7SUFDRSxXQUFXO0lBQ1gsWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixrQkFBa0I7RUFDcEI7O0VBRUE7SUFDRSxrQkFBa0I7SUFDbEIsa0JBQWtCO0lBQ2xCLGdCQUFnQjtJQUNoQixXQUFXO0VBQ2IiLCJzb3VyY2VzQ29udGVudCI6WyIuY2hlY2tsaXN0LWZvcm0ge1xuICAgIG1heC13aWR0aDogODAwcHg7XG4gICAgbWFyZ2luOiAyMHB4IGF1dG87XG4gICAgcGFkZGluZzogMjBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwwLDAsMC4xKTtcbiAgfVxuICBcbiAgLmhlYWRlci1pbmZvIHtcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICB9XG4gIFxuICAuZm9ybS1yb3cge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZ2FwOiAyMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gIH1cbiAgXG4gIC5mb3JtLWdyb3VwIHtcbiAgICBmbGV4OiAxO1xuICB9XG4gIFxuICAuZm9ybS1ncm91cCBsYWJlbCB7XG4gICAgZGlzcGxheTogYmxvY2s7XG4gICAgbWFyZ2luLWJvdHRvbTogNXB4O1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICB9XG4gIFxuICAuZm9ybS1ncm91cCBpbnB1dCB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICB9XG4gIFxuICAuc2VjdGlvbiB7XG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgICBib3JkZXItYm90dG9tOiAxcHggc29saWQgI2VlZTtcbiAgICBwYWRkaW5nLWJvdHRvbTogMjBweDtcbiAgfVxuICBcbiAgLnNlY3Rpb24gaDMge1xuICAgIG1hcmdpbi1ib3R0b206IDE1cHg7XG4gICAgY29sb3I6ICMzMzM7XG4gICAgZm9udC1zaXplOiAxLjFlbTtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgfVxuICBcbiAgLmNoZWNrYm94LWdyb3VwIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgZ2FwOiAxMHB4O1xuICB9XG4gIFxuICAuY2hlY2tib3gtZ3JvdXAgbGFiZWwge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG4gICAgZ2FwOiAxMHB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICBcbiAgLmNoZWNrYm94LWdyb3VwIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXSB7XG4gICAgbWFyZ2luLXRvcDogM3B4O1xuICB9XG4gIFxuICAuYnV0dG9uLWdyb3VwIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGdhcDogMTBweDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGZsZXgtZW5kO1xuICAgIG1hcmdpbi10b3A6IDIwcHg7XG4gIH1cbiAgXG4gIGJ1dHRvbiB7XG4gICAgcGFkZGluZzogMTBweCAyMHB4O1xuICAgIGJvcmRlcjogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gICAgY3Vyc29yOiBwb2ludGVyO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICB9XG4gIFxuICBidXR0b25bdHlwZT1cInN1Ym1pdFwiXSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogIzRDQUY1MDtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH1cbiAgXG4gIGJ1dHRvblt0eXBlPVwicmVzZXRcIl0ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmNDQzMzY7XG4gICAgY29sb3I6IHdoaXRlO1xuICB9XG4gIFxuICBidXR0b246aG92ZXIge1xuICAgIG9wYWNpdHk6IDAuOTtcbiAgfVxuXG4gIC5hY2tub3dsZWRnbWVudC1zZWN0aW9uIHtcbiAgICBtYXJnaW4tdG9wOiA0MHB4O1xuICAgIGJvcmRlci10b3A6IDJweCBzb2xpZCAjMzMzO1xuICAgIHBhZGRpbmctdG9wOiAyMHB4O1xuICB9XG4gIFxuICAuYWNrbm93bGVkZ21lbnQtaGVhZGVyIHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgICBmb250LXNpemU6IDEuMWVtO1xuICB9XG4gIFxuICAuYWNrbm93bGVkZ21lbnQtcm93IHtcbiAgICBtYXJnaW4tdG9wOiAyMHB4O1xuICAgIGp1c3RpZnktY29udGVudDogc3BhY2UtYmV0d2VlbjtcbiAgfVxuICBcbiAgLmFja25vd2xlZGdtZW50LXJvdyAuZm9ybS1ncm91cCB7XG4gICAgZmxleDogMCAwIDQ1JTtcbiAgfVxuICBcbiAgLnNpZ25hdHVyZS1pbnB1dCwgLmRhdGUtaW5wdXQge1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIHBhZGRpbmc6IDhweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgfVxuICBcbiAgLmFja25vd2xlZGdtZW50LW5vdGUge1xuICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luLXRvcDogMTVweDtcbiAgICBjb2xvcjogIzY2NjtcbiAgfSJdLCJzb3VyY2VSb290IjoiIn0= */"]
+    });
+  }
+}
+
+/***/ }),
+
 /***/ 2865:
 /*!***************************************************!*\
   !*** ./src/app/components/home/home.component.ts ***!
@@ -2066,60 +2746,89 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function HomeComponent_div_15_Template(rf, ctx) {
+function HomeComponent_div_7_Template(rf, ctx) {
   if (rf & 1) {
     const _r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 12)(1, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_1_listener() {
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 14)(1, "button", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_7_Template_button_click_1_listener() {
       _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+      const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("order-links"));
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "New Order");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "button", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_7_Template_button_click_3_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+      const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("orders"));
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, "Existing Orders");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "button", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_7_Template_button_click_5_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+      const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
+      return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("preorder-links"));
+    });
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Preorders");
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+  }
+}
+function HomeComponent_div_13_Template(rf, ctx) {
+  if (rf & 1) {
+    const _r3 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵgetCurrentView"]();
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 15)(1, "button", 2);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_1_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("employee-application"));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](2, "Employee Application");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](3, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_3_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_3_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("new-hire-checklist"));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](4, "New Hire Check List");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](5, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_5_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_5_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("employment-verification"));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Employment Verification");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](7, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_7_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_7_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("w4"));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "W4");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_9_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_9_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("withholding"));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](10, "Withholding");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](11, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_11_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_11_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("at-will-employment"));
     });
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "At Will Employment");
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
     _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "button", 2);
-    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_15_Template_button_click_13_listener() {
-      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r1);
+    _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_div_13_Template_button_click_13_listener() {
+      _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵrestoreView"](_r3);
       const ctx_r1 = _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵnextContext"]();
       return _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵresetView"](ctx_r1.navigateTo("self-identification"));
     });
@@ -2132,6 +2841,7 @@ class HomeComponent {
     this.router = router;
     this.authService = authService;
     this.isHROpen = false;
+    this.isSalesOpen = false;
   }
   ngOnInit() {
     this.username = this.authService.getFullname();
@@ -2151,6 +2861,13 @@ class HomeComponent {
       this.isHROpen = false;
     }
   }
+  toggleSales() {
+    this.isSalesOpen = !this.isSalesOpen;
+    // Optionally close HR dropdown when opening Sales
+    if (this.isSalesOpen) {
+      this.isHROpen = false;
+    }
+  }
   logout() {
     this.authService.logout();
   }
@@ -2165,9 +2882,9 @@ class HomeComponent {
       selectors: [["app-home"]],
       standalone: true,
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
-      decls: 27,
-      vars: 2,
-      consts: [[1, "page", "container"], [1, "button-container"], [1, "nav-button", 3, "click"], [1, "hr-section"], ["class", "hr-dropdown", 4, "ngIf"], [1, "nav-button", "logout-button", 3, "click"], [1, "button-container", "user-info"], [1, "image-grid"], ["src", "assets/goldenstateseafood.png", "alt", "GS Image", 1, "grid-image", "image1"], ["src", "assets/logo.png", "alt", "Logo Image", 1, "grid-image", "image2"], ["src", "assets/fogriver3.png", "alt", "Fog River Image", 1, "grid-image", "image3"], ["src", "assets/naturecure.png", "alt", "Nature Cure Image", 1, "grid-image", "image4"], [1, "hr-dropdown"]],
+      decls: 25,
+      vars: 3,
+      consts: [[1, "page", "container"], [1, "button-container"], [1, "nav-button", 3, "click"], [1, "sales-section"], ["class", "sales-dropdown", 4, "ngIf"], [1, "hr-section"], ["class", "hr-dropdown", 4, "ngIf"], [1, "nav-button", "logout-button", 3, "click"], [1, "button-container", "user-info"], [1, "image-grid"], ["src", "assets/goldenstateseafood.png", "alt", "GS Image", 1, "grid-image", "image1"], ["src", "assets/logo.png", "alt", "Logo Image", 1, "grid-image", "image2"], ["src", "assets/fogriver3.png", "alt", "Fog River Image", 1, "grid-image", "image3"], ["src", "assets/naturecure.png", "alt", "Nature Cure Image", 1, "grid-image", "image4"], [1, "sales-dropdown"], [1, "hr-dropdown"]],
       template: function HomeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "button", 2);
@@ -2176,66 +2893,58 @@ class HomeComponent {
           });
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Products");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "button", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_4_listener() {
-            return ctx.navigateTo("order-links");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "div", 3)(5, "button", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_5_listener() {
+            return ctx.toggleSales();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "New Order");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](6, "Sales");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "button", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_6_listener() {
-            return ctx.navigateTo("orders");
-          });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](7, "Existing Orders");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](7, HomeComponent_div_7_Template, 7, 0, "div", 4);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](8, "button", 2);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_8_listener() {
-            return ctx.navigateTo("preorder-links");
-          });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Preorders");
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "button", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_10_listener() {
             return ctx.navigateTo("driver");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](11, "Routes");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](9, "Routes");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](12, "div", 3)(13, "button", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_13_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](10, "div", 5)(11, "button", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_11_listener() {
             return ctx.toggleHR();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](14, "HR");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "HR");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](15, HomeComponent_div_15_Template, 15, 0, "div", 4);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtemplate"](13, HomeComponent_div_13_Template, 15, 0, "div", 6);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](16, "button", 2);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_16_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "button", 2);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_14_listener() {
             return ctx.navigateTo("reports");
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17, "Reports");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](15, "Reports");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "button", 5);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_18_listener() {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](16, "button", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("click", function HomeComponent_Template_button_click_16_listener() {
             return ctx.logout();
           });
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19, "Logout");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17, "Logout");
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 6);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](18, "div", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](19);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](22, "div", 7);
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](23, "img", 8)(24, "img", 9)(25, "img", 10)(26, "img", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](21, "img", 10)(22, "img", 11)(23, "img", 12)(24, "img", 13);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
         }
         if (rf & 2) {
-          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.isSalesOpen);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("ngIf", ctx.isHROpen);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵadvance"](6);
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtextInterpolate1"](" Welcome, ", ctx.username, "! ");
         }
       },
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_3__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_3__.NgIf],
-      styles: [".button-container[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  margin: 20px 0;\n}\n\n.nav-button[_ngcontent-%COMP%] {\n  background-color: rgba(0, 16, 46, 1);\n  color: white;\n  border: none;\n  padding: 10px 20px;\n  cursor: pointer;\n  border-radius: 5px;\n  font-size: 1.2em;\n  margin: 0 10px;\n  transition: background-color 0.3s;\n}\n\n.nav-button[_ngcontent-%COMP%]:hover {\n  background-color: rgba(0, 16, 46, 1);\n}\n\n.user-info[_ngcontent-%COMP%] {\n  margin-left: 20px; \n\n  font-size: 1.1em;\n  color: rgba(0, 16, 46, 1); \n\n  padding: 10px 0;\n}\n\n.image-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  width: 100%;\n  max-width: 400px;\n  margin: 20px auto;\n}\n\n.grid-image[_ngcontent-%COMP%] {\n  width: 100%;\n  height: auto;\n}\n\n\n\n.image2[_ngcontent-%COMP%] {\n  margin-top: 65px; \n\n  margin-left: 50px;\n  transform: scale(0.8);\n  background-color: rgba(0, 16, 46, 1);\n  transform: scale(1.4); \n\n}\n\n.image4[_ngcontent-%COMP%] {\n  transform: scale(1.4); \n\n  margin-top: 10px;\n  margin-left: 50px;\n}\n\n.image3[_ngcontent-%COMP%] {\n  transform: scale(1); \n\n  margin-left: 0px;\n  border: none;\n}\n\n.container[_ngcontent-%COMP%] {\n  width: 90%;\n  max-width: 800px;\n  margin: 20px auto;\n  padding: 20px;\n  background-color: #ffffff;\n  color: #000000;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  text-align: center;\n}\n\n\n\n@media (max-width: 768px) {\n  .button-container[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .nav-button[_ngcontent-%COMP%] {\n    width: 80%;\n    margin: 10px 0;\n  }\n\n  \n  .grid-image[_ngcontent-%COMP%] {\n    width: 90%; \n\n    height: auto; \n\n    margin: 0 auto; \n\n  }\n\n  .image-grid[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr; \n\n    gap: 10px; \n\n  }\n\n  \n\n  .image1[_ngcontent-%COMP%] {\n    width: 90%; \n\n    height: auto; \n\n    margin: 0 auto; \n\n  }\n\n  \n\n  .image2[_ngcontent-%COMP%] {\n    width: 90%;\n    height: auto;\n    margin: 0 auto;\n    transform: scale(1); \n\n  }\n\n  \n\n  .image3[_ngcontent-%COMP%] {\n    width: 90%;\n    height: auto;\n    margin: 0 auto;\n    transform: scale(1); \n\n  }\n\n  \n\n  .image4[_ngcontent-%COMP%] {\n    width: 90%;\n    height: auto;\n    margin: 0 auto;\n    transform: scale(1); \n\n  }\n}\n\n\n.hr-section[_ngcontent-%COMP%] {\n  position: relative;\n  display: inline-block;\n}\n\n.hr-dropdown[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  background-color: white;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  padding: 8px;\n  z-index: 1000;\n  box-shadow: 0 2px 5px rgba(0,0,0,0.2);\n  min-width: 200px;\n}\n\n.hr-dropdown[_ngcontent-%COMP%]   .nav-button[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  margin: 4px 0;\n  text-align: left;\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQWE7RUFDYix1QkFBdUI7RUFDdkIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLG9DQUFvQztFQUNwQyxZQUFZO0VBQ1osWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2QsaUNBQWlDO0FBQ25DOztBQUVBO0VBQ0Usb0NBQW9DO0FBQ3RDOztBQUVBO0VBQ0UsaUJBQWlCLEVBQUUsK0JBQStCO0VBQ2xELGdCQUFnQjtFQUNoQix5QkFBeUIsRUFBRSx5Q0FBeUM7RUFDcEUsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLGFBQWE7RUFDYiw4QkFBOEI7RUFDOUIsU0FBUztFQUNULFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0UsV0FBVztFQUNYLFlBQVk7QUFDZDs7QUFFQSxzQ0FBc0M7QUFDdEM7RUFDRSxnQkFBZ0IsRUFBRSxtQ0FBbUM7RUFDckQsaUJBQWlCO0VBQ2pCLHFCQUFxQjtFQUNyQixvQ0FBb0M7RUFDcEMscUJBQXFCLEVBQUUsNkNBQTZDO0FBQ3RFOztBQUVBO0VBQ0UscUJBQXFCLEVBQUUsNkNBQTZDO0VBQ3BFLGdCQUFnQjtFQUNoQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxtQkFBbUIsRUFBRSw2Q0FBNkM7RUFDbEUsZ0JBQWdCO0VBQ2hCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsaUJBQWlCO0VBQ2pCLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsY0FBYztFQUNkLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEIsdUNBQXVDO0VBQ3ZDLGtCQUFrQjtBQUNwQjs7QUFFQSwwQ0FBMEM7QUFDMUM7RUFDRTtJQUNFLHNCQUFzQjtJQUN0QixtQkFBbUI7RUFDckI7O0VBRUE7SUFDRSxVQUFVO0lBQ1YsY0FBYztFQUNoQjs7O0VBR0E7SUFDRSxVQUFVLEVBQUUsb0RBQW9EO0lBQ2hFLFlBQVksRUFBRSw4QkFBOEI7SUFDNUMsY0FBYyxFQUFFLHNCQUFzQjtFQUN4Qzs7RUFFQTtJQUNFLGFBQWE7SUFDYiwwQkFBMEIsRUFBRSxrQ0FBa0M7SUFDOUQsU0FBUyxFQUFFLDJCQUEyQjtFQUN4Qzs7RUFFQSxZQUFZO0VBQ1o7SUFDRSxVQUFVLEVBQUUsNkNBQTZDO0lBQ3pELFlBQVksRUFBRSwwQkFBMEI7SUFDeEMsY0FBYyxFQUFFLHFCQUFxQjtFQUN2Qzs7RUFFQSxZQUFZO0VBQ1o7SUFDRSxVQUFVO0lBQ1YsWUFBWTtJQUNaLGNBQWM7SUFDZCxtQkFBbUIsRUFBRSw2QkFBNkI7RUFDcEQ7O0VBRUEsWUFBWTtFQUNaO0lBQ0UsVUFBVTtJQUNWLFlBQVk7SUFDWixjQUFjO0lBQ2QsbUJBQW1CLEVBQUUsNkJBQTZCO0VBQ3BEOztFQUVBLFlBQVk7RUFDWjtJQUNFLFVBQVU7SUFDVixZQUFZO0lBQ1osY0FBYztJQUNkLG1CQUFtQixFQUFFLDZCQUE2QjtFQUNwRDtBQUNGOzs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUztFQUNULE9BQU87RUFDUCx1QkFBdUI7RUFDdkIsc0JBQXNCO0VBQ3RCLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osYUFBYTtFQUNiLHFDQUFxQztFQUNyQyxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxjQUFjO0VBQ2QsV0FBVztFQUNYLGFBQWE7RUFDYixnQkFBZ0I7QUFDbEIiLCJzb3VyY2VzQ29udGVudCI6WyIuYnV0dG9uLWNvbnRhaW5lciB7XG4gIGRpc3BsYXk6IGZsZXg7XG4gIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICBtYXJnaW46IDIwcHggMDtcbn1cblxuLm5hdi1idXR0b24ge1xuICBiYWNrZ3JvdW5kLWNvbG9yOiByZ2JhKDAsIDE2LCA0NiwgMSk7XG4gIGNvbG9yOiB3aGl0ZTtcbiAgYm9yZGVyOiBub25lO1xuICBwYWRkaW5nOiAxMHB4IDIwcHg7XG4gIGN1cnNvcjogcG9pbnRlcjtcbiAgYm9yZGVyLXJhZGl1czogNXB4O1xuICBmb250LXNpemU6IDEuMmVtO1xuICBtYXJnaW46IDAgMTBweDtcbiAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzO1xufVxuXG4ubmF2LWJ1dHRvbjpob3ZlciB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMTYsIDQ2LCAxKTtcbn1cblxuLnVzZXItaW5mbyB7XG4gIG1hcmdpbi1sZWZ0OiAyMHB4OyAvKiBJbmRlbnRzIHRoZSB1c2VyLWluZm8gdGV4dCAqL1xuICBmb250LXNpemU6IDEuMWVtO1xuICBjb2xvcjogcmdiYSgwLCAxNiwgNDYsIDEpOyAvKiBNYXRjaGVzIGJ1dHRvbiBjb2xvciBmb3IgY29uc2lzdGVuY3kgKi9cbiAgcGFkZGluZzogMTBweCAwO1xufVxuXG4uaW1hZ2UtZ3JpZCB7XG4gIGRpc3BsYXk6IGdyaWQ7XG4gIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyIDFmcjtcbiAgZ2FwOiAxMHB4O1xuICB3aWR0aDogMTAwJTtcbiAgbWF4LXdpZHRoOiA0MDBweDtcbiAgbWFyZ2luOiAyMHB4IGF1dG87XG59XG5cbi5ncmlkLWltYWdlIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogYXV0bztcbn1cblxuLyogQWRqdXN0bWVudHMgZm9yIGluZGl2aWR1YWwgaW1hZ2VzICovXG4uaW1hZ2UyIHtcbiAgbWFyZ2luLXRvcDogNjVweDsgLyogTW92ZXMgdGhlIHNtYWxsbG9nbyBpbWFnZSBkb3duICovXG4gIG1hcmdpbi1sZWZ0OiA1MHB4O1xuICB0cmFuc2Zvcm06IHNjYWxlKDAuOCk7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMTYsIDQ2LCAxKTtcbiAgdHJhbnNmb3JtOiBzY2FsZSgxLjQpOyAvKiBTY2FsZXMgdXAgdGhlIG5hdHVyZSBjdXJlIGltYWdlIHNsaWdodGx5ICovXG59XG5cbi5pbWFnZTQge1xuICB0cmFuc2Zvcm06IHNjYWxlKDEuNCk7IC8qIFNjYWxlcyB1cCB0aGUgbmF0dXJlIGN1cmUgaW1hZ2Ugc2xpZ2h0bHkgKi9cbiAgbWFyZ2luLXRvcDogMTBweDtcbiAgbWFyZ2luLWxlZnQ6IDUwcHg7XG59XG5cbi5pbWFnZTMge1xuICB0cmFuc2Zvcm06IHNjYWxlKDEpOyAvKiBTY2FsZXMgdXAgdGhlIG5hdHVyZSBjdXJlIGltYWdlIHNsaWdodGx5ICovXG4gIG1hcmdpbi1sZWZ0OiAwcHg7XG4gIGJvcmRlcjogbm9uZTtcbn1cblxuLmNvbnRhaW5lciB7XG4gIHdpZHRoOiA5MCU7XG4gIG1heC13aWR0aDogODAwcHg7XG4gIG1hcmdpbjogMjBweCBhdXRvO1xuICBwYWRkaW5nOiAyMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmZmZmO1xuICBjb2xvcjogIzAwMDAwMDtcbiAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgYm9yZGVyLXJhZGl1czogOHB4O1xuICBib3gtc2hhZG93OiAwIDAgMTBweCByZ2JhKDAsIDAsIDAsIDAuMSk7XG4gIHRleHQtYWxpZ246IGNlbnRlcjtcbn1cblxuLyogTWVkaWEgUXVlcmllcyBmb3IgTW9iaWxlIE9wdGltaXphdGlvbiAqL1xuQG1lZGlhIChtYXgtd2lkdGg6IDc2OHB4KSB7XG4gIC5idXR0b24tY29udGFpbmVyIHtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gIH1cblxuICAubmF2LWJ1dHRvbiB7XG4gICAgd2lkdGg6IDgwJTtcbiAgICBtYXJnaW46IDEwcHggMDtcbiAgfVxuXG4gIFxuICAuZ3JpZC1pbWFnZSB7XG4gICAgd2lkdGg6IDkwJTsgLyogQWRqdXN0IHRoZSBzaXplIG9mIHRoZSBpbWFnZXMgdG8gZml0IHRoZSBzY3JlZW4gKi9cbiAgICBoZWlnaHQ6IGF1dG87IC8qIE1haW50YWluIHRoZSBhc3BlY3QgcmF0aW8gKi9cbiAgICBtYXJnaW46IDAgYXV0bzsgLyogQ2VudGVyIHRoZSBpbWFnZXMgKi9cbiAgfVxuXG4gIC5pbWFnZS1ncmlkIHtcbiAgICBkaXNwbGF5OiBncmlkO1xuICAgIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMWZyOyAvKiBTaW5nbGUtY29sdW1uIGdyaWQgZm9yIG1vYmlsZSAqL1xuICAgIGdhcDogMTBweDsgLyogU3BhY2luZyBiZXR3ZWVuIGltYWdlcyAqL1xuICB9XG5cbiAgLyogSW1hZ2UgMSAqL1xuICAuaW1hZ2UxIHtcbiAgICB3aWR0aDogOTAlOyAvKiBBZGp1c3QgdGhlIHNpemUgdG8gZml0IHdpdGhpbiB0aGUgc2NyZWVuICovXG4gICAgaGVpZ2h0OiBhdXRvOyAvKiBNYWludGFpbiBhc3BlY3QgcmF0aW8gKi9cbiAgICBtYXJnaW46IDAgYXV0bzsgLyogQ2VudGVyIHRoZSBpbWFnZSAqL1xuICB9XG5cbiAgLyogSW1hZ2UgMiAqL1xuICAuaW1hZ2UyIHtcbiAgICB3aWR0aDogOTAlO1xuICAgIGhlaWdodDogYXV0bztcbiAgICBtYXJnaW46IDAgYXV0bztcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDEpOyAvKiBSZXNldCBzY2FsaW5nIGZvciBtb2JpbGUgKi9cbiAgfVxuXG4gIC8qIEltYWdlIDMgKi9cbiAgLmltYWdlMyB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBoZWlnaHQ6IGF1dG87XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxKTsgLyogUmVzZXQgc2NhbGluZyBmb3IgbW9iaWxlICovXG4gIH1cblxuICAvKiBJbWFnZSA0ICovXG4gIC5pbWFnZTQge1xuICAgIHdpZHRoOiA5MCU7XG4gICAgaGVpZ2h0OiBhdXRvO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIHRyYW5zZm9ybTogc2NhbGUoMSk7IC8qIFJlc2V0IHNjYWxpbmcgZm9yIG1vYmlsZSAqL1xuICB9XG59XG5cblxuLmhyLXNlY3Rpb24ge1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG4gIGRpc3BsYXk6IGlubGluZS1ibG9jaztcbn1cblxuLmhyLWRyb3Bkb3duIHtcbiAgcG9zaXRpb246IGFic29sdXRlO1xuICB0b3A6IDEwMCU7XG4gIGxlZnQ6IDA7XG4gIGJhY2tncm91bmQtY29sb3I6IHdoaXRlO1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIHBhZGRpbmc6IDhweDtcbiAgei1pbmRleDogMTAwMDtcbiAgYm94LXNoYWRvdzogMCAycHggNXB4IHJnYmEoMCwwLDAsMC4yKTtcbiAgbWluLXdpZHRoOiAyMDBweDtcbn1cblxuLmhyLWRyb3Bkb3duIC5uYXYtYnV0dG9uIHtcbiAgZGlzcGxheTogYmxvY2s7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXJnaW46IDRweCAwO1xuICB0ZXh0LWFsaWduOiBsZWZ0O1xufSJdLCJzb3VyY2VSb290IjoiIn0= */"],
+      styles: [".button-container[_ngcontent-%COMP%] {\n  display: flex;\n  justify-content: center;\n  margin: 20px 0;\n}\n\n.nav-button[_ngcontent-%COMP%] {\n  background-color: rgba(0, 16, 46, 1);\n  color: white;\n  border: none;\n  padding: 10px 20px;\n  cursor: pointer;\n  border-radius: 5px;\n  font-size: 1.2em;\n  margin: 0 10px;\n  transition: background-color 0.3s;\n}\n\n.nav-button[_ngcontent-%COMP%]:hover {\n  background-color: rgba(0, 16, 46, 1);\n}\n\n.user-info[_ngcontent-%COMP%] {\n  margin-left: 20px; \n\n  font-size: 1.1em;\n  color: rgba(0, 16, 46, 1); \n\n  padding: 10px 0;\n}\n\n.image-grid[_ngcontent-%COMP%] {\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 10px;\n  width: 100%;\n  max-width: 400px;\n  margin: 20px auto;\n}\n\n.grid-image[_ngcontent-%COMP%] {\n  width: 100%;\n  height: auto;\n}\n\n\n\n.image2[_ngcontent-%COMP%] {\n  margin-top: 65px; \n\n  margin-left: 50px;\n  transform: scale(0.8);\n  background-color: rgba(0, 16, 46, 1);\n  transform: scale(1.4); \n\n}\n\n.image4[_ngcontent-%COMP%] {\n  transform: scale(1.4); \n\n  margin-top: 10px;\n  margin-left: 50px;\n}\n\n.image3[_ngcontent-%COMP%] {\n  transform: scale(1); \n\n  margin-left: 0px;\n  border: none;\n}\n\n.container[_ngcontent-%COMP%] {\n  width: 90%;\n  max-width: 800px;\n  margin: 20px auto;\n  padding: 20px;\n  background-color: #ffffff;\n  color: #000000;\n  border: 1px solid #ccc;\n  border-radius: 8px;\n  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n  text-align: center;\n}\n\n\n\n@media (max-width: 768px) {\n  .button-container[_ngcontent-%COMP%] {\n    flex-direction: column;\n    align-items: center;\n  }\n\n  .nav-button[_ngcontent-%COMP%] {\n    width: 80%;\n    margin: 10px 0;\n  }\n\n  \n  .grid-image[_ngcontent-%COMP%] {\n    width: 90%; \n\n    height: auto; \n\n    margin: 0 auto; \n\n  }\n\n  .image-grid[_ngcontent-%COMP%] {\n    display: grid;\n    grid-template-columns: 1fr; \n\n    gap: 10px; \n\n  }\n\n  \n\n  .image1[_ngcontent-%COMP%] {\n    width: 90%; \n\n    height: auto; \n\n    margin: 0 auto; \n\n  }\n\n  \n\n  .image2[_ngcontent-%COMP%] {\n    width: 90%;\n    height: auto;\n    margin: 0 auto;\n    transform: scale(1); \n\n  }\n\n  \n\n  .image3[_ngcontent-%COMP%] {\n    width: 90%;\n    height: auto;\n    margin: 0 auto;\n    transform: scale(1); \n\n  }\n\n  \n\n  .image4[_ngcontent-%COMP%] {\n    width: 90%;\n    height: auto;\n    margin: 0 auto;\n    transform: scale(1); \n\n  }\n}\n\n\n.hr-section[_ngcontent-%COMP%] {\n  position: relative;\n  display: inline-block;\n}\n\n.hr-dropdown[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  background-color: white;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  padding: 8px;\n  z-index: 1000;\n  box-shadow: 0 2px 5px rgba(0,0,0,0.2);\n  min-width: 200px;\n}\n\n.hr-dropdown[_ngcontent-%COMP%]   .nav-button[_ngcontent-%COMP%] {\n  display: block;\n  width: 100%;\n  margin: 4px 0;\n  text-align: left;\n}\n\n.sales-section[_ngcontent-%COMP%] {\n  display: inline-block;\n  position: relative;\n}\n\n.sales-dropdown[_ngcontent-%COMP%] {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  z-index: 1000;\n  display: flex;\n  flex-direction: column;\n  background-color: inherit;\n  \n\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9ob21lL2hvbWUuY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNFLGFBQWE7RUFDYix1QkFBdUI7RUFDdkIsY0FBYztBQUNoQjs7QUFFQTtFQUNFLG9DQUFvQztFQUNwQyxZQUFZO0VBQ1osWUFBWTtFQUNaLGtCQUFrQjtFQUNsQixlQUFlO0VBQ2Ysa0JBQWtCO0VBQ2xCLGdCQUFnQjtFQUNoQixjQUFjO0VBQ2QsaUNBQWlDO0FBQ25DOztBQUVBO0VBQ0Usb0NBQW9DO0FBQ3RDOztBQUVBO0VBQ0UsaUJBQWlCLEVBQUUsK0JBQStCO0VBQ2xELGdCQUFnQjtFQUNoQix5QkFBeUIsRUFBRSx5Q0FBeUM7RUFDcEUsZUFBZTtBQUNqQjs7QUFFQTtFQUNFLGFBQWE7RUFDYiw4QkFBOEI7RUFDOUIsU0FBUztFQUNULFdBQVc7RUFDWCxnQkFBZ0I7RUFDaEIsaUJBQWlCO0FBQ25COztBQUVBO0VBQ0UsV0FBVztFQUNYLFlBQVk7QUFDZDs7QUFFQSxzQ0FBc0M7QUFDdEM7RUFDRSxnQkFBZ0IsRUFBRSxtQ0FBbUM7RUFDckQsaUJBQWlCO0VBQ2pCLHFCQUFxQjtFQUNyQixvQ0FBb0M7RUFDcEMscUJBQXFCLEVBQUUsNkNBQTZDO0FBQ3RFOztBQUVBO0VBQ0UscUJBQXFCLEVBQUUsNkNBQTZDO0VBQ3BFLGdCQUFnQjtFQUNoQixpQkFBaUI7QUFDbkI7O0FBRUE7RUFDRSxtQkFBbUIsRUFBRSw2Q0FBNkM7RUFDbEUsZ0JBQWdCO0VBQ2hCLFlBQVk7QUFDZDs7QUFFQTtFQUNFLFVBQVU7RUFDVixnQkFBZ0I7RUFDaEIsaUJBQWlCO0VBQ2pCLGFBQWE7RUFDYix5QkFBeUI7RUFDekIsY0FBYztFQUNkLHNCQUFzQjtFQUN0QixrQkFBa0I7RUFDbEIsdUNBQXVDO0VBQ3ZDLGtCQUFrQjtBQUNwQjs7QUFFQSwwQ0FBMEM7QUFDMUM7RUFDRTtJQUNFLHNCQUFzQjtJQUN0QixtQkFBbUI7RUFDckI7O0VBRUE7SUFDRSxVQUFVO0lBQ1YsY0FBYztFQUNoQjs7O0VBR0E7SUFDRSxVQUFVLEVBQUUsb0RBQW9EO0lBQ2hFLFlBQVksRUFBRSw4QkFBOEI7SUFDNUMsY0FBYyxFQUFFLHNCQUFzQjtFQUN4Qzs7RUFFQTtJQUNFLGFBQWE7SUFDYiwwQkFBMEIsRUFBRSxrQ0FBa0M7SUFDOUQsU0FBUyxFQUFFLDJCQUEyQjtFQUN4Qzs7RUFFQSxZQUFZO0VBQ1o7SUFDRSxVQUFVLEVBQUUsNkNBQTZDO0lBQ3pELFlBQVksRUFBRSwwQkFBMEI7SUFDeEMsY0FBYyxFQUFFLHFCQUFxQjtFQUN2Qzs7RUFFQSxZQUFZO0VBQ1o7SUFDRSxVQUFVO0lBQ1YsWUFBWTtJQUNaLGNBQWM7SUFDZCxtQkFBbUIsRUFBRSw2QkFBNkI7RUFDcEQ7O0VBRUEsWUFBWTtFQUNaO0lBQ0UsVUFBVTtJQUNWLFlBQVk7SUFDWixjQUFjO0lBQ2QsbUJBQW1CLEVBQUUsNkJBQTZCO0VBQ3BEOztFQUVBLFlBQVk7RUFDWjtJQUNFLFVBQVU7SUFDVixZQUFZO0lBQ1osY0FBYztJQUNkLG1CQUFtQixFQUFFLDZCQUE2QjtFQUNwRDtBQUNGOzs7QUFHQTtFQUNFLGtCQUFrQjtFQUNsQixxQkFBcUI7QUFDdkI7O0FBRUE7RUFDRSxrQkFBa0I7RUFDbEIsU0FBUztFQUNULE9BQU87RUFDUCx1QkFBdUI7RUFDdkIsc0JBQXNCO0VBQ3RCLGtCQUFrQjtFQUNsQixZQUFZO0VBQ1osYUFBYTtFQUNiLHFDQUFxQztFQUNyQyxnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxjQUFjO0VBQ2QsV0FBVztFQUNYLGFBQWE7RUFDYixnQkFBZ0I7QUFDbEI7O0FBRUE7RUFDRSxxQkFBcUI7RUFDckIsa0JBQWtCO0FBQ3BCOztBQUVBO0VBQ0Usa0JBQWtCO0VBQ2xCLFNBQVM7RUFDVCxPQUFPO0VBQ1AsYUFBYTtFQUNiLGFBQWE7RUFDYixzQkFBc0I7RUFDdEIseUJBQXlCO0VBQ3pCLHdDQUF3QztBQUMxQyIsInNvdXJjZXNDb250ZW50IjpbIi5idXR0b24tY29udGFpbmVyIHtcbiAgZGlzcGxheTogZmxleDtcbiAganVzdGlmeS1jb250ZW50OiBjZW50ZXI7XG4gIG1hcmdpbjogMjBweCAwO1xufVxuXG4ubmF2LWJ1dHRvbiB7XG4gIGJhY2tncm91bmQtY29sb3I6IHJnYmEoMCwgMTYsIDQ2LCAxKTtcbiAgY29sb3I6IHdoaXRlO1xuICBib3JkZXI6IG5vbmU7XG4gIHBhZGRpbmc6IDEwcHggMjBweDtcbiAgY3Vyc29yOiBwb2ludGVyO1xuICBib3JkZXItcmFkaXVzOiA1cHg7XG4gIGZvbnQtc2l6ZTogMS4yZW07XG4gIG1hcmdpbjogMCAxMHB4O1xuICB0cmFuc2l0aW9uOiBiYWNrZ3JvdW5kLWNvbG9yIDAuM3M7XG59XG5cbi5uYXYtYnV0dG9uOmhvdmVyIHtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxNiwgNDYsIDEpO1xufVxuXG4udXNlci1pbmZvIHtcbiAgbWFyZ2luLWxlZnQ6IDIwcHg7IC8qIEluZGVudHMgdGhlIHVzZXItaW5mbyB0ZXh0ICovXG4gIGZvbnQtc2l6ZTogMS4xZW07XG4gIGNvbG9yOiByZ2JhKDAsIDE2LCA0NiwgMSk7IC8qIE1hdGNoZXMgYnV0dG9uIGNvbG9yIGZvciBjb25zaXN0ZW5jeSAqL1xuICBwYWRkaW5nOiAxMHB4IDA7XG59XG5cbi5pbWFnZS1ncmlkIHtcbiAgZGlzcGxheTogZ3JpZDtcbiAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyO1xuICBnYXA6IDEwcHg7XG4gIHdpZHRoOiAxMDAlO1xuICBtYXgtd2lkdGg6IDQwMHB4O1xuICBtYXJnaW46IDIwcHggYXV0bztcbn1cblxuLmdyaWQtaW1hZ2Uge1xuICB3aWR0aDogMTAwJTtcbiAgaGVpZ2h0OiBhdXRvO1xufVxuXG4vKiBBZGp1c3RtZW50cyBmb3IgaW5kaXZpZHVhbCBpbWFnZXMgKi9cbi5pbWFnZTIge1xuICBtYXJnaW4tdG9wOiA2NXB4OyAvKiBNb3ZlcyB0aGUgc21hbGxsb2dvIGltYWdlIGRvd24gKi9cbiAgbWFyZ2luLWxlZnQ6IDUwcHg7XG4gIHRyYW5zZm9ybTogc2NhbGUoMC44KTtcbiAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxNiwgNDYsIDEpO1xuICB0cmFuc2Zvcm06IHNjYWxlKDEuNCk7IC8qIFNjYWxlcyB1cCB0aGUgbmF0dXJlIGN1cmUgaW1hZ2Ugc2xpZ2h0bHkgKi9cbn1cblxuLmltYWdlNCB7XG4gIHRyYW5zZm9ybTogc2NhbGUoMS40KTsgLyogU2NhbGVzIHVwIHRoZSBuYXR1cmUgY3VyZSBpbWFnZSBzbGlnaHRseSAqL1xuICBtYXJnaW4tdG9wOiAxMHB4O1xuICBtYXJnaW4tbGVmdDogNTBweDtcbn1cblxuLmltYWdlMyB7XG4gIHRyYW5zZm9ybTogc2NhbGUoMSk7IC8qIFNjYWxlcyB1cCB0aGUgbmF0dXJlIGN1cmUgaW1hZ2Ugc2xpZ2h0bHkgKi9cbiAgbWFyZ2luLWxlZnQ6IDBweDtcbiAgYm9yZGVyOiBub25lO1xufVxuXG4uY29udGFpbmVyIHtcbiAgd2lkdGg6IDkwJTtcbiAgbWF4LXdpZHRoOiA4MDBweDtcbiAgbWFyZ2luOiAyMHB4IGF1dG87XG4gIHBhZGRpbmc6IDIwcHg7XG4gIGJhY2tncm91bmQtY29sb3I6ICNmZmZmZmY7XG4gIGNvbG9yOiAjMDAwMDAwO1xuICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICBib3JkZXItcmFkaXVzOiA4cHg7XG4gIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwgMCwgMCwgMC4xKTtcbiAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBNZWRpYSBRdWVyaWVzIGZvciBNb2JpbGUgT3B0aW1pemF0aW9uICovXG5AbWVkaWEgKG1heC13aWR0aDogNzY4cHgpIHtcbiAgLmJ1dHRvbi1jb250YWluZXIge1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgfVxuXG4gIC5uYXYtYnV0dG9uIHtcbiAgICB3aWR0aDogODAlO1xuICAgIG1hcmdpbjogMTBweCAwO1xuICB9XG5cbiAgXG4gIC5ncmlkLWltYWdlIHtcbiAgICB3aWR0aDogOTAlOyAvKiBBZGp1c3QgdGhlIHNpemUgb2YgdGhlIGltYWdlcyB0byBmaXQgdGhlIHNjcmVlbiAqL1xuICAgIGhlaWdodDogYXV0bzsgLyogTWFpbnRhaW4gdGhlIGFzcGVjdCByYXRpbyAqL1xuICAgIG1hcmdpbjogMCBhdXRvOyAvKiBDZW50ZXIgdGhlIGltYWdlcyAqL1xuICB9XG5cbiAgLmltYWdlLWdyaWQge1xuICAgIGRpc3BsYXk6IGdyaWQ7XG4gICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnI7IC8qIFNpbmdsZS1jb2x1bW4gZ3JpZCBmb3IgbW9iaWxlICovXG4gICAgZ2FwOiAxMHB4OyAvKiBTcGFjaW5nIGJldHdlZW4gaW1hZ2VzICovXG4gIH1cblxuICAvKiBJbWFnZSAxICovXG4gIC5pbWFnZTEge1xuICAgIHdpZHRoOiA5MCU7IC8qIEFkanVzdCB0aGUgc2l6ZSB0byBmaXQgd2l0aGluIHRoZSBzY3JlZW4gKi9cbiAgICBoZWlnaHQ6IGF1dG87IC8qIE1haW50YWluIGFzcGVjdCByYXRpbyAqL1xuICAgIG1hcmdpbjogMCBhdXRvOyAvKiBDZW50ZXIgdGhlIGltYWdlICovXG4gIH1cblxuICAvKiBJbWFnZSAyICovXG4gIC5pbWFnZTIge1xuICAgIHdpZHRoOiA5MCU7XG4gICAgaGVpZ2h0OiBhdXRvO1xuICAgIG1hcmdpbjogMCBhdXRvO1xuICAgIHRyYW5zZm9ybTogc2NhbGUoMSk7IC8qIFJlc2V0IHNjYWxpbmcgZm9yIG1vYmlsZSAqL1xuICB9XG5cbiAgLyogSW1hZ2UgMyAqL1xuICAuaW1hZ2UzIHtcbiAgICB3aWR0aDogOTAlO1xuICAgIGhlaWdodDogYXV0bztcbiAgICBtYXJnaW46IDAgYXV0bztcbiAgICB0cmFuc2Zvcm06IHNjYWxlKDEpOyAvKiBSZXNldCBzY2FsaW5nIGZvciBtb2JpbGUgKi9cbiAgfVxuXG4gIC8qIEltYWdlIDQgKi9cbiAgLmltYWdlNCB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBoZWlnaHQ6IGF1dG87XG4gICAgbWFyZ2luOiAwIGF1dG87XG4gICAgdHJhbnNmb3JtOiBzY2FsZSgxKTsgLyogUmVzZXQgc2NhbGluZyBmb3IgbW9iaWxlICovXG4gIH1cbn1cblxuXG4uaHItc2VjdGlvbiB7XG4gIHBvc2l0aW9uOiByZWxhdGl2ZTtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xufVxuXG4uaHItZHJvcGRvd24ge1xuICBwb3NpdGlvbjogYWJzb2x1dGU7XG4gIHRvcDogMTAwJTtcbiAgbGVmdDogMDtcbiAgYmFja2dyb3VuZC1jb2xvcjogd2hpdGU7XG4gIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgcGFkZGluZzogOHB4O1xuICB6LWluZGV4OiAxMDAwO1xuICBib3gtc2hhZG93OiAwIDJweCA1cHggcmdiYSgwLDAsMCwwLjIpO1xuICBtaW4td2lkdGg6IDIwMHB4O1xufVxuXG4uaHItZHJvcGRvd24gLm5hdi1idXR0b24ge1xuICBkaXNwbGF5OiBibG9jaztcbiAgd2lkdGg6IDEwMCU7XG4gIG1hcmdpbjogNHB4IDA7XG4gIHRleHQtYWxpZ246IGxlZnQ7XG59XG5cbi5zYWxlcy1zZWN0aW9uIHtcbiAgZGlzcGxheTogaW5saW5lLWJsb2NrO1xuICBwb3NpdGlvbjogcmVsYXRpdmU7XG59XG5cbi5zYWxlcy1kcm9wZG93biB7XG4gIHBvc2l0aW9uOiBhYnNvbHV0ZTtcbiAgdG9wOiAxMDAlO1xuICBsZWZ0OiAwO1xuICB6LWluZGV4OiAxMDAwO1xuICBkaXNwbGF5OiBmbGV4O1xuICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICBiYWNrZ3JvdW5kLWNvbG9yOiBpbmhlcml0O1xuICAvKiBNYXRjaCB5b3VyIGV4aXN0aW5nIGRyb3Bkb3duIHN0eWxlcyAqL1xufSJdLCJzb3VyY2VSb290IjoiIn0= */"],
       changeDetection: 0
     });
   }
@@ -5897,6 +6606,505 @@ class ProductsComponent {
       dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_9__.CommonModule, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgForOf, _angular_common__WEBPACK_IMPORTED_MODULE_9__.NgIf, _angular_common__WEBPACK_IMPORTED_MODULE_9__.AsyncPipe, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.FormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgSelectOption, _angular_forms__WEBPACK_IMPORTED_MODULE_3__["ɵNgSelectMultipleOption"], _angular_forms__WEBPACK_IMPORTED_MODULE_3__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.SelectControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.NgModel, _angular_forms__WEBPACK_IMPORTED_MODULE_3__.ReactiveFormsModule, _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouterModule, _angular_router__WEBPACK_IMPORTED_MODULE_10__.RouterLink, ngx_infinite_scroll__WEBPACK_IMPORTED_MODULE_11__.InfiniteScrollDirective],
       styles: [".content[_ngcontent-%COMP%] {\n    flex-grow: 1;\n}\n\n.container[_ngcontent-%COMP%] {\n    width: 90%;\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #ffffff;\n    color: #000000;\n    border: 1px solid #ccc;\n    border-radius: 8px;\n    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);\n    text-align: center;\n}\n\n\n\n.image-container[_ngcontent-%COMP%] {\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    padding: 10px;\n    border-radius: 8px;\n    background-color: rgba(0, 16, 46, 1);\n    text-decoration: none;\n    color: inherit;\n}\n\n.image-container[_ngcontent-%COMP%]   img[_ngcontent-%COMP%] {\n    max-width: 100%;\n    height: 100px;\n    border-radius: 8px;\n}\n\n.inventory-title[_ngcontent-%COMP%] {\n    margin-top: 10px;\n    margin-bottom: 10px;\n    font-size: 32px;\n}\n\n\n\n.search-bar[_ngcontent-%COMP%] {\n    margin-bottom: 20px;\n    display: flex;\n    justify-content: center;\n}\n\n.search-bar[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n    width: 100%;\n    max-width: 100%;\n    padding: 12px;\n    font-size: 16px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n}\n\n.filter-btn[_ngcontent-%COMP%], \n.relevant-items-btn[_ngcontent-%COMP%] {\n    background-color: #a9a9a9;\n    color: #ffffff;\n    border: none;\n    border-radius: 4px;\n    padding: 6px 12px;\n    cursor: pointer;\n    font-size: 14px;\n    margin: 0px;\n    width: 120px;\n}\n\n.filter-btn[_ngcontent-%COMP%]:hover, \n.relevant-items-btn[_ngcontent-%COMP%]:hover {\n    background-color: #888888;\n}\n\n\n\n.filters[_ngcontent-%COMP%], \n.button-row[_ngcontent-%COMP%] {\n    display: flex;\n    justify-content: center;\n    align-items: flex-start;\n    flex-wrap: wrap;\n    gap: 20px;\n    margin-bottom: 20px;\n}\n\n.filter-group[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    align-items: center;\n    width: 120px;\n}\n\n.filter-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    font-size: 14px;\n    margin-bottom: 5px;\n    color: #333;\n}\n\n.filters[_ngcontent-%COMP%]   select[_ngcontent-%COMP%], \n.filters[_ngcontent-%COMP%]   input[type=\"text\"][_ngcontent-%COMP%], \n.filters[_ngcontent-%COMP%]   input[type=\"number\"][_ngcontent-%COMP%] {\n    font-size: 14px;\n    padding: 5px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    width: 120px;\n    height: 28px;\n    box-sizing: border-box;\n    max-width: 120px;\n}\n\n#comp-cost-min[_ngcontent-%COMP%] {\n    font-size: 14px;\n    padding: 5px;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    width: 120px;\n    height: 28px;\n    box-sizing: border-box;\n    max-width: 120px;\n}\n\n.inventory-grid[_ngcontent-%COMP%] {\n    width: 100%;\n    border-collapse: collapse;\n    margin-bottom: 20px;\n}\n\n.inventory-grid[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], \n.inventory-grid[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n    border: 1px solid #ccc;\n    padding: 8px;\n    text-align: center;\n}\n\n.inventory-grid[_ngcontent-%COMP%]   th[_ngcontent-%COMP%] {\n    background-color: #d3d3d3;\n    color: #333;\n    min-width: 75px;\n}\n\n\n\n.inventory-grid[_ngcontent-%COMP%]   tr[_ngcontent-%COMP%]:hover {\n    background-color: whitesmoke;\n    cursor: pointer;\n}\n\n@media (max-width: 768px) {\n\n    .container[_ngcontent-%COMP%] {\n        width: 100%;\n        margin: 0px;\n        padding: 0px;\n    }\n\n    \n\n    .inventory-grid[_ngcontent-%COMP%] {\n        width: 100%;\n        table-layout: fixed;\n        \n\n        word-wrap: break-word;\n        \n\n        overflow-x: hidden;\n    }\n\n    .inventory-grid[_ngcontent-%COMP%]   th[_ngcontent-%COMP%], \n   .inventory-grid[_ngcontent-%COMP%]   td[_ngcontent-%COMP%] {\n        white-space: normal;\n        \n\n        font-size: 12px;\n        \n\n    }\n\n    \n\n    .filters[_ngcontent-%COMP%] {\n        display: grid;\n        grid-template-columns: 1fr 1fr;\n        \n\n        gap: 10px;\n    }\n\n    .filter-group[_ngcontent-%COMP%] {\n        width: 100%;\n        max-width: none;\n        \n\n        text-align: center;\n    }\n\n    \n\n    .filters[_ngcontent-%COMP%] > [_ngcontent-%COMP%]:nth-child(3) {\n        grid-column: span 2;\n        \n\n        justify-self: center;\n    }\n\n    \n\n    .filters[_ngcontent-%COMP%]   select[_ngcontent-%COMP%], \n   .filters[_ngcontent-%COMP%]   input[type=\"text\"][_ngcontent-%COMP%], \n   .filters[_ngcontent-%COMP%]   input[type=\"number\"][_ngcontent-%COMP%] {\n        width: 100%;\n        font-size: 12px;\n        padding: 5px;\n        box-sizing: border-box;\n    }\n\n    .inventory-grid[_ngcontent-%COMP%]   tr.has-image[_ngcontent-%COMP%] {\n        background-color: #e6f7ff;\n        \n\n    }\n\n}\n\n\n.sticky[_ngcontent-%COMP%] {\n    top: 0px;\n    position: sticky;\n}\n\n\n.description-cell[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n    \n\n    gap: 8px;\n    \n\n}\n\n.blue-dot[_ngcontent-%COMP%] {\n    width: 10px;\n    height: 10px;\n    background-color: rgba(0, 16, 46, 1);\n    border-radius: 50%;\n    display: inline-block;\n    \n\n}\n\n.inventory-grid[_ngcontent-%COMP%]   tr.has-image[_ngcontent-%COMP%] {\n    background-color: #e6f7ff;\n    \n\n}\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy9wcm9kdWN0cy9wcm9kdWN0cy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksWUFBWTtBQUNoQjs7QUFFQTtJQUNJLFVBQVU7SUFDVixnQkFBZ0I7SUFDaEIsaUJBQWlCO0lBQ2pCLGFBQWE7SUFDYix5QkFBeUI7SUFDekIsY0FBYztJQUNkLHNCQUFzQjtJQUN0QixrQkFBa0I7SUFDbEIsdUNBQXVDO0lBQ3ZDLGtCQUFrQjtBQUN0Qjs7QUFFQSwwQ0FBMEM7QUFDMUM7SUFDSSxhQUFhO0lBQ2IsdUJBQXVCO0lBQ3ZCLG1CQUFtQjtJQUNuQixhQUFhO0lBQ2Isa0JBQWtCO0lBQ2xCLG9DQUFvQztJQUNwQyxxQkFBcUI7SUFDckIsY0FBYztBQUNsQjs7QUFFQTtJQUNJLGVBQWU7SUFDZixhQUFhO0lBQ2Isa0JBQWtCO0FBQ3RCOztBQUVBO0lBQ0ksZ0JBQWdCO0lBQ2hCLG1CQUFtQjtJQUNuQixlQUFlO0FBQ25COztBQUVBLHVCQUF1QjtBQUN2QjtJQUNJLG1CQUFtQjtJQUNuQixhQUFhO0lBQ2IsdUJBQXVCO0FBQzNCOztBQUVBO0lBQ0ksV0FBVztJQUNYLGVBQWU7SUFDZixhQUFhO0lBQ2IsZUFBZTtJQUNmLHNCQUFzQjtJQUN0QixrQkFBa0I7QUFDdEI7O0FBRUE7O0lBRUkseUJBQXlCO0lBQ3pCLGNBQWM7SUFDZCxZQUFZO0lBQ1osa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixlQUFlO0lBQ2YsZUFBZTtJQUNmLFdBQVc7SUFDWCxZQUFZO0FBQ2hCOztBQUVBOztJQUVJLHlCQUF5QjtBQUM3Qjs7QUFFQSwrQkFBK0I7QUFDL0I7O0lBRUksYUFBYTtJQUNiLHVCQUF1QjtJQUN2Qix1QkFBdUI7SUFDdkIsZUFBZTtJQUNmLFNBQVM7SUFDVCxtQkFBbUI7QUFDdkI7O0FBRUE7SUFDSSxhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLG1CQUFtQjtJQUNuQixZQUFZO0FBQ2hCOztBQUVBO0lBQ0ksZUFBZTtJQUNmLGtCQUFrQjtJQUNsQixXQUFXO0FBQ2Y7O0FBRUE7OztJQUdJLGVBQWU7SUFDZixZQUFZO0lBQ1osc0JBQXNCO0lBQ3RCLGtCQUFrQjtJQUNsQixZQUFZO0lBQ1osWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixnQkFBZ0I7QUFDcEI7O0FBRUE7SUFDSSxlQUFlO0lBQ2YsWUFBWTtJQUNaLHNCQUFzQjtJQUN0QixrQkFBa0I7SUFDbEIsWUFBWTtJQUNaLFlBQVk7SUFDWixzQkFBc0I7SUFDdEIsZ0JBQWdCO0FBQ3BCOztBQUVBO0lBQ0ksV0FBVztJQUNYLHlCQUF5QjtJQUN6QixtQkFBbUI7QUFDdkI7O0FBRUE7O0lBRUksc0JBQXNCO0lBQ3RCLFlBQVk7SUFDWixrQkFBa0I7QUFDdEI7O0FBRUE7SUFDSSx5QkFBeUI7SUFDekIsV0FBVztJQUNYLGVBQWU7QUFDbkI7O0FBRUEsK0JBQStCO0FBQy9CO0lBQ0ksNEJBQTRCO0lBQzVCLGVBQWU7QUFDbkI7O0FBRUE7O0lBRUk7UUFDSSxXQUFXO1FBQ1gsV0FBVztRQUNYLFlBQVk7SUFDaEI7O0lBRUEsa0RBQWtEO0lBQ2xEO1FBQ0ksV0FBVztRQUNYLG1CQUFtQjtRQUNuQixxREFBcUQ7UUFDckQscUJBQXFCO1FBQ3JCLGtDQUFrQztRQUNsQyxrQkFBa0I7SUFDdEI7O0lBRUE7O1FBRUksbUJBQW1CO1FBQ25CLDJDQUEyQztRQUMzQyxlQUFlO1FBQ2YsOENBQThDO0lBQ2xEOztJQUVBLHNDQUFzQztJQUN0QztRQUNJLGFBQWE7UUFDYiw4QkFBOEI7UUFDOUIsd0JBQXdCO1FBQ3hCLFNBQVM7SUFDYjs7SUFFQTtRQUNJLFdBQVc7UUFDWCxlQUFlO1FBQ2YseUNBQXlDO1FBQ3pDLGtCQUFrQjtJQUN0Qjs7SUFFQSwyREFBMkQ7SUFDM0Q7UUFDSSxtQkFBbUI7UUFDbkIsOENBQThDO1FBQzlDLG9CQUFvQjtJQUN4Qjs7SUFFQSxxQ0FBcUM7SUFDckM7OztRQUdJLFdBQVc7UUFDWCxlQUFlO1FBQ2YsWUFBWTtRQUNaLHNCQUFzQjtJQUMxQjs7SUFFQTtRQUNJLHlCQUF5QjtRQUN6QiwwQkFBMEI7SUFDOUI7O0FBRUo7OztBQUdBO0lBQ0ksUUFBUTtJQUVSLGdCQUFnQjtBQUNwQjs7O0FBR0E7SUFDSSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLHVDQUF1QztJQUN2QyxRQUFRO0lBQ1IsMENBQTBDO0FBQzlDOztBQUVBO0lBQ0ksV0FBVztJQUNYLFlBQVk7SUFDWixvQ0FBb0M7SUFDcEMsa0JBQWtCO0lBQ2xCLHFCQUFxQjtJQUNyQiw0RUFBNEU7QUFDaEY7O0FBRUE7SUFDSSx5QkFBeUI7SUFDekIsMEJBQTBCO0FBQzlCIiwic291cmNlc0NvbnRlbnQiOlsiLmNvbnRlbnQge1xuICAgIGZsZXgtZ3JvdzogMTtcbn1cblxuLmNvbnRhaW5lciB7XG4gICAgd2lkdGg6IDkwJTtcbiAgICBtYXgtd2lkdGg6IDgwMHB4O1xuICAgIG1hcmdpbjogMjBweCBhdXRvO1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2ZmZmZmZjtcbiAgICBjb2xvcjogIzAwMDAwMDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbiAgICBib3gtc2hhZG93OiAwIDAgMTBweCByZ2JhKDAsIDAsIDAsIDAuMSk7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4vKiBNYWtlIGVudGlyZSBpbWFnZS1jb250YWluZXIgY2xpY2thYmxlICovXG4uaW1hZ2UtY29udGFpbmVyIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgcGFkZGluZzogMTBweDtcbiAgICBib3JkZXItcmFkaXVzOiA4cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxNiwgNDYsIDEpO1xuICAgIHRleHQtZGVjb3JhdGlvbjogbm9uZTtcbiAgICBjb2xvcjogaW5oZXJpdDtcbn1cblxuLmltYWdlLWNvbnRhaW5lciBpbWcge1xuICAgIG1heC13aWR0aDogMTAwJTtcbiAgICBoZWlnaHQ6IDEwMHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDhweDtcbn1cblxuLmludmVudG9yeS10aXRsZSB7XG4gICAgbWFyZ2luLXRvcDogMTBweDtcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICAgIGZvbnQtc2l6ZTogMzJweDtcbn1cblxuLyogVXBkYXRlZCBTZWFyY2ggQmFyICovXG4uc2VhcmNoLWJhciB7XG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGp1c3RpZnktY29udGVudDogY2VudGVyO1xufVxuXG4uc2VhcmNoLWJhciBpbnB1dCB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgbWF4LXdpZHRoOiAxMDAlO1xuICAgIHBhZGRpbmc6IDEycHg7XG4gICAgZm9udC1zaXplOiAxNnB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xufVxuXG4uZmlsdGVyLWJ0bixcbi5yZWxldmFudC1pdGVtcy1idG4ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNhOWE5YTk7XG4gICAgY29sb3I6ICNmZmZmZmY7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBwYWRkaW5nOiA2cHggMTJweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIG1hcmdpbjogMHB4O1xuICAgIHdpZHRoOiAxMjBweDtcbn1cblxuLmZpbHRlci1idG46aG92ZXIsXG4ucmVsZXZhbnQtaXRlbXMtYnRuOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjODg4ODg4O1xufVxuXG4vKiBGaWx0ZXIgR3JvdXAgYW5kIERyb3Bkb3ducyAqL1xuLmZpbHRlcnMsXG4uYnV0dG9uLXJvdyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBqdXN0aWZ5LWNvbnRlbnQ6IGNlbnRlcjtcbiAgICBhbGlnbi1pdGVtczogZmxleC1zdGFydDtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gICAgZ2FwOiAyMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5maWx0ZXItZ3JvdXAge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZmxleC1kaXJlY3Rpb246IGNvbHVtbjtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIHdpZHRoOiAxMjBweDtcbn1cblxuLmZpbHRlci1ncm91cCBsYWJlbCB7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDVweDtcbiAgICBjb2xvcjogIzMzMztcbn1cblxuLmZpbHRlcnMgc2VsZWN0LFxuLmZpbHRlcnMgaW5wdXRbdHlwZT1cInRleHRcIl0sXG4uZmlsdGVycyBpbnB1dFt0eXBlPVwibnVtYmVyXCJdIHtcbiAgICBmb250LXNpemU6IDE0cHg7XG4gICAgcGFkZGluZzogNXB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNjY2M7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIHdpZHRoOiAxMjBweDtcbiAgICBoZWlnaHQ6IDI4cHg7XG4gICAgYm94LXNpemluZzogYm9yZGVyLWJveDtcbiAgICBtYXgtd2lkdGg6IDEyMHB4O1xufVxuXG4jY29tcC1jb3N0LW1pbiB7XG4gICAgZm9udC1zaXplOiAxNHB4O1xuICAgIHBhZGRpbmc6IDVweDtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjY2NjO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICB3aWR0aDogMTIwcHg7XG4gICAgaGVpZ2h0OiAyOHB4O1xuICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgbWF4LXdpZHRoOiAxMjBweDtcbn1cblxuLmludmVudG9yeS1ncmlkIHtcbiAgICB3aWR0aDogMTAwJTtcbiAgICBib3JkZXItY29sbGFwc2U6IGNvbGxhcHNlO1xuICAgIG1hcmdpbi1ib3R0b206IDIwcHg7XG59XG5cbi5pbnZlbnRvcnktZ3JpZCB0aCxcbi5pbnZlbnRvcnktZ3JpZCB0ZCB7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2NjYztcbiAgICBwYWRkaW5nOiA4cHg7XG4gICAgdGV4dC1hbGlnbjogY2VudGVyO1xufVxuXG4uaW52ZW50b3J5LWdyaWQgdGgge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNkM2QzZDM7XG4gICAgY29sb3I6ICMzMzM7XG4gICAgbWluLXdpZHRoOiA3NXB4O1xufVxuXG4vKiBIb3ZlciBlZmZlY3Qgb24gdGFibGUgcm93cyAqL1xuLmludmVudG9yeS1ncmlkIHRyOmhvdmVyIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZXNtb2tlO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbn1cblxuQG1lZGlhIChtYXgtd2lkdGg6IDc2OHB4KSB7XG5cbiAgICAuY29udGFpbmVyIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIG1hcmdpbjogMHB4O1xuICAgICAgICBwYWRkaW5nOiAwcHg7XG4gICAgfVxuXG4gICAgLyogRW5zdXJlIC5pbnZlbnRvcnktZ3JpZCBmaXRzIHdpdGhpbiAuY29udGFpbmVyICovXG4gICAgLmludmVudG9yeS1ncmlkIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIHRhYmxlLWxheW91dDogZml4ZWQ7XG4gICAgICAgIC8qIEVuc3VyZSBjb2x1bW5zIGRvbid0IGV4cGFuZCBiZXlvbmQgdGhlIGNvbnRhaW5lciAqL1xuICAgICAgICB3b3JkLXdyYXA6IGJyZWFrLXdvcmQ7XG4gICAgICAgIC8qIFdyYXAgdGV4dCB0byBwcmV2ZW50IG92ZXJmbG93ICovXG4gICAgICAgIG92ZXJmbG93LXg6IGhpZGRlbjtcbiAgICB9XG5cbiAgICAuaW52ZW50b3J5LWdyaWQgdGgsXG4gICAgLmludmVudG9yeS1ncmlkIHRkIHtcbiAgICAgICAgd2hpdGUtc3BhY2U6IG5vcm1hbDtcbiAgICAgICAgLyogQWxsb3cgd3JhcHBpbmcgb2YgY29udGVudCBpbnNpZGUgY2VsbHMgKi9cbiAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICAvKiBBZGp1c3QgZm9udCBzaXplIGZvciBiZXR0ZXIgZml0IG9uIG1vYmlsZSAqL1xuICAgIH1cblxuICAgIC8qIEFkanVzdCBmaWx0ZXJzIGxheW91dCB0byB0d28gcm93cyAqL1xuICAgIC5maWx0ZXJzIHtcbiAgICAgICAgZGlzcGxheTogZ3JpZDtcbiAgICAgICAgZ3JpZC10ZW1wbGF0ZS1jb2x1bW5zOiAxZnIgMWZyO1xuICAgICAgICAvKiBUd28gZmlsdGVycyBwZXIgcm93ICovXG4gICAgICAgIGdhcDogMTBweDtcbiAgICB9XG5cbiAgICAuZmlsdGVyLWdyb3VwIHtcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIG1heC13aWR0aDogbm9uZTtcbiAgICAgICAgLyogQWxsb3cgZnVsbCB3aWR0aCBmb3Igc21hbGxlciBzY3JlZW5zICovXG4gICAgICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICB9XG5cbiAgICAvKiBIYW5kbGUgY2FzZSB3aGVyZSBvbmUgZmlsdGVyIGFwcGVhcnMgb24gdGhlIHNlY29uZCByb3cgKi9cbiAgICAuZmlsdGVycz4gOm50aC1jaGlsZCgzKSB7XG4gICAgICAgIGdyaWQtY29sdW1uOiBzcGFuIDI7XG4gICAgICAgIC8qIENlbnRlciB0aGUgdGhpcmQgZmlsdGVyIG9uIHRoZSBzZWNvbmQgcm93ICovXG4gICAgICAgIGp1c3RpZnktc2VsZjogY2VudGVyO1xuICAgIH1cblxuICAgIC8qIEFkanVzdCB0aGUgc2l6ZSBvZiBmaWx0ZXIgaW5wdXRzICovXG4gICAgLmZpbHRlcnMgc2VsZWN0LFxuICAgIC5maWx0ZXJzIGlucHV0W3R5cGU9XCJ0ZXh0XCJdLFxuICAgIC5maWx0ZXJzIGlucHV0W3R5cGU9XCJudW1iZXJcIl0ge1xuICAgICAgICB3aWR0aDogMTAwJTtcbiAgICAgICAgZm9udC1zaXplOiAxMnB4O1xuICAgICAgICBwYWRkaW5nOiA1cHg7XG4gICAgICAgIGJveC1zaXppbmc6IGJvcmRlci1ib3g7XG4gICAgfVxuXG4gICAgLmludmVudG9yeS1ncmlkIHRyLmhhcy1pbWFnZSB7XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICNlNmY3ZmY7XG4gICAgICAgIC8qIExpZ2h0IGJsdWUgYmFja2dyb3VuZCAqL1xuICAgIH1cblxufVxuXG5cbi5zdGlja3kge1xuICAgIHRvcDogMHB4O1xuICAgIHBvc2l0aW9uOiAtd2Via2l0LXN0aWNreTtcbiAgICBwb3NpdGlvbjogc3RpY2t5O1xufVxuXG5cbi5kZXNjcmlwdGlvbi1jZWxsIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgLyogQWxpZ25zIHRoZSBkb3QgYW5kIHRleHQgdmVydGljYWxseSAqL1xuICAgIGdhcDogOHB4O1xuICAgIC8qIEFkZHMgc3BhY2luZyBiZXR3ZWVuIHRoZSBkb3QgYW5kIHRleHQgKi9cbn1cblxuLmJsdWUtZG90IHtcbiAgICB3aWR0aDogMTBweDtcbiAgICBoZWlnaHQ6IDEwcHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogcmdiYSgwLCAxNiwgNDYsIDEpO1xuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICBkaXNwbGF5OiBpbmxpbmUtYmxvY2s7XG4gICAgLypib3gtc2hhZG93OiAwIDAgNHB4IHJnYmEoMCwgMCwgMjU1LCAwLjYpOyAvKiBPcHRpb25hbDogQWRkIGEgZ2xvdyBlZmZlY3QgKi9cbn1cblxuLmludmVudG9yeS1ncmlkIHRyLmhhcy1pbWFnZSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2U2ZjdmZjtcbiAgICAvKiBMaWdodCBibHVlIGJhY2tncm91bmQgKi9cbn0iXSwic291cmNlUm9vdCI6IiJ9 */"],
       changeDetection: 0
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 8249:
+/*!*********************************************************!*\
+  !*** ./src/app/components/w4-form/w4-form.component.ts ***!
+  \*********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   W4FormComponent: () => (/* binding */ W4FormComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/forms */ 4456);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
+
+
+
+class W4FormComponent {
+  constructor(fb) {
+    this.fb = fb;
+    this.w4Form = this.fb.group({
+      // Step 1: Personal Information
+      firstName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      middleInitial: [''],
+      lastName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      socialSecurity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      cityStateZip: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      filingStatus: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      // Step 2: Multiple Jobs
+      multipleJobs: [false],
+      // Step 3: Claim Dependents
+      qualifyingChildren: ['0'],
+      otherDependents: ['0'],
+      totalDependents: ['0'],
+      // Step 4: Other Adjustments
+      otherIncome: [''],
+      deductions: [''],
+      extraWithholding: [''],
+      // Step 5: Signature
+      employeeSignature: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      signatureDate: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      // Employer Section
+      employerName: [''],
+      employerAddress: [''],
+      firstDateEmployment: [''],
+      employerEIN: ['']
+    });
+  }
+  ngOnInit() {
+    // Set default date
+    const today = new Date().toISOString().split('T')[0];
+    this.w4Form.patchValue({
+      signatureDate: today
+    });
+  }
+  calculateDependents() {
+    const children = Number(this.w4Form.get('qualifyingChildren')?.value || 0) * 2000;
+    const others = Number(this.w4Form.get('otherDependents')?.value || 0) * 500;
+    const total = children + others;
+    this.w4Form.patchValue({
+      totalDependents: total
+    });
+  }
+  onSubmit() {
+    if (this.w4Form.valid) {
+      console.log(this.w4Form.value);
+    } else {
+      Object.keys(this.w4Form.controls).forEach(key => {
+        const control = this.w4Form.get(key);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+    }
+  }
+  static {
+    this.ɵfac = function W4FormComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || W4FormComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__.FormBuilder));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+      type: W4FormComponent,
+      selectors: [["app-w4-form"]],
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
+      decls: 142,
+      vars: 1,
+      consts: [[1, "w4-form", 3, "ngSubmit", "formGroup"], [1, "form-header"], [1, "section"], [1, "form-row"], [1, "form-group"], [1, "name-group"], ["type", "text", "formControlName", "firstName", "placeholder", "First name"], ["type", "text", "formControlName", "middleInitial", "placeholder", "MI", 1, "middle-initial"], ["type", "text", "formControlName", "lastName"], ["type", "text", "formControlName", "socialSecurity"], [1, "form-group", "full-width"], ["type", "text", "formControlName", "address"], ["type", "text", "formControlName", "cityStateZip"], [1, "filing-status"], [1, "radio-group"], ["type", "radio", "formControlName", "filingStatus", "value", "single"], ["type", "radio", "formControlName", "filingStatus", "value", "married"], ["type", "radio", "formControlName", "filingStatus", "value", "head"], [1, "checkbox-group"], ["type", "checkbox", "formControlName", "multipleJobs"], [1, "input-group"], [1, "currency"], ["type", "number", "formControlName", "qualifyingChildren", 3, "change"], ["type", "number", "formControlName", "otherDependents", 3, "change"], ["type", "number", "formControlName", "totalDependents", "readonly", ""], ["type", "number", "formControlName", "otherIncome"], ["type", "number", "formControlName", "deductions"], ["type", "number", "formControlName", "extraWithholding"], ["type", "text", "formControlName", "employeeSignature"], ["type", "date", "formControlName", "signatureDate"], [1, "section", "employers-section"], ["type", "text", "formControlName", "employerName"], ["type", "text", "formControlName", "employerAddress"], ["type", "date", "formControlName", "firstDateEmployment"], ["type", "text", "formControlName", "employerEIN"], [1, "button-group"], ["type", "submit"], ["type", "reset"]],
+      template: function W4FormComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "form", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngSubmit", function W4FormComponent_Template_form_ngSubmit_0_listener() {
+            return ctx.onSubmit();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1)(2, "h2");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Employee's Withholding Certificate");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "p");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Complete Form W-4 so that your employer can withhold the correct federal income tax from your pay.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "div", 2)(7, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "Step 1: Enter Personal Information");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 3)(10, "div", 4)(11, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "First name and middle initial");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](13, "div", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](14, "input", 6)(15, "input", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](16, "div", 4)(17, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](18, "Last name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](19, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](20, "div", 4)(21, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](22, "Social security number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](23, "input", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](24, "div", 3)(25, "div", 10)(26, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](27, "Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](28, "input", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](29, "div", 3)(30, "div", 10)(31, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](32, "City or town, state, and ZIP code");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](33, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](34, "div", 13)(35, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](36, "Filing Status:");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](37, "div", 14)(38, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](39, "input", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](40, " Single or Married filing separately ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](41, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](42, "input", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](43, " Married filing jointly ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](44, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](45, "input", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](46, " Head of household ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](47, "div", 2)(48, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](49, "Step 2: Multiple Jobs or Spouse Works");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](50, "div", 18)(51, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](52, "input", 19);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](53, " Check here if you have multiple jobs or spouse works ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](54, "div", 2)(55, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](56, "Step 3: Claim Dependents");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](57, "div", 3)(58, "div", 4)(59, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](60, "Multiply the number of qualifying children under age 17 by $2,000");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](61, "div", 20)(62, "span", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](63, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](64, "input", 22);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function W4FormComponent_Template_input_change_64_listener() {
+            return ctx.calculateDependents();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](65, "div", 3)(66, "div", 4)(67, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](68, "Multiply the number of other dependents by $500");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](69, "div", 20)(70, "span", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](71, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](72, "input", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function W4FormComponent_Template_input_change_72_listener() {
+            return ctx.calculateDependents();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](73, "div", 3)(74, "div", 4)(75, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](76, "Total amount");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](77, "div", 20)(78, "span", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](79, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](80, "input", 24);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](81, "div", 2)(82, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](83, "Step 4 (optional): Other Adjustments");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](84, "div", 3)(85, "div", 4)(86, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](87, "(a) Other income");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](88, "div", 20)(89, "span", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](90, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](91, "input", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](92, "div", 3)(93, "div", 4)(94, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](95, "(b) Deductions");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](96, "div", 20)(97, "span", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](98, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](99, "input", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](100, "div", 3)(101, "div", 4)(102, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](103, "(c) Extra withholding");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](104, "div", 20)(105, "span", 21);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](106, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](107, "input", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](108, "div", 2)(109, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](110, "Step 5: Sign Here");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](111, "div", 3)(112, "div", 4)(113, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](114, "Employee's signature");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](115, "input", 28);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](116, "div", 4)(117, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](118, "Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](119, "input", 29);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](120, "div", 30)(121, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](122, "Employers Only");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](123, "div", 3)(124, "div", 4)(125, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](126, "Employer's name and address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](127, "input", 31)(128, "input", 32);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](129, "div", 4)(130, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](131, "First date of employment");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](132, "input", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](133, "div", 4)(134, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](135, "Employer identification number (EIN)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](136, "input", 34);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](137, "div", 35)(138, "button", 36);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](139, "Submit Form");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](140, "button", 37);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](141, "Reset Form");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+        }
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("formGroup", ctx.w4Form);
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.CheckboxControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.RadioControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.FormControlName],
+      styles: [".w4-form[_ngcontent-%COMP%] {\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #fff;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n  }\n  \n  .form-header[_ngcontent-%COMP%] {\n    text-align: center;\n    margin-bottom: 30px;\n    padding-bottom: 20px;\n    border-bottom: 2px solid #333;\n  }\n  \n  .form-header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n    margin-bottom: 10px;\n  }\n  \n  .section[_ngcontent-%COMP%] {\n    margin-bottom: 30px;\n    padding: 20px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n  }\n  \n  .section[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n    margin-bottom: 20px;\n    color: #333;\n    font-size: 1.1em;\n    font-weight: bold;\n  }\n  \n  .form-row[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 20px;\n    margin-bottom: 15px;\n    flex-wrap: wrap;\n  }\n  \n  .form-group[_ngcontent-%COMP%] {\n    flex: 1 1 200px;\n  }\n  \n  .form-group.full-width[_ngcontent-%COMP%] {\n    flex: 1 1 100%;\n  }\n  \n  .name-group[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 10px;\n  }\n  \n  .middle-initial[_ngcontent-%COMP%] {\n    width: 50px !important;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: block;\n    margin-bottom: 5px;\n    font-weight: bold;\n    font-size: 0.9em;\n    color: #444;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n    width: 100%;\n    padding: 8px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n    font-size: 1em;\n  }\n  \n  .input-group[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n  }\n  \n  .currency[_ngcontent-%COMP%] {\n    padding: 8px;\n    background-color: #f5f5f5;\n    border: 1px solid #ddd;\n    border-right: none;\n    border-radius: 4px 0 0 4px;\n  }\n  \n  .input-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n    border-left: none;\n    border-radius: 0 4px 4px 0;\n  }\n  \n  .radio-group[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-top: 10px;\n  }\n  \n  .radio-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    font-weight: normal;\n    cursor: pointer;\n  }\n  \n  .radio-group[_ngcontent-%COMP%]   input[type=\"radio\"][_ngcontent-%COMP%] {\n    width: auto;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    cursor: pointer;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%]   input[type=\"checkbox\"][_ngcontent-%COMP%] {\n    width: auto;\n  }\n  \n  .employers-section[_ngcontent-%COMP%] {\n    background-color: #f9f9f9;\n  }\n  \n  .button-group[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 15px;\n    justify-content: flex-end;\n    margin-top: 20px;\n  }\n  \n  button[_ngcontent-%COMP%] {\n    padding: 10px 20px;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    font-weight: bold;\n    transition: background-color 0.3s ease;\n  }\n  \n  button[type=\"submit\"][_ngcontent-%COMP%] {\n    background-color: #4CAF50;\n    color: white;\n  }\n  \n  button[type=\"reset\"][_ngcontent-%COMP%] {\n    background-color: #f44336;\n    color: white;\n  }\n  \n  button[_ngcontent-%COMP%]:hover {\n    opacity: 0.9;\n  }\n  \n  \n\n  @media (max-width: 768px) {\n    .form-row[_ngcontent-%COMP%] {\n      flex-direction: column;\n      gap: 10px;\n    }\n    \n    .form-group[_ngcontent-%COMP%] {\n      min-width: 100%;\n    }\n  }\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy93NC1mb3JtL3c0LWZvcm0uY29tcG9uZW50LmNzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtJQUNJLGdCQUFnQjtJQUNoQixpQkFBaUI7SUFDakIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixvQ0FBb0M7RUFDdEM7O0VBRUE7SUFDRSxrQkFBa0I7SUFDbEIsbUJBQW1CO0lBQ25CLG9CQUFvQjtJQUNwQiw2QkFBNkI7RUFDL0I7O0VBRUE7SUFDRSxtQkFBbUI7RUFDckI7O0VBRUE7SUFDRSxtQkFBbUI7SUFDbkIsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixrQkFBa0I7RUFDcEI7O0VBRUE7SUFDRSxtQkFBbUI7SUFDbkIsV0FBVztJQUNYLGdCQUFnQjtJQUNoQixpQkFBaUI7RUFDbkI7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsU0FBUztJQUNULG1CQUFtQjtJQUNuQixlQUFlO0VBQ2pCOztFQUVBO0lBQ0UsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLGNBQWM7RUFDaEI7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsU0FBUztFQUNYOztFQUVBO0lBQ0Usc0JBQXNCO0VBQ3hCOztFQUVBO0lBQ0UsY0FBYztJQUNkLGtCQUFrQjtJQUNsQixpQkFBaUI7SUFDakIsZ0JBQWdCO0lBQ2hCLFdBQVc7RUFDYjs7RUFFQTtJQUNFLFdBQVc7SUFDWCxZQUFZO0lBQ1osc0JBQXNCO0lBQ3RCLGtCQUFrQjtJQUNsQixjQUFjO0VBQ2hCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLFlBQVk7SUFDWix5QkFBeUI7SUFDekIsc0JBQXNCO0lBQ3RCLGtCQUFrQjtJQUNsQiwwQkFBMEI7RUFDNUI7O0VBRUE7SUFDRSxpQkFBaUI7SUFDakIsMEJBQTBCO0VBQzVCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLHNCQUFzQjtJQUN0QixTQUFTO0lBQ1QsZ0JBQWdCO0VBQ2xCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLG1CQUFtQjtJQUNuQixTQUFTO0lBQ1QsbUJBQW1CO0lBQ25CLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxXQUFXO0VBQ2I7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLFNBQVM7SUFDVCxlQUFlO0VBQ2pCOztFQUVBO0lBQ0UsV0FBVztFQUNiOztFQUVBO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLFNBQVM7SUFDVCx5QkFBeUI7SUFDekIsZ0JBQWdCO0VBQ2xCOztFQUVBO0lBQ0Usa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixzQ0FBc0M7RUFDeEM7O0VBRUE7SUFDRSx5QkFBeUI7SUFDekIsWUFBWTtFQUNkOztFQUVBO0lBQ0UseUJBQXlCO0lBQ3pCLFlBQVk7RUFDZDs7RUFFQTtJQUNFLFlBQVk7RUFDZDs7RUFFQSwyQkFBMkI7RUFDM0I7SUFDRTtNQUNFLHNCQUFzQjtNQUN0QixTQUFTO0lBQ1g7O0lBRUE7TUFDRSxlQUFlO0lBQ2pCO0VBQ0YiLCJzb3VyY2VzQ29udGVudCI6WyIudzQtZm9ybSB7XG4gICAgbWF4LXdpZHRoOiA4MDBweDtcbiAgICBtYXJnaW46IDIwcHggYXV0bztcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmZmY7XG4gICAgYm94LXNoYWRvdzogMCAwIDEwcHggcmdiYSgwLDAsMCwwLjEpO1xuICB9XG4gIFxuICAuZm9ybS1oZWFkZXIge1xuICAgIHRleHQtYWxpZ246IGNlbnRlcjtcbiAgICBtYXJnaW4tYm90dG9tOiAzMHB4O1xuICAgIHBhZGRpbmctYm90dG9tOiAyMHB4O1xuICAgIGJvcmRlci1ib3R0b206IDJweCBzb2xpZCAjMzMzO1xuICB9XG4gIFxuICAuZm9ybS1oZWFkZXIgaDIge1xuICAgIG1hcmdpbi1ib3R0b206IDEwcHg7XG4gIH1cbiAgXG4gIC5zZWN0aW9uIHtcbiAgICBtYXJnaW4tYm90dG9tOiAzMHB4O1xuICAgIHBhZGRpbmc6IDIwcHg7XG4gICAgYm9yZGVyOiAxcHggc29saWQgI2RkZDtcbiAgICBib3JkZXItcmFkaXVzOiA0cHg7XG4gIH1cbiAgXG4gIC5zZWN0aW9uIGgzIHtcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICAgIGNvbG9yOiAjMzMzO1xuICAgIGZvbnQtc2l6ZTogMS4xZW07XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gIH1cbiAgXG4gIC5mb3JtLXJvdyB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBnYXA6IDIwcHg7XG4gICAgbWFyZ2luLWJvdHRvbTogMTVweDtcbiAgICBmbGV4LXdyYXA6IHdyYXA7XG4gIH1cbiAgXG4gIC5mb3JtLWdyb3VwIHtcbiAgICBmbGV4OiAxIDEgMjAwcHg7XG4gIH1cbiAgXG4gIC5mb3JtLWdyb3VwLmZ1bGwtd2lkdGgge1xuICAgIGZsZXg6IDEgMSAxMDAlO1xuICB9XG4gIFxuICAubmFtZS1ncm91cCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBnYXA6IDEwcHg7XG4gIH1cbiAgXG4gIC5taWRkbGUtaW5pdGlhbCB7XG4gICAgd2lkdGg6IDUwcHggIWltcG9ydGFudDtcbiAgfVxuICBcbiAgLmZvcm0tZ3JvdXAgbGFiZWwge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIG1hcmdpbi1ib3R0b206IDVweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBmb250LXNpemU6IDAuOWVtO1xuICAgIGNvbG9yOiAjNDQ0O1xuICB9XG4gIFxuICAuZm9ybS1ncm91cCBpbnB1dCB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIGZvbnQtc2l6ZTogMWVtO1xuICB9XG4gIFxuICAuaW5wdXQtZ3JvdXAge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgfVxuICBcbiAgLmN1cnJlbmN5IHtcbiAgICBwYWRkaW5nOiA4cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y1ZjVmNTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xuICAgIGJvcmRlci1yaWdodDogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiA0cHggMCAwIDRweDtcbiAgfVxuICBcbiAgLmlucHV0LWdyb3VwIGlucHV0IHtcbiAgICBib3JkZXItbGVmdDogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiAwIDRweCA0cHggMDtcbiAgfVxuICBcbiAgLnJhZGlvLWdyb3VwIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgZ2FwOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG4gIH1cbiAgXG4gIC5yYWRpby1ncm91cCBsYWJlbCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGdhcDogMTBweDtcbiAgICBmb250LXdlaWdodDogbm9ybWFsO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICBcbiAgLnJhZGlvLWdyb3VwIGlucHV0W3R5cGU9XCJyYWRpb1wiXSB7XG4gICAgd2lkdGg6IGF1dG87XG4gIH1cbiAgXG4gIC5jaGVja2JveC1ncm91cCBsYWJlbCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGdhcDogMTBweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gIH1cbiAgXG4gIC5jaGVja2JveC1ncm91cCBpbnB1dFt0eXBlPVwiY2hlY2tib3hcIl0ge1xuICAgIHdpZHRoOiBhdXRvO1xuICB9XG4gIFxuICAuZW1wbG95ZXJzLXNlY3Rpb24ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmOWY5Zjk7XG4gIH1cbiAgXG4gIC5idXR0b24tZ3JvdXAge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZ2FwOiAxNXB4O1xuICAgIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG4gICAgbWFyZ2luLXRvcDogMjBweDtcbiAgfVxuICBcbiAgYnV0dG9uIHtcbiAgICBwYWRkaW5nOiAxMHB4IDIwcHg7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2U7XG4gIH1cbiAgXG4gIGJ1dHRvblt0eXBlPVwic3VibWl0XCJdIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNENBRjUwO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgfVxuICBcbiAgYnV0dG9uW3R5cGU9XCJyZXNldFwiXSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y0NDMzNjtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH1cbiAgXG4gIGJ1dHRvbjpob3ZlciB7XG4gICAgb3BhY2l0eTogMC45O1xuICB9XG4gIFxuICAvKiBSZXNwb25zaXZlIGFkanVzdG1lbnRzICovXG4gIEBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkge1xuICAgIC5mb3JtLXJvdyB7XG4gICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgICAgZ2FwOiAxMHB4O1xuICAgIH1cbiAgICBcbiAgICAuZm9ybS1ncm91cCB7XG4gICAgICBtaW4td2lkdGg6IDEwMCU7XG4gICAgfVxuICB9Il0sInNvdXJjZVJvb3QiOiIifQ== */"]
+    });
+  }
+}
+
+/***/ }),
+
+/***/ 849:
+/*!*****************************************************************!*\
+  !*** ./src/app/components/withholding/withholding.component.ts ***!
+  \*****************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   WithholdingComponent: () => (/* binding */ WithholdingComponent)
+/* harmony export */ });
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @angular/forms */ 4456);
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ 316);
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ 7580);
+
+
+
+
+
+class WithholdingComponent {
+  constructor(fb) {
+    this.fb = fb;
+    this.withholdingForm = this.fb.group({
+      // Personal Information
+      fullName: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      socialSecurity: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      address: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      city: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      state: ['CA', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      zipCode: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      // Filing Status
+      filingStatus: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      // Allowances
+      regularAllowances: ['0'],
+      estimatedDeductions: ['0'],
+      totalAllowances: ['0'],
+      // Additional Withholding
+      additionalAmount: [''],
+      // Exemption Options
+      exemptionClaim: [false],
+      militaryExemption: [false],
+      // Signature
+      employeeSignature: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      signatureDate: ['', _angular_forms__WEBPACK_IMPORTED_MODULE_0__.Validators.required],
+      // Employer Section
+      employerName: [''],
+      employerAddress: [''],
+      payrollTaxNumber: ['']
+    });
+  }
+  ngOnInit() {
+    // Set default date
+    const today = new Date().toISOString().split('T')[0];
+    this.withholdingForm.patchValue({
+      signatureDate: today
+    });
+  }
+  calculateTotalAllowances() {
+    const regular = Number(this.withholdingForm.get('regularAllowances')?.value || 0);
+    const estimated = Number(this.withholdingForm.get('estimatedDeductions')?.value || 0);
+    const total = regular + estimated;
+    this.withholdingForm.patchValue({
+      totalAllowances: total
+    });
+  }
+  onSubmit() {
+    if (this.withholdingForm.valid) {
+      console.log(this.withholdingForm.value);
+    } else {
+      Object.keys(this.withholdingForm.controls).forEach(key => {
+        const control = this.withholdingForm.get(key);
+        if (control?.invalid) {
+          control.markAsTouched();
+        }
+      });
+    }
+  }
+  static {
+    this.ɵfac = function WithholdingComponent_Factory(__ngFactoryType__) {
+      return new (__ngFactoryType__ || WithholdingComponent)(_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdirectiveInject"](_angular_forms__WEBPACK_IMPORTED_MODULE_0__.FormBuilder));
+    };
+  }
+  static {
+    this.ɵcmp = /*@__PURE__*/_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵdefineComponent"]({
+      type: WithholdingComponent,
+      selectors: [["app-withholding"]],
+      standalone: true,
+      features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
+      decls: 116,
+      vars: 1,
+      consts: [[1, "withholding-form", 3, "ngSubmit", "formGroup"], [1, "form-header"], [1, "section"], [1, "form-row"], [1, "form-group", "full-width"], ["type", "text", "formControlName", "fullName"], [1, "form-group"], ["type", "text", "formControlName", "socialSecurity"], ["type", "text", "formControlName", "address"], ["type", "text", "formControlName", "city"], [1, "form-group", "small"], ["type", "text", "formControlName", "state"], ["type", "text", "formControlName", "zipCode"], [1, "filing-status"], [1, "radio-group"], ["type", "radio", "formControlName", "filingStatus", "value", "single"], ["type", "radio", "formControlName", "filingStatus", "value", "married"], ["type", "radio", "formControlName", "filingStatus", "value", "head"], ["type", "number", "formControlName", "regularAllowances", 3, "change"], ["type", "number", "formControlName", "estimatedDeductions", 3, "change"], ["type", "number", "formControlName", "totalAllowances", "readonly", ""], [1, "input-group"], [1, "currency"], ["type", "number", "formControlName", "additionalAmount"], [1, "checkbox-group"], ["type", "checkbox", "formControlName", "exemptionClaim"], ["type", "checkbox", "formControlName", "militaryExemption"], [1, "certification-text"], ["type", "text", "formControlName", "employeeSignature"], ["type", "date", "formControlName", "signatureDate"], [1, "section", "employer-section"], ["type", "text", "formControlName", "employerName"], ["type", "text", "formControlName", "employerAddress"], ["type", "text", "formControlName", "payrollTaxNumber"], [1, "button-group"], ["type", "submit"], ["type", "reset"]],
+      template: function WithholdingComponent_Template(rf, ctx) {
+        if (rf & 1) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "form", 0);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("ngSubmit", function WithholdingComponent_Template_form_ngSubmit_0_listener() {
+            return ctx.onSubmit();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](1, "div", 1)(2, "h2");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](3, "Employee's Withholding Allowance Certificate");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](4, "p");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](5, "Complete this form so that your employer can withhold the correct California state income tax from your pay.");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](6, "div", 2)(7, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](8, "Personal Information");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](9, "div", 3)(10, "div", 4)(11, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](12, "First, Middle, Last Name");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](13, "input", 5);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](14, "div", 3)(15, "div", 6)(16, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](17, "Social Security Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](18, "input", 7);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](19, "div", 3)(20, "div", 4)(21, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](22, "Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](23, "input", 8);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](24, "div", 3)(25, "div", 6)(26, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](27, "City");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](28, "input", 9);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](29, "div", 10)(30, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](31, "State");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](32, "input", 11);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](33, "div", 10)(34, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](35, "ZIP Code");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](36, "input", 12);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](37, "div", 13)(38, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](39, "Filing Status");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](40, "div", 14)(41, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](42, "input", 15);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](43, " Single or Married (with two or more incomes) ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](44, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](45, "input", 16);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](46, " Married (one income) ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](47, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](48, "input", 17);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](49, " Head of Household ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](50, "div", 2)(51, "div", 3)(52, "div", 6)(53, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](54, "1a. Number of Regular Withholding Allowances (Worksheet A)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](55, "input", 18);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function WithholdingComponent_Template_input_change_55_listener() {
+            return ctx.calculateTotalAllowances();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](56, "div", 3)(57, "div", 6)(58, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](59, "1b. Number of allowances from Estimated Deductions (Worksheet B)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](60, "input", 19);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵlistener"]("change", function WithholdingComponent_Template_input_change_60_listener() {
+            return ctx.calculateTotalAllowances();
+          });
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](61, "div", 3)(62, "div", 6)(63, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](64, "1c. Total Number of Allowances you are claiming");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](65, "input", 20);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](66, "div", 2)(67, "div", 3)(68, "div", 6)(69, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](70, "2. Additional amount you want withheld each pay period (if employer agrees)");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](71, "div", 21)(72, "span", 22);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](73, "$");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](74, "input", 23);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](75, "div", 2)(76, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](77, "Exemption from Withholding");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](78, "div", 24)(79, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](80, "input", 25);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](81, " 3. I claim exemption from withholding for 2025, and I certify I meet both conditions for exemption. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](82, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](83, "input", 26);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](84, " 4. I certify under penalty of perjury that I am not subject to California withholding under the Service Member Civil Relief Act. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](85, "div", 2)(86, "div", 27);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](87, " Under penalty of perjury, I certify that the number of withholding allowances claimed on this certificate does not exceed the number to which I am entitled or, if claiming exemption from withholding, that I am entitled to claim the exempt status. ");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](88, "div", 3)(89, "div", 6)(90, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](91, "Employee's Signature");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](92, "input", 28);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](93, "div", 6)(94, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](95, "Date");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](96, "input", 29);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](97, "div", 30)(98, "h3");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](99, "Employer's Section");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](100, "div", 3)(101, "div", 4)(102, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](103, "Employer's Name and Address");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](104, "input", 31)(105, "input", 32);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](106, "div", 3)(107, "div", 6)(108, "label");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](109, "California Employer Payroll Tax Account Number");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelement"](110, "input", 33);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](111, "div", 34)(112, "button", 35);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](113, "Submit Form");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]();
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](114, "button", 36);
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵtext"](115, "Reset Form");
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementEnd"]()()();
+        }
+        if (rf & 2) {
+          _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵproperty"]("formGroup", ctx.withholdingForm);
+        }
+      },
+      dependencies: [_angular_common__WEBPACK_IMPORTED_MODULE_2__.CommonModule, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.ReactiveFormsModule, _angular_forms__WEBPACK_IMPORTED_MODULE_0__["ɵNgNoValidate"], _angular_forms__WEBPACK_IMPORTED_MODULE_0__.DefaultValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.NumberValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.CheckboxControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.RadioControlValueAccessor, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.NgControlStatus, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.NgControlStatusGroup, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.FormGroupDirective, _angular_forms__WEBPACK_IMPORTED_MODULE_0__.FormControlName],
+      styles: [".withholding-form[_ngcontent-%COMP%] {\n    max-width: 800px;\n    margin: 20px auto;\n    padding: 20px;\n    background-color: #fff;\n    box-shadow: 0 0 10px rgba(0,0,0,0.1);\n  }\n  \n  .form-header[_ngcontent-%COMP%] {\n    text-align: center;\n    margin-bottom: 30px;\n    padding-bottom: 20px;\n    border-bottom: 2px solid #333;\n  }\n  \n  .form-header[_ngcontent-%COMP%]   h2[_ngcontent-%COMP%] {\n    margin-bottom: 10px;\n  }\n  \n  .section[_ngcontent-%COMP%] {\n    margin-bottom: 30px;\n    padding: 20px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n  }\n  \n  .section[_ngcontent-%COMP%]   h3[_ngcontent-%COMP%] {\n    margin-bottom: 20px;\n    color: #333;\n    font-size: 1.1em;\n    font-weight: bold;\n  }\n  \n  .form-row[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 20px;\n    margin-bottom: 15px;\n    flex-wrap: wrap;\n  }\n  \n  .form-group[_ngcontent-%COMP%] {\n    flex: 1 1 200px;\n  }\n  \n  .form-group.small[_ngcontent-%COMP%] {\n    flex: 0 1 100px;\n  }\n  \n  .form-group.full-width[_ngcontent-%COMP%] {\n    flex: 1 1 100%;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: block;\n    margin-bottom: 5px;\n    font-weight: bold;\n    font-size: 0.9em;\n    color: #444;\n  }\n  \n  .form-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n    width: 100%;\n    padding: 8px;\n    border: 1px solid #ddd;\n    border-radius: 4px;\n    font-size: 1em;\n  }\n  \n  .input-group[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n  }\n  \n  .currency[_ngcontent-%COMP%] {\n    padding: 8px;\n    background-color: #f5f5f5;\n    border: 1px solid #ddd;\n    border-right: none;\n    border-radius: 4px 0 0 4px;\n  }\n  \n  .input-group[_ngcontent-%COMP%]   input[_ngcontent-%COMP%] {\n    border-left: none;\n    border-radius: 0 4px 4px 0;\n  }\n  \n  .radio-group[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    gap: 10px;\n    margin-top: 10px;\n  }\n  \n  .radio-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: center;\n    gap: 10px;\n    font-weight: normal;\n    cursor: pointer;\n  }\n  \n  .radio-group[_ngcontent-%COMP%]   input[type=\"radio\"][_ngcontent-%COMP%] {\n    width: auto;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%] {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n    margin-top: 10px;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%]   label[_ngcontent-%COMP%] {\n    display: flex;\n    align-items: flex-start;\n    gap: 10px;\n    cursor: pointer;\n  }\n  \n  .checkbox-group[_ngcontent-%COMP%]   input[type=\"checkbox\"][_ngcontent-%COMP%] {\n    width: auto;\n    margin-top: 3px;\n  }\n  \n  .certification-text[_ngcontent-%COMP%] {\n    margin-bottom: 20px;\n    font-style: italic;\n    color: #666;\n  }\n  \n  .employer-section[_ngcontent-%COMP%] {\n    background-color: #f9f9f9;\n  }\n  \n  .button-group[_ngcontent-%COMP%] {\n    display: flex;\n    gap: 15px;\n    justify-content: flex-end;\n    margin-top: 20px;\n  }\n  \n  button[_ngcontent-%COMP%] {\n    padding: 10px 20px;\n    border: none;\n    border-radius: 4px;\n    cursor: pointer;\n    font-weight: bold;\n    transition: background-color 0.3s ease;\n  }\n  \n  button[type=\"submit\"][_ngcontent-%COMP%] {\n    background-color: #4CAF50;\n    color: white;\n  }\n  \n  button[type=\"reset\"][_ngcontent-%COMP%] {\n    background-color: #f44336;\n    color: white;\n  }\n  \n  button[_ngcontent-%COMP%]:hover {\n    opacity: 0.9;\n  }\n  \n  \n\n  @media (max-width: 768px) {\n    .form-row[_ngcontent-%COMP%] {\n      flex-direction: column;\n      gap: 10px;\n    }\n    \n    .form-group[_ngcontent-%COMP%] {\n      min-width: 100%;\n    }\n    \n    .form-group.small[_ngcontent-%COMP%] {\n      min-width: 100%;\n    }\n  }\n/*# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8uL3NyYy9hcHAvY29tcG9uZW50cy93aXRoaG9sZGluZy93aXRoaG9sZGluZy5jb21wb25lbnQuY3NzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBO0lBQ0ksZ0JBQWdCO0lBQ2hCLGlCQUFpQjtJQUNqQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLG9DQUFvQztFQUN0Qzs7RUFFQTtJQUNFLGtCQUFrQjtJQUNsQixtQkFBbUI7SUFDbkIsb0JBQW9CO0lBQ3BCLDZCQUE2QjtFQUMvQjs7RUFFQTtJQUNFLG1CQUFtQjtFQUNyQjs7RUFFQTtJQUNFLG1CQUFtQjtJQUNuQixhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLGtCQUFrQjtFQUNwQjs7RUFFQTtJQUNFLG1CQUFtQjtJQUNuQixXQUFXO0lBQ1gsZ0JBQWdCO0lBQ2hCLGlCQUFpQjtFQUNuQjs7RUFFQTtJQUNFLGFBQWE7SUFDYixTQUFTO0lBQ1QsbUJBQW1CO0lBQ25CLGVBQWU7RUFDakI7O0VBRUE7SUFDRSxlQUFlO0VBQ2pCOztFQUVBO0lBQ0UsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLGNBQWM7RUFDaEI7O0VBRUE7SUFDRSxjQUFjO0lBQ2Qsa0JBQWtCO0lBQ2xCLGlCQUFpQjtJQUNqQixnQkFBZ0I7SUFDaEIsV0FBVztFQUNiOztFQUVBO0lBQ0UsV0FBVztJQUNYLFlBQVk7SUFDWixzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLGNBQWM7RUFDaEI7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsbUJBQW1CO0VBQ3JCOztFQUVBO0lBQ0UsWUFBWTtJQUNaLHlCQUF5QjtJQUN6QixzQkFBc0I7SUFDdEIsa0JBQWtCO0lBQ2xCLDBCQUEwQjtFQUM1Qjs7RUFFQTtJQUNFLGlCQUFpQjtJQUNqQiwwQkFBMEI7RUFDNUI7O0VBRUE7SUFDRSxhQUFhO0lBQ2Isc0JBQXNCO0lBQ3RCLFNBQVM7SUFDVCxnQkFBZ0I7RUFDbEI7O0VBRUE7SUFDRSxhQUFhO0lBQ2IsbUJBQW1CO0lBQ25CLFNBQVM7SUFDVCxtQkFBbUI7SUFDbkIsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLFdBQVc7RUFDYjs7RUFFQTtJQUNFLGFBQWE7SUFDYixzQkFBc0I7SUFDdEIsU0FBUztJQUNULGdCQUFnQjtFQUNsQjs7RUFFQTtJQUNFLGFBQWE7SUFDYix1QkFBdUI7SUFDdkIsU0FBUztJQUNULGVBQWU7RUFDakI7O0VBRUE7SUFDRSxXQUFXO0lBQ1gsZUFBZTtFQUNqQjs7RUFFQTtJQUNFLG1CQUFtQjtJQUNuQixrQkFBa0I7SUFDbEIsV0FBVztFQUNiOztFQUVBO0lBQ0UseUJBQXlCO0VBQzNCOztFQUVBO0lBQ0UsYUFBYTtJQUNiLFNBQVM7SUFDVCx5QkFBeUI7SUFDekIsZ0JBQWdCO0VBQ2xCOztFQUVBO0lBQ0Usa0JBQWtCO0lBQ2xCLFlBQVk7SUFDWixrQkFBa0I7SUFDbEIsZUFBZTtJQUNmLGlCQUFpQjtJQUNqQixzQ0FBc0M7RUFDeEM7O0VBRUE7SUFDRSx5QkFBeUI7SUFDekIsWUFBWTtFQUNkOztFQUVBO0lBQ0UseUJBQXlCO0lBQ3pCLFlBQVk7RUFDZDs7RUFFQTtJQUNFLFlBQVk7RUFDZDs7RUFFQSwyQkFBMkI7RUFDM0I7SUFDRTtNQUNFLHNCQUFzQjtNQUN0QixTQUFTO0lBQ1g7O0lBRUE7TUFDRSxlQUFlO0lBQ2pCOztJQUVBO01BQ0UsZUFBZTtJQUNqQjtFQUNGIiwic291cmNlc0NvbnRlbnQiOlsiLndpdGhob2xkaW5nLWZvcm0ge1xuICAgIG1heC13aWR0aDogODAwcHg7XG4gICAgbWFyZ2luOiAyMHB4IGF1dG87XG4gICAgcGFkZGluZzogMjBweDtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjZmZmO1xuICAgIGJveC1zaGFkb3c6IDAgMCAxMHB4IHJnYmEoMCwwLDAsMC4xKTtcbiAgfVxuICBcbiAgLmZvcm0taGVhZGVyIHtcbiAgICB0ZXh0LWFsaWduOiBjZW50ZXI7XG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgICBwYWRkaW5nLWJvdHRvbTogMjBweDtcbiAgICBib3JkZXItYm90dG9tOiAycHggc29saWQgIzMzMztcbiAgfVxuICBcbiAgLmZvcm0taGVhZGVyIGgyIHtcbiAgICBtYXJnaW4tYm90dG9tOiAxMHB4O1xuICB9XG4gIFxuICAuc2VjdGlvbiB7XG4gICAgbWFyZ2luLWJvdHRvbTogMzBweDtcbiAgICBwYWRkaW5nOiAyMHB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICB9XG4gIFxuICAuc2VjdGlvbiBoMyB7XG4gICAgbWFyZ2luLWJvdHRvbTogMjBweDtcbiAgICBjb2xvcjogIzMzMztcbiAgICBmb250LXNpemU6IDEuMWVtO1xuICAgIGZvbnQtd2VpZ2h0OiBib2xkO1xuICB9XG4gIFxuICAuZm9ybS1yb3cge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZ2FwOiAyMHB4O1xuICAgIG1hcmdpbi1ib3R0b206IDE1cHg7XG4gICAgZmxleC13cmFwOiB3cmFwO1xuICB9XG4gIFxuICAuZm9ybS1ncm91cCB7XG4gICAgZmxleDogMSAxIDIwMHB4O1xuICB9XG4gIFxuICAuZm9ybS1ncm91cC5zbWFsbCB7XG4gICAgZmxleDogMCAxIDEwMHB4O1xuICB9XG4gIFxuICAuZm9ybS1ncm91cC5mdWxsLXdpZHRoIHtcbiAgICBmbGV4OiAxIDEgMTAwJTtcbiAgfVxuICBcbiAgLmZvcm0tZ3JvdXAgbGFiZWwge1xuICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgIG1hcmdpbi1ib3R0b206IDVweDtcbiAgICBmb250LXdlaWdodDogYm9sZDtcbiAgICBmb250LXNpemU6IDAuOWVtO1xuICAgIGNvbG9yOiAjNDQ0O1xuICB9XG4gIFxuICAuZm9ybS1ncm91cCBpbnB1dCB7XG4gICAgd2lkdGg6IDEwMCU7XG4gICAgcGFkZGluZzogOHB4O1xuICAgIGJvcmRlcjogMXB4IHNvbGlkICNkZGQ7XG4gICAgYm9yZGVyLXJhZGl1czogNHB4O1xuICAgIGZvbnQtc2l6ZTogMWVtO1xuICB9XG4gIFxuICAuaW5wdXQtZ3JvdXAge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbiAgfVxuICBcbiAgLmN1cnJlbmN5IHtcbiAgICBwYWRkaW5nOiA4cHg7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y1ZjVmNTtcbiAgICBib3JkZXI6IDFweCBzb2xpZCAjZGRkO1xuICAgIGJvcmRlci1yaWdodDogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiA0cHggMCAwIDRweDtcbiAgfVxuICBcbiAgLmlucHV0LWdyb3VwIGlucHV0IHtcbiAgICBib3JkZXItbGVmdDogbm9uZTtcbiAgICBib3JkZXItcmFkaXVzOiAwIDRweCA0cHggMDtcbiAgfVxuICBcbiAgLnJhZGlvLWdyb3VwIHtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIGZsZXgtZGlyZWN0aW9uOiBjb2x1bW47XG4gICAgZ2FwOiAxMHB4O1xuICAgIG1hcmdpbi10b3A6IDEwcHg7XG4gIH1cbiAgXG4gIC5yYWRpby1ncm91cCBsYWJlbCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBhbGlnbi1pdGVtczogY2VudGVyO1xuICAgIGdhcDogMTBweDtcbiAgICBmb250LXdlaWdodDogbm9ybWFsO1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICBcbiAgLnJhZGlvLWdyb3VwIGlucHV0W3R5cGU9XCJyYWRpb1wiXSB7XG4gICAgd2lkdGg6IGF1dG87XG4gIH1cbiAgXG4gIC5jaGVja2JveC1ncm91cCB7XG4gICAgZGlzcGxheTogZmxleDtcbiAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgIGdhcDogMTVweDtcbiAgICBtYXJnaW4tdG9wOiAxMHB4O1xuICB9XG4gIFxuICAuY2hlY2tib3gtZ3JvdXAgbGFiZWwge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgYWxpZ24taXRlbXM6IGZsZXgtc3RhcnQ7XG4gICAgZ2FwOiAxMHB4O1xuICAgIGN1cnNvcjogcG9pbnRlcjtcbiAgfVxuICBcbiAgLmNoZWNrYm94LWdyb3VwIGlucHV0W3R5cGU9XCJjaGVja2JveFwiXSB7XG4gICAgd2lkdGg6IGF1dG87XG4gICAgbWFyZ2luLXRvcDogM3B4O1xuICB9XG4gIFxuICAuY2VydGlmaWNhdGlvbi10ZXh0IHtcbiAgICBtYXJnaW4tYm90dG9tOiAyMHB4O1xuICAgIGZvbnQtc3R5bGU6IGl0YWxpYztcbiAgICBjb2xvcjogIzY2NjtcbiAgfVxuICBcbiAgLmVtcGxveWVyLXNlY3Rpb24ge1xuICAgIGJhY2tncm91bmQtY29sb3I6ICNmOWY5Zjk7XG4gIH1cbiAgXG4gIC5idXR0b24tZ3JvdXAge1xuICAgIGRpc3BsYXk6IGZsZXg7XG4gICAgZ2FwOiAxNXB4O1xuICAgIGp1c3RpZnktY29udGVudDogZmxleC1lbmQ7XG4gICAgbWFyZ2luLXRvcDogMjBweDtcbiAgfVxuICBcbiAgYnV0dG9uIHtcbiAgICBwYWRkaW5nOiAxMHB4IDIwcHg7XG4gICAgYm9yZGVyOiBub25lO1xuICAgIGJvcmRlci1yYWRpdXM6IDRweDtcbiAgICBjdXJzb3I6IHBvaW50ZXI7XG4gICAgZm9udC13ZWlnaHQ6IGJvbGQ7XG4gICAgdHJhbnNpdGlvbjogYmFja2dyb3VuZC1jb2xvciAwLjNzIGVhc2U7XG4gIH1cbiAgXG4gIGJ1dHRvblt0eXBlPVwic3VibWl0XCJdIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiAjNENBRjUwO1xuICAgIGNvbG9yOiB3aGl0ZTtcbiAgfVxuICBcbiAgYnV0dG9uW3R5cGU9XCJyZXNldFwiXSB7XG4gICAgYmFja2dyb3VuZC1jb2xvcjogI2Y0NDMzNjtcbiAgICBjb2xvcjogd2hpdGU7XG4gIH1cbiAgXG4gIGJ1dHRvbjpob3ZlciB7XG4gICAgb3BhY2l0eTogMC45O1xuICB9XG4gIFxuICAvKiBSZXNwb25zaXZlIGFkanVzdG1lbnRzICovXG4gIEBtZWRpYSAobWF4LXdpZHRoOiA3NjhweCkge1xuICAgIC5mb3JtLXJvdyB7XG4gICAgICBmbGV4LWRpcmVjdGlvbjogY29sdW1uO1xuICAgICAgZ2FwOiAxMHB4O1xuICAgIH1cbiAgICBcbiAgICAuZm9ybS1ncm91cCB7XG4gICAgICBtaW4td2lkdGg6IDEwMCU7XG4gICAgfVxuICAgIFxuICAgIC5mb3JtLWdyb3VwLnNtYWxsIHtcbiAgICAgIG1pbi13aWR0aDogMTAwJTtcbiAgICB9XG4gIH0iXSwic291cmNlUm9vdCI6IiJ9 */"]
     });
   }
 }
