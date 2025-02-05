@@ -25,9 +25,9 @@ import { EmployeeApplicationComponent } from './components/employee-application/
 import { HireChecklistComponent } from './components/hire-checklist/hire-checklist.component';
 import { EmploymentVerificationComponent } from './components/employment-verification/employment-verification.component';
 import { WithholdingComponent } from './components/withholding/withholding.component';
-
-// Standalone component import
 import { W4FormComponent } from './components/w4-form/w4-form.component';
+import { AtWillEmploymentComponent } from './components/at-will-employment/at-will-employment.component';
+import { SelfIdentificationComponent } from './components/self-identification/self-identification.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -52,13 +52,10 @@ const routes: Routes = [
   { path: 'employee-application', component: EmployeeApplicationComponent, title: 'Employee Application', canActivate: [AuthGuard] },
   { path: 'new-hire-checklist', component: HireChecklistComponent, title: 'New Hire Checklist', canActivate: [AuthGuard] },
   { path: 'employment-verification', component: EmploymentVerificationComponent, title: 'Employment Verification', canActivate: [AuthGuard] },
-  { 
-    path: 'w4-form', 
-    component: W4FormComponent,
-    title: 'W4 Form', 
-    canActivate: [AuthGuard]
-  },
+  { path: 'w4-form', component: W4FormComponent, title: 'W4 Form', canActivate: [AuthGuard] },
   { path: 'withholding', component: WithholdingComponent, title: 'Withholding', canActivate: [AuthGuard] },
+  { path: 'at-will-employment', component: AtWillEmploymentComponent, title: 'At Will Employment', canActivate: [AuthGuard] },
+  { path: 'self-identification', component: SelfIdentificationComponent, title: 'Self Identification', canActivate: [AuthGuard] },
   
   { path: '**', redirectTo: 'login' },
 ];
