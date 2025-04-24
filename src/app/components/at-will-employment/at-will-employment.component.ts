@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   selector: 'app-at-will-employment',
   templateUrl: './at-will-employment.component.html',
-  styleUrls: ['./at-will-employment.component.scss'],
+  styleUrls: ['./at-will-employment.component.css'],
   imports: [CommonModule, ReactiveFormsModule]
 })
 export class AtWillEmploymentComponent implements OnInit {
