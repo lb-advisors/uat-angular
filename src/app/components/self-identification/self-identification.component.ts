@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   selector: 'app-self-identification',
   templateUrl: './self-identification.component.html',
-  styleUrls: ['./self-identification.component.scss'],
+  styleUrls: ['./self-identification.component.css'],
   imports: [CommonModule, ReactiveFormsModule]
 })
 export class SelfIdentificationComponent implements OnInit {
