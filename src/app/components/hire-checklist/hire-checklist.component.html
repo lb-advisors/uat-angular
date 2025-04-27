@@ -1,0 +1,189 @@
+<form [formGroup]="checklistForm" (ngSubmit)="onSubmit()" class="checklist-form">
+    <div class="header-info">
+      <div class="form-row">
+        <div class="form-group">
+          <label for="name">Name:</label>
+          <input type="text" id="name" formControlName="name">
+        </div>
+        <div class="form-group">
+          <label for="title">Title:</label>
+          <input type="text" id="title" formControlName="title">
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="department">Department:</label>
+          <input type="text" id="department" formControlName="department">
+        </div>
+      </div>
+    </div>
+  
+    <div class="section">
+      <h3>Forms Completed by Job Candidate for Employee File</h3>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="employmentApplication">
+          Employment application and resume (if any)
+        </label>
+        <label>
+          <input type="checkbox" formControlName="other1">
+          Other
+        </label>
+      </div>
+    </div>
+  
+    <div class="section">
+      <h3>New Employee to Complete New Hire Paperwork and Return to Accounting/HR</h3>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="w4Form">
+          W-4 Form (withholdings)
+        </label>
+        <label>
+          <input type="checkbox" formControlName="i9Form">
+          I-9 Form (employment eligibility verification to be completed no later than 3 days from hire date)
+        </label>
+        <label>
+          <input type="checkbox" formControlName="directDeposit">
+          Direct deposit authorization
+        </label>
+        <label>
+          <input type="checkbox" formControlName="statusChange">
+          Employee status change form and new employee information
+        </label>
+        <label>
+          <input type="checkbox" formControlName="handbookAcknowledgement">
+          Employee handbook acknowledgement & agreement
+        </label>
+        <label>
+          <input type="checkbox" formControlName="harassmentPolicy">
+          Acknowledgement of receipt of Company's policy against harassment
+        </label>
+        <label>
+          <input type="checkbox" formControlName="propertyReturn">
+          Employer property return agreement
+        </label>
+        <label>
+          <input type="checkbox" formControlName="wageProtection">
+          Ca. DLSE 2810.5 wage protection/disclosure form
+        </label>
+      </div>
+    </div>
+  
+    <div class="section">
+      <h3>New Employee Given New Hire Packet That Includes</h3>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="employeeHandbook">
+          Employee Handbook
+        </label>
+        <label>
+          <input type="checkbox" formControlName="jobDescription">
+          Job description
+        </label>
+        <label>
+          <input type="checkbox" formControlName="insuranceInfo">
+          Information on current group insurance plans
+        </label>
+        <label>
+          <input type="checkbox" formControlName="holidaySchedule">
+          Holiday schedule for current year
+        </label>
+        <label>
+          <input type="checkbox" formControlName="brochures">
+          Various brochures and pamphlets
+        </label>
+        <label>
+          <input type="checkbox" formControlName="harassmentPamphlet">
+          Sexual harassment pamphlet
+        </label>
+        <label>
+          <input type="checkbox" formControlName="workersComp">
+          California workers' compensation pamphlet
+        </label>
+        <label>
+          <input type="checkbox" formControlName="disabilityInfo">
+          EDD's State Disability Insurance and Paid Family Leave pamphlets
+        </label>
+        <label>
+          <input type="checkbox" formControlName="phoneList">
+          List of telephone extensions and e-mail addresses
+        </label>
+        <label>
+          <input type="checkbox" formControlName="other2">
+          Other
+        </label>
+      </div>
+    </div>
+  
+    <div class="section">
+      <h3>Manager to Discuss with New Employee</h3>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="companyHistory">
+          History, mission and purpose of the Company
+        </label>
+        <label>
+          <input type="checkbox" formControlName="orientationPeriod">
+          90-day new employee orientation period
+        </label>
+        <label>
+          <input type="checkbox" formControlName="departmentResponsibilities">
+          Department's responsibilities and assigned office/workstation
+        </label>
+        <label>
+          <input type="checkbox" formControlName="positionDuties">
+          The responsibilities and duties of the position
+        </label>
+        <label>
+          <input type="checkbox" formControlName="workHours">
+          Hours of work, rest breaks, lunch/meal period
+        </label>
+        <label>
+          <input type="checkbox" formControlName="attendance">
+          The importance of maintaining regular attendance
+        </label>
+        <label>
+          <input type="checkbox" formControlName="timeOffProcedure">
+          Proper procedure for requesting time off
+        </label>
+        <label>
+          <input type="checkbox" formControlName="timeRecords">
+          Instructions on completing time records
+        </label>
+        <label>
+          <input type="checkbox" formControlName="safetyRequirements">
+          Workplace safety and security requirements
+        </label>
+        <label>
+          <input type="checkbox" formControlName="dressCode">
+          Proper dress and grooming requirements
+        </label>
+        <label>
+          <input type="checkbox" formControlName="other3">
+          Other
+        </label>
+      </div>
+    </div>
+  
+    <div class="section acknowledgment-section">
+        <h3 class="acknowledgment-header">EMPLOYEE ACKNOWLEDGES RECEIPT OR DISCUSSION OF THE ABOVE ITEMS</h3>
+        <div class="form-row acknowledgment-row">
+          <div class="form-group">
+            <label for="employeeSignature">EMPLOYEE:</label>
+            <input type="text" id="employeeSignature" formControlName="employeeSignature" class="signature-input">
+          </div>
+          <div class="form-group">
+            <label for="signatureDate">DATE:</label>
+            <input type="date" id="signatureDate" formControlName="signatureDate" class="date-input">
+          </div>
+        </div>
+        <p class="acknowledgment-note">(Please return this form with completed new hire paperwork to Human Resources)</p>
+      </div>
+    
+      <div class="button-group">
+        <button type="submit">Submit</button>
+        <button type="reset">Reset</button>
+      </div>  
+    
+  </form>

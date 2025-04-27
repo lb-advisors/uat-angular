@@ -1,0 +1,59 @@
+<div class="form-container">
+    <div class="header">
+      <h1 class="company-name">Golden State Seafood Inc.</h1>
+      <div class="company-address">
+        <p>512 Stanford Ave., Los Angeles, CA 90013</p>
+        <p>Tel: (213) 688-7650; Fax (213) 688-7430</p>
+      </div>
+    </div>
+  
+    <h2 class="form-title">At-Will Employment Agreement</h2>
+  
+    <form [formGroup]="employmentForm" (ngSubmit)="onSubmit()">
+      <div class="form-content">
+        <div class="agreement-text">
+          <!-- Placeholder for agreement text -->
+          <p>Agreement text goes here...</p>
+        </div>
+  
+        <div class="signature-section">
+          <div class="signature-row">
+            <div class="signature-field">
+              <label>Date:</label>
+              <input type="text" formControlName="employeeDate">
+            </div>
+            <div class="signature-field">
+              <label>By:</label>
+              <input type="text" formControlName="employeeSignature">
+              <span class="signature-label">(Signature of Employee)</span>
+            </div>
+          </div>
+  
+          <div class="signature-row">
+            <div class="signature-field">
+              <label>Date:</label>
+              <input type="text" formControlName="employeeDate2">
+            </div>
+            <div class="signature-field">
+              <label>By:</label>
+              <input type="text" formControlName="employeeName">
+              <span class="signature-label">(Full Name of Employee)</span>
+            </div>
+          </div>
+  
+          <div class="signature-row">
+            <div class="signature-field">
+              <label>By:</label>
+              <input type="text" formControlName="companyRepSignature">
+              <span class="signature-label">(Golden State Seafood Representative)</span>
+            </div>
+            <div class="signature-field">
+              <label>By:</label>
+              <input type="text" formControlName="companyRepName">
+              <span class="signature-label">(Full Name of Golden State Seafood Representative)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>

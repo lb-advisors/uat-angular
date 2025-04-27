@@ -1,10 +1,33 @@
 <div class="page container">
   <div class="button-container">
     <button class="nav-button" (click)="navigateTo('products')">Products</button>
-    <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
-    <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
-    <button class="nav-button" (click)="navigateTo('preorder-links')">Preorders</button> <!-- New Button -->
+
+    <!-- Sales Section -->
+    <div class="sales-section">
+      <button class="nav-button" (click)="toggleSales()">Sales</button>
+      <div class="sales-dropdown" *ngIf="isSalesOpen">
+        <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
+        <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
+        <button class="nav-button" (click)="navigateTo('preorder-links')">Preorders</button>
+      </div>
+    </div>
+
     <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
+
+    <!-- HR Section -->
+    <div class="hr-section">
+      <button class="nav-button" (click)="toggleHR()">HR</button>
+      <div class="hr-dropdown" *ngIf="isHROpen">
+        <button class="nav-button" (click)="navigateTo('employee-application')">Employee Application</button>
+        <button class="nav-button" (click)="navigateTo('new-hire-checklist')">New Hire Check List</button>
+        <button class="nav-button" (click)="navigateTo('employment-verification')">Employment Verification</button>
+        <button class="nav-button" (click)="navigateTo('w4')">W4</button>
+        <button class="nav-button" (click)="navigateTo('withholding')">Withholding</button>
+        <button class="nav-button" (click)="navigateTo('at-will-employment')">At Will Employment</button>
+        <button class="nav-button" (click)="navigateTo('self-identification')">Self Identification</button>
+      </div>
+    </div>
+
     <button class="nav-button" (click)="navigateTo('reports')">Reports</button>
     <button class="nav-button logout-button" (click)="logout()">Logout</button>
   </div>

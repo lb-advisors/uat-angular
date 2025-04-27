@@ -2,21 +2,13 @@
   <div class="container">
     <!-- Logo Component with Navigation -->
     <a [routerLink]="['/home']">
-      <app-logo [companyId]="form.get('company')?.value?.id"></app-logo>
+      <app-logo></app-logo>
     </a>
 
     <h2 class="underlined">Customers</h2>
 
     <!-- Filters Section -->
     <div class="filters">
-      <!-- Company Filter -->
-      <div class="filter-group">
-        <label for="company-filter" class="filter-label">Company:</label>
-        <select id="company-filter" formControlName="company">
-          <option *ngFor="let company of companies$ | async" [ngValue]="company">{{ company.name }}</option>
-        </select>
-      </div>
-
       <!-- Sales Rep Filter -->
       <div class="filter-group">
         <label for="salesname-filter" class="filter-label">Sales Rep:</label>
@@ -36,6 +28,7 @@
     <table class="order-grid">
       <thead>
         <tr>
+          <th>Company</th>
           <th>Customer Name</th>
           <th>Order Form</th>
           <th>Copy Link</th>
@@ -43,6 +36,7 @@
       </thead>
       <tbody>
         <tr *ngFor="let customer of filteredCustomers;">
+          <td>{{ customer.companyName }}</td>
           <td>{{ customer.name }}</td>
           <td>
             <a [routerLink]="['/customer', customer.id, 'order-form']">Order Form</a>

@@ -1,0 +1,175 @@
+<form [formGroup]="w4Form" (ngSubmit)="onSubmit()" class="w4-form">
+    <div class="form-header">
+      <h2>Employee's Withholding Certificate</h2>
+      <p>Complete Form W-4 so that your employer can withhold the correct federal income tax from your pay.</p>
+    </div>
+  
+    <!-- Step 1: Personal Information -->
+    <div class="section">
+      <h3>Step 1: Enter Personal Information</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>First name and middle initial</label>
+          <div class="name-group">
+            <input type="text" formControlName="firstName" placeholder="First name">
+            <input type="text" formControlName="middleInitial" class="middle-initial" placeholder="MI">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Last name</label>
+          <input type="text" formControlName="lastName">
+        </div>
+        <div class="form-group">
+          <label>Social security number</label>
+          <input type="text" formControlName="socialSecurity">
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>Address</label>
+          <input type="text" formControlName="address">
+        </div>
+      </div>
+  
+      <div class="form-row">
+        <div class="form-group full-width">
+          <label>City or town, state, and ZIP code</label>
+          <input type="text" formControlName="cityStateZip">
+        </div>
+      </div>
+  
+      <div class="filing-status">
+        <label>Filing Status:</label>
+        <div class="radio-group">
+          <label>
+            <input type="radio" formControlName="filingStatus" value="single">
+            Single or Married filing separately
+          </label>
+          <label>
+            <input type="radio" formControlName="filingStatus" value="married">
+            Married filing jointly
+          </label>
+          <label>
+            <input type="radio" formControlName="filingStatus" value="head">
+            Head of household
+          </label>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Step 2: Multiple Jobs -->
+    <div class="section">
+      <h3>Step 2: Multiple Jobs or Spouse Works</h3>
+      <div class="checkbox-group">
+        <label>
+          <input type="checkbox" formControlName="multipleJobs">
+          Check here if you have multiple jobs or spouse works
+        </label>
+      </div>
+    </div>
+  
+    <!-- Step 3: Claim Dependents -->
+    <div class="section">
+      <h3>Step 3: Claim Dependents</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Multiply the number of qualifying children under age 17 by $2,000</label>
+          <div class="input-group">
+            <span class="currency">$</span>
+            <input type="number" formControlName="qualifyingChildren" (change)="calculateDependents()">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Multiply the number of other dependents by $500</label>
+          <div class="input-group">
+            <span class="currency">$</span>
+            <input type="number" formControlName="otherDependents" (change)="calculateDependents()">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Total amount</label>
+          <div class="input-group">
+            <span class="currency">$</span>
+            <input type="number" formControlName="totalDependents" readonly>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Step 4: Other Adjustments -->
+    <div class="section">
+      <h3>Step 4 (optional): Other Adjustments</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>(a) Other income</label>
+          <div class="input-group">
+            <span class="currency">$</span>
+            <input type="number" formControlName="otherIncome">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>(b) Deductions</label>
+          <div class="input-group">
+            <span class="currency">$</span>
+            <input type="number" formControlName="deductions">
+          </div>
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group">
+          <label>(c) Extra withholding</label>
+          <div class="input-group">
+            <span class="currency">$</span>
+            <input type="number" formControlName="extraWithholding">
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <!-- Step 5: Signature -->
+    <div class="section">
+      <h3>Step 5: Sign Here</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Employee's signature</label>
+          <input type="text" formControlName="employeeSignature">
+        </div>
+        <div class="form-group">
+          <label>Date</label>
+          <input type="date" formControlName="signatureDate">
+        </div>
+      </div>
+    </div>
+  
+    <!-- Employers Only Section -->
+    <div class="section employers-section">
+      <h3>Employers Only</h3>
+      <div class="form-row">
+        <div class="form-group">
+          <label>Employer's name and address</label>
+          <input type="text" formControlName="employerName">
+          <input type="text" formControlName="employerAddress">
+        </div>
+        <div class="form-group">
+          <label>First date of employment</label>
+          <input type="date" formControlName="firstDateEmployment">
+        </div>
+        <div class="form-group">
+          <label>Employer identification number (EIN)</label>
+          <input type="text" formControlName="employerEIN">
+        </div>
+      </div>
+    </div>
+  
+    <div class="button-group">
+      <button type="submit">Submit Form</button>
+      <button type="reset">Reset Form</button>
+    </div>
+  </form>
