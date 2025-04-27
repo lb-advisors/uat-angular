@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1738781252661,
+  "timestamp": 1745735741150,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -29,13 +29,14 @@
         "ignoreVary": true
       },
       "urls": [
+        "./assets/PFF.png",
         "./assets/fogriver.png",
         "./assets/fogriver2.png",
         "./assets/fogriver3.png",
         "./assets/goldenstateseafood.png",
         "./assets/gs.png",
         "./assets/logo.png",
-        "./assets/naturecure.png",
+        "./assets/native_cure.png",
         "./assets/smalllogo.png",
         "./public/icons/Backup/icon-128x128.png",
         "./public/icons/Backup/icon-144x144.png",
@@ -91,17 +92,18 @@
   ],
   "dataGroups": [],
   "hashTable": {
+    "./assets/PFF.png": "56a193f2944150ec852d683032b51822e9618d1e",
     "./assets/fogriver.png": "8031d94472a9b7720ed8568ace9e16f1c2c46fe4",
     "./assets/fogriver2.png": "0a61c8843fa23c58625340d4dc81a29f4a83785f",
     "./assets/fogriver3.png": "487df9f828821bf8c55481a06bdce774c15d9c08",
     "./assets/goldenstateseafood.png": "9ccfd6a267203721c340a134abad837ad73f20bb",
     "./assets/gs.png": "2675fec53ce45b49dba42ed8e3044773eebaaee1",
     "./assets/logo.png": "56a193f2944150ec852d683032b51822e9618d1e",
-    "./assets/naturecure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
+    "./assets/native_cure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
     "./assets/smalllogo.png": "9d977e9177b291588929cc7e1e341aea6abf77c7",
     "./favicon.ico": "9d6cadf65d2305f9978156de1fae0815f8387672",
     "./index.html": "e7b372e75c3c8ddb123a032b7008be0cc02ee55f",
-    "./main.js": "026519f83f2b03ea41dcb8d88e4d8a77c6b2008f",
+    "./main.js": "0b4485a7d09fece227b823f2b996373aea3ec46f",
     "./polyfills.js": "0752ffc70f6d061acb9ed665e2028904fb8b11be",
     "./public/icons/Backup/icon-128x128.png": "bfcb04534481cb1159f1442f32275072998abe7e",
     "./public/icons/Backup/icon-144x144.png": "e73f5f0f63e6a5cc9fb53cf64404a0e7981dfa45",
