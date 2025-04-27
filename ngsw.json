@@ -1,6 +1,6 @@
 {
   "configVersion": 1,
-  "timestamp": 1745735741150,
+  "timestamp": 1745736083332,
   "index": "./index.html",
   "assetGroups": [
     {
@@ -36,7 +36,7 @@
         "./assets/goldenstateseafood.png",
         "./assets/gs.png",
         "./assets/logo.png",
-        "./assets/native_cure.png",
+        "./assets/nativecure.png",
         "./assets/smalllogo.png",
         "./public/icons/Backup/icon-128x128.png",
         "./public/icons/Backup/icon-144x144.png",
@@ -99,7 +99,7 @@
     "./assets/goldenstateseafood.png": "9ccfd6a267203721c340a134abad837ad73f20bb",
     "./assets/gs.png": "2675fec53ce45b49dba42ed8e3044773eebaaee1",
     "./assets/logo.png": "56a193f2944150ec852d683032b51822e9618d1e",
-    "./assets/native_cure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
+    "./assets/nativecure.png": "a7f26a81ff8e4c489e3a65663032b6616849d84a",
     "./assets/smalllogo.png": "9d977e9177b291588929cc7e1e341aea6abf77c7",
     "./favicon.ico": "9d6cadf65d2305f9978156de1fae0815f8387672",
     "./index.html": "e7b372e75c3c8ddb123a032b7008be0cc02ee55f",
