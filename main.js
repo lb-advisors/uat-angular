@@ -3034,7 +3034,7 @@ class HomeComponent {
       features: [_angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵStandaloneFeature"]],
       decls: 25,
       vars: 3,
-      consts: [[1, "page", "container"], [1, "button-container"], [1, "nav-button", 3, "click"], [1, "sales-section"], ["class", "sales-dropdown", 4, "ngIf"], [1, "hr-section"], ["class", "hr-dropdown", 4, "ngIf"], [1, "nav-button", "logout-button", 3, "click"], [1, "button-container", "user-info"], [1, "image-grid"], ["src", "assets/goldenstateseafood.png", "alt", "GS Image", 1, "grid-image", "image1"], ["src", "assets/logo.png", "alt", "Logo Image", 1, "grid-image", "image2"], ["src", "assets/fogriver3.png", "alt", "Fog River Image", 1, "grid-image", "image3"], ["src", "assets/naturecure.png", "alt", "Nature Cure Image", 1, "grid-image", "image4"], [1, "sales-dropdown"], [1, "hr-dropdown"]],
+      consts: [[1, "page", "container"], [1, "button-container"], [1, "nav-button", 3, "click"], [1, "sales-section"], ["class", "sales-dropdown", 4, "ngIf"], [1, "hr-section"], ["class", "hr-dropdown", 4, "ngIf"], [1, "nav-button", "logout-button", 3, "click"], [1, "button-container", "user-info"], [1, "image-grid"], ["src", "assets/goldenstateseafood.png", "alt", "GS Image", 1, "grid-image", "image1"], ["src", "assets/logo.png", "alt", "Logo Image", 1, "grid-image", "image2"], ["src", "assets/fogriver3.png", "alt", "Fog River Image", 1, "grid-image", "image3"], ["src", "assets/nativecure.png", "alt", "Native Cure Image", 1, "grid-image", "image4"], [1, "sales-dropdown"], [1, "hr-dropdown"]],
       template: function HomeComponent_Template(rf, ctx) {
         if (rf & 1) {
           _angular_core__WEBPACK_IMPORTED_MODULE_1__["ɵɵelementStart"](0, "div", 0)(1, "div", 1)(2, "button", 2);
