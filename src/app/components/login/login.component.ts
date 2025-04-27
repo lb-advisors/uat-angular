@@ -61,6 +61,10 @@ export class LoginComponent {
         next: (loginResponse: LoginResponse) => {
           const fullname = `${loginResponse.firstName ?? ''} ${loginResponse.lastName ?? ''}`.trim();
           this.authService.saveFullnameAndToken(fullname, loginResponse.token);
+          
+          // Save the username to localStorage
+          this.authService.saveUsername(username);
+          
           this.router.navigate(['/products']);
         },
       });

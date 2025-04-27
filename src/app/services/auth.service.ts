@@ -11,6 +11,7 @@ import { User } from '../models/user.model ';
 export class AuthService {
   private tokenKey = 'authToken';
   private fullnameKey = 'fullname';
+  private usernameKey = 'username'; // New key for storing username
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -31,7 +32,13 @@ export class AuthService {
     localStorage.setItem(this.fullnameKey, fullname);
   }
 
-  // Retrieve the token (from sessionStorage first, then fallback to localStorage)
+  // Save username to localStorage
+  saveUsername(username: string): void {
+    // Make sure to store the full email address
+    localStorage.setItem(this.usernameKey, username);
+  }
+
+  // Retrieve the token (from localStorage)
   getToken(): string | null {
     const token = localStorage.getItem(this.tokenKey);
     return token;
@@ -40,6 +47,19 @@ export class AuthService {
   getFullname(): string | null {
     const token = localStorage.getItem(this.fullnameKey);
     return token;
+  }
+
+  // New method to get username
+  getUsername(): string | null {
+    return localStorage.getItem(this.usernameKey);
+  }
+
+  // Get the first part of the email (before @)
+  getUsernamePrefix(): string | null {
+    const username = this.getUsername();
+    if (!username) return null;
+    
+    return username.split('@')[0];
   }
 
   // Check if the user is logged in by verifying if a token exists
@@ -51,49 +71,8 @@ export class AuthService {
   // Optional: method to log out
   logout(): void {
     localStorage.removeItem(this.tokenKey);
+    localStorage.removeItem(this.fullnameKey);
+    localStorage.removeItem(this.usernameKey); // Also clear username
     this.router.navigate(['/login']);
   }
-
-  // Check if token exists and is not expired
-  /*
-  isTokenValid(url?: string): boolean {
-    // Skip token validation if the URL matches an excluded path
-    if (url && this.isExcludedPath(url)) {
-      console.log('URL is excluded from authentication, skipping token validation:', url);
-      return true;
-    }
-
-    const token = this.getToken();
-    if (!token) {
-      console.warn('No token found');
-      return false;
-    }
-
-    const payload = this.decodeToken(token);
-    if (!payload || !payload.exp) {
-      console.warn('Invalid token payload');
-      return false;
-    }
-
-    const expiryTime = payload.exp * 1000; // Convert to milliseconds
-    const currentTime = Date.now();
-    const isValid = currentTime < expiryTime;
-    console.log('Token validity:', isValid); // Debug: Log token validity
-    return isValid;
-  }
-
-  // Decode the token to get its payload
-  private decodeToken(token: string): any | null {
-    try {
-      const payloadPart = token.split('.')[1];
-      const decodedPayload = atob(payloadPart);
-      const parsedPayload = JSON.parse(decodedPayload);
-      console.log('Decoded token payload:', parsedPayload); // Debug: Log decoded payload
-      return parsedPayload;
-    } catch (error) {
-      console.error('Failed to decode token:', error);
-      return null;
-    }
-  }
-*/
 }
