@@ -14,7 +14,8 @@ import { AuthService } from 'src/app/services/auth.service';
 export class HomeComponent implements OnInit {
   username!: string | null;
   isHROpen: boolean = false;
-  isSalesOpen: boolean = false;
+  isOtherOpen: boolean = false;
+  // Removed isSalesOpen property since we no longer need it
 
   constructor(
     @Inject(Router) private router: Router,
@@ -27,26 +28,26 @@ export class HomeComponent implements OnInit {
 
   navigateTo(page: string): void {
     this.router.navigate([`/${page}`]);
-    if (this.isHROpen) {
-      this.isHROpen = false; // Close HR dropdown after navigation
-    }
+    // Close all dropdowns after navigation
+    this.isHROpen = false;
+    this.isOtherOpen = false;
   }
 
   toggleHR(): void {
     this.isHROpen = !this.isHROpen;
-  }
-
-  // Optional: Close HR dropdown when clicking outside
-  closeHR(): void {
+    // Close other dropdowns when opening HR
     if (this.isHROpen) {
-      this.isHROpen = false;
+      this.isOtherOpen = false;
     }
   }
 
-  toggleSales(): void {
-    this.isSalesOpen = !this.isSalesOpen;
-    // Optionally close HR dropdown when opening Sales
-    if (this.isSalesOpen) {
+  // Removed toggleSales() method since we no longer need it
+
+  // Method for Other dropdown
+  toggleOther(): void {
+    this.isOtherOpen = !this.isOtherOpen;
+    // Close other dropdowns when opening Other
+    if (this.isOtherOpen) {
       this.isHROpen = false;
     }
   }

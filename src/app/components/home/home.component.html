@@ -1,16 +1,10 @@
+<!-- Changes to home.component.html -->
 <div class="page container">
   <div class="button-container">
     <button class="nav-button" (click)="navigateTo('products')">Products</button>
-
-    <!-- Sales Section -->
-    <div class="sales-section">
-      <button class="nav-button" (click)="toggleSales()">Sales</button>
-      <div class="sales-dropdown" *ngIf="isSalesOpen">
-        <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
-        <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
-        <button class="nav-button" (click)="navigateTo('preorder-links')">Preorders</button>
-      </div>
-    </div>
+    
+    <!-- Changed from Sales dropdown to direct New Order button -->
+    <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
 
     <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
 
@@ -28,7 +22,16 @@
       </div>
     </div>
 
-    <button class="nav-button" (click)="navigateTo('reports')">Reports</button>
+    <!-- Other Section -->
+    <div class="other-section">
+      <button class="nav-button" (click)="toggleOther()">Other</button>
+      <div class="other-dropdown" *ngIf="isOtherOpen">
+        <button class="nav-button" (click)="navigateTo('preorder-links')">Pre-Order</button>
+        <button class="nav-button" (click)="navigateTo('orders')">Existing Orders</button>
+        <button class="nav-button" (click)="navigateTo('reports')">Reports</button>
+      </div>
+    </div>
+
     <button class="nav-button logout-button" (click)="logout()">Logout</button>
   </div>
 
