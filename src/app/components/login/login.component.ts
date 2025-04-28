@@ -65,7 +65,7 @@ export class LoginComponent {
           // Save the username to localStorage
           this.authService.saveUsername(username);
           
-          this.router.navigate(['/products']);
+          this.router.navigate(['/home']);
         },
       });
   }
