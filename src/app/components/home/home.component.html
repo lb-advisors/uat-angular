@@ -2,14 +2,9 @@
 <div class="page container">
   <div class="button-container">
     <button class="nav-button" (click)="navigateTo('products')">Products</button>
-
-    <!-- Sales Section -->
-    <div class="sales-section">
-      <button class="nav-button" (click)="toggleSales()">Sales</button>
-      <div class="sales-dropdown" *ngIf="isSalesOpen">
-        <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
-      </div>
-    </div>
+    
+    <!-- Changed from Sales dropdown to direct New Order button -->
+    <button class="nav-button" (click)="navigateTo('order-links')">New Order</button>
 
     <button class="nav-button" (click)="navigateTo('driver')">Routes</button>
 
@@ -27,7 +22,7 @@
       </div>
     </div>
 
-    <!-- Other Section (Previously Reports) -->
+    <!-- Other Section -->
     <div class="other-section">
       <button class="nav-button" (click)="toggleOther()">Other</button>
       <div class="other-dropdown" *ngIf="isOtherOpen">
