@@ -175,3 +175,31 @@
   box-shadow: 0 2px 5px rgba(0,0,0,0.2);
   min-width: 200px;
 }
+
+/* Add styles for the Other dropdown section */
+.other-section {
+  display: inline-block;
+  position: relative;
+}
+
+.other-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 8px;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  min-width: 200px;
+}
+
+.other-dropdown .nav-button {
+  display: block;
+  width: 100%;
+  margin: 4px 0;
+  text-align: left;
+}
+
+/* Add this to your existing CSS file */
